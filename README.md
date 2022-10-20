@@ -30,6 +30,11 @@ console.log(ast);
 
 ## Development
 
+Requirements:
+
+- NodeJS 16+ with NPM
+- Java 8+
+
 Installation:
 
 ```shell

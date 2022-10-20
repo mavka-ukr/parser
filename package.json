@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/main.js",
-    "antlr4": "cd ./src/antlr4/ && java -jar /usr/local/lib/antlr-4.11.1-complete.jar -Dlanguage=JavaScript -o build *.g4 -visitor",
+    "antlr4": "cd ./src/antlr4/ && java -jar ../../vendor/antlr-4.11.1-complete.jar -Dlanguage=JavaScript -o build *.g4 -visitor",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
