@@ -27,3 +27,15 @@ const ast = parse(code);
 
 console.log(ast);
 ```
+
+## Development
+
+```shell
+git clone https://github.com/kohutd/diia-parser
+
+cd diia-parser
+
+npm install
+
+npm test
+```
