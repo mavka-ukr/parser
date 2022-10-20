@@ -1,0 +1,27 @@
+{
+  "name": "diia-parser",
+  "version": "0.0.1",
+  "description": "Diia language parser.",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kohutd/diia-parser.git"
+  },
+  "keywords": [
+    "diia",
+    "parser",
+    "antlr4",
+    "дія",
+    "парсер"
+  ],
+  "author": "kohutd (davyd.kohut@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kohutd/diia-parser/issues"
+  },
+  "homepage": "https://github.com/kohutd/diia-parser#readme"
+}
