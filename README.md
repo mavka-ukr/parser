@@ -30,12 +30,24 @@ console.log(ast);
 
 ## Development
 
+Installation:
+
 ```shell
 git clone https://github.com/kohutd/diia-parser
 
 cd diia-parser
 
 npm install
+```
 
+Generating antlr4 files:
+
+```shell
+npm run antlr4
+```
+
+Running tests:
+
+```shell
 npm test
 ```

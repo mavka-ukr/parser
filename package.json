@@ -5,6 +5,8 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
+    "start": "node src/main.js",
+    "antlr4": "cd ./src/antlr4/ && java -jar /usr/local/lib/antlr-4.11.1-complete.jar -Dlanguage=JavaScript -o build *.g4 -visitor",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
@@ -26,5 +28,8 @@
   "homepage": "https://github.com/kohutd/diia-parser#readme",
   "devDependencies": {
     "jest": "^29.2.1"
+  },
+  "dependencies": {
+    "antlr4": "^4.11.0"
   }
 }
