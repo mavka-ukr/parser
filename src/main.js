@@ -2,6 +2,7 @@ import antlr4 from "antlr4";
 import DiiaVisitor from "./antlr4/DiiaVisitor.js";
 import DiiaLexer from "./antlr4/build/DiiaLexer.js";
 import DiiaParser from "./antlr4/build/DiiaParser.js";
+import { title } from "./utils/text.js";
 
 export function parse(code, options = {}) {
     options.start = options.start || 'program';
@@ -17,7 +18,7 @@ export function parse(code, options = {}) {
 
     const visitor = new DiiaVisitor();
 
-    let ast = visitor.visitProgram(tree);
+    let ast = visitor[`visit${title(options.start)}`](tree);
 
     return ast.flat().filter((v) => !!v);
 }

@@ -16,12 +16,13 @@
   "keywords": [
     "diia",
     "parser",
+    "antlr",
     "antlr4",
     "дія",
     "парсер"
   ],
   "author": "kohutd (davyd.kohut@gmail.com)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kohutd/diia-parser/issues"
   },
