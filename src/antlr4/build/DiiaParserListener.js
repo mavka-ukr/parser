@@ -167,5 +167,41 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#test.
+	enterTest(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test.
+	exitTest(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#test_part.
+	enterTest_part(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test_part.
+	exitTest_part(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#test_ops.
+	enterTest_ops(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test_ops.
+	exitTest_ops(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#if.
+	enterIf(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#if.
+	exitIf(ctx) {
+	}
+
+
 
 }

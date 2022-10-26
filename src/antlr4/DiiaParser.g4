@@ -5,7 +5,7 @@ options {
 }
 
 program: program_line (NL NL program_line)* EOF;
-program_line: call | arithmetic | assign | diia;
+program_line: call | arithmetic | assign | diia | if;
 
 // a; a.b; a.b.c; a[1]; a[1 + 1]; etc
 identifier: NAME;
@@ -29,8 +29,7 @@ assign_value: arithmetic;
 
 // block body
 body: body_line (NL body_line)*;
-body_line: call | assign;
-
+body_line: call | assign | if | arithmetic;
 
 // дія тест()
 //   a = 1
@@ -40,3 +39,13 @@ diia: 'дія' (diia_for_structure)? NAME ('(' diia_parameters? ')')? NL (body N
 diia_parameters: diia_parameter (',' diia_parameter)*;
 diia_parameter: NAME;
 diia_for_structure: 'для' NAME NAME?;
+
+// a == 1; a() == 1; (1 + 1) == 1;
+test: test_part test_ops test_part;
+test_part: call | literal | identifier | '(' arithmetic ')';
+test_ops: '==' | '!=' | '>=' | '<=';
+
+// якщо бути
+//   друк("най буде")
+// кінець
+if: 'якщо' (arithmetic | test) NL (body NL)? 'кінець';
