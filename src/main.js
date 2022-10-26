@@ -20,5 +20,5 @@ export function parse(code, options = {}) {
 
     let ast = visitor[`visit${title(options.start)}`](tree);
 
-    return ast.flat().filter((v) => !!v);
+    return ast.flat(Infinity).filter((v) => !!v);
 }

@@ -5,6 +5,15 @@ import antlr4 from 'antlr4';
 // This class defines a complete listener for a parse tree produced by DiiaParser.
 export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
+	// Enter a parse tree produced by DiiaParser#only_for_testing.
+	enterOnly_for_testing(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#only_for_testing.
+	exitOnly_for_testing(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#program.
 	enterProgram(ctx) {
 	}
@@ -41,21 +50,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#atom.
+	enterAtom(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#atom.
+	exitAtom(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#arithmetic.
 	enterArithmetic(ctx) {
 	}
 
 	// Exit a parse tree produced by DiiaParser#arithmetic.
 	exitArithmetic(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#arithmetic_part.
-	enterArithmetic_part(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#arithmetic_part.
-	exitArithmetic_part(ctx) {
 	}
 
 

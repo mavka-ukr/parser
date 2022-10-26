@@ -8,7 +8,8 @@ test('parse IfNode', () => {
 кінець
 `;
 
-    const ast = parse(code)[0];
+    const ast = parse(code, { start: 'only_for_testing' });
+    const node = ast[0];
 
-    expect(ast).toBeInstanceOf(IfNode);
+    expect(node).toBeInstanceOf(IfNode);
 });

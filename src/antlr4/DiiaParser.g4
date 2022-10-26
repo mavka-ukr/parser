@@ -4,28 +4,36 @@ options {
     tokenVocab=DiiaLexer;
 }
 
+only_for_testing: identifier | call | arithmetic | assign | diia | if;
+
 program: program_line (NL NL program_line)* EOF;
-program_line: call | arithmetic | assign | diia | if;
+program_line: call | assign | diia | if;
 
 // a; a.b; a.b.c; a[1]; a[1 + 1]; etc
-identifier: NAME;
+identifier: left=identifier '.' right=identifier | name=NAME;
 
 // 1; 1.2322; "abcd"; так; ні; пусто
-literal: NUMBER | STRING | TRUE | FALSE | NONE;
+literal: number=NUMBER | string=STRING | true=TRUE | false=FALSE | none=NONE;
+
+// single expression
+atom: literal | identifier | call | arithmetic | test;
 
 // 1 + 1; a + 1; a() + 1; (a() + 1) + 1;
-arithmetic: left=arithmetic_part (op=arithmetic_ops right=arithmetic_part)*;
-arithmetic_part: literal | identifier | call | '(' arithmetic ')';
+arithmetic: left=arithmetic op=arithmetic_ops right=arithmetic
+          | literal_v=literal
+          | identifier_v=identifier
+          | call_v=call
+          | '(' nested=arithmetic ')';
 arithmetic_ops: '+' | '-' | '/' | '*';
 
 // a(); a(x, y(), 1 + 1);
 call: identifier '(' call_parameters? ')';
 call_parameters: call_parameter (',' call_parameter)*;
-call_parameter: (NAME ':')? arithmetic;
+call_parameter: (NAME ':')? atom;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
 assign: identifier '=' assign_value;
-assign_value: arithmetic;
+assign_value: atom;
 
 // block body
 body: body_line (NL body_line)*;
@@ -48,4 +56,4 @@ test_ops: '==' | '!=' | '>=' | '<=';
 // якщо бути
 //   друк("най буде")
 // кінець
-if: 'якщо' (arithmetic | test) NL (body NL)? 'кінець';
+if: 'якщо' atom NL (body NL)? 'кінець';
