@@ -5,7 +5,9 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-друк(знайти())
+якщо бути().результат() == так
+  друк("йой, най буде")
+кінець
 `.trim();
 
 const ast = parse(code, { start: 'only_for_testing' });

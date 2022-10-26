@@ -101,14 +101,14 @@ export default class DiiaLexer extends antlr4.Lexer {
                          "'='", "'+'", "'-'", "'*'", "'/'", "':'", "'.'", 
                          "'!'" ];
 	static symbolicNames = [ null, "DEF", "END", "EACH", "TAKING", "STRUCTURE", 
-                          "EQ", "NOT_EQ", "GREATER", "SMALLER", "TRUE", 
-                          "FALSE", "NONE", "FOR", "IF", "SKIP_SPACES", "NL", 
-                          "OPEN_PAREN", "CLOSE_PAREN", "OPEN_ARRAY", "CLOSE_ARRAY", 
-                          "COMMA", "ASSIGN", "PLUS", "MINUS", "MUL", "DIV", 
-                          "COLON", "DOT", "NOT", "NAME", "NUMBER", "INTEGER", 
-                          "FLOAT", "STRING" ];
+                          "EQ", "NOT_EQ", "GREATER", "SMALLER", "YES", "NO", 
+                          "NONE", "FOR", "IF", "SKIP_SPACES", "NL", "OPEN_PAREN", 
+                          "CLOSE_PAREN", "OPEN_ARRAY", "CLOSE_ARRAY", "COMMA", 
+                          "ASSIGN", "PLUS", "MINUS", "MUL", "DIV", "COLON", 
+                          "DOT", "NOT", "NAME", "NUMBER", "INTEGER", "FLOAT", 
+                          "STRING" ];
 	static ruleNames = [ "DEF", "END", "EACH", "TAKING", "STRUCTURE", "EQ", 
-                      "NOT_EQ", "GREATER", "SMALLER", "TRUE", "FALSE", "NONE", 
+                      "NOT_EQ", "GREATER", "SMALLER", "YES", "NO", "NONE", 
                       "FOR", "IF", "SPACES", "LINE_JOINING", "SKIP_SPACES", 
                       "NL", "OPEN_PAREN", "CLOSE_PAREN", "OPEN_ARRAY", "CLOSE_ARRAY", 
                       "COMMA", "ASSIGN", "PLUS", "MINUS", "MUL", "DIV", 
@@ -136,8 +136,8 @@ DiiaLexer.EQ = 6;
 DiiaLexer.NOT_EQ = 7;
 DiiaLexer.GREATER = 8;
 DiiaLexer.SMALLER = 9;
-DiiaLexer.TRUE = 10;
-DiiaLexer.FALSE = 11;
+DiiaLexer.YES = 10;
+DiiaLexer.NO = 11;
 DiiaLexer.NONE = 12;
 DiiaLexer.FOR = 13;
 DiiaLexer.IF = 14;

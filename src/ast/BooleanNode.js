@@ -1,6 +1,6 @@
 import ASTNode from "./ASTNode.js";
 
-class IdentifierNode extends ASTNode {
+class BooleanNode extends ASTNode {
     constructor(context, { value }) {
         super(context);
 
@@ -8,4 +8,4 @@ class IdentifierNode extends ASTNode {
     }
 }
 
-export default IdentifierNode;
+export default BooleanNode;

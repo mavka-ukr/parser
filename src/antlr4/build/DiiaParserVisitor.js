@@ -6,12 +6,6 @@ import antlr4 from 'antlr4';
 
 export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
-	// Visit a parse tree produced by DiiaParser#only_for_testing.
-	visitOnly_for_testing(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by DiiaParser#program.
 	visitProgram(ctx) {
 	  return this.visitChildren(ctx);
@@ -24,8 +18,20 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#only_for_testing.
+	visitOnly_for_testing(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#identifier.
 	visitIdentifier(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#chain.
+	visitChain(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

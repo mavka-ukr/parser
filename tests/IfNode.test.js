@@ -3,7 +3,7 @@ import IfNode from "../src/ast/IfNode.js";
 
 test('parse IfNode', () => {
     const code = `
-якщо бути == так
+якщо бути().результат() == так
   друк("йой, най буде")
 кінець
 `;

@@ -4,74 +4,75 @@ import antlr4 from 'antlr4';
 import DiiaParserListener from './DiiaParserListener.js';
 import DiiaParserVisitor from './DiiaParserVisitor.js';
 
-const serializedATN = [4,1,34,219,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
+const serializedATN = [4,1,34,222,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,
 2,13,7,13,2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,
-20,7,20,2,21,7,21,2,22,7,22,1,0,1,0,1,0,1,0,1,0,1,0,3,0,53,8,0,1,1,1,1,1,
-1,1,1,5,1,59,8,1,10,1,12,1,62,9,1,1,1,1,1,1,2,1,2,1,2,1,2,3,2,70,8,2,1,3,
-1,3,1,3,1,3,1,3,1,3,5,3,78,8,3,10,3,12,3,81,9,3,1,4,1,4,1,4,1,4,1,4,3,4,
-88,8,4,1,5,1,5,1,5,1,5,1,5,3,5,95,8,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,
-6,105,8,6,1,6,1,6,1,6,1,6,5,6,111,8,6,10,6,12,6,114,9,6,1,7,1,7,1,8,1,8,
-1,8,3,8,121,8,8,1,8,1,8,1,9,1,9,1,9,5,9,128,8,9,10,9,12,9,131,9,9,1,10,1,
-10,3,10,135,8,10,1,10,1,10,1,11,1,11,1,11,1,11,1,12,1,12,1,13,1,13,1,13,
-5,13,148,8,13,10,13,12,13,151,9,13,1,14,1,14,1,14,1,14,3,14,157,8,14,1,15,
-1,15,3,15,161,8,15,1,15,1,15,1,15,3,15,166,8,15,1,15,3,15,169,8,15,1,15,
-1,15,1,15,1,15,3,15,175,8,15,1,15,1,15,1,16,1,16,1,16,5,16,182,8,16,10,16,
-12,16,185,9,16,1,17,1,17,1,18,1,18,1,18,3,18,192,8,18,1,19,1,19,1,19,1,19,
-1,20,1,20,1,20,1,20,1,20,1,20,1,20,3,20,205,8,20,1,21,1,21,1,22,1,22,1,22,
-1,22,1,22,1,22,3,22,215,8,22,1,22,1,22,1,22,0,2,6,12,23,0,2,4,6,8,10,12,
-14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,0,2,1,0,23,26,1,0,6,9,234,
-0,52,1,0,0,0,2,54,1,0,0,0,4,69,1,0,0,0,6,71,1,0,0,0,8,87,1,0,0,0,10,94,1,
-0,0,0,12,104,1,0,0,0,14,115,1,0,0,0,16,117,1,0,0,0,18,124,1,0,0,0,20,134,
-1,0,0,0,22,138,1,0,0,0,24,142,1,0,0,0,26,144,1,0,0,0,28,156,1,0,0,0,30,158,
-1,0,0,0,32,178,1,0,0,0,34,186,1,0,0,0,36,188,1,0,0,0,38,193,1,0,0,0,40,204,
-1,0,0,0,42,206,1,0,0,0,44,208,1,0,0,0,46,53,3,6,3,0,47,53,3,16,8,0,48,53,
-3,12,6,0,49,53,3,22,11,0,50,53,3,30,15,0,51,53,3,44,22,0,52,46,1,0,0,0,52,
-47,1,0,0,0,52,48,1,0,0,0,52,49,1,0,0,0,52,50,1,0,0,0,52,51,1,0,0,0,53,1,
-1,0,0,0,54,60,3,4,2,0,55,56,5,16,0,0,56,57,5,16,0,0,57,59,3,4,2,0,58,55,
-1,0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,60,61,1,0,0,0,61,63,1,0,0,0,62,60,1,
-0,0,0,63,64,5,0,0,1,64,3,1,0,0,0,65,70,3,16,8,0,66,70,3,22,11,0,67,70,3,
-30,15,0,68,70,3,44,22,0,69,65,1,0,0,0,69,66,1,0,0,0,69,67,1,0,0,0,69,68,
-1,0,0,0,70,5,1,0,0,0,71,72,6,3,-1,0,72,73,5,30,0,0,73,79,1,0,0,0,74,75,10,
-2,0,0,75,76,5,28,0,0,76,78,3,6,3,3,77,74,1,0,0,0,78,81,1,0,0,0,79,77,1,0,
-0,0,79,80,1,0,0,0,80,7,1,0,0,0,81,79,1,0,0,0,82,88,5,31,0,0,83,88,5,34,0,
-0,84,88,5,10,0,0,85,88,5,11,0,0,86,88,5,12,0,0,87,82,1,0,0,0,87,83,1,0,0,
-0,87,84,1,0,0,0,87,85,1,0,0,0,87,86,1,0,0,0,88,9,1,0,0,0,89,95,3,8,4,0,90,
-95,3,6,3,0,91,95,3,16,8,0,92,95,3,12,6,0,93,95,3,38,19,0,94,89,1,0,0,0,94,
-90,1,0,0,0,94,91,1,0,0,0,94,92,1,0,0,0,94,93,1,0,0,0,95,11,1,0,0,0,96,97,
-6,6,-1,0,97,105,3,8,4,0,98,105,3,6,3,0,99,105,3,16,8,0,100,101,5,17,0,0,
-101,102,3,12,6,0,102,103,5,18,0,0,103,105,1,0,0,0,104,96,1,0,0,0,104,98,
-1,0,0,0,104,99,1,0,0,0,104,100,1,0,0,0,105,112,1,0,0,0,106,107,10,5,0,0,
-107,108,3,14,7,0,108,109,3,12,6,6,109,111,1,0,0,0,110,106,1,0,0,0,111,114,
-1,0,0,0,112,110,1,0,0,0,112,113,1,0,0,0,113,13,1,0,0,0,114,112,1,0,0,0,115,
-116,7,0,0,0,116,15,1,0,0,0,117,118,3,6,3,0,118,120,5,17,0,0,119,121,3,18,
-9,0,120,119,1,0,0,0,120,121,1,0,0,0,121,122,1,0,0,0,122,123,5,18,0,0,123,
-17,1,0,0,0,124,129,3,20,10,0,125,126,5,21,0,0,126,128,3,20,10,0,127,125,
-1,0,0,0,128,131,1,0,0,0,129,127,1,0,0,0,129,130,1,0,0,0,130,19,1,0,0,0,131,
-129,1,0,0,0,132,133,5,30,0,0,133,135,5,27,0,0,134,132,1,0,0,0,134,135,1,
-0,0,0,135,136,1,0,0,0,136,137,3,10,5,0,137,21,1,0,0,0,138,139,3,6,3,0,139,
-140,5,22,0,0,140,141,3,24,12,0,141,23,1,0,0,0,142,143,3,10,5,0,143,25,1,
-0,0,0,144,149,3,28,14,0,145,146,5,16,0,0,146,148,3,28,14,0,147,145,1,0,0,
-0,148,151,1,0,0,0,149,147,1,0,0,0,149,150,1,0,0,0,150,27,1,0,0,0,151,149,
-1,0,0,0,152,157,3,16,8,0,153,157,3,22,11,0,154,157,3,44,22,0,155,157,3,12,
-6,0,156,152,1,0,0,0,156,153,1,0,0,0,156,154,1,0,0,0,156,155,1,0,0,0,157,
-29,1,0,0,0,158,160,5,1,0,0,159,161,3,36,18,0,160,159,1,0,0,0,160,161,1,0,
-0,0,161,162,1,0,0,0,162,168,5,30,0,0,163,165,5,17,0,0,164,166,3,32,16,0,
-165,164,1,0,0,0,165,166,1,0,0,0,166,167,1,0,0,0,167,169,5,18,0,0,168,163,
-1,0,0,0,168,169,1,0,0,0,169,170,1,0,0,0,170,174,5,16,0,0,171,172,3,26,13,
-0,172,173,5,16,0,0,173,175,1,0,0,0,174,171,1,0,0,0,174,175,1,0,0,0,175,176,
-1,0,0,0,176,177,5,2,0,0,177,31,1,0,0,0,178,183,3,34,17,0,179,180,5,21,0,
-0,180,182,3,34,17,0,181,179,1,0,0,0,182,185,1,0,0,0,183,181,1,0,0,0,183,
-184,1,0,0,0,184,33,1,0,0,0,185,183,1,0,0,0,186,187,5,30,0,0,187,35,1,0,0,
-0,188,189,5,13,0,0,189,191,5,30,0,0,190,192,5,30,0,0,191,190,1,0,0,0,191,
-192,1,0,0,0,192,37,1,0,0,0,193,194,3,40,20,0,194,195,3,42,21,0,195,196,3,
-40,20,0,196,39,1,0,0,0,197,205,3,16,8,0,198,205,3,8,4,0,199,205,3,6,3,0,
-200,201,5,17,0,0,201,202,3,12,6,0,202,203,5,18,0,0,203,205,1,0,0,0,204,197,
-1,0,0,0,204,198,1,0,0,0,204,199,1,0,0,0,204,200,1,0,0,0,205,41,1,0,0,0,206,
-207,7,1,0,0,207,43,1,0,0,0,208,209,5,14,0,0,209,210,3,10,5,0,210,214,5,16,
-0,0,211,212,3,26,13,0,212,213,5,16,0,0,213,215,1,0,0,0,214,211,1,0,0,0,214,
-215,1,0,0,0,215,216,1,0,0,0,216,217,5,2,0,0,217,45,1,0,0,0,21,52,60,69,79,
-87,94,104,112,120,129,134,149,156,160,165,168,174,183,191,204,214];
+20,7,20,2,21,7,21,2,22,7,22,2,23,7,23,1,0,1,0,1,0,1,0,5,0,53,8,0,10,0,12,
+0,56,9,0,1,0,1,0,1,1,1,1,1,1,1,1,3,1,64,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,
+3,2,73,8,2,1,3,1,3,1,4,1,4,1,4,3,4,80,8,4,1,4,1,4,1,4,5,4,85,8,4,10,4,12,
+4,88,9,4,1,5,1,5,1,5,1,5,1,5,3,5,95,8,5,1,6,1,6,1,6,1,6,3,6,101,8,6,1,7,
+1,7,1,7,1,7,1,7,1,7,1,7,3,7,110,8,7,1,7,1,7,1,7,1,7,5,7,116,8,7,10,7,12,
+7,119,9,7,1,8,1,8,1,9,1,9,1,9,3,9,126,8,9,1,9,1,9,1,10,1,10,1,10,5,10,133,
+8,10,10,10,12,10,136,9,10,1,11,1,11,3,11,140,8,11,1,11,1,11,1,12,1,12,1,
+12,1,12,1,13,1,13,1,14,1,14,1,14,5,14,153,8,14,10,14,12,14,156,9,14,1,15,
+1,15,1,15,1,15,3,15,162,8,15,1,16,1,16,3,16,166,8,16,1,16,1,16,1,16,3,16,
+171,8,16,1,16,3,16,174,8,16,1,16,1,16,1,16,1,16,3,16,180,8,16,1,16,1,16,
+1,17,1,17,1,17,5,17,187,8,17,10,17,12,17,190,9,17,1,18,1,18,1,19,1,19,1,
+19,1,20,1,20,1,20,1,20,1,21,1,21,1,21,1,21,1,21,1,21,1,21,3,21,208,8,21,
+1,22,1,22,1,23,1,23,1,23,1,23,1,23,1,23,3,23,218,8,23,1,23,1,23,1,23,0,2,
+8,14,24,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,
+46,0,2,1,0,23,26,1,0,6,9,235,0,48,1,0,0,0,2,63,1,0,0,0,4,72,1,0,0,0,6,74,
+1,0,0,0,8,79,1,0,0,0,10,94,1,0,0,0,12,100,1,0,0,0,14,109,1,0,0,0,16,120,
+1,0,0,0,18,122,1,0,0,0,20,129,1,0,0,0,22,139,1,0,0,0,24,143,1,0,0,0,26,147,
+1,0,0,0,28,149,1,0,0,0,30,161,1,0,0,0,32,163,1,0,0,0,34,183,1,0,0,0,36,191,
+1,0,0,0,38,193,1,0,0,0,40,196,1,0,0,0,42,207,1,0,0,0,44,209,1,0,0,0,46,211,
+1,0,0,0,48,54,3,2,1,0,49,50,5,16,0,0,50,51,5,16,0,0,51,53,3,2,1,0,52,49,
+1,0,0,0,53,56,1,0,0,0,54,52,1,0,0,0,54,55,1,0,0,0,55,57,1,0,0,0,56,54,1,
+0,0,0,57,58,5,0,0,1,58,1,1,0,0,0,59,64,3,8,4,0,60,64,3,24,12,0,61,64,3,32,
+16,0,62,64,3,46,23,0,63,59,1,0,0,0,63,60,1,0,0,0,63,61,1,0,0,0,63,62,1,0,
+0,0,64,3,1,0,0,0,65,73,3,6,3,0,66,73,3,18,9,0,67,73,3,14,7,0,68,73,3,24,
+12,0,69,73,3,32,16,0,70,73,3,46,23,0,71,73,3,40,20,0,72,65,1,0,0,0,72,66,
+1,0,0,0,72,67,1,0,0,0,72,68,1,0,0,0,72,69,1,0,0,0,72,70,1,0,0,0,72,71,1,
+0,0,0,73,5,1,0,0,0,74,75,5,30,0,0,75,7,1,0,0,0,76,77,6,4,-1,0,77,80,3,6,
+3,0,78,80,3,18,9,0,79,76,1,0,0,0,79,78,1,0,0,0,80,86,1,0,0,0,81,82,10,3,
+0,0,82,83,5,28,0,0,83,85,3,8,4,4,84,81,1,0,0,0,85,88,1,0,0,0,86,84,1,0,0,
+0,86,87,1,0,0,0,87,9,1,0,0,0,88,86,1,0,0,0,89,95,5,31,0,0,90,95,5,34,0,0,
+91,95,5,10,0,0,92,95,5,11,0,0,93,95,5,12,0,0,94,89,1,0,0,0,94,90,1,0,0,0,
+94,91,1,0,0,0,94,92,1,0,0,0,94,93,1,0,0,0,95,11,1,0,0,0,96,101,3,10,5,0,
+97,101,3,8,4,0,98,101,3,14,7,0,99,101,3,40,20,0,100,96,1,0,0,0,100,97,1,
+0,0,0,100,98,1,0,0,0,100,99,1,0,0,0,101,13,1,0,0,0,102,103,6,7,-1,0,103,
+110,3,10,5,0,104,110,3,8,4,0,105,106,5,17,0,0,106,107,3,14,7,0,107,108,5,
+18,0,0,108,110,1,0,0,0,109,102,1,0,0,0,109,104,1,0,0,0,109,105,1,0,0,0,110,
+117,1,0,0,0,111,112,10,4,0,0,112,113,3,16,8,0,113,114,3,14,7,5,114,116,1,
+0,0,0,115,111,1,0,0,0,116,119,1,0,0,0,117,115,1,0,0,0,117,118,1,0,0,0,118,
+15,1,0,0,0,119,117,1,0,0,0,120,121,7,0,0,0,121,17,1,0,0,0,122,123,3,6,3,
+0,123,125,5,17,0,0,124,126,3,20,10,0,125,124,1,0,0,0,125,126,1,0,0,0,126,
+127,1,0,0,0,127,128,5,18,0,0,128,19,1,0,0,0,129,134,3,22,11,0,130,131,5,
+21,0,0,131,133,3,22,11,0,132,130,1,0,0,0,133,136,1,0,0,0,134,132,1,0,0,0,
+134,135,1,0,0,0,135,21,1,0,0,0,136,134,1,0,0,0,137,138,5,30,0,0,138,140,
+5,27,0,0,139,137,1,0,0,0,139,140,1,0,0,0,140,141,1,0,0,0,141,142,3,12,6,
+0,142,23,1,0,0,0,143,144,3,6,3,0,144,145,5,22,0,0,145,146,3,26,13,0,146,
+25,1,0,0,0,147,148,3,12,6,0,148,27,1,0,0,0,149,154,3,30,15,0,150,151,5,16,
+0,0,151,153,3,30,15,0,152,150,1,0,0,0,153,156,1,0,0,0,154,152,1,0,0,0,154,
+155,1,0,0,0,155,29,1,0,0,0,156,154,1,0,0,0,157,162,3,24,12,0,158,162,3,46,
+23,0,159,162,3,14,7,0,160,162,3,8,4,0,161,157,1,0,0,0,161,158,1,0,0,0,161,
+159,1,0,0,0,161,160,1,0,0,0,162,31,1,0,0,0,163,165,5,1,0,0,164,166,3,38,
+19,0,165,164,1,0,0,0,165,166,1,0,0,0,166,167,1,0,0,0,167,173,5,30,0,0,168,
+170,5,17,0,0,169,171,3,34,17,0,170,169,1,0,0,0,170,171,1,0,0,0,171,172,1,
+0,0,0,172,174,5,18,0,0,173,168,1,0,0,0,173,174,1,0,0,0,174,175,1,0,0,0,175,
+179,5,16,0,0,176,177,3,28,14,0,177,178,5,16,0,0,178,180,1,0,0,0,179,176,
+1,0,0,0,179,180,1,0,0,0,180,181,1,0,0,0,181,182,5,2,0,0,182,33,1,0,0,0,183,
+188,3,36,18,0,184,185,5,21,0,0,185,187,3,36,18,0,186,184,1,0,0,0,187,190,
+1,0,0,0,188,186,1,0,0,0,188,189,1,0,0,0,189,35,1,0,0,0,190,188,1,0,0,0,191,
+192,5,30,0,0,192,37,1,0,0,0,193,194,5,30,0,0,194,195,5,28,0,0,195,39,1,0,
+0,0,196,197,3,42,21,0,197,198,3,44,22,0,198,199,3,42,21,0,199,41,1,0,0,0,
+200,208,3,18,9,0,201,208,3,10,5,0,202,208,3,8,4,0,203,204,5,17,0,0,204,205,
+3,14,7,0,205,206,5,18,0,0,206,208,1,0,0,0,207,200,1,0,0,0,207,201,1,0,0,
+0,207,202,1,0,0,0,207,203,1,0,0,0,208,43,1,0,0,0,209,210,7,1,0,0,210,45,
+1,0,0,0,211,212,5,14,0,0,212,213,3,12,6,0,213,217,5,16,0,0,214,215,3,28,
+14,0,215,216,5,16,0,0,216,218,1,0,0,0,217,214,1,0,0,0,217,218,1,0,0,0,218,
+219,1,0,0,0,219,220,5,2,0,0,220,47,1,0,0,0,21,54,63,72,79,86,94,100,109,
+117,125,134,139,154,161,165,170,173,179,188,207,217];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -94,14 +95,14 @@ export default class DiiaParser extends antlr4.Parser {
                             "'='", "'+'", "'-'", "'*'", "'/'", "':'", "'.'", 
                             "'!'" ];
     static symbolicNames = [ null, "DEF", "END", "EACH", "TAKING", "STRUCTURE", 
-                             "EQ", "NOT_EQ", "GREATER", "SMALLER", "TRUE", 
-                             "FALSE", "NONE", "FOR", "IF", "SKIP_SPACES", 
-                             "NL", "OPEN_PAREN", "CLOSE_PAREN", "OPEN_ARRAY", 
+                             "EQ", "NOT_EQ", "GREATER", "SMALLER", "YES", 
+                             "NO", "NONE", "FOR", "IF", "SKIP_SPACES", "NL", 
+                             "OPEN_PAREN", "CLOSE_PAREN", "OPEN_ARRAY", 
                              "CLOSE_ARRAY", "COMMA", "ASSIGN", "PLUS", "MINUS", 
                              "MUL", "DIV", "COLON", "DOT", "NOT", "NAME", 
                              "NUMBER", "INTEGER", "FLOAT", "STRING" ];
-    static ruleNames = [ "only_for_testing", "program", "program_line", 
-                         "identifier", "literal", "atom", "arithmetic", 
+    static ruleNames = [ "program", "program_line", "only_for_testing", 
+                         "identifier", "chain", "literal", "atom", "arithmetic", 
                          "arithmetic_ops", "call", "call_parameters", "call_parameter", 
                          "assign", "assign_value", "body", "body_line", 
                          "diia", "diia_parameters", "diia_parameter", "diia_for_structure", 
@@ -121,19 +122,19 @@ export default class DiiaParser extends antlr4.Parser {
 
     sempred(localctx, ruleIndex, predIndex) {
     	switch(ruleIndex) {
-    	case 3:
-    	    		return this.identifier_sempred(localctx, predIndex);
-    	case 6:
+    	case 4:
+    	    		return this.chain_sempred(localctx, predIndex);
+    	case 7:
     	    		return this.arithmetic_sempred(localctx, predIndex);
         default:
             throw "No predicate with index:" + ruleIndex;
        }
     }
 
-    identifier_sempred(localctx, predIndex) {
+    chain_sempred(localctx, predIndex) {
     	switch(predIndex) {
     		case 0:
-    			return this.precpred(this._ctx, 2);
+    			return this.precpred(this._ctx, 3);
     		default:
     			throw "No predicate with index:" + predIndex;
     	}
@@ -142,7 +143,7 @@ export default class DiiaParser extends antlr4.Parser {
     arithmetic_sempred(localctx, predIndex) {
     	switch(predIndex) {
     		case 1:
-    			return this.precpred(this._ctx, 5);
+    			return this.precpred(this._ctx, 4);
     		default:
     			throw "No predicate with index:" + predIndex;
     	}
@@ -151,90 +152,29 @@ export default class DiiaParser extends antlr4.Parser {
 
 
 
-	only_for_testing() {
-	    let localctx = new Only_for_testingContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 0, DiiaParser.RULE_only_for_testing);
-	    try {
-	        this.state = 52;
-	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,0,this._ctx);
-	        switch(la_) {
-	        case 1:
-	            this.enterOuterAlt(localctx, 1);
-	            this.state = 46;
-	            this.identifier(0);
-	            break;
-
-	        case 2:
-	            this.enterOuterAlt(localctx, 2);
-	            this.state = 47;
-	            this.call();
-	            break;
-
-	        case 3:
-	            this.enterOuterAlt(localctx, 3);
-	            this.state = 48;
-	            this.arithmetic(0);
-	            break;
-
-	        case 4:
-	            this.enterOuterAlt(localctx, 4);
-	            this.state = 49;
-	            this.assign();
-	            break;
-
-	        case 5:
-	            this.enterOuterAlt(localctx, 5);
-	            this.state = 50;
-	            this.diia();
-	            break;
-
-	        case 6:
-	            this.enterOuterAlt(localctx, 6);
-	            this.state = 51;
-	            this.if_();
-	            break;
-
-	        }
-	    } catch (re) {
-	    	if(re instanceof antlr4.error.RecognitionException) {
-		        localctx.exception = re;
-		        this._errHandler.reportError(this, re);
-		        this._errHandler.recover(this, re);
-		    } else {
-		    	throw re;
-		    }
-	    } finally {
-	        this.exitRule();
-	    }
-	    return localctx;
-	}
-
-
-
 	program() {
 	    let localctx = new ProgramContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 2, DiiaParser.RULE_program);
+	    this.enterRule(localctx, 0, DiiaParser.RULE_program);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 54;
+	        this.state = 48;
 	        this.program_line();
-	        this.state = 60;
+	        this.state = 54;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        while(_la===16) {
-	            this.state = 55;
+	            this.state = 49;
 	            this.match(DiiaParser.NL);
-	            this.state = 56;
+	            this.state = 50;
 	            this.match(DiiaParser.NL);
-	            this.state = 57;
+	            this.state = 51;
 	            this.program_line();
-	            this.state = 62;
+	            this.state = 56;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
-	        this.state = 63;
+	        this.state = 57;
 	        this.match(DiiaParser.EOF);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -254,33 +194,33 @@ export default class DiiaParser extends antlr4.Parser {
 
 	program_line() {
 	    let localctx = new Program_lineContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 4, DiiaParser.RULE_program_line);
+	    this.enterRule(localctx, 2, DiiaParser.RULE_program_line);
 	    try {
-	        this.state = 69;
+	        this.state = 63;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,2,this._ctx);
+	        var la_ = this._interp.adaptivePredict(this._input,1,this._ctx);
 	        switch(la_) {
 	        case 1:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 65;
-	            this.call();
+	            this.state = 59;
+	            this.chain(0);
 	            break;
 
 	        case 2:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 66;
+	            this.state = 60;
 	            this.assign();
 	            break;
 
 	        case 3:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 67;
+	            this.state = 61;
 	            this.diia();
 	            break;
 
 	        case 4:
 	            this.enterOuterAlt(localctx, 4);
-	            this.state = 68;
+	            this.state = 62;
 	            this.if_();
 	            break;
 
@@ -300,45 +240,148 @@ export default class DiiaParser extends antlr4.Parser {
 	}
 
 
-	identifier(_p) {
+
+	only_for_testing() {
+	    let localctx = new Only_for_testingContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 4, DiiaParser.RULE_only_for_testing);
+	    try {
+	        this.state = 72;
+	        this._errHandler.sync(this);
+	        var la_ = this._interp.adaptivePredict(this._input,2,this._ctx);
+	        switch(la_) {
+	        case 1:
+	            this.enterOuterAlt(localctx, 1);
+	            this.state = 65;
+	            this.identifier();
+	            break;
+
+	        case 2:
+	            this.enterOuterAlt(localctx, 2);
+	            this.state = 66;
+	            this.call();
+	            break;
+
+	        case 3:
+	            this.enterOuterAlt(localctx, 3);
+	            this.state = 67;
+	            this.arithmetic(0);
+	            break;
+
+	        case 4:
+	            this.enterOuterAlt(localctx, 4);
+	            this.state = 68;
+	            this.assign();
+	            break;
+
+	        case 5:
+	            this.enterOuterAlt(localctx, 5);
+	            this.state = 69;
+	            this.diia();
+	            break;
+
+	        case 6:
+	            this.enterOuterAlt(localctx, 6);
+	            this.state = 70;
+	            this.if_();
+	            break;
+
+	        case 7:
+	            this.enterOuterAlt(localctx, 7);
+	            this.state = 71;
+	            this.test();
+	            break;
+
+	        }
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
+	identifier() {
+	    let localctx = new IdentifierContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 6, DiiaParser.RULE_identifier);
+	    try {
+	        this.enterOuterAlt(localctx, 1);
+	        this.state = 74;
+	        this.match(DiiaParser.NAME);
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+	chain(_p) {
 		if(_p===undefined) {
 		    _p = 0;
 		}
 	    const _parentctx = this._ctx;
 	    const _parentState = this.state;
-	    let localctx = new IdentifierContext(this, this._ctx, _parentState);
+	    let localctx = new ChainContext(this, this._ctx, _parentState);
 	    let _prevctx = localctx;
-	    const _startState = 6;
-	    this.enterRecursionRule(localctx, 6, DiiaParser.RULE_identifier, _p);
+	    const _startState = 8;
+	    this.enterRecursionRule(localctx, 8, DiiaParser.RULE_chain, _p);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 72;
-	        localctx.name = this.match(DiiaParser.NAME);
-	        this._ctx.stop = this._input.LT(-1);
 	        this.state = 79;
 	        this._errHandler.sync(this);
-	        var _alt = this._interp.adaptivePredict(this._input,3,this._ctx)
+	        var la_ = this._interp.adaptivePredict(this._input,3,this._ctx);
+	        switch(la_) {
+	        case 1:
+	            this.state = 77;
+	            localctx.identifier_v = this.identifier();
+	            break;
+
+	        case 2:
+	            this.state = 78;
+	            localctx.call_v = this.call();
+	            break;
+
+	        }
+	        this._ctx.stop = this._input.LT(-1);
+	        this.state = 86;
+	        this._errHandler.sync(this);
+	        var _alt = this._interp.adaptivePredict(this._input,4,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	            if(_alt===1) {
 	                if(this._parseListeners!==null) {
 	                    this.triggerExitRuleEvent();
 	                }
 	                _prevctx = localctx;
-	                localctx = new IdentifierContext(this, _parentctx, _parentState);
+	                localctx = new ChainContext(this, _parentctx, _parentState);
 	                localctx.left = _prevctx;
-	                this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_identifier);
-	                this.state = 74;
-	                if (!( this.precpred(this._ctx, 2))) {
-	                    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 2)");
+	                this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_chain);
+	                this.state = 81;
+	                if (!( this.precpred(this._ctx, 3))) {
+	                    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 3)");
 	                }
-	                this.state = 75;
+	                this.state = 82;
 	                this.match(DiiaParser.DOT);
-	                this.state = 76;
-	                localctx.right = this.identifier(3); 
+	                this.state = 83;
+	                localctx.right = this.chain(4); 
 	            }
-	            this.state = 81;
+	            this.state = 88;
 	            this._errHandler.sync(this);
-	            _alt = this._interp.adaptivePredict(this._input,3,this._ctx);
+	            _alt = this._interp.adaptivePredict(this._input,4,this._ctx);
 	        }
 
 	    } catch( error) {
@@ -359,34 +402,34 @@ export default class DiiaParser extends antlr4.Parser {
 
 	literal() {
 	    let localctx = new LiteralContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 8, DiiaParser.RULE_literal);
+	    this.enterRule(localctx, 10, DiiaParser.RULE_literal);
 	    try {
-	        this.state = 87;
+	        this.state = 94;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
 	        case 31:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 82;
+	            this.state = 89;
 	            localctx.number = this.match(DiiaParser.NUMBER);
 	            break;
 	        case 34:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 83;
+	            this.state = 90;
 	            localctx.string = this.match(DiiaParser.STRING);
 	            break;
 	        case 10:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 84;
-	            localctx.true_ = this.match(DiiaParser.TRUE);
+	            this.state = 91;
+	            localctx.yes = this.match(DiiaParser.YES);
 	            break;
 	        case 11:
 	            this.enterOuterAlt(localctx, 4);
-	            this.state = 85;
-	            localctx.false_ = this.match(DiiaParser.FALSE);
+	            this.state = 92;
+	            localctx.no = this.match(DiiaParser.NO);
 	            break;
 	        case 12:
 	            this.enterOuterAlt(localctx, 5);
-	            this.state = 86;
+	            this.state = 93;
 	            localctx.none = this.match(DiiaParser.NONE);
 	            break;
 	        default:
@@ -410,39 +453,33 @@ export default class DiiaParser extends antlr4.Parser {
 
 	atom() {
 	    let localctx = new AtomContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 10, DiiaParser.RULE_atom);
+	    this.enterRule(localctx, 12, DiiaParser.RULE_atom);
 	    try {
-	        this.state = 94;
+	        this.state = 100;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,5,this._ctx);
+	        var la_ = this._interp.adaptivePredict(this._input,6,this._ctx);
 	        switch(la_) {
 	        case 1:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 89;
+	            this.state = 96;
 	            this.literal();
 	            break;
 
 	        case 2:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 90;
-	            this.identifier(0);
+	            this.state = 97;
+	            this.chain(0);
 	            break;
 
 	        case 3:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 91;
-	            this.call();
+	            this.state = 98;
+	            this.arithmetic(0);
 	            break;
 
 	        case 4:
 	            this.enterOuterAlt(localctx, 4);
-	            this.state = 92;
-	            this.arithmetic(0);
-	            break;
-
-	        case 5:
-	            this.enterOuterAlt(localctx, 5);
-	            this.state = 93;
+	            this.state = 99;
 	            this.test();
 	            break;
 
@@ -470,43 +507,40 @@ export default class DiiaParser extends antlr4.Parser {
 	    const _parentState = this.state;
 	    let localctx = new ArithmeticContext(this, this._ctx, _parentState);
 	    let _prevctx = localctx;
-	    const _startState = 12;
-	    this.enterRecursionRule(localctx, 12, DiiaParser.RULE_arithmetic, _p);
+	    const _startState = 14;
+	    this.enterRecursionRule(localctx, 14, DiiaParser.RULE_arithmetic, _p);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 104;
+	        this.state = 109;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,6,this._ctx);
-	        switch(la_) {
-	        case 1:
-	            this.state = 97;
+	        switch(this._input.LA(1)) {
+	        case 10:
+	        case 11:
+	        case 12:
+	        case 31:
+	        case 34:
+	            this.state = 103;
 	            localctx.literal_v = this.literal();
 	            break;
-
-	        case 2:
-	            this.state = 98;
-	            localctx.identifier_v = this.identifier(0);
+	        case 30:
+	            this.state = 104;
+	            localctx.chain_v = this.chain(0);
 	            break;
-
-	        case 3:
-	            this.state = 99;
-	            localctx.call_v = this.call();
-	            break;
-
-	        case 4:
-	            this.state = 100;
+	        case 17:
+	            this.state = 105;
 	            this.match(DiiaParser.OPEN_PAREN);
-	            this.state = 101;
+	            this.state = 106;
 	            localctx.nested = this.arithmetic(0);
-	            this.state = 102;
+	            this.state = 107;
 	            this.match(DiiaParser.CLOSE_PAREN);
 	            break;
-
+	        default:
+	            throw new antlr4.error.NoViableAltException(this);
 	        }
 	        this._ctx.stop = this._input.LT(-1);
-	        this.state = 112;
+	        this.state = 117;
 	        this._errHandler.sync(this);
-	        var _alt = this._interp.adaptivePredict(this._input,7,this._ctx)
+	        var _alt = this._interp.adaptivePredict(this._input,8,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	            if(_alt===1) {
 	                if(this._parseListeners!==null) {
@@ -516,18 +550,18 @@ export default class DiiaParser extends antlr4.Parser {
 	                localctx = new ArithmeticContext(this, _parentctx, _parentState);
 	                localctx.left = _prevctx;
 	                this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_arithmetic);
-	                this.state = 106;
-	                if (!( this.precpred(this._ctx, 5))) {
-	                    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
+	                this.state = 111;
+	                if (!( this.precpred(this._ctx, 4))) {
+	                    throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 4)");
 	                }
-	                this.state = 107;
+	                this.state = 112;
 	                localctx.op = this.arithmetic_ops();
-	                this.state = 108;
-	                localctx.right = this.arithmetic(6); 
+	                this.state = 113;
+	                localctx.right = this.arithmetic(5); 
 	            }
-	            this.state = 114;
+	            this.state = 119;
 	            this._errHandler.sync(this);
-	            _alt = this._interp.adaptivePredict(this._input,7,this._ctx);
+	            _alt = this._interp.adaptivePredict(this._input,8,this._ctx);
 	        }
 
 	    } catch( error) {
@@ -548,11 +582,11 @@ export default class DiiaParser extends antlr4.Parser {
 
 	arithmetic_ops() {
 	    let localctx = new Arithmetic_opsContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 14, DiiaParser.RULE_arithmetic_ops);
+	    this.enterRule(localctx, 16, DiiaParser.RULE_arithmetic_ops);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 115;
+	        this.state = 120;
 	        _la = this._input.LA(1);
 	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & 125829120) !== 0))) {
 	        this._errHandler.recoverInline(this);
@@ -579,23 +613,23 @@ export default class DiiaParser extends antlr4.Parser {
 
 	call() {
 	    let localctx = new CallContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 16, DiiaParser.RULE_call);
+	    this.enterRule(localctx, 18, DiiaParser.RULE_call);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 117;
-	        this.identifier(0);
-	        this.state = 118;
+	        this.state = 122;
+	        this.identifier();
+	        this.state = 123;
 	        this.match(DiiaParser.OPEN_PAREN);
-	        this.state = 120;
+	        this.state = 125;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        if(((((_la - 10)) & ~0x1f) == 0 && ((1 << (_la - 10)) & 19923079) !== 0)) {
-	            this.state = 119;
+	            this.state = 124;
 	            this.call_parameters();
 	        }
 
-	        this.state = 122;
+	        this.state = 127;
 	        this.match(DiiaParser.CLOSE_PAREN);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -615,21 +649,21 @@ export default class DiiaParser extends antlr4.Parser {
 
 	call_parameters() {
 	    let localctx = new Call_parametersContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 18, DiiaParser.RULE_call_parameters);
+	    this.enterRule(localctx, 20, DiiaParser.RULE_call_parameters);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 124;
-	        this.call_parameter();
 	        this.state = 129;
+	        this.call_parameter();
+	        this.state = 134;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        while(_la===21) {
-	            this.state = 125;
+	            this.state = 130;
 	            this.match(DiiaParser.COMMA);
-	            this.state = 126;
-	            this.call_parameter();
 	            this.state = 131;
+	            this.call_parameter();
+	            this.state = 136;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
@@ -651,20 +685,20 @@ export default class DiiaParser extends antlr4.Parser {
 
 	call_parameter() {
 	    let localctx = new Call_parameterContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 20, DiiaParser.RULE_call_parameter);
+	    this.enterRule(localctx, 22, DiiaParser.RULE_call_parameter);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 134;
+	        this.state = 139;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,10,this._ctx);
+	        var la_ = this._interp.adaptivePredict(this._input,11,this._ctx);
 	        if(la_===1) {
-	            this.state = 132;
+	            this.state = 137;
 	            this.match(DiiaParser.NAME);
-	            this.state = 133;
+	            this.state = 138;
 	            this.match(DiiaParser.COLON);
 
 	        }
-	        this.state = 136;
+	        this.state = 141;
 	        this.atom();
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -684,14 +718,14 @@ export default class DiiaParser extends antlr4.Parser {
 
 	assign() {
 	    let localctx = new AssignContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 22, DiiaParser.RULE_assign);
+	    this.enterRule(localctx, 24, DiiaParser.RULE_assign);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 138;
-	        this.identifier(0);
-	        this.state = 139;
+	        this.state = 143;
+	        this.identifier();
+	        this.state = 144;
 	        this.match(DiiaParser.ASSIGN);
-	        this.state = 140;
+	        this.state = 145;
 	        this.assign_value();
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -711,10 +745,10 @@ export default class DiiaParser extends antlr4.Parser {
 
 	assign_value() {
 	    let localctx = new Assign_valueContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 24, DiiaParser.RULE_assign_value);
+	    this.enterRule(localctx, 26, DiiaParser.RULE_assign_value);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 142;
+	        this.state = 147;
 	        this.atom();
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -734,24 +768,24 @@ export default class DiiaParser extends antlr4.Parser {
 
 	body() {
 	    let localctx = new BodyContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 26, DiiaParser.RULE_body);
+	    this.enterRule(localctx, 28, DiiaParser.RULE_body);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 144;
-	        this.body_line();
 	        this.state = 149;
+	        this.body_line();
+	        this.state = 154;
 	        this._errHandler.sync(this);
-	        var _alt = this._interp.adaptivePredict(this._input,11,this._ctx)
+	        var _alt = this._interp.adaptivePredict(this._input,12,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
 	            if(_alt===1) {
-	                this.state = 145;
+	                this.state = 150;
 	                this.match(DiiaParser.NL);
-	                this.state = 146;
+	                this.state = 151;
 	                this.body_line(); 
 	            }
-	            this.state = 151;
+	            this.state = 156;
 	            this._errHandler.sync(this);
-	            _alt = this._interp.adaptivePredict(this._input,11,this._ctx);
+	            _alt = this._interp.adaptivePredict(this._input,12,this._ctx);
 	        }
 
 	    } catch (re) {
@@ -772,34 +806,34 @@ export default class DiiaParser extends antlr4.Parser {
 
 	body_line() {
 	    let localctx = new Body_lineContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 28, DiiaParser.RULE_body_line);
+	    this.enterRule(localctx, 30, DiiaParser.RULE_body_line);
 	    try {
-	        this.state = 156;
+	        this.state = 161;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,12,this._ctx);
+	        var la_ = this._interp.adaptivePredict(this._input,13,this._ctx);
 	        switch(la_) {
 	        case 1:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 152;
-	            this.call();
+	            this.state = 157;
+	            this.assign();
 	            break;
 
 	        case 2:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 153;
-	            this.assign();
+	            this.state = 158;
+	            this.if_();
 	            break;
 
 	        case 3:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 154;
-	            this.if_();
+	            this.state = 159;
+	            this.arithmetic(0);
 	            break;
 
 	        case 4:
 	            this.enterOuterAlt(localctx, 4);
-	            this.state = 155;
-	            this.arithmetic(0);
+	            this.state = 160;
+	            this.chain(0);
 	            break;
 
 	        }
@@ -821,53 +855,53 @@ export default class DiiaParser extends antlr4.Parser {
 
 	diia() {
 	    let localctx = new DiiaContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 30, DiiaParser.RULE_diia);
+	    this.enterRule(localctx, 32, DiiaParser.RULE_diia);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 158;
+	        this.state = 163;
 	        this.match(DiiaParser.DEF);
-	        this.state = 160;
+	        this.state = 165;
 	        this._errHandler.sync(this);
-	        _la = this._input.LA(1);
-	        if(_la===13) {
-	            this.state = 159;
+	        var la_ = this._interp.adaptivePredict(this._input,14,this._ctx);
+	        if(la_===1) {
+	            this.state = 164;
 	            this.diia_for_structure();
-	        }
 
-	        this.state = 162;
+	        }
+	        this.state = 167;
 	        this.match(DiiaParser.NAME);
-	        this.state = 168;
+	        this.state = 173;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        if(_la===17) {
-	            this.state = 163;
+	            this.state = 168;
 	            this.match(DiiaParser.OPEN_PAREN);
-	            this.state = 165;
+	            this.state = 170;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	            if(_la===30) {
-	                this.state = 164;
+	                this.state = 169;
 	                this.diia_parameters();
 	            }
 
-	            this.state = 167;
+	            this.state = 172;
 	            this.match(DiiaParser.CLOSE_PAREN);
 	        }
 
-	        this.state = 170;
+	        this.state = 175;
 	        this.match(DiiaParser.NL);
-	        this.state = 174;
+	        this.state = 179;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        if(((((_la - 10)) & ~0x1f) == 0 && ((1 << (_la - 10)) & 19923095) !== 0)) {
-	            this.state = 171;
+	            this.state = 176;
 	            this.body();
-	            this.state = 172;
+	            this.state = 177;
 	            this.match(DiiaParser.NL);
 	        }
 
-	        this.state = 176;
+	        this.state = 181;
 	        this.match(DiiaParser.END);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -887,21 +921,21 @@ export default class DiiaParser extends antlr4.Parser {
 
 	diia_parameters() {
 	    let localctx = new Diia_parametersContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 32, DiiaParser.RULE_diia_parameters);
+	    this.enterRule(localctx, 34, DiiaParser.RULE_diia_parameters);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 178;
-	        this.diia_parameter();
 	        this.state = 183;
+	        this.diia_parameter();
+	        this.state = 188;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        while(_la===21) {
-	            this.state = 179;
+	            this.state = 184;
 	            this.match(DiiaParser.COMMA);
-	            this.state = 180;
-	            this.diia_parameter();
 	            this.state = 185;
+	            this.diia_parameter();
+	            this.state = 190;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
 	        }
@@ -923,10 +957,10 @@ export default class DiiaParser extends antlr4.Parser {
 
 	diia_parameter() {
 	    let localctx = new Diia_parameterContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 34, DiiaParser.RULE_diia_parameter);
+	    this.enterRule(localctx, 36, DiiaParser.RULE_diia_parameter);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 186;
+	        this.state = 191;
 	        this.match(DiiaParser.NAME);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -946,21 +980,13 @@ export default class DiiaParser extends antlr4.Parser {
 
 	diia_for_structure() {
 	    let localctx = new Diia_for_structureContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 36, DiiaParser.RULE_diia_for_structure);
+	    this.enterRule(localctx, 38, DiiaParser.RULE_diia_for_structure);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 188;
-	        this.match(DiiaParser.FOR);
-	        this.state = 189;
+	        this.state = 193;
 	        this.match(DiiaParser.NAME);
-	        this.state = 191;
-	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,18,this._ctx);
-	        if(la_===1) {
-	            this.state = 190;
-	            this.match(DiiaParser.NAME);
-
-	        }
+	        this.state = 194;
+	        this.match(DiiaParser.DOT);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -979,15 +1005,15 @@ export default class DiiaParser extends antlr4.Parser {
 
 	test() {
 	    let localctx = new TestContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 38, DiiaParser.RULE_test);
+	    this.enterRule(localctx, 40, DiiaParser.RULE_test);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 193;
-	        this.test_part();
-	        this.state = 194;
-	        this.test_ops();
-	        this.state = 195;
-	        this.test_part();
+	        this.state = 196;
+	        localctx.left = this.test_part();
+	        this.state = 197;
+	        localctx.op = this.test_ops();
+	        this.state = 198;
+	        localctx.right = this.test_part();
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -1006,37 +1032,37 @@ export default class DiiaParser extends antlr4.Parser {
 
 	test_part() {
 	    let localctx = new Test_partContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 40, DiiaParser.RULE_test_part);
+	    this.enterRule(localctx, 42, DiiaParser.RULE_test_part);
 	    try {
-	        this.state = 204;
+	        this.state = 207;
 	        this._errHandler.sync(this);
 	        var la_ = this._interp.adaptivePredict(this._input,19,this._ctx);
 	        switch(la_) {
 	        case 1:
 	            this.enterOuterAlt(localctx, 1);
-	            this.state = 197;
+	            this.state = 200;
 	            this.call();
 	            break;
 
 	        case 2:
 	            this.enterOuterAlt(localctx, 2);
-	            this.state = 198;
+	            this.state = 201;
 	            this.literal();
 	            break;
 
 	        case 3:
 	            this.enterOuterAlt(localctx, 3);
-	            this.state = 199;
-	            this.identifier(0);
+	            this.state = 202;
+	            this.chain(0);
 	            break;
 
 	        case 4:
 	            this.enterOuterAlt(localctx, 4);
-	            this.state = 200;
+	            this.state = 203;
 	            this.match(DiiaParser.OPEN_PAREN);
-	            this.state = 201;
+	            this.state = 204;
 	            this.arithmetic(0);
-	            this.state = 202;
+	            this.state = 205;
 	            this.match(DiiaParser.CLOSE_PAREN);
 	            break;
 
@@ -1059,11 +1085,11 @@ export default class DiiaParser extends antlr4.Parser {
 
 	test_ops() {
 	    let localctx = new Test_opsContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 42, DiiaParser.RULE_test_ops);
+	    this.enterRule(localctx, 44, DiiaParser.RULE_test_ops);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 206;
+	        this.state = 209;
 	        _la = this._input.LA(1);
 	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & 960) !== 0))) {
 	        this._errHandler.recoverInline(this);
@@ -1090,27 +1116,27 @@ export default class DiiaParser extends antlr4.Parser {
 
 	if_() {
 	    let localctx = new IfContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 44, DiiaParser.RULE_if);
+	    this.enterRule(localctx, 46, DiiaParser.RULE_if);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 208;
+	        this.state = 211;
 	        this.match(DiiaParser.IF);
-	        this.state = 209;
-	        this.atom();
-	        this.state = 210;
+	        this.state = 212;
+	        localctx.expression_v = this.atom();
+	        this.state = 213;
 	        this.match(DiiaParser.NL);
-	        this.state = 214;
+	        this.state = 217;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
 	        if(((((_la - 10)) & ~0x1f) == 0 && ((1 << (_la - 10)) & 19923095) !== 0)) {
-	            this.state = 211;
-	            this.body();
-	            this.state = 212;
+	            this.state = 214;
+	            localctx.body_v = this.body();
+	            this.state = 215;
 	            this.match(DiiaParser.NL);
 	        }
 
-	        this.state = 216;
+	        this.state = 219;
 	        this.match(DiiaParser.END);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -1139,8 +1165,8 @@ DiiaParser.EQ = 6;
 DiiaParser.NOT_EQ = 7;
 DiiaParser.GREATER = 8;
 DiiaParser.SMALLER = 9;
-DiiaParser.TRUE = 10;
-DiiaParser.FALSE = 11;
+DiiaParser.YES = 10;
+DiiaParser.NO = 11;
 DiiaParser.NONE = 12;
 DiiaParser.FOR = 13;
 DiiaParser.IF = 14;
@@ -1165,92 +1191,30 @@ DiiaParser.INTEGER = 32;
 DiiaParser.FLOAT = 33;
 DiiaParser.STRING = 34;
 
-DiiaParser.RULE_only_for_testing = 0;
-DiiaParser.RULE_program = 1;
-DiiaParser.RULE_program_line = 2;
+DiiaParser.RULE_program = 0;
+DiiaParser.RULE_program_line = 1;
+DiiaParser.RULE_only_for_testing = 2;
 DiiaParser.RULE_identifier = 3;
-DiiaParser.RULE_literal = 4;
-DiiaParser.RULE_atom = 5;
-DiiaParser.RULE_arithmetic = 6;
-DiiaParser.RULE_arithmetic_ops = 7;
-DiiaParser.RULE_call = 8;
-DiiaParser.RULE_call_parameters = 9;
-DiiaParser.RULE_call_parameter = 10;
-DiiaParser.RULE_assign = 11;
-DiiaParser.RULE_assign_value = 12;
-DiiaParser.RULE_body = 13;
-DiiaParser.RULE_body_line = 14;
-DiiaParser.RULE_diia = 15;
-DiiaParser.RULE_diia_parameters = 16;
-DiiaParser.RULE_diia_parameter = 17;
-DiiaParser.RULE_diia_for_structure = 18;
-DiiaParser.RULE_test = 19;
-DiiaParser.RULE_test_part = 20;
-DiiaParser.RULE_test_ops = 21;
-DiiaParser.RULE_if = 22;
-
-class Only_for_testingContext extends antlr4.ParserRuleContext {
-
-    constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
-        super(parent, invokingState);
-        this.parser = parser;
-        this.ruleIndex = DiiaParser.RULE_only_for_testing;
-    }
-
-	identifier() {
-	    return this.getTypedRuleContext(IdentifierContext,0);
-	};
-
-	call() {
-	    return this.getTypedRuleContext(CallContext,0);
-	};
-
-	arithmetic() {
-	    return this.getTypedRuleContext(ArithmeticContext,0);
-	};
-
-	assign() {
-	    return this.getTypedRuleContext(AssignContext,0);
-	};
-
-	diia() {
-	    return this.getTypedRuleContext(DiiaContext,0);
-	};
-
-	if_() {
-	    return this.getTypedRuleContext(IfContext,0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof DiiaParserListener ) {
-	        listener.enterOnly_for_testing(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof DiiaParserListener ) {
-	        listener.exitOnly_for_testing(this);
-		}
-	}
-
-	accept(visitor) {
-	    if ( visitor instanceof DiiaParserVisitor ) {
-	        return visitor.visitOnly_for_testing(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
-	}
-
-
-}
-
-
+DiiaParser.RULE_chain = 4;
+DiiaParser.RULE_literal = 5;
+DiiaParser.RULE_atom = 6;
+DiiaParser.RULE_arithmetic = 7;
+DiiaParser.RULE_arithmetic_ops = 8;
+DiiaParser.RULE_call = 9;
+DiiaParser.RULE_call_parameters = 10;
+DiiaParser.RULE_call_parameter = 11;
+DiiaParser.RULE_assign = 12;
+DiiaParser.RULE_assign_value = 13;
+DiiaParser.RULE_body = 14;
+DiiaParser.RULE_body_line = 15;
+DiiaParser.RULE_diia = 16;
+DiiaParser.RULE_diia_parameters = 17;
+DiiaParser.RULE_diia_parameter = 18;
+DiiaParser.RULE_diia_for_structure = 19;
+DiiaParser.RULE_test = 20;
+DiiaParser.RULE_test_part = 21;
+DiiaParser.RULE_test_ops = 22;
+DiiaParser.RULE_if = 23;
 
 class ProgramContext extends antlr4.ParserRuleContext {
 
@@ -1332,8 +1296,8 @@ class Program_lineContext extends antlr4.ParserRuleContext {
         this.ruleIndex = DiiaParser.RULE_program_line;
     }
 
-	call() {
-	    return this.getTypedRuleContext(CallContext,0);
+	chain() {
+	    return this.getTypedRuleContext(ChainContext,0);
 	};
 
 	assign() {
@@ -1373,6 +1337,73 @@ class Program_lineContext extends antlr4.ParserRuleContext {
 
 
 
+class Only_for_testingContext extends antlr4.ParserRuleContext {
+
+    constructor(parser, parent, invokingState) {
+        if(parent===undefined) {
+            parent = null;
+        }
+        if(invokingState===undefined || invokingState===null) {
+            invokingState = -1;
+        }
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = DiiaParser.RULE_only_for_testing;
+    }
+
+	identifier() {
+	    return this.getTypedRuleContext(IdentifierContext,0);
+	};
+
+	call() {
+	    return this.getTypedRuleContext(CallContext,0);
+	};
+
+	arithmetic() {
+	    return this.getTypedRuleContext(ArithmeticContext,0);
+	};
+
+	assign() {
+	    return this.getTypedRuleContext(AssignContext,0);
+	};
+
+	diia() {
+	    return this.getTypedRuleContext(DiiaContext,0);
+	};
+
+	if_() {
+	    return this.getTypedRuleContext(IfContext,0);
+	};
+
+	test() {
+	    return this.getTypedRuleContext(TestContext,0);
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.enterOnly_for_testing(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.exitOnly_for_testing(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof DiiaParserVisitor ) {
+	        return visitor.visitOnly_for_testing(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+
+
 class IdentifierContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
@@ -1385,28 +1416,10 @@ class IdentifierContext extends antlr4.ParserRuleContext {
         super(parent, invokingState);
         this.parser = parser;
         this.ruleIndex = DiiaParser.RULE_identifier;
-        this.left = null; // IdentifierContext
-        this.name = null; // Token
-        this.right = null; // IdentifierContext
     }
 
 	NAME() {
 	    return this.getToken(DiiaParser.NAME, 0);
-	};
-
-	DOT() {
-	    return this.getToken(DiiaParser.DOT, 0);
-	};
-
-	identifier = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(IdentifierContext);
-	    } else {
-	        return this.getTypedRuleContext(IdentifierContext,i);
-	    }
 	};
 
 	enterRule(listener) {
@@ -1434,6 +1447,72 @@ class IdentifierContext extends antlr4.ParserRuleContext {
 
 
 
+class ChainContext extends antlr4.ParserRuleContext {
+
+    constructor(parser, parent, invokingState) {
+        if(parent===undefined) {
+            parent = null;
+        }
+        if(invokingState===undefined || invokingState===null) {
+            invokingState = -1;
+        }
+        super(parent, invokingState);
+        this.parser = parser;
+        this.ruleIndex = DiiaParser.RULE_chain;
+        this.left = null; // ChainContext
+        this.identifier_v = null; // IdentifierContext
+        this.call_v = null; // CallContext
+        this.right = null; // ChainContext
+    }
+
+	identifier() {
+	    return this.getTypedRuleContext(IdentifierContext,0);
+	};
+
+	call() {
+	    return this.getTypedRuleContext(CallContext,0);
+	};
+
+	DOT() {
+	    return this.getToken(DiiaParser.DOT, 0);
+	};
+
+	chain = function(i) {
+	    if(i===undefined) {
+	        i = null;
+	    }
+	    if(i===null) {
+	        return this.getTypedRuleContexts(ChainContext);
+	    } else {
+	        return this.getTypedRuleContext(ChainContext,i);
+	    }
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.enterChain(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.exitChain(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof DiiaParserVisitor ) {
+	        return visitor.visitChain(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+
+
 class LiteralContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
@@ -1448,8 +1527,8 @@ class LiteralContext extends antlr4.ParserRuleContext {
         this.ruleIndex = DiiaParser.RULE_literal;
         this.number = null; // Token
         this.string = null; // Token
-        this.true_ = null; // Token
-        this.false_ = null; // Token
+        this.yes = null; // Token
+        this.no = null; // Token
         this.none = null; // Token
     }
 
@@ -1461,12 +1540,12 @@ class LiteralContext extends antlr4.ParserRuleContext {
 	    return this.getToken(DiiaParser.STRING, 0);
 	};
 
-	TRUE() {
-	    return this.getToken(DiiaParser.TRUE, 0);
+	YES() {
+	    return this.getToken(DiiaParser.YES, 0);
 	};
 
-	FALSE() {
-	    return this.getToken(DiiaParser.FALSE, 0);
+	NO() {
+	    return this.getToken(DiiaParser.NO, 0);
 	};
 
 	NONE() {
@@ -1516,12 +1595,8 @@ class AtomContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(LiteralContext,0);
 	};
 
-	identifier() {
-	    return this.getTypedRuleContext(IdentifierContext,0);
-	};
-
-	call() {
-	    return this.getTypedRuleContext(CallContext,0);
+	chain() {
+	    return this.getTypedRuleContext(ChainContext,0);
 	};
 
 	arithmetic() {
@@ -1571,8 +1646,7 @@ class ArithmeticContext extends antlr4.ParserRuleContext {
         this.ruleIndex = DiiaParser.RULE_arithmetic;
         this.left = null; // ArithmeticContext
         this.literal_v = null; // LiteralContext
-        this.identifier_v = null; // IdentifierContext
-        this.call_v = null; // CallContext
+        this.chain_v = null; // ChainContext
         this.nested = null; // ArithmeticContext
         this.op = null; // Arithmetic_opsContext
         this.right = null; // ArithmeticContext
@@ -1582,12 +1656,8 @@ class ArithmeticContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(LiteralContext,0);
 	};
 
-	identifier() {
-	    return this.getTypedRuleContext(IdentifierContext,0);
-	};
-
-	call() {
-	    return this.getTypedRuleContext(CallContext,0);
+	chain() {
+	    return this.getTypedRuleContext(ChainContext,0);
 	};
 
 	OPEN_PAREN() {
@@ -2031,10 +2101,6 @@ class Body_lineContext extends antlr4.ParserRuleContext {
         this.ruleIndex = DiiaParser.RULE_body_line;
     }
 
-	call() {
-	    return this.getTypedRuleContext(CallContext,0);
-	};
-
 	assign() {
 	    return this.getTypedRuleContext(AssignContext,0);
 	};
@@ -2045,6 +2111,10 @@ class Body_lineContext extends antlr4.ParserRuleContext {
 
 	arithmetic() {
 	    return this.getTypedRuleContext(ArithmeticContext,0);
+	};
+
+	chain() {
+	    return this.getTypedRuleContext(ChainContext,0);
 	};
 
 	enterRule(listener) {
@@ -2274,21 +2344,13 @@ class Diia_for_structureContext extends antlr4.ParserRuleContext {
         this.ruleIndex = DiiaParser.RULE_diia_for_structure;
     }
 
-	FOR() {
-	    return this.getToken(DiiaParser.FOR, 0);
+	NAME() {
+	    return this.getToken(DiiaParser.NAME, 0);
 	};
 
-	NAME = function(i) {
-		if(i===undefined) {
-			i = null;
-		}
-	    if(i===null) {
-	        return this.getTokens(DiiaParser.NAME);
-	    } else {
-	        return this.getToken(DiiaParser.NAME, i);
-	    }
+	DOT() {
+	    return this.getToken(DiiaParser.DOT, 0);
 	};
-
 
 	enterRule(listener) {
 	    if(listener instanceof DiiaParserListener ) {
@@ -2327,6 +2389,9 @@ class TestContext extends antlr4.ParserRuleContext {
         super(parent, invokingState);
         this.parser = parser;
         this.ruleIndex = DiiaParser.RULE_test;
+        this.left = null; // Test_partContext
+        this.op = null; // Test_opsContext
+        this.right = null; // Test_partContext
     }
 
 	test_part = function(i) {
@@ -2391,8 +2456,8 @@ class Test_partContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(LiteralContext,0);
 	};
 
-	identifier() {
-	    return this.getTypedRuleContext(IdentifierContext,0);
+	chain() {
+	    return this.getTypedRuleContext(ChainContext,0);
 	};
 
 	OPEN_PAREN() {
@@ -2499,14 +2564,12 @@ class IfContext extends antlr4.ParserRuleContext {
         super(parent, invokingState);
         this.parser = parser;
         this.ruleIndex = DiiaParser.RULE_if;
+        this.expression_v = null; // AtomContext
+        this.body_v = null; // BodyContext
     }
 
 	IF() {
 	    return this.getToken(DiiaParser.IF, 0);
-	};
-
-	atom() {
-	    return this.getTypedRuleContext(AtomContext,0);
 	};
 
 	NL = function(i) {
@@ -2523,6 +2586,10 @@ class IfContext extends antlr4.ParserRuleContext {
 
 	END() {
 	    return this.getToken(DiiaParser.END, 0);
+	};
+
+	atom() {
+	    return this.getTypedRuleContext(AtomContext,0);
 	};
 
 	body() {
@@ -2555,10 +2622,11 @@ class IfContext extends antlr4.ParserRuleContext {
 
 
 
-DiiaParser.Only_for_testingContext = Only_for_testingContext; 
 DiiaParser.ProgramContext = ProgramContext; 
 DiiaParser.Program_lineContext = Program_lineContext; 
+DiiaParser.Only_for_testingContext = Only_for_testingContext; 
 DiiaParser.IdentifierContext = IdentifierContext; 
+DiiaParser.ChainContext = ChainContext; 
 DiiaParser.LiteralContext = LiteralContext; 
 DiiaParser.AtomContext = AtomContext; 
 DiiaParser.ArithmeticContext = ArithmeticContext; 

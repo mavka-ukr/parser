@@ -1,10 +1,10 @@
 import ASTNode from "./ASTNode.js";
 
 class IfNode extends ASTNode {
-    constructor(context, { value, body }) {
+    constructor(context, { expression, body }) {
         super(context);
 
-        this.value = value;
+        this.expression = expression;
         this.body = body;
     }
 }

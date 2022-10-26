@@ -1,6 +1,6 @@
 import ASTNode from "./ASTNode.js";
 
-class ArithmeticNode extends ASTNode {
+class TestNode extends ASTNode {
     /**
      * @param context
      * @param {ASTNode} left
@@ -16,4 +16,4 @@ class ArithmeticNode extends ASTNode {
     }
 }
 
-export default ArithmeticNode;
+export default TestNode;

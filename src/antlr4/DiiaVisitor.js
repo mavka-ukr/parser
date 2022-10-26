@@ -9,6 +9,9 @@ import StringNode from "../ast/StringNode.js";
 import NumberNode from "../ast/NumberNode.js";
 import { extract, extractAsArray } from "../utils/visit.js";
 import NestedArithmeticNode from "../ast/NestedArithmeticNode.js";
+import ChainNode from "../ast/ChainNode.js";
+import BooleanNode from "../ast/BooleanNode.js";
+import TestNode from "../ast/TestNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitArithmetic(ctx) {
@@ -28,12 +31,8 @@ class DiiaVisitor extends DiiaParserVisitor {
             return this.visit(ctx.literal_v);
         }
 
-        if (ctx.identifier_v) {
-            return this.visit(ctx.identifier_v);
-        }
-
-        if (ctx.call_v) {
-            return this.visit(ctx.call_v);
+        if (ctx.chain_v) {
+            return this.visit(ctx.chain_v);
         }
 
         throw new Error('Unsupported arithmetic node.');
@@ -56,13 +55,39 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitIf(ctx) {
-        return new IfNode(ctx, {});
+        const expression = extractAsArray(this.visit(ctx.expression_v));
+        const body = ctx.body_v && extractAsArray(this.visit(ctx.body_v));
+
+        return new IfNode(ctx, { expression, body });
+    }
+
+    visitTest(ctx) {
+        let left = extract(this.visit(ctx.left));
+        let right = extract(this.visit(ctx.right));
+        const operation = ctx.op.getText();
+
+        return new TestNode(ctx, { left, right, operation });
+    }
+
+    visitChain(ctx) {
+        if (ctx.identifier_v) {
+            return this.visit(ctx.identifier_v);
+        }
+
+        if (ctx.call_v) {
+            return this.visit(ctx.call_v);
+        }
+
+        const left = this.visit(ctx.left);
+        const right = this.visit(ctx.right);
+
+        return new ChainNode(ctx, { parts: [left, right] })
     }
 
     visitIdentifier(ctx) {
-        const parts = ctx.getText().split('.');
+        const value = ctx.getText();
 
-        return new IdentifierNode(ctx, { parts });
+        return new IdentifierNode(ctx, { value });
     }
 
     visitLiteral(ctx) {
@@ -77,7 +102,15 @@ class DiiaVisitor extends DiiaParserVisitor {
             return new StringNode(ctx, { value });
         }
 
-        throw new Error('Unsupported literal.');
+        if (ctx.yes) {
+            return new BooleanNode(ctx, { value: true });
+        }
+
+        if (ctx.no) {
+            return new BooleanNode(ctx, { value: false });
+        }
+
+        throw new Error('Unsupported literal: ' + ctx.getText());
     }
 }
 
