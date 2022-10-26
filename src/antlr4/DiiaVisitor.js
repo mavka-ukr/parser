@@ -112,6 +112,17 @@ class DiiaVisitor extends DiiaParserVisitor {
 
         throw new Error('Unsupported literal: ' + ctx.getText());
     }
+
+    visitIdentifiers_chain(ctx) {
+        if (ctx.identifier_v) {
+            return this.visit(ctx.identifier_v);
+        }
+
+        let left = extract(this.visit(ctx.left));
+        let right = extract(this.visit(ctx.right));
+
+        return new IdentifierNode(ctx, { value: [left, right] });
+    }
 }
 
 export default DiiaVisitor;

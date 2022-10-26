@@ -12,4 +12,4 @@ const code = `
 
 const ast = parse(code, { start: 'only_for_testing' });
 
-console.log(ast[0]);
+console.log(ast);

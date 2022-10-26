@@ -41,6 +41,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#identifiers_chain.
+	enterIdentifiers_chain(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#identifiers_chain.
+	exitIdentifiers_chain(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#chain.
 	enterChain(ctx) {
 	}

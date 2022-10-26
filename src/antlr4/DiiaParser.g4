@@ -11,6 +11,9 @@ only_for_testing: identifier | call | arithmetic | assign | diia | if | test;
 
 identifier: NAME;
 
+identifiers_chain: left=identifiers_chain '.' right=identifiers_chain
+     | identifier_v=identifier;
+
 // a; a.b; a.b.c; a[1]; a[1 + 1]; a.b().c().d.e.f() etc
 chain: left=chain '.' right=chain
      | identifier_v=identifier
@@ -35,7 +38,7 @@ call_parameters: call_parameter (',' call_parameter)*;
 call_parameter: (NAME ':')? atom;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
-assign: identifier '=' assign_value;
+assign: identifiers_chain '=' assign_value;
 assign_value: atom;
 
 // block body
