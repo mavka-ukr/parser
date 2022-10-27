@@ -2,7 +2,7 @@ import antlr4 from "antlr4";
 import DiiaVisitor from "./antlr4/DiiaVisitor.js";
 import DiiaLexer from "./antlr4/build/DiiaLexer.js";
 import { title } from "./utils/text.js";
-import CustomDiiaParser from "./antlr4/CustomDiiaParser.js";
+import DiiaParser from "./antlr4/build/DiiaParser.js";
 
 class ErrorListener extends antlr4.error.ErrorListener {
     syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
@@ -19,7 +19,7 @@ export function parse(code, options = {}) {
     const lexer = new DiiaLexer(chars);
 
     const tokens = new antlr4.CommonTokenStream(lexer);
-    const parser = new CustomDiiaParser(tokens, lexer);
+    const parser = new DiiaParser(tokens, lexer);
     // parser.removeErrorListeners();
     // parser.addErrorListener(new ErrorListener());
 

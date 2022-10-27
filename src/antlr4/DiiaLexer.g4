@@ -2,7 +2,7 @@ lexer grammar DiiaLexer;
 
 DEF: 'дія';
 END: 'кінець';
-EACH: 'кожному';
+EACH: 'кожній';
 TAKING: 'беручи';
 STRUCTURE: 'структура';
 EQ: '==';

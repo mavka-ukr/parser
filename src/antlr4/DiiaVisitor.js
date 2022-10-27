@@ -13,6 +13,7 @@ import ChainNode from "../ast/ChainNode.js";
 import BooleanNode from "../ast/BooleanNode.js";
 import TestNode from "../ast/TestNode.js";
 import WaitChainNode from "../ast/WaitChainNode.js";
+import EachNode from "../ast/EachNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitProgram(ctx) {
@@ -73,7 +74,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitIf(ctx) {
-        const expression = extractAsArray(this.visit(ctx.expression_v));
+        const expression = extract(this.visit(ctx.expression_v));
         const body = ctx.body_v && extractAsArray(this.visit(ctx.body_v));
 
         return new IfNode(ctx, { expression, body });
@@ -146,6 +147,14 @@ class DiiaVisitor extends DiiaParserVisitor {
         let right = extract(this.visit(ctx.right));
 
         return new IdentifierNode(ctx, { value: [left, right] });
+    }
+
+    visitEach(ctx) {
+        const name = ctx.name_v.text;
+        const iterator = extract(this.visit(ctx.iterator_v));
+        const body = extractAsArray(this.visit(ctx.body_v));
+
+        return new EachNode(ctx, { name, iterator, body });
     }
 }
 

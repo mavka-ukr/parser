@@ -248,5 +248,14 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#each.
+	enterEach(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#each.
+	exitEach(ctx) {
+	}
+
+
 
 }

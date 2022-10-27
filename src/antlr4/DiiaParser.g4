@@ -8,9 +8,9 @@ nl: NL;
 nls: nl*;
 
 program: program_line (nl program_line)* EOF;
-program_line: chain | assign | diia | if | nls;
+program_line: chain | assign | diia | if | each | nls;
 
-only_for_testing: identifier | call | arithmetic | assign | diia | if | test;
+only_for_testing: identifier | call | arithmetic | assign | diia | if | each | test;
 
 identifier: NAME;
 
@@ -47,7 +47,7 @@ assign_value: atom;
 
 // block body
 body: body_line (nl body_line)*;
-body_line: assign | if | arithmetic | chain | nls;
+body_line: assign | if | arithmetic | chain | each | nls;
 
 // дія тест()
 //   a = 1
@@ -67,3 +67,8 @@ test_ops: '==' | '!=' | '>=' | '<=';
 //   друк("най буде")
 // кінець
 if: 'якщо' expression_v=atom nl (body_v=body nl)? 'кінець';
+
+// кожній х беручи діапазон(1, 10)
+//   друк(х)
+// кінець
+each: 'кожній' name_v=NAME 'беручи' iterator_v=atom nl (body_v=body nl)? 'кінець';

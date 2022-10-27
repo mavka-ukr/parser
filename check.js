@@ -5,7 +5,9 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-чекати нет.отримати("https://google.com")
+кожній х беручи діапазон(1, 10)
+  друк(х)
+кінець
 `.trim();
 
 const ast = parse(code);
