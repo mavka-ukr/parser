@@ -93,7 +93,7 @@ FLOAT
     ;
 
 STRING
-    : '"' STRING_SEQ* '"'
+    : '"' STRING_SEQ*? '"'
     ;
 
 fragment DIGIT

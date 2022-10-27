@@ -14,6 +14,10 @@ import BooleanNode from "../ast/BooleanNode.js";
 import TestNode from "../ast/TestNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
+    visitProgram(ctx) {
+        return extractAsArray(super.visitProgram(ctx));
+    }
+
     visitArithmetic(ctx) {
         if (ctx.nested) {
             return new NestedArithmeticNode(ctx, { arithmetic: this.visit(ctx.nested) });

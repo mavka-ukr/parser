@@ -7,10 +7,10 @@ options {
 nl: NL;
 nls: nl*;
 
-program: program_line (nl nl program_line)* EOF;
-program_line: chain | assign | diia | if | nls;
+program: program_line (nl program_line)* EOF;
+program_line: chain | assign | diia | if | call | nls;
 
-only_for_testing: identifier | call | arithmetic | assign | diia | if | test | nls;
+only_for_testing: identifier | call | arithmetic | assign | diia | if | test;
 
 identifier: NAME;
 
