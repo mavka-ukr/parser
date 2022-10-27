@@ -37,9 +37,13 @@ arithmetic: left=arithmetic op=arithmetic_ops right=arithmetic
 arithmetic_ops: '+' | '-' | '/' | '*';
 
 // a(); a(x, y(), 1 + 1);
-call: identifier '(' nls call_parameters? nls ')';
+call: identifier '(' nls (call_parameters_v=call_parameters | call_parameters_with_name_v=call_parameters_with_name)? nls ')';
+// (a, b, c)
 call_parameters: call_parameter (',' call_parameter)*;
-call_parameter: nls (NAME ':')? atom nls;
+call_parameter: nls value_v=atom nls;
+// (name1: a, name2: b, name3: c)
+call_parameters_with_name: call_parameter_with_name (',' call_parameter_with_name)*;
+call_parameter_with_name: nls name_v=NAME ':' value_v=atom nls;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
 assign: identifier_v=identifiers_chain '=' value_v=assign_value;

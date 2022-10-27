@@ -5,9 +5,7 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-кожній х беручи діапазон(1, 10)
-  друк(х)
-кінець
+друк(а: 1)
 `.trim();
 
 const ast = parse(code);

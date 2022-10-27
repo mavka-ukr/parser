@@ -53,10 +53,25 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitCall(ctx) {
         const identifier = this.visit(ctx.identifier());
-        const call_parameters = ctx.call_parameters();
-        const parameters = call_parameters && extractAsArray(this.visit(call_parameters));
+        let parameters = [];
+        if (ctx.call_parameters_v) {
+            parameters = extractAsArray(this.visit(ctx.call_parameters_v));
+        } else {
+            const parametersNamed = extractAsArray(this.visit(ctx.call_parameters_with_name_v));
+            parameters = {};
+            parametersNamed.forEach((p) => {
+                parameters[p.name] = p.value;
+            });
+        }
 
         return new CallNode(ctx, { identifier, parameters });
+    }
+
+    visitCall_parameter_with_name(ctx) {
+        const name = ctx.name_v.text;
+        const value = extract(this.visit(ctx.value_v));
+
+        return { name, value };
     }
 
     visitDiia(ctx) {

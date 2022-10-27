@@ -140,6 +140,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#call_parameters_with_name.
+	enterCall_parameters_with_name(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#call_parameters_with_name.
+	exitCall_parameters_with_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#call_parameter_with_name.
+	enterCall_parameter_with_name(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#call_parameter_with_name.
+	exitCall_parameter_with_name(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#assign.
 	enterAssign(ctx) {
 	}
