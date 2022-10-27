@@ -5,7 +5,7 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-друк(а: 1)
+random(2)
 `.trim();
 
 const ast = parse(code);

@@ -56,7 +56,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         let parameters = [];
         if (ctx.call_parameters_v) {
             parameters = extractAsArray(this.visit(ctx.call_parameters_v));
-        } else {
+        } else if (ctx.call_parameters_with_name_v) {
             const parametersNamed = extractAsArray(this.visit(ctx.call_parameters_with_name_v));
             parameters = {};
             parametersNamed.forEach((p) => {
