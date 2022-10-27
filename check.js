@@ -5,7 +5,12 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-random(2)
+структура А
+  назва
+кінець
+
+дія А.тест()
+кінець
 `.trim();
 
 const ast = parse(code);

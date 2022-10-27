@@ -1,6 +1,6 @@
 {
   "name": "diia-parser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Diia language parser.",
   "main": "src/main.js",
   "type": "module",

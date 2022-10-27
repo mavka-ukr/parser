@@ -14,6 +14,7 @@ import BooleanNode from "../ast/BooleanNode.js";
 import TestNode from "../ast/TestNode.js";
 import WaitChainNode from "../ast/WaitChainNode.js";
 import EachNode from "../ast/EachNode.js";
+import StructureNode from "../ast/StructureNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitProgram(ctx) {
@@ -170,6 +171,17 @@ class DiiaVisitor extends DiiaParserVisitor {
         const body = extractAsArray(this.visit(ctx.body_v));
 
         return new EachNode(ctx, { name, iterator, body });
+    }
+
+    visitStructure(ctx) {
+        const name = ctx.name_v.text;
+        const body = ctx.body_v && extractAsArray(this.visit(ctx.body_v));
+
+        return new StructureNode(ctx, { name, body });
+    }
+
+    visitStructure_body_line(ctx) {
+        return ctx.name_v.text;
     }
 }
 

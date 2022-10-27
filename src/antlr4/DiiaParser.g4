@@ -8,9 +8,9 @@ nl: NL;
 nls: nl*;
 
 program: program_line (nl program_line)* EOF;
-program_line: chain | assign | diia | if | each | nls;
+program_line: chain | assign | diia | if | each | nls | structure;
 
-only_for_testing: identifier | call | arithmetic | assign | diia | if | each | test;
+only_for_testing: identifier | call | arithmetic | assign | diia | if | each | test | structure;
 
 identifier: NAME;
 
@@ -76,3 +76,11 @@ if: 'якщо' expression_v=atom nl (body_v=body nl)? 'кінець';
 //   друк(х)
 // кінець
 each: 'кожній' name_v=NAME 'беручи' iterator_v=atom nl (body_v=body nl)? 'кінець';
+
+// структура Ракета
+//   назва
+//   швидкість
+// кінець
+structure: 'структура' name_v=NAME nl nls (body_v=structure_body nl)? nls 'кінець';
+structure_body: structure_body_line (nl structure_body_line)*;
+structure_body_line: nls name_v=NAME nls;
