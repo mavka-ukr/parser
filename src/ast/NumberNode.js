@@ -4,7 +4,7 @@ class NumberNode extends ASTNode {
     constructor(context, { value }) {
         super(context);
 
-        this.value = value;
+        this.value = Number(value);
     }
 }
 

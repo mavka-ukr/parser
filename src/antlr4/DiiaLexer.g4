@@ -14,6 +14,7 @@ NO: 'ні';
 NONE: 'пусто';
 FOR: 'для';
 IF: 'якщо';
+WAIT: 'чекати';
 
 SKIP_SPACES
  : ( ' ' | '\t' ) -> skip

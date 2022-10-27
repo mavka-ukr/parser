@@ -12,8 +12,8 @@ class DiiaNode extends ASTNode {
         super(context);
 
         this.name = name;
-        this.parameters = parameters;
-        this.body = body;
+        this.parameters = parameters || [];
+        this.body = body || [];
         this.structure = structure;
     }
 }

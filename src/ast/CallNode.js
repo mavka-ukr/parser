@@ -5,7 +5,7 @@ class CallNode extends ASTNode {
         super(context);
 
         this.identifier = identifier;
-        this.parameters = parameters;
+        this.parameters = parameters || [];
     }
 }
 

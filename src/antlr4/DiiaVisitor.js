@@ -12,6 +12,7 @@ import NestedArithmeticNode from "../ast/NestedArithmeticNode.js";
 import ChainNode from "../ast/ChainNode.js";
 import BooleanNode from "../ast/BooleanNode.js";
 import TestNode from "../ast/TestNode.js";
+import WaitChainNode from "../ast/WaitChainNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitProgram(ctx) {
@@ -93,6 +94,12 @@ class DiiaVisitor extends DiiaParserVisitor {
 
         if (ctx.call_v) {
             return this.visit(ctx.call_v);
+        }
+
+        if (ctx.wait_chain_v) {
+            const chain = this.visit(ctx.wait_chain_v);
+
+            return new WaitChainNode(ctx, { chain });
         }
 
         const left = this.visit(ctx.left);

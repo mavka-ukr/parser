@@ -8,7 +8,7 @@ nl: NL;
 nls: nl*;
 
 program: program_line (nl program_line)* EOF;
-program_line: chain | assign | diia | if | call | nls;
+program_line: chain | assign | diia | if | nls;
 
 only_for_testing: identifier | call | arithmetic | assign | diia | if | test;
 
@@ -19,6 +19,7 @@ identifiers_chain: left=identifiers_chain '.' right=identifiers_chain
 
 // a; a.b; a.b.c; a[1]; a[1 + 1]; a.b().c().d.e.f() etc
 chain: left=chain (nls '.' nls | '.') right=chain
+     | 'чекати' wait_chain_v=chain
      | identifier_v=identifier
      | call_v=call;
 
@@ -59,7 +60,7 @@ diia_for_structure: structure_name_v=NAME '.';
 
 // a == 1; a() == 1; (1 + 1) == 1;
 test: left=test_part op=test_ops right=test_part;
-test_part: call | literal | chain | '(' arithmetic ')';
+test_part: literal | chain | '(' arithmetic ')';
 test_ops: '==' | '!=' | '>=' | '<=';
 
 // якщо бути
