@@ -39,7 +39,10 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitAssign(ctx) {
-        return new AssignNode(ctx, {});
+        const identifier = this.visit(ctx.identifier_v);
+        const value = extract(this.visit(ctx.value_v));
+
+        return new AssignNode(ctx, { identifier, value });
     }
 
     visitCall(ctx) {
@@ -51,7 +54,17 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitDiia(ctx) {
-        return new DiiaNode(ctx, {});
+        const name = ctx.name_v.text;
+        const parameters = ctx.parameters_v && extractAsArray(this.visit(ctx.parameters_v));
+        const body = ctx.body_v && extractAsArray(this.visit(ctx.body_v));
+        const diia_for_structure = ctx.diia_for_structure();
+        const structure = diia_for_structure && diia_for_structure.structure_name_v.text;
+
+        return new DiiaNode(ctx, { name, parameters, body, structure });
+    }
+
+    visitDiia_parameter(ctx) {
+        return ctx.getText();
     }
 
     visitIf(ctx) {

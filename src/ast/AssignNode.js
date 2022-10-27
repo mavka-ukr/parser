@@ -1,10 +1,10 @@
 import ASTNode from "./ASTNode.js";
 
 class AssignNode extends ASTNode {
-    constructor(context, { name, value }) {
+    constructor(context, { identifier, value }) {
         super(context);
 
-        this.name = name;
+        this.identifier = identifier;
         this.value = value;
     }
 }

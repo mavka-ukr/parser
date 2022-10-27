@@ -38,7 +38,7 @@ call_parameters: call_parameter (',' call_parameter)*;
 call_parameter: (NAME ':')? atom;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
-assign: identifiers_chain '=' assign_value;
+assign: identifier_v=identifiers_chain '=' value_v=assign_value;
 assign_value: atom;
 
 // block body
@@ -49,10 +49,10 @@ body_line: assign | if | arithmetic | chain;
 //   a = 1
 //   друк("ок")
 // кінець
-diia: 'дія' (diia_for_structure)? NAME ('(' diia_parameters? ')')? NL (body NL)? 'кінець';
-diia_parameters: diia_parameter (',' diia_parameter)*;
+diia: 'дія' (diia_for_structure)? name_v=NAME ('(' parameters_v=diia_parameters? ')')? NL (body_v=body NL)? 'кінець';
+diia_parameters: left=diia_parameters ',' right=diia_parameters | parameter_v=diia_parameter;
 diia_parameter: NAME;
-diia_for_structure: NAME '.';
+diia_for_structure: structure_name_v=NAME '.';
 
 // a == 1; a() == 1; (1 + 1) == 1;
 test: left=test_part op=test_ops right=test_part;
