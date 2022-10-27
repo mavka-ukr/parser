@@ -1,8 +1,14 @@
 import antlr4 from "antlr4";
 import DiiaVisitor from "./antlr4/DiiaVisitor.js";
 import DiiaLexer from "./antlr4/build/DiiaLexer.js";
-import DiiaParser from "./antlr4/build/DiiaParser.js";
 import { title } from "./utils/text.js";
+import CustomDiiaParser from "./antlr4/CustomDiiaParser.js";
+
+class ErrorListener extends antlr4.error.ErrorListener {
+    syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
+        throw new Error(msg);
+    }
+}
 
 export function parse(code, options = {}) {
     options.start = options.start || 'program';
@@ -13,7 +19,10 @@ export function parse(code, options = {}) {
     const lexer = new DiiaLexer(chars);
 
     const tokens = new antlr4.CommonTokenStream(lexer);
-    const parser = new DiiaParser(tokens);
+    const parser = new CustomDiiaParser(tokens, lexer);
+    // parser.removeErrorListeners();
+    // parser.addErrorListener(new ErrorListener());
+
     const tree = parser[options.start]();
 
     const visitor = new DiiaVisitor();

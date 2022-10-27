@@ -5,12 +5,13 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-дія Рахунок.знайти_добуток(а, б)
-  а * б.в()
-  б.х = М.корінь(2)
+дія знайти_добуток()
+  а * б
+  
+  г = д
 кінець
 `.trim();
 
-const ast = parse(code, { start: 'only_for_testing' });
+const ast = parse(code);
 
 console.log(ast);

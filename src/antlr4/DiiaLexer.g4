@@ -15,20 +15,12 @@ NONE: 'пусто';
 FOR: 'для';
 IF: 'якщо';
 
-fragment SPACES
- : [ \t]+
- ;
-
-fragment LINE_JOINING
- : '\\' SPACES? ( '\r'? '\n' | '\r' | '\f')
- ;
-
 SKIP_SPACES
- : ( SPACES ) -> skip
+ : ( ' ' | '\t' ) -> skip
  ;
 
 NL
-    : '\r'? '\n'
+    : ( '\r'? '\n' )
     ;
 
 OPEN_PAREN
