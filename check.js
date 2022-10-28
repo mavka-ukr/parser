@@ -5,12 +5,7 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-структура А
-  назва
-кінець
-
-дія А.тест()
-кінець
+взяти test.a.b.c
 `.trim();
 
 const ast = parse(code);

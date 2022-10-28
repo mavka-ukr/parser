@@ -1,10 +1,10 @@
 import ASTNode from "./ASTNode.js";
 
 class CallNode extends ASTNode {
-    constructor(context, { identifier, parameters }) {
+    constructor(context, { name, parameters }) {
         super(context);
 
-        this.identifier = identifier;
+        this.name = name;
         this.parameters = parameters || [];
     }
 }

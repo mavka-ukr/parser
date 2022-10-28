@@ -15,6 +15,9 @@ import TestNode from "../ast/TestNode.js";
 import WaitChainNode from "../ast/WaitChainNode.js";
 import EachNode from "../ast/EachNode.js";
 import StructureNode from "../ast/StructureNode.js";
+import TakeNode from "../ast/TakeNode.js";
+import GiveNode from "../ast/GiveNode.js";
+import IdentifiersChainNode from "../ast/IdentifiersChainNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitProgram(ctx) {
@@ -53,7 +56,8 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitCall(ctx) {
-        const identifier = this.visit(ctx.identifier());
+        const name = ctx.name_v.text;
+
         let parameters = [];
         if (ctx.call_parameters_v) {
             parameters = extractAsArray(this.visit(ctx.call_parameters_v));
@@ -65,7 +69,7 @@ class DiiaVisitor extends DiiaParserVisitor {
             });
         }
 
-        return new CallNode(ctx, { identifier, parameters });
+        return new CallNode(ctx, { name, parameters });
     }
 
     visitCall_parameter_with_name(ctx) {
@@ -122,7 +126,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const left = this.visit(ctx.left);
         const right = this.visit(ctx.right);
 
-        return new ChainNode(ctx, { parts: [left, right] })
+        return new ChainNode(ctx, { chain: [left, right] })
     }
 
     visitIdentifier(ctx) {
@@ -159,10 +163,9 @@ class DiiaVisitor extends DiiaParserVisitor {
             return this.visit(ctx.identifier_v);
         }
 
-        let left = extract(this.visit(ctx.left));
-        let right = extract(this.visit(ctx.right));
+        let chain = extractAsArray(super.visitIdentifiers_chain(ctx));
 
-        return new IdentifierNode(ctx, { value: [left, right] });
+        return new IdentifiersChainNode(ctx, { chain });
     }
 
     visitEach(ctx) {
@@ -175,13 +178,32 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitStructure(ctx) {
         const name = ctx.name_v.text;
-        const body = ctx.body_v && extractAsArray(this.visit(ctx.body_v));
+        const parameters = ctx.parameters_v && extractAsArray(this.visit(ctx.parameters_v));
 
-        return new StructureNode(ctx, { name, body });
+        return new StructureNode(ctx, { name, parameters });
     }
 
-    visitStructure_body_line(ctx) {
+    visitStructure_parameter(ctx) {
         return ctx.name_v.text;
+    }
+
+    visitTake(ctx) {
+        const name = ctx.paknme_v.getText();
+        let chain = ctx.identifiers_chain_v && extract(this.visit(ctx.identifiers_chain_v));
+        const as = ctx.as_name_v && ctx.as_name_v.text;
+        const pak = !!ctx.pak_v;
+        if (chain instanceof IdentifierNode) {
+            chain = new IdentifiersChainNode(ctx, { chain: [chain] });
+        }
+
+        return new TakeNode(ctx, { name, chain, as, pak });
+    }
+
+    visitGive(ctx) {
+        const name = ctx.name_v.text;
+        const as = ctx.as_name_v && ctx.as_name_v.text;
+
+        return new GiveNode(ctx, { name, as });
     }
 }
 

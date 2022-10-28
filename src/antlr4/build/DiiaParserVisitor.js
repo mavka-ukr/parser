@@ -36,8 +36,26 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#take.
+	visitTake(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#give.
+	visitGive(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#identifier.
 	visitIdentifier(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#pakname.
+	visitPakname(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -192,14 +210,14 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#structure_body.
-	visitStructure_body(ctx) {
+	// Visit a parse tree produced by DiiaParser#structure_parameters.
+	visitStructure_parameters(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#structure_body_line.
-	visitStructure_body_line(ctx) {
+	// Visit a parse tree produced by DiiaParser#structure_parameter.
+	visitStructure_parameter(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

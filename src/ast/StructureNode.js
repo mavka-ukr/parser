@@ -1,11 +1,11 @@
 import ASTNode from "./ASTNode.js";
 
 class StructureNode extends ASTNode {
-    constructor(context, { name, body, functions }) {
+    constructor(context, { name, parameters, functions }) {
         super(context);
 
         this.name = name;
-        this.body = body || [];
+        this.parameters = parameters || [];
         this.functions = functions || [];
     }
 }

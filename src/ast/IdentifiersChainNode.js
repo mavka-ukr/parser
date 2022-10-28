@@ -1,6 +1,6 @@
 import ASTNode from "./ASTNode.js";
 
-class ChainNode extends ASTNode {
+class IdentifiersChainNode extends ASTNode {
     constructor(context, { chain }) {
         super(context);
 
@@ -8,4 +8,4 @@ class ChainNode extends ASTNode {
     }
 }
 
-export default ChainNode;
+export default IdentifiersChainNode;
