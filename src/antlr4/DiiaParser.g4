@@ -10,7 +10,7 @@ nls: nl*;
 program: program_line (nl program_line)* EOF;
 program_line: chain | assign | diia | if | each | nls | structure | take | give;
 
-only_for_testing: identifier | call | arithmetic | assign | diia | if | each | test | structure | take | give;
+only_for_testing: identifier | call | arithmetic | assign | diia | if | each | test | structure | take | give | lambda;
 
 take: 'взяти' (pak_v='пак' ':')? paknme_v=pakname ('.' identifiers_chain_v=identifiers_chain)? ('як' as_name_v=NAME)?;
 give: 'дати' name_v=NAME ('як' as_name_v=NAME)?;
@@ -30,7 +30,7 @@ chain: left=chain (nls '.' nls | '.') right=chain
 literal: number=NUMBER | string=STRING | yes=YES | no=NO | none=NONE;
 
 // single expression
-atom: literal | chain | arithmetic | test;
+atom: literal | chain | arithmetic | test | lambda;
 
 // 1 + 1; a + 1; a() + 1; (a() + 1) + 1;
 arithmetic: left=arithmetic op=arithmetic_ops right=arithmetic
@@ -54,13 +54,16 @@ assign_value: atom;
 
 // block body
 body: body_line (nl body_line)*;
-body_line: assign | if | arithmetic | chain | each | nls;
+body_line: assign | if | arithmetic | chain | each | nls | return_body_line;
+return_body_line: RETURN line_v=body_line;
+
+lambda: 'дія' '(' nls parameters_v=diia_parameters? nls ')' '=' atom;
 
 // дія тест()
 //   a = 1
 //   друк("ок")
 // кінець
-diia: 'дія' (diia_for_structure)? name_v=NAME ('(' nls parameters_v=diia_parameters? nls ')')? nl (body_v=body nl)? 'кінець';
+diia: (async_v='тривала')? 'дія' (diia_for_structure)? name_v=NAME '(' ( nls parameters_v=diia_parameters? nls ) ')' nl (body_v=body nl)? 'кінець';
 diia_parameters: left=diia_parameters nls ',' nls right=diia_parameters | parameter_v=diia_parameter;
 diia_parameter: NAME;
 diia_for_structure: structure_name_v=NAME '.';
@@ -68,7 +71,7 @@ diia_for_structure: structure_name_v=NAME '.';
 // a == 1; a() == 1; (1 + 1) == 1;
 test: left=test_part op=test_ops right=test_part;
 test_part: literal | chain | '(' arithmetic ')';
-test_ops: '==' | '!=' | '>=' | '<=';
+test_ops: '==' | '!=' | '>=' | '<=' | 'є';
 
 // якщо бути
 //   друк("най буде")

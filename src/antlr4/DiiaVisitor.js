@@ -18,6 +18,8 @@ import StructureNode from "../ast/StructureNode.js";
 import TakeNode from "../ast/TakeNode.js";
 import GiveNode from "../ast/GiveNode.js";
 import IdentifiersChainNode from "../ast/IdentifiersChainNode.js";
+import ReturnNode from "../ast/ReturnNode.js";
+import LambdaNode from "../ast/LambdaNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitProgram(ctx) {
@@ -85,8 +87,22 @@ class DiiaVisitor extends DiiaParserVisitor {
         const body = ctx.body_v && extractAsArray(this.visit(ctx.body_v));
         const diia_for_structure = ctx.diia_for_structure();
         const structure = diia_for_structure && diia_for_structure.structure_name_v.text;
+        const async = !!ctx.async_v;
 
-        return new DiiaNode(ctx, { name, parameters, body, structure });
+        return new DiiaNode(ctx, { name, parameters, body, structure, async });
+    }
+
+    visitLambda(ctx) {
+        const parameters = ctx.parameters_v && extractAsArray(this.visit(ctx.parameters_v));
+        const expression = extract(this.visit(ctx.atom()));
+
+        return new LambdaNode(ctx, { parameters, expression });
+    }
+
+    visitReturn_body_line(ctx) {
+        const value = extract(this.visit(ctx.line_v));
+
+        return new ReturnNode(ctx, { value });
     }
 
     visitDiia_parameter(ctx) {

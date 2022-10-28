@@ -221,6 +221,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#return_body_line.
+	enterReturn_body_line(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#return_body_line.
+	exitReturn_body_line(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#lambda.
+	enterLambda(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#lambda.
+	exitLambda(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#diia.
 	enterDiia(ctx) {
 	}

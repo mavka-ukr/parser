@@ -150,6 +150,18 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#return_body_line.
+	visitReturn_body_line(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#lambda.
+	visitLambda(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#diia.
 	visitDiia(ctx) {
 	  return this.visitChildren(ctx);

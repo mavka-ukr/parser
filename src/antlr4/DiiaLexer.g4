@@ -19,6 +19,9 @@ TAKE: 'взяти';
 GIVE: 'дати';
 PAK: 'пак';
 AS: 'як';
+IS: 'є';
+RETURN: 'вернути';
+ASYNC: 'тривала';
 
 SKIP_SPACES
  : ( ' ' | '\t' ) -> skip
