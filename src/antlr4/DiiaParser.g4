@@ -4,89 +4,88 @@ options {
     tokenVocab=DiiaLexer;
 }
 
-nl: NL;
-nls: nl*;
-
 program: program_line (nl program_line)* EOF;
 program_line: chain | assign | diia | if | each | nls | structure | take | give;
 
-only_for_testing: identifier | call | arithmetic | assign | diia | if | each | test | structure | take | give | lambda;
+nl: NL;
+nls: nl*;
 
-take: 'взяти' (pak_v='пак' ':')? paknme_v=pakname ('.' identifiers_chain_v=identifiers_chain)? ('як' as_name_v=NAME)?;
-give: 'дати' name_v=NAME ('як' as_name_v=NAME)?;
+take: 'взяти' (t_pak='пак' ':')? t_module=identifier ('.' t_elements_chain=identifiers_chain)? ('як' t_as=identifier)?;
+give: 'дати' g_name=identifier ('як' g_as=identifier)?;
 
-identifier: NAME;
+identifier: ID;
+identifiers_chain: identifier ('.' identifier)*;
 
-pakname: NAME (':' NAME)?;
-identifiers_chain: identifier ('.' identifier)+ | identifier_v=identifier;
-
-// a; a.b; a.b.c; a[1]; a[1 + 1]; a.b().c().d.e.f() etc
-chain: left=chain (nls '.' nls | '.') right=chain
-     | 'чекати' wait_chain_v=chain
-     | identifier_v=identifier
-     | call_v=call;
+// a; a.b; a.b.c; a.b().c().d.e.f() etc
+chain: chain_element (nls '.' nls chain_element)*
+     | 'чекати' c_wait=chain;
+chain_element: identifier | call;
 
 // 1; 1.2322; "abcd"; так; ні; пусто
-literal: number=NUMBER | string=STRING | yes=YES | no=NO | none=NONE;
+literal: l_number=NUMBER | l_string=STRING | l_yes=YES | l_no=NO | l_none=NONE;
 
 // single expression
 atom: literal | chain | arithmetic | test | lambda;
 
 // 1 + 1; a + 1; a() + 1; (a() + 1) + 1;
-arithmetic: left=arithmetic op=arithmetic_ops right=arithmetic
-          | literal_v=literal
-          | chain_v=chain
-          | '(' nested=arithmetic ')';
-arithmetic_ops: '+' | '-' | '/' | '*';
+arithmetic: a_left=arithmetic a_op=arithmetic_op a_right=arithmetic
+          | a_literal=literal
+          | a_chain=chain
+          | '(' a_nested=arithmetic ')';
+arithmetic_op: '+' | '-' | '/' | '*';
 
 // a(); a(x, y(), 1 + 1);
-call: name_v=NAME '(' nls (call_parameters_v=call_parameters | call_parameters_with_name_v=call_parameters_with_name)? nls ')';
+call: c_name=identifier '(' nls (c_parameters=call_parameters | c_named_parameters=call_named_parameters)? nls ')';
 // (a, b, c)
 call_parameters: call_parameter (',' call_parameter)*;
-call_parameter: nls value_v=atom nls;
+call_parameter: nls cp_value=atom nls;
 // (name1: a, name2: b, name3: c)
-call_parameters_with_name: call_parameter_with_name (',' call_parameter_with_name)*;
-call_parameter_with_name: nls name_v=NAME ':' value_v=atom nls;
+call_named_parameters: call_named_parameter (',' call_named_parameter)*;
+call_named_parameter: nls cnp_name=identifier ':' cnp_value=atom nls;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
-assign: identifier_v=identifiers_chain '=' value_v=assign_value;
+assign: a_chain=identifiers_chain '=' a_value=assign_value;
 assign_value: atom;
 
 // block body
 body: body_line (nl body_line)*;
 body_line: assign | if | arithmetic | chain | each | nls | return_body_line;
-return_body_line: RETURN line_v=body_line;
+return_body_line: RETURN rbl=body_line;
 
-lambda: 'дія' '(' nls parameters_v=diia_parameters? nls ')' '=' atom;
+// дія а: друк(а)
+lambda: 'дія' l_parameters=diia_parameters? ':' atom;
 
 // дія тест()
 //   a = 1
 //   друк("ок")
 // кінець
-diia: (async_v='тривала')? 'дія' (diia_for_structure)? name_v=NAME '(' ( nls parameters_v=diia_parameters? nls ) ')' nl (body_v=body nl)? 'кінець';
-diia_parameters: left=diia_parameters nls ',' nls right=diia_parameters | parameter_v=diia_parameter;
-diia_parameter: NAME;
-diia_for_structure: structure_name_v=NAME '.';
+diia: (d_async='тривала')? 'дія' (d_structure=diia_structure)? d_name=identifier '(' ( nls d_parameters=diia_parameters? nls ) ')' nl (d_body=body nl)? 'кінець';
+diia_parameters: diia_parameter (nls ',' nls diia_parameter)*;
+diia_parameter: dp_name=identifier ('=' dp_value=atom)?;
+diia_structure: ds_name=identifier '.';
 
 // a == 1; a() == 1; (1 + 1) == 1;
-test: left=test_part op=test_ops right=test_part;
-test_part: literal | chain | '(' arithmetic ')';
-test_ops: '==' | '!=' | '>=' | '<=' | 'є';
+test: test_expr (test_expr_op test_expr)*;
+test_expr: te_left=test_part (te_op=test_op te_right=test_part)? | '(' test_expr ')';
+test_part: literal | chain | arithmetic | '(' test_part ')';
+test_op: '==' | '!=' | '>=' | '<=' | 'є';
+test_expr_op: 'і' | 'або';
 
 // якщо бути
 //   друк("най буде")
 // кінець
-if: 'якщо' expression_v=atom nl (body_v=body nl)? 'кінець';
+if: (i_start=if_start)+ 'кінець';
+if_start: 'якщо' is_expr=atom nl (is_body=body nl)?;
 
 // кожній х беручи діапазон(1, 10)
 //   друк(х)
 // кінець
-each: 'кожній' name_v=NAME 'беручи' iterator_v=atom nl (body_v=body nl)? 'кінець';
+each: 'кожній' e_name=identifier 'беручи' e_iterator=atom nl (e_body=body nl)? 'кінець';
 
 // структура Ракета
 //   назва
 //   швидкість
 // кінець
-structure: 'структура' name_v=NAME nl nls (parameters_v=structure_parameters nl)? nls 'кінець';
+structure: 'структура' s_name=identifier nl nls (s_parameters=structure_parameters nl)? nls 'кінець';
 structure_parameters: structure_parameter (nl structure_parameter)*;
-structure_parameter: nls name_v=NAME nls;
+structure_parameter: nls sp_name=identifier ('=' sp_value=atom)? nls;

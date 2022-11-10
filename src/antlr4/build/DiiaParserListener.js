@@ -5,24 +5,6 @@ import antlr4 from 'antlr4';
 // This class defines a complete listener for a parse tree produced by DiiaParser.
 export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
-	// Enter a parse tree produced by DiiaParser#nl.
-	enterNl(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#nl.
-	exitNl(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#nls.
-	enterNls(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#nls.
-	exitNls(ctx) {
-	}
-
-
 	// Enter a parse tree produced by DiiaParser#program.
 	enterProgram(ctx) {
 	}
@@ -41,12 +23,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#only_for_testing.
-	enterOnly_for_testing(ctx) {
+	// Enter a parse tree produced by DiiaParser#nl.
+	enterNl(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#only_for_testing.
-	exitOnly_for_testing(ctx) {
+	// Exit a parse tree produced by DiiaParser#nl.
+	exitNl(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#nls.
+	enterNls(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#nls.
+	exitNls(ctx) {
 	}
 
 
@@ -77,15 +68,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#pakname.
-	enterPakname(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#pakname.
-	exitPakname(ctx) {
-	}
-
-
 	// Enter a parse tree produced by DiiaParser#identifiers_chain.
 	enterIdentifiers_chain(ctx) {
 	}
@@ -101,6 +83,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#chain.
 	exitChain(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#chain_element.
+	enterChain_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#chain_element.
+	exitChain_element(ctx) {
 	}
 
 
@@ -131,12 +122,12 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#arithmetic_ops.
-	enterArithmetic_ops(ctx) {
+	// Enter a parse tree produced by DiiaParser#arithmetic_op.
+	enterArithmetic_op(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#arithmetic_ops.
-	exitArithmetic_ops(ctx) {
+	// Exit a parse tree produced by DiiaParser#arithmetic_op.
+	exitArithmetic_op(ctx) {
 	}
 
 
@@ -167,21 +158,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#call_parameters_with_name.
-	enterCall_parameters_with_name(ctx) {
+	// Enter a parse tree produced by DiiaParser#call_named_parameters.
+	enterCall_named_parameters(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#call_parameters_with_name.
-	exitCall_parameters_with_name(ctx) {
+	// Exit a parse tree produced by DiiaParser#call_named_parameters.
+	exitCall_named_parameters(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#call_parameter_with_name.
-	enterCall_parameter_with_name(ctx) {
+	// Enter a parse tree produced by DiiaParser#call_named_parameter.
+	enterCall_named_parameter(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#call_parameter_with_name.
-	exitCall_parameter_with_name(ctx) {
+	// Exit a parse tree produced by DiiaParser#call_named_parameter.
+	exitCall_named_parameter(ctx) {
 	}
 
 
@@ -266,12 +257,12 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#diia_for_structure.
-	enterDiia_for_structure(ctx) {
+	// Enter a parse tree produced by DiiaParser#diia_structure.
+	enterDiia_structure(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#diia_for_structure.
-	exitDiia_for_structure(ctx) {
+	// Exit a parse tree produced by DiiaParser#diia_structure.
+	exitDiia_structure(ctx) {
 	}
 
 
@@ -284,6 +275,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#test_expr.
+	enterTest_expr(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test_expr.
+	exitTest_expr(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#test_part.
 	enterTest_part(ctx) {
 	}
@@ -293,12 +293,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#test_ops.
-	enterTest_ops(ctx) {
+	// Enter a parse tree produced by DiiaParser#test_op.
+	enterTest_op(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#test_ops.
-	exitTest_ops(ctx) {
+	// Exit a parse tree produced by DiiaParser#test_op.
+	exitTest_op(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#test_expr_op.
+	enterTest_expr_op(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test_expr_op.
+	exitTest_expr_op(ctx) {
 	}
 
 
@@ -308,6 +317,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#if.
 	exitIf(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#if_start.
+	enterIf_start(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#if_start.
+	exitIf_start(ctx) {
 	}
 
 

@@ -22,6 +22,8 @@ AS: 'як';
 IS: 'є';
 RETURN: 'вернути';
 ASYNC: 'тривала';
+AND: 'і';
+OR: 'або';
 
 SKIP_SPACES
  : ( ' ' | '\t' ) -> skip
@@ -83,7 +85,7 @@ NOT
     : '!'
     ;
 
-NAME
+ID
     : ID_START ID_CONTINUE*
     ;
 
@@ -117,7 +119,7 @@ fragment ID_START
 fragment ID_CONTINUE
     : ID_START
     | '0'..'9'
-    | '\''
+    | '\'' ID_START
     ;
 
 fragment STRING_SEQ

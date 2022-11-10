@@ -27,44 +27,44 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitArithmetic(ctx) {
-        if (ctx.nested) {
-            return new NestedArithmeticNode(ctx, { arithmetic: this.visit(ctx.nested) });
+        if (ctx.a_nested) {
+            return new NestedArithmeticNode(ctx, { arithmetic: this.visit(ctx.a_nested) });
         }
 
-        if (ctx.left) {
-            let left = extract(this.visit(ctx.left));
-            let right = ctx.right && extract(this.visit(ctx.right));
-            const operation = ctx.op && ctx.op.getText();
+        if (ctx.a_left) {
+            let left = extract(this.visit(ctx.a_left));
+            let right = ctx.a_right && extract(this.visit(ctx.a_right));
+            const operation = ctx.a_op && ctx.a_op.getText();
 
             return new ArithmeticNode(ctx, { left, right, operation });
         }
 
-        if (ctx.literal_v) {
-            return this.visit(ctx.literal_v);
+        if (ctx.a_literal) {
+            return this.visit(ctx.a_literal);
         }
 
-        if (ctx.chain_v) {
-            return this.visit(ctx.chain_v);
+        if (ctx.a_chain) {
+            return this.visit(ctx.a_chain);
         }
 
         throw new Error('Unsupported arithmetic node.');
     }
 
     visitAssign(ctx) {
-        const identifier = this.visit(ctx.identifier_v);
-        const value = extract(this.visit(ctx.value_v));
+        const identifier = this.visit(ctx.a_chain);
+        const value = extract(this.visit(ctx.a_value));
 
         return new AssignNode(ctx, { identifier, value });
     }
 
     visitCall(ctx) {
-        const name = ctx.name_v.text;
+        const name = ctx.c_name.text;
 
         let parameters = [];
-        if (ctx.call_parameters_v) {
-            parameters = extractAsArray(this.visit(ctx.call_parameters_v));
-        } else if (ctx.call_parameters_with_name_v) {
-            const parametersNamed = extractAsArray(this.visit(ctx.call_parameters_with_name_v));
+        if (ctx.c_parameters) {
+            parameters = extractAsArray(this.visit(ctx.c_parameters));
+        } else if (ctx.c_named_parameters) {
+            const parametersNamed = extractAsArray(this.visit(ctx.c_named_parameters));
             parameters = {};
             parametersNamed.forEach((p) => {
                 parameters[p.name] = p.value;
