@@ -1,10 +1,10 @@
 import ASTNode from "./ASTNode.js";
 
 class IdentifiersChainNode extends ASTNode {
-    constructor(context, { chain }) {
+    constructor(context, { identifiers }) {
         super(context);
 
-        this.chain = chain;
+        this.identifiers = identifiers;
     }
 }
 

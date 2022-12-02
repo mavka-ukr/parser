@@ -5,7 +5,7 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-ф = дія(м) = друк(м)
+ф = (м): друк(м)
 `.trim();
 
 const ast = parse(code);

@@ -84,12 +84,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#arithmetic_op.
-	visitArithmetic_op(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by DiiaParser#call.
 	visitCall(ctx) {
 	  return this.visitChildren(ctx);
@@ -186,12 +180,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#test_expr.
-	visitTest_expr(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by DiiaParser#test_part.
 	visitTest_part(ctx) {
 	  return this.visitChildren(ctx);
@@ -204,6 +192,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#test_expr.
+	visitTest_expr(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#test_expr_op.
 	visitTest_expr_op(ctx) {
 	  return this.visitChildren(ctx);
@@ -212,12 +206,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#if.
 	visitIf(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#if_start.
-	visitIf_start(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -242,6 +230,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#structure_parameter.
 	visitStructure_parameter(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#trycat.
+	visitTrycat(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

@@ -1,4 +1,4 @@
-export function extract(node) {
+export function singleNode(node) {
     if (Array.isArray(node)) {
         node = node.flat(Infinity).filter((n) => !!n);
 
@@ -10,7 +10,7 @@ export function extract(node) {
     return node;
 }
 
-export function extractAsArray(node) {
+export function flatNodes(node) {
     if (Array.isArray(node)) {
         node = node.flat(Infinity).filter((n) => !!n);
 

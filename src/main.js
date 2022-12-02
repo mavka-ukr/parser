@@ -6,7 +6,7 @@ import DiiaParser from "./antlr4/build/DiiaParser.js";
 import StructureNode from "./ast/StructureNode.js";
 import DiiaNode from "./ast/DiiaNode.js";
 
-class ErrorListener extends antlr4.error.ErrorListener {
+class DiiaErrorListener extends antlr4.error.ErrorListener {
     syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
         throw new Error(msg);
     }
@@ -54,8 +54,8 @@ export function parse(code, options = {}) {
 
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new DiiaParser(tokens, lexer);
-    // parser.removeErrorListeners();
-    // parser.addErrorListener(new ErrorListener());
+    parser.removeErrorListeners();
+    parser.addErrorListener(new DiiaErrorListener());
 
     const tree = parser[options.start]();
 

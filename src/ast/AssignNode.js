@@ -3,13 +3,13 @@ import ASTNode from "./ASTNode.js";
 class AssignNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode} identifier
+     * @param {ASTNode} id
      * @param {ASTNode} value
      */
-    constructor(context, { identifier, value }) {
+    constructor(context, { id, value }) {
         super(context);
 
-        this.identifier = identifier;
+        this.id = id;
         this.value = value;
     }
 }

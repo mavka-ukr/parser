@@ -28,20 +28,20 @@ literal: l_number=NUMBER | l_string=STRING | l_yes=YES | l_no=NO | l_none=NONE;
 atom: literal | chain | arithmetic | test | lambda;
 
 // 1 + 1; a + 1; a() + 1; (a() + 1) + 1;
-arithmetic: a_left=arithmetic a_op=arithmetic_op a_right=arithmetic
+arithmetic: a_left=arithmetic a_op_muldiv=('*' | '/') a_right=arithmetic
+          | a_left=arithmetic a_op_addsub=('+' | '-') a_right=arithmetic
           | a_literal=literal
           | a_chain=chain
           | '(' a_nested=arithmetic ')';
-arithmetic_op: '+' | '-' | '/' | '*';
 
 // a(); a(x, y(), 1 + 1);
 call: c_name=identifier '(' nls (c_parameters=call_parameters | c_named_parameters=call_named_parameters)? nls ')';
 // (a, b, c)
 call_parameters: call_parameter (',' call_parameter)*;
 call_parameter: nls cp_value=atom nls;
-// (name1: a, name2: b, name3: c)
+// (name1=a, name2=b, name3=c)
 call_named_parameters: call_named_parameter (',' call_named_parameter)*;
-call_named_parameter: nls cnp_name=identifier ':' cnp_value=atom nls;
+call_named_parameter: nls cnp_name=identifier '=' cnp_value=atom nls;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
 assign: a_chain=identifiers_chain '=' a_value=assign_value;
@@ -52,8 +52,8 @@ body: body_line (nl body_line)*;
 body_line: assign | if | arithmetic | chain | each | nls | return_body_line;
 return_body_line: RETURN rbl=body_line;
 
-// дія а: друк(а)
-lambda: 'дія' l_parameters=diia_parameters? ':' atom;
+// (а): друк(а)
+lambda: '(' l_parameters=diia_parameters? ')' ':' l_body=atom;
 
 // дія тест()
 //   a = 1
@@ -65,17 +65,17 @@ diia_parameter: dp_name=identifier ('=' dp_value=atom)?;
 diia_structure: ds_name=identifier '.';
 
 // a == 1; a() == 1; (1 + 1) == 1;
-test: test_expr (test_expr_op test_expr)*;
-test_expr: te_left=test_part (te_op=test_op te_right=test_part)? | '(' test_expr ')';
+test: t_left=test_part t_op=test_op t_right=test_part | '(' test_expr ')';
 test_part: literal | chain | arithmetic | '(' test_part ')';
 test_op: '==' | '!=' | '>=' | '<=' | 'є';
+test_expr: te_left=test_expr te_op=test_expr_op te_right=test_expr
+         | te_test=test;
 test_expr_op: 'і' | 'або';
 
 // якщо бути
 //   друк("най буде")
 // кінець
-if: (i_start=if_start)+ 'кінець';
-if_start: 'якщо' is_expr=atom nl (is_body=body nl)?;
+if: 'якщо' i_expr=atom nl (i_body=body nl)? ('інакше' ielse_body=body nl)? 'кінець';
 
 // кожній х беручи діапазон(1, 10)
 //   друк(х)
@@ -89,3 +89,10 @@ each: 'кожній' e_name=identifier 'беручи' e_iterator=atom nl (e_body
 structure: 'структура' s_name=identifier nl nls (s_parameters=structure_parameters nl)? nls 'кінець';
 structure_parameters: structure_parameter (nl structure_parameter)*;
 structure_parameter: nls sp_name=identifier ('=' sp_value=atom)? nls;
+
+// спробувати
+//   викинути "йой, біда!"
+// зловити п
+//   друк("біда! бо помилка: " + п)
+// кінець
+trycat: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier (tc_body=body nl)? nls 'кінець';

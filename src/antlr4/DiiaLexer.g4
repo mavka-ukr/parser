@@ -24,6 +24,9 @@ RETURN: 'вернути';
 ASYNC: 'тривала';
 AND: 'і';
 OR: 'або';
+TRY: 'спробувати';
+CATCH: 'зловити';
+ELSE: 'інакше';
 
 SKIP_SPACES
  : ( ' ' | '\t' ) -> skip

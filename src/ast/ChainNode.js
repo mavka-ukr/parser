@@ -1,10 +1,10 @@
 import ASTNode from "./ASTNode.js";
 
 class ChainNode extends ASTNode {
-    constructor(context, { chain }) {
+    constructor(context, { nodes }) {
         super(context);
 
-        this.chain = chain;
+        this.nodes = nodes;
     }
 }
 
