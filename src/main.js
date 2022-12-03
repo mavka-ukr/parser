@@ -25,7 +25,7 @@ function processStructures(ast) {
         if (node instanceof DiiaNode) {
             if (node.structure) {
                 if (node.structure in structures) {
-                    structures[node.structure].functions.push(node);
+                    structures[node.structure].methods.push(node);
                 } else {
                     throw new Error('Cannot find structure: ' + node.structure);
                 }

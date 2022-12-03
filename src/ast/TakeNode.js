@@ -1,6 +1,13 @@
 import ASTNode from "./ASTNode.js";
 
 class TakeNode extends ASTNode {
+    /**
+     * @param context
+     * @param {string} name
+     * @param {IdentifiersChainNode} chain
+     * @param {string} as
+     * @param {boolean} pak
+     */
     constructor(context, { name, chain, as, pak = false }) {
         super(context);
 

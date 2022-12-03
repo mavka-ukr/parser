@@ -5,7 +5,13 @@ import { parse } from "./src/main.js";
 // `.trim();
 
 const code = `
-ф = (м): друк(м)
+структура Паспорт
+  ім'я
+  прізвище
+кінець
+
+дія Паспорт.змінити_ім'я()
+кінець
 `.trim();
 
 const ast = parse(code);
