@@ -115,7 +115,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         if (ctx.a_left) {
             let left = singleNode(this.visit(ctx.a_left));
             let right = singleNode(this.visit(ctx.a_right));
-            const operation = ctx.a_op_addsub ? ctx.a_op_addsub.getText() : ctx.a_op_muldiv.getText();
+            const operation = ctx.a_op_addsub ? ctx.a_op_addsub.text : ctx.a_op_muldiv.text;
 
             return new ArithmeticNode(ctx, { left, right, operation });
         }

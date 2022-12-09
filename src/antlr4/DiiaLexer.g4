@@ -106,7 +106,7 @@ FLOAT
     ;
 
 STRING
-    : '"' STRING_SEQ*? '"'
+    : '"' ( ~[\\"\r\n] | ESCAPE_CHAR )* '"'
     ;
 
 fragment DIGIT
@@ -125,6 +125,6 @@ fragment ID_CONTINUE
     | '\'' ID_START
     ;
 
-fragment STRING_SEQ
-    : .
+fragment ESCAPE_CHAR
+    : '\\' [0btnfr"'\\]
     ;

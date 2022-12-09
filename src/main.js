@@ -63,6 +63,10 @@ export function parse(code, options = {}) {
 
     let ast = visitor[`visit${title(options.start)}`](tree);
 
+    if (!Array.isArray(ast)) {
+        return ast;
+    }
+
     ast = ast.flat(Infinity).filter((v) => !!v);
 
     return processStructures(ast);

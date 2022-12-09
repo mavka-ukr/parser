@@ -25,7 +25,7 @@ chain_element: identifier | call;
 literal: l_number=NUMBER | l_string=STRING | l_yes=YES | l_no=NO | l_none=NONE;
 
 // single expression
-atom: literal | chain | arithmetic | test | lambda;
+atom: literal | chain | arithmetic | test | lambda | '(' atom ')';
 
 // 1 + 1; a + 1; a() + 1; (a() + 1) + 1;
 arithmetic: a_left=arithmetic a_op_muldiv=('*' | '/') a_right=arithmetic
