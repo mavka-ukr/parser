@@ -66,6 +66,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#chain_element_literal.
+	visitChain_element_literal(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#literal.
 	visitLiteral(ctx) {
 	  return this.visitChildren(ctx);

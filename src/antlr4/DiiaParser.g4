@@ -5,7 +5,7 @@ options {
 }
 
 program: program_line (nl program_line)* EOF;
-program_line: chain | assign | diia | if | each | nls | structure | take | give;
+program_line: chain | assign | diia | if | each | nls | structure | take | give | atom;
 
 nl: NL;
 nls: nl*;
@@ -18,8 +18,10 @@ identifiers_chain: identifier ('.' identifier)*;
 
 // a; a.b; a.b.c; a.b().c().d.e.f() etc
 chain: chain_element (nls '.' nls chain_element)*
+     | chain_element_literal (nls '.' nls chain_element)*
      | 'чекати' c_wait=chain;
 chain_element: identifier | call;
+chain_element_literal: l_number=NUMBER | l_string=STRING;
 
 // 1; 1.2322; "abcd"; так; ні; пусто
 literal: l_number=NUMBER | l_string=STRING | l_yes=YES | l_no=NO | l_none=NONE;
@@ -37,14 +39,14 @@ arithmetic: a_left=arithmetic a_op_muldiv=('*' | '/') a_right=arithmetic
 // a(); a(x, y(), 1 + 1);
 call: c_name=identifier '(' nls (c_parameters=call_parameters | c_named_parameters=call_named_parameters)? nls ')';
 // (a, b, c)
-call_parameters: call_parameter (',' call_parameter)*;
+call_parameters: call_parameter (',' call_parameter)* ','?;
 call_parameter: nls cp_value=atom nls;
 // (name1=a, name2=b, name3=c)
-call_named_parameters: call_named_parameter (',' call_named_parameter)*;
+call_named_parameters: call_named_parameter (',' call_named_parameter)* ','?;
 call_named_parameter: nls cnp_name=identifier '=' cnp_value=atom nls;
 
 // a = 1; a = 1 + 1; a = 1 == 1;
-assign: a_chain=identifiers_chain '=' a_value=assign_value;
+assign: (a_wait='чекати')? (a_chain=identifiers_chain | a_identifier=identifier a_type=identifier) '=' a_value=assign_value;
 assign_value: atom;
 
 // block body
@@ -61,7 +63,7 @@ lambda: '(' l_parameters=diia_parameters? ')' ':' l_body=atom;
 // кінець
 diia: (d_async='тривала')? 'дія' (d_structure=diia_structure)? d_name=identifier '(' ( nls d_parameters=diia_parameters? nls ) ')' nl (d_body=body nl)? 'кінець';
 diia_parameters: diia_parameter (nls ',' nls diia_parameter)*;
-diia_parameter: dp_name=identifier ('=' dp_value=atom)?;
+diia_parameter: dp_name=identifier (dp_type=identifier)? ('=' dp_value=atom)?;
 diia_structure: ds_name=identifier '.';
 
 // a == 1; a() == 1; (1 + 1) == 1;
@@ -88,7 +90,7 @@ each: 'кожній' e_name=identifier 'беручи' e_iterator=atom nl (e_body
 // кінець
 structure: 'структура' s_name=identifier nl nls (s_parameters=structure_parameters nl)? nls 'кінець';
 structure_parameters: structure_parameter (nl structure_parameter)*;
-structure_parameter: nls sp_name=identifier ('=' sp_value=atom)? nls;
+structure_parameter: nls sp_name=identifier (sp_type=identifier)? ('=' sp_value=atom)? nls;
 
 // спробувати
 //   викинути "йой, біда!"

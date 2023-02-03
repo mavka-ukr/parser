@@ -6,9 +6,25 @@ import DiiaParser from "./antlr4/build/DiiaParser.js";
 import StructureNode from "./ast/StructureNode.js";
 import DiiaNode from "./ast/DiiaNode.js";
 
+class DiiaParserError extends Error {
+}
+
+class DiiaParserSyntaxError extends DiiaParserError {
+    constructor(recognizer, offendingSymbol, line, column, msg, err) {
+        super(msg);
+
+        this.recognizer = recognizer;
+        this.offendingSymbol = offendingSymbol;
+        this.line = line;
+        this.column = column;
+        this.msg = msg;
+        this.err = err;
+    }
+}
+
 class DiiaErrorListener extends antlr4.error.ErrorListener {
     syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
-        throw new Error(msg);
+        throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, msg, err);
     }
 }
 
@@ -27,7 +43,7 @@ function processStructures(ast) {
                 if (node.structure in structures) {
                     structures[node.structure].methods.push(node);
                 } else {
-                    throw new Error('Cannot find structure: ' + node.structure);
+                    throw new DiiaParserError(`"${node.structure}" не знайдено в контексті`);
                 }
             }
         }

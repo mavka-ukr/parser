@@ -4,12 +4,14 @@ class StructureParameterNode extends ASTNode {
     /**
      * @param context
      * @param {string} name
+     * @param {string} type
      * @param {ASTNode} defaultValue
      */
-    constructor(context, { name, defaultValue }) {
+    constructor(context, { name, type, defaultValue }) {
         super(context);
 
         this.name = name;
+        this.type = type;
         this.defaultValue = defaultValue;
     }
 }
