@@ -27,7 +27,7 @@ chain_element_literal: l_number=NUMBER | l_string=STRING;
 literal: l_number=NUMBER | l_string=STRING | l_yes=YES | l_no=NO | l_none=NONE;
 
 // single expression
-atom: literal | chain | arithmetic | test | lambda | '(' atom ')';
+atom: literal | chain | arithmetic | test | lambda | anonymous_diia | '(' atom ')';
 
 // 1 + 1; a + 1; a() + 1; (a() + 1) + 1;
 arithmetic: a_left=arithmetic a_op_muldiv=('*' | '/') a_right=arithmetic
@@ -66,6 +66,8 @@ diia_parameters: diia_parameter (nls ',' nls diia_parameter)*;
 diia_parameter: dp_name=identifier (dp_type=identifier)? ('=' dp_value=atom)?;
 diia_structure: ds_name=identifier '.';
 
+anonymous_diia: (ad_async='тривала')? 'дія' '(' ( nls ad_parameters=diia_parameters? nls ) ')' nl (ad_body=body nl)? 'кінець';
+
 // a == 1; a() == 1; (1 + 1) == 1;
 test: t_left=test_part t_op=test_op t_right=test_part | '(' test_expr ')';
 test_part: literal | chain | arithmetic | '(' test_part ')';
@@ -85,8 +87,8 @@ if: 'якщо' i_expr=atom nl (i_body=body nl)? ('інакше' ielse_body=body 
 each: 'кожній' e_name=identifier 'беручи' e_iterator=atom nl (e_body=body nl)? 'кінець';
 
 // структура Ракета
-//   назва
-//   швидкість
+//   назва число = 1
+//   швидкість текст = 2
 // кінець
 structure: 'структура' s_name=identifier nl nls (s_parameters=structure_parameters nl)? nls 'кінець';
 structure_parameters: structure_parameter (nl structure_parameter)*;

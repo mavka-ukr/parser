@@ -24,6 +24,7 @@ import DiiaParameterNode from "../ast/DiiaParameterNode.js";
 import TestExprNode from "../ast/TestExprNode.js";
 import StructureParameterNode from "../ast/StructureParameterNode.js";
 import TryCatchNode from "../ast/TryCatchNode.js";
+import AnonymousDiiaNode from "../ast/AnonymousDiiaNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitProgram(ctx) {
@@ -238,6 +239,14 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitDiia_structure(ctx) {
         return super.visit(ctx.ds_name);
+    }
+
+    visitAnonymous_diia(ctx) {
+        const async = !!ctx.ad_async;
+        const parameters = ctx.ad_parameters && this.visit(ctx.ad_parameters);
+        const body = ctx.ad_body && this.visit(ctx.ad_body);
+
+        return new AnonymousDiiaNode(ctx, { parameters, body, async });
     }
 
     visitTest(ctx) {

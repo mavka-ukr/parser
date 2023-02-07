@@ -266,6 +266,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#anonymous_diia.
+	enterAnonymous_diia(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#anonymous_diia.
+	exitAnonymous_diia(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#test.
 	enterTest(ctx) {
 	}
