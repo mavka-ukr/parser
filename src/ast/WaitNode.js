@@ -1,14 +1,17 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * відповідь = чекати отримати_тачки()
+ */
 class WaitNode extends ASTNode {
     /**
      * @param context
-     * @param {ASTNode} node
+     * @param {ASTNode} value
      */
-    constructor(context, { node }) {
+    constructor(context, { value }) {
         super(context);
 
-        this.node = node;
+        this.value = value;
     }
 }
 

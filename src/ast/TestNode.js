@@ -1,5 +1,8 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * а є число і б == "ок" або в не 10
+ */
 class TestNode extends ASTNode {
     /**
      * @param context

@@ -1,9 +1,9 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * вернути 1
+ * впасти "біда..."
  */
-class ReturnNode extends ASTNode {
+class ThrowNode extends ASTNode {
     /**
      * @param context
      * @param {ASTNode} value
@@ -15,4 +15,4 @@ class ReturnNode extends ASTNode {
     }
 }
 
-export default ReturnNode;
+export default ThrowNode;

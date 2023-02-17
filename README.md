@@ -1,17 +1,17 @@
-# diia-parser
+# mavka-parser
 
-Diia language parser written in antlr4 and JavaScript.
+Mavka language parser written in antlr4 and JavaScript.
 
 ## Installation
 
 ```
-npm i diia-parser
+npm i mavka-parser
 ```
 
 ## Usage
 
 ```javascript
-import { parse } from 'diia-parser';
+import { parse } from 'mavka-parser';
 
 const code = `
 дія знайти_суму(а, б)
@@ -38,9 +38,9 @@ Requirements:
 Installation:
 
 ```shell
-git clone https://github.com/kohutd/diia-parser
+git clone https://github.com/mavka-ukr/mavka-parser
 
-cd diia-parser
+cd mavka-parser
 
 npm install
 ```

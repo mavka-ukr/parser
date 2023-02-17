@@ -1,5 +1,9 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * так
+ * ні
+ */
 class BooleanNode extends ASTNode {
     /**
      * @param context

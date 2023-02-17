@@ -1,14 +1,19 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * а.б().в.г.ґ()()().д
+ */
 class ChainNode extends ASTNode {
     /**
      * @param context
-     * @param {ASTNode[]} nodes
+     * @param {ASTNode} left
+     * @param {ASTNode} right
      */
-    constructor(context, { nodes }) {
+    constructor(context, { left, right }) {
         super(context);
 
-        this.nodes = nodes;
+        this.left = left;
+        this.right = right;
     }
 }
 

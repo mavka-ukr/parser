@@ -5,6 +5,15 @@ import antlr4 from 'antlr4';
 // This class defines a complete listener for a parse tree produced by DiiaParser.
 export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
+	// Enter a parse tree produced by DiiaParser#file.
+	enterFile(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#file.
+	exitFile(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#program.
 	enterProgram(ctx) {
 	}
@@ -14,219 +23,39 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#program_line.
-	enterProgram_line(ctx) {
+	// Enter a parse tree produced by DiiaParser#program_element.
+	enterProgram_element(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#program_line.
-	exitProgram_line(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#nl.
-	enterNl(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#nl.
-	exitNl(ctx) {
+	// Exit a parse tree produced by DiiaParser#program_element.
+	exitProgram_element(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#nls.
-	enterNls(ctx) {
+	// Enter a parse tree produced by DiiaParser#module.
+	enterModule(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#nls.
-	exitNls(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#take.
-	enterTake(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#take.
-	exitTake(ctx) {
+	// Exit a parse tree produced by DiiaParser#module.
+	exitModule(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#give.
-	enterGive(ctx) {
+	// Enter a parse tree produced by DiiaParser#structure.
+	enterStructure(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#give.
-	exitGive(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#identifier.
-	enterIdentifier(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#identifier.
-	exitIdentifier(ctx) {
+	// Exit a parse tree produced by DiiaParser#structure.
+	exitStructure(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#identifiers_chain.
-	enterIdentifiers_chain(ctx) {
+	// Enter a parse tree produced by DiiaParser#structure_params.
+	enterStructure_params(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#identifiers_chain.
-	exitIdentifiers_chain(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#chain.
-	enterChain(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#chain.
-	exitChain(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#chain_element.
-	enterChain_element(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#chain_element.
-	exitChain_element(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#chain_element_literal.
-	enterChain_element_literal(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#chain_element_literal.
-	exitChain_element_literal(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#literal.
-	enterLiteral(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#literal.
-	exitLiteral(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#atom.
-	enterAtom(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#atom.
-	exitAtom(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#arithmetic.
-	enterArithmetic(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#arithmetic.
-	exitArithmetic(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#call.
-	enterCall(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#call.
-	exitCall(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#call_parameters.
-	enterCall_parameters(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#call_parameters.
-	exitCall_parameters(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#call_parameter.
-	enterCall_parameter(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#call_parameter.
-	exitCall_parameter(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#call_named_parameters.
-	enterCall_named_parameters(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#call_named_parameters.
-	exitCall_named_parameters(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#call_named_parameter.
-	enterCall_named_parameter(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#call_named_parameter.
-	exitCall_named_parameter(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#assign.
-	enterAssign(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#assign.
-	exitAssign(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#assign_value.
-	enterAssign_value(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#assign_value.
-	exitAssign_value(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#body.
-	enterBody(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#body.
-	exitBody(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#body_line.
-	enterBody_line(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#body_line.
-	exitBody_line(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#return_body_line.
-	enterReturn_body_line(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#return_body_line.
-	exitReturn_body_line(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#lambda.
-	enterLambda(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#lambda.
-	exitLambda(ctx) {
+	// Exit a parse tree produced by DiiaParser#structure_params.
+	exitStructure_params(ctx) {
 	}
 
 
@@ -236,87 +65,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#diia.
 	exitDiia(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#diia_parameters.
-	enterDiia_parameters(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#diia_parameters.
-	exitDiia_parameters(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#diia_parameter.
-	enterDiia_parameter(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#diia_parameter.
-	exitDiia_parameter(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#diia_structure.
-	enterDiia_structure(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#diia_structure.
-	exitDiia_structure(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#anonymous_diia.
-	enterAnonymous_diia(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#anonymous_diia.
-	exitAnonymous_diia(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#test.
-	enterTest(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#test.
-	exitTest(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#test_part.
-	enterTest_part(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#test_part.
-	exitTest_part(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#test_op.
-	enterTest_op(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#test_op.
-	exitTest_op(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#test_expr.
-	enterTest_expr(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#test_expr.
-	exitTest_expr(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#test_expr_op.
-	enterTest_expr_op(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#test_expr_op.
-	exitTest_expr_op(ctx) {
 	}
 
 
@@ -338,39 +86,354 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#structure.
-	enterStructure(ctx) {
+	// Enter a parse tree produced by DiiaParser#while.
+	enterWhile(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#structure.
-	exitStructure(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#structure_parameters.
-	enterStructure_parameters(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#structure_parameters.
-	exitStructure_parameters(ctx) {
+	// Exit a parse tree produced by DiiaParser#while.
+	exitWhile(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#structure_parameter.
-	enterStructure_parameter(ctx) {
+	// Enter a parse tree produced by DiiaParser#try.
+	enterTry(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#structure_parameter.
-	exitStructure_parameter(ctx) {
+	// Exit a parse tree produced by DiiaParser#try.
+	exitTry(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#trycat.
-	enterTrycat(ctx) {
+	// Enter a parse tree produced by DiiaParser#take.
+	enterTake(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#trycat.
-	exitTrycat(ctx) {
+	// Exit a parse tree produced by DiiaParser#take.
+	exitTake(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#give.
+	enterGive(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#give.
+	exitGive(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#call.
+	enterCall(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#call.
+	exitCall(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#number.
+	enterNumber(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#number.
+	exitNumber(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#chain.
+	enterChain(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#chain.
+	exitChain(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#string.
+	enterString(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#string.
+	exitString(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#id.
+	enterId(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#id.
+	exitId(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#arithmetic_mul.
+	enterArithmetic_mul(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#arithmetic_mul.
+	exitArithmetic_mul(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#wait.
+	enterWait(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#wait.
+	exitWait(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#arithmetic_add.
+	enterArithmetic_add(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#arithmetic_add.
+	exitArithmetic_add(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#comparison.
+	enterComparison(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#comparison.
+	exitComparison(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#test.
+	enterTest(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test.
+	exitTest(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#call_expr.
+	enterCall_expr(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#call_expr.
+	exitCall_expr(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#simple.
+	enterSimple(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#simple.
+	exitSimple(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#nested.
+	enterNested(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#nested.
+	exitNested(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#anonymous_diia.
+	enterAnonymous_diia(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#anonymous_diia.
+	exitAnonymous_diia(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#throw.
+	enterThrow(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#throw.
+	exitThrow(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#function.
+	enterFunction(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#function.
+	exitFunction(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#ternary.
+	enterTernary(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#ternary.
+	exitTernary(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#assign.
+	enterAssign(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#assign.
+	exitAssign(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#identifier.
+	enterIdentifier(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#identifier.
+	exitIdentifier(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#identifiers_chain.
+	enterIdentifiers_chain(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#identifiers_chain.
+	exitIdentifiers_chain(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#args.
+	enterArgs(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#args.
+	exitArgs(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#arg.
+	enterArg(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#arg.
+	exitArg(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#named_args.
+	enterNamed_args(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#named_args.
+	exitNamed_args(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#named_arg.
+	enterNamed_arg(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#named_arg.
+	exitNamed_arg(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#params.
+	enterParams(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#params.
+	exitParams(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#param.
+	enterParam(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param.
+	exitParam(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#body.
+	enterBody(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#body.
+	exitBody(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#body_element.
+	enterBody_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#body_element.
+	exitBody_element(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#return_body_line.
+	enterReturn_body_line(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#return_body_line.
+	exitReturn_body_line(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#arithmetic_op_mul.
+	enterArithmetic_op_mul(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#arithmetic_op_mul.
+	exitArithmetic_op_mul(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#arithmetic_op_add.
+	enterArithmetic_op_add(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#arithmetic_op_add.
+	exitArithmetic_op_add(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#test_op.
+	enterTest_op(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#test_op.
+	exitTest_op(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#comparison_op.
+	enterComparison_op(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#comparison_op.
+	exitComparison_op(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#nl.
+	enterNl(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#nl.
+	exitNl(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#nls.
+	enterNls(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#nls.
+	exitNls(ctx) {
 	}
 
 

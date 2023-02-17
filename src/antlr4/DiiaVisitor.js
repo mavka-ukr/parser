@@ -1,292 +1,84 @@
-import DiiaParserVisitor from "./build/DiiaParserVisitor.js";
-import ArithmeticNode from "../ast/ArithmeticNode.js";
-import AssignNode from "../ast/AssignNode.js";
-import CallNode from "../ast/CallNode.js";
-import DiiaNode from "../ast/DiiaNode.js";
-import IfNode from "../ast/IfNode.js";
-import StringNode from "../ast/StringNode.js";
 import NumberNode from "../ast/NumberNode.js";
-import { flatNodes, singleNode } from "../utils/visit.js";
-import NestedArithmeticNode from "../ast/NestedArithmeticNode.js";
-import ChainNode from "../ast/ChainNode.js";
-import BooleanNode from "../ast/BooleanNode.js";
+import StringNode from "../ast/StringNode.js";
+import ArithmeticNode from "../ast/ArithmeticNode.js";
+import ComparisonNode from "../ast/ComparisonNode.js";
 import TestNode from "../ast/TestNode.js";
-import WaitNode from "../ast/WaitNode.js";
-import EachNode from "../ast/EachNode.js";
+import ChainNode from "../ast/ChainNode.js";
+import CallNode from "../ast/CallNode.js";
+import { flatNodes, singleNode } from "../utils/visit.js";
+import IfNode from "../ast/IfNode.js";
+import DiiaNode from "../ast/DiiaNode.js";
+import AssignNode from "../ast/AssignNode.js";
+import AnonymousDiiaNode from "../ast/AnonymousDiiaNode.js";
+import TernaryNode from "../ast/TernaryNode.js";
+import FunctionNode from "../ast/FunctionNode.js";
 import StructureNode from "../ast/StructureNode.js";
+import ParamNode from "../ast/ParamNode.js";
+import EachNode from "../ast/EachNode.js";
+import WhileNode from "../ast/WhileNode.js";
+import TryNode from "../ast/TryNode.js";
+import ThrowNode from "../ast/ThrowNode.js";
+import ReturnNode from "../ast/ReturnNode.js";
+import ModuleNode from "../ast/ModuleNode.js";
 import TakeNode from "../ast/TakeNode.js";
 import GiveNode from "../ast/GiveNode.js";
+import WaitNode from "../ast/WaitNode.js";
+import ProgramNode from "../ast/ProgramNode.js";
+import IdentifierNode from "../ast/IdentifierNode.js";
 import IdentifiersChainNode from "../ast/IdentifiersChainNode.js";
-import ReturnNode from "../ast/ReturnNode.js";
-import LambdaNode from "../ast/LambdaNode.js";
-import NoneNode from "../ast/NoneNode.js";
-import DiiaParameterNode from "../ast/DiiaParameterNode.js";
-import TestExprNode from "../ast/TestExprNode.js";
-import StructureParameterNode from "../ast/StructureParameterNode.js";
-import TryCatchNode from "../ast/TryCatchNode.js";
-import AnonymousDiiaNode from "../ast/AnonymousDiiaNode.js";
+import DiiaParserVisitor from "./build/DiiaParserVisitor.js";
+import { processStructures } from "../utils/structures.js";
+import BooleanNode from "../ast/BooleanNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
+    visitFile(ctx) {
+        return this.visitProgram(ctx.f_program);
+    }
+
     visitProgram(ctx) {
-        return flatNodes(super.visitProgram(ctx));
+        return new ProgramNode(ctx, { body: processStructures(flatNodes(super.visitProgram(ctx))) });
     }
 
-    visitProgram_line(ctx) {
-        return singleNode(super.visitProgram_line(ctx));
+    visitProgram_element(ctx) {
+        return singleNode(super.visitProgram_element(ctx));
     }
 
-    visitTake(ctx) {
-        const pak = !!ctx.t_pak;
-        const name = this.visitIdentifier(ctx.t_module);
-        let chain = ctx.t_elements_chain && this.visitIdentifiers_chain(ctx.t_elements_chain);
-        const as = ctx.t_as && this.visitIdentifier(ctx.t_as);
+    visitModule(ctx) {
+        const name = this.visitIdentifier(ctx.m_name);
+        const program = ctx.m_program && this.visit(ctx.m_program);
 
-        return new TakeNode(ctx, { name, chain, as, pak });
+        return new ModuleNode(ctx, { name, program });
     }
 
-    visitGive(ctx) {
-        const name = this.visitIdentifier(ctx.g_name);
-        const as = ctx.g_as && this.visitIdentifier(ctx.g_as);
+    visitStructure(ctx) {
+        const name = this.visitIdentifier(ctx.s_name);
+        const params = ctx.s_params && this.visit(ctx.s_params);
+        const parent = ctx.s_parent && singleNode(this.visit(ctx.s_parent));
 
-        return new GiveNode(ctx, { name, as });
+        return new StructureNode(ctx, { name, params, parent });
     }
 
-    visitIdentifier(ctx) {
-        return ctx.getText();
-    }
-
-    visitIdentifiers_chain(ctx) {
-        const identifiers = flatNodes(super.visitIdentifiers_chain(ctx));
-
-        return new IdentifiersChainNode(ctx, { identifiers });
-    }
-
-    visitChain(ctx) {
-        if (ctx.c_wait) {
-            const chain = this.visit(ctx.c_wait);
-
-            return new WaitNode(ctx, { node: chain });
-        }
-
-        const nodes = flatNodes(super.visitChain(ctx));
-
-        return new ChainNode(ctx, { nodes })
-    }
-
-    visitChain_element(ctx) {
-        return singleNode(super.visitChain_element(ctx));
-    }
-
-    visitChain_element_literal(ctx) {
-        let value = ctx.getText();
-
-        if (ctx.l_number) {
-            return new NumberNode(ctx, { value });
-        }
-
-        if (ctx.l_string) {
-            value = value.substring(1, value.length - 1);
-            return new StringNode(ctx, { value });
-        }
-    }
-
-    visitLiteral(ctx) {
-        let value = ctx.getText();
-
-        if (ctx.l_number) {
-            return new NumberNode(ctx, { value });
-        }
-
-        if (ctx.l_string) {
-            value = value.substring(1, value.length - 1);
-            return new StringNode(ctx, { value });
-        }
-
-        if (ctx.l_yes) {
-            return new BooleanNode(ctx, { value: true });
-        }
-
-        if (ctx.l_no) {
-            return new BooleanNode(ctx, { value: false });
-        }
-
-        if (ctx.l_none) {
-            return new NoneNode(ctx);
-        }
-
-        throw new Error('Unsupported literal: ' + ctx.getText());
-    }
-
-    visitAtom(ctx) {
-        return singleNode(super.visitAtom(ctx));
-    }
-
-    visitArithmetic(ctx) {
-        if (ctx.a_nested) {
-            return new NestedArithmeticNode(ctx, { arithmetic: this.visit(ctx.a_nested) });
-        }
-
-        if (ctx.a_left) {
-            let left = singleNode(this.visit(ctx.a_left));
-            let right = singleNode(this.visit(ctx.a_right));
-            const operation = ctx.a_op_addsub ? ctx.a_op_addsub.text : ctx.a_op_muldiv.text;
-
-            return new ArithmeticNode(ctx, { left, right, operation });
-        }
-
-        if (ctx.a_literal) {
-            return this.visit(ctx.a_literal);
-        }
-
-        if (ctx.a_chain) {
-            return this.visit(ctx.a_chain);
-        }
-
-        throw new Error('Unsupported arithmetic node.');
-    }
-
-    visitCall(ctx) {
-        const name = this.visitIdentifier(ctx.c_name);
-
-        let parameters = [];
-        if (ctx.c_parameters) {
-            parameters = this.visit(ctx.c_parameters);
-        } else if (ctx.c_named_parameters) {
-            parameters = {};
-            const namedParameters = this.visit(ctx.c_named_parameters);
-            namedParameters.forEach((p) => {
-                parameters[p.name] = p.value;
-            });
-        }
-
-        return new CallNode(ctx, { name, parameters });
-    }
-
-    visitCall_parameters(ctx) {
-        return flatNodes(super.visitCall_parameters(ctx));
-    }
-
-    visitCall_parameter(ctx) {
-        return this.visit(ctx.cp_value);
-    }
-
-    visitCall_named_parameters(ctx) {
-        return flatNodes(super.visitCall_named_parameters(ctx));
-    }
-
-    visitCall_named_parameter(ctx) {
-        const name = this.visitIdentifier(ctx.cnp_name);
-        const value = this.visit(ctx.cnp_value);
-
-        return { name, value };
-    }
-
-    visitAssign(ctx) {
-        const id = ctx.a_chain ? this.visit(ctx.a_chain) : this.visit(ctx.a_identifier);
-        const value = singleNode(this.visit(ctx.a_value));
-        const wait = !!ctx.a_wait;
-        const type = ctx.a_type ? this.visit(ctx.a_type) : null;
-
-        return new AssignNode(ctx, { id, value, wait, type });
-    }
-
-    visitAssign_value(ctx) {
-        return singleNode(super.visitAssign_value(ctx));
-    }
-
-    visitBody(ctx) {
-        return flatNodes(super.visitBody(ctx));
-    }
-
-    visitBody_line(ctx) {
-        return singleNode(super.visitBody_line(ctx));
-    }
-
-    visitReturn_body_line(ctx) {
-        const value = singleNode(this.visit(ctx.rbl));
-
-        return new ReturnNode(ctx, { value });
-    }
-
-    visitLambda(ctx) {
-        const parameters = ctx.l_parameters ? this.visit(ctx.l_parameters) : [];
-        const expression = this.visit(ctx.l_body);
-
-        return new LambdaNode(ctx, { parameters, expression });
+    visitStructure_params(ctx) {
+        return flatNodes(super.visitStructure_params(ctx));
     }
 
     visitDiia(ctx) {
         const async = !!ctx.d_async;
-        const structure = ctx.d_structure && this.visit(ctx.d_structure);
-        const name = this.visit(ctx.d_name);
-        const parameters = ctx.d_parameters && this.visit(ctx.d_parameters);
-        const body = ctx.d_body && this.visit(ctx.d_body);
+        const structure = ctx.d_structure && this.visitIdentifier(ctx.d_structure);
+        const name = this.visitIdentifier(ctx.d_name);
+        const params = ctx.d_params ? this.visitParams(ctx.d_params) : [];
+        const type = ctx.d_type && singleNode(this.visit(ctx.d_type));
+        const body = ctx.d_body ? this.visitBody(ctx.d_body) : [];
 
-        return new DiiaNode(ctx, { name, parameters, body, structure, async });
-    }
-
-    visitDiia_parameters(ctx) {
-        return flatNodes(super.visitDiia_parameters(ctx));
-    }
-
-    visitDiia_parameter(ctx) {
-        const name = this.visitIdentifier(ctx.dp_name);
-        const defaultValue = ctx.dp_value && this.visit(ctx.dp_value);
-        const type = ctx.dp_type && this.visitIdentifier(ctx.dp_type);
-
-        return new DiiaParameterNode(ctx, { name, type, defaultValue });
-    }
-
-    visitDiia_structure(ctx) {
-        return super.visit(ctx.ds_name);
-    }
-
-    visitAnonymous_diia(ctx) {
-        const async = !!ctx.ad_async;
-        const parameters = ctx.ad_parameters && this.visit(ctx.ad_parameters);
-        const body = ctx.ad_body && this.visit(ctx.ad_body);
-
-        return new AnonymousDiiaNode(ctx, { parameters, body, async });
-    }
-
-    visitTest(ctx) {
-        let left = this.visit(ctx.t_left);
-        let right = this.visit(ctx.t_right);
-        const operation = this.visit(ctx.t_op);
-
-        return new TestNode(ctx, { left, right, operation });
-    }
-
-    visitTest_part(ctx) {
-        return singleNode(super.visitTest_part(ctx));
-    }
-
-    visitTest_op(ctx) {
-        return ctx.getText();
-    }
-
-    visitTest_expr(ctx) {
-        if (ctx.te_left) {
-            const left = this.visit(ctx.te_left);
-            const right = this.visit(ctx.te_right);
-            const operation = this.visit(ctx.te_op);
-
-            return new TestExprNode(ctx, { left, right, operation });
-        }
-
-        return super.visit(ctx.te_test);
-    }
-
-    visitTest_expr_op(ctx) {
-        return ctx.getText();
+        return new DiiaNode(ctx, { async, name, params, structure, type, body });
     }
 
     visitIf(ctx) {
-        const expression = this.visit(ctx.i_expr);
+        const value = this.visit(ctx.i_value);
         const body = ctx.i_body && this.visit(ctx.i_body);
-        const elseBody = ctx.ielse_body && this.visit(ctx.ielse_body);
+        const elseBody = ctx.i_else_body && this.visit(ctx.i_else_body);
 
-        return new IfNode(ctx, { expression, body, elseBody });
+        return new IfNode(ctx, { value, body, elseBody });
     }
 
     visitEach(ctx) {
@@ -297,31 +89,258 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new EachNode(ctx, { name, iterator, body });
     }
 
-    visitStructure(ctx) {
-        const name = this.visitIdentifier(ctx.s_name);
-        const parameters = ctx.s_parameters && this.visit(ctx.s_parameters);
+    visitWhile(ctx) {
+        const value = this.visit(ctx.w_value);
+        const body = this.visit(ctx.w_body);
 
-        return new StructureNode(ctx, { name, parameters });
+        return new WhileNode(ctx, { value, body });
     }
 
-    visitStructure_parameters(ctx) {
-        return flatNodes(super.visitStructure_parameters(ctx));
-    }
-
-    visitStructure_parameter(ctx) {
-        const name = this.visitIdentifier(ctx.sp_name);
-        const defaultValue = ctx.sp_value && this.visit(ctx.sp_value);
-        const type = ctx.sp_type && this.visitIdentifier(ctx.sp_type);
-
-        return new StructureParameterNode(ctx, { name, type, defaultValue });
-    }
-
-    visitTrycat(ctx) {
+    visitTry(ctx) {
         const tryBody = this.visit(ctx.t_body);
-        const catchName = this.visit(ctx.tc_name);
+        const catchName = ctx.tc_name && this.visitIdentifier(ctx.tc_name);
         const catchBody = ctx.tc_body && this.visit(ctx.tc_body);
 
-        return new TryCatchNode(ctx, { tryBody, catchBody, catchName });
+        return new TryNode(ctx, { tryBody, catchBody, catchName });
+    }
+
+    visitTake(ctx) {
+        let id = singleNode(this.visit(ctx.t_elements_chain));
+        const as = ctx.t_as && this.visitIdentifier(ctx.t_as);
+
+        return new TakeNode(ctx, { id, as });
+    }
+
+    visitGive(ctx) {
+        const id = singleNode(this.visit(ctx.g_name));
+        const as = ctx.g_as && this.visitIdentifier(ctx.g_as);
+
+        return new GiveNode(ctx, { id, as });
+    }
+
+    visitNumber(ctx) {
+        let value = Number(ctx.getText());
+
+        return new NumberNode(ctx, { value });
+    }
+
+    visitString(ctx) {
+        let value = ctx.getText();
+
+        return new StringNode(ctx, { value: value.substring(1, value.length - 1) });
+    }
+
+    visitId(ctx) {
+        return super.visitIdentifier(ctx);
+    }
+
+    visitChain(ctx) {
+        const left = singleNode(this.visit(ctx.c_left));
+        const right = singleNode(this.visit(ctx.c_right));
+
+        return new ChainNode(ctx, { left, right });
+    }
+
+    visitCall(ctx) {
+        const value = singleNode(this.visit(ctx.c_value));
+        const args = ctx.c_args ? this.visit(ctx.c_args) : ctx.c_named_args ? this.visit(ctx.c_named_args) : [];
+
+        return new CallNode(ctx, { value, args });
+    }
+
+    visitSimple(ctx) {
+        return singleNode(super.visitSimple(ctx));
+    }
+
+    visitFunction(ctx) {
+        const params = ctx.f_params ? this.visitParams(ctx.f_params) : [];
+        const type = ctx.f_type && singleNode(this.visit(ctx.f_type));
+        const body = ctx.f_body ? this.visitBody(ctx.f_body) : [];
+
+        return new FunctionNode(ctx, { params, type, body });
+    }
+
+    visitArithmetic_mul(ctx) {
+        const left = this.visit(ctx.a_left);
+        const right = this.visit(ctx.a_right);
+        const operation = this.visit(ctx.a_operation);
+
+        return new ArithmeticNode(ctx, { left, right, operation });
+    }
+
+    visitArithmetic_add(ctx) {
+        const left = this.visit(ctx.a_left);
+        const right = this.visit(ctx.a_right);
+        const operation = this.visit(ctx.a_operation);
+
+        return new ArithmeticNode(ctx, { left, right, operation });
+    }
+
+    visitArithmetic_op_mul(ctx) {
+        return ctx.getText();
+    }
+
+    visitArithmetic_op_add(ctx) {
+        return ctx.getText();
+    }
+
+    visitTernary(ctx) {
+        const value = this.visit(ctx.t_value);
+        const positiveValue = this.visit(ctx.t_positive);
+        const negativeValue = this.visit(ctx.t_negative);
+
+        return new TernaryNode(ctx, { value, positiveValue, negativeValue });
+    }
+
+    visitTest(ctx) {
+        const left = this.visit(ctx.t_left);
+        const right = this.visit(ctx.t_right);
+        const operation = this.visit(ctx.t_operation);
+
+        return new TestNode(ctx, { left, right, operation });
+    }
+
+    visitTest_op(ctx) {
+        return ctx.getText();
+    }
+
+    visitComparison(ctx) {
+        const left = this.visit(ctx.c_left);
+        const right = this.visit(ctx.c_right);
+        const operation = this.visit(ctx.c_operation);
+
+        return new ComparisonNode(ctx, { left, right, operation });
+    }
+
+    visitComparison_op(ctx) {
+        return ctx.getText();
+    }
+
+    visitAnonymous_diia(ctx) {
+        const async = !!ctx.d_async;
+        const params = ctx.d_params ? this.visitParams(ctx.d_params) : [];
+        const type = ctx.d_type && singleNode(this.visit(ctx.d_type));
+        const body = ctx.d_body ? this.visitBody(ctx.d_body) : [];
+
+        return new AnonymousDiiaNode(ctx, { async, params, type, body });
+    }
+
+    visitNested(ctx) {
+        return this.visit(ctx.n_value);
+    }
+
+    visitAssign(ctx) {
+        const wait = !!ctx.a_wait;
+        const id = singleNode(ctx.a_identifiers_chain ? this.visit(ctx.a_identifiers_chain) : this.visit(ctx.a_identifier));
+        const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
+        const value = ctx.a_value && this.visit(ctx.a_value);
+
+        return new AssignNode(ctx, { id, value, wait, type });
+    }
+
+    visitThrow(ctx) {
+        const value = ctx.t_value && this.visit(ctx.t_value);
+
+        return new ThrowNode(ctx, { value });
+    }
+
+    visitCall_expr(ctx) {
+        const value = singleNode(this.visit(ctx.c_value));
+        const args = ctx.c_args ? this.visit(ctx.c_args) : ctx.c_named_args ? this.visit(ctx.c_named_args) : [];
+
+        return new CallNode(ctx, { value, args });
+    }
+
+    visitWait(ctx) {
+        const value = this.visit(ctx.w_value);
+
+        return new WaitNode(ctx, { value });
+    }
+
+    visitIdentifier(ctx) {
+        const name = ctx.getText();
+
+        if (name === 'так') {
+            return new BooleanNode(ctx, { value: true });
+        }
+
+        if (name === 'ні') {
+            return new BooleanNode(ctx, { value: true });
+        }
+
+        return new IdentifierNode(ctx, { name });
+    }
+
+    visitIdentifiers_chain(ctx) {
+        if (ctx.ic_identifier) {
+            return this.visitIdentifier(ctx.ic_identifier);
+        }
+
+        const left = singleNode(this.visit(ctx.ic_left));
+        const right = singleNode(this.visit(ctx.ic_right));
+
+        return new IdentifiersChainNode(ctx, { left, right });
+    }
+
+    visitArgs(ctx) {
+        return flatNodes(super.visitArgs(ctx));
+    }
+
+    visitArg(ctx) {
+        return this.visit(ctx.a_value);
+    }
+
+    visitNamed_args(ctx) {
+        let args = flatNodes(super.visitNamed_args(ctx));
+
+        const argsObject = {};
+
+        args.forEach((arg) => {
+            argsObject[arg.name] = arg.value;
+        });
+
+        return argsObject;
+    }
+
+    visitNamed_arg(ctx) {
+        const name = this.visit(ctx.na_name);
+        const value = this.visit(ctx.na_value);
+
+        return { name, value };
+    }
+
+    visitParams(ctx) {
+        return flatNodes(super.visitParams(ctx));
+    }
+
+    visitParam(ctx) {
+        const name = this.visitIdentifier(ctx.p_name);
+        const type = ctx.p_type && singleNode(this.visit(ctx.p_type));
+        const defaultValue = ctx.p_value && singleNode(this.visit(ctx.p_value));
+
+        return new ParamNode(ctx, { name, type, defaultValue });
+    }
+
+    visitBody(ctx) {
+        return processStructures(flatNodes(super.visitBody(ctx)));
+    }
+
+    visitBody_element(ctx) {
+        return singleNode(super.visitBody_element(ctx));
+    }
+
+    visitReturn_body_line(ctx) {
+        const value = singleNode(this.visit(ctx.rbl));
+
+        return new ReturnNode(ctx, { value });
+    }
+
+    visitNl(ctx) {
+        return null;
+    }
+
+    visitNls(ctx) {
+        return null;
     }
 }
 

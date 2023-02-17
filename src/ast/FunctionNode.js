@@ -1,26 +1,22 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * дія(а число = 2, б)
- *   а + б
- * кінець
+ * (а, б): а + б
  */
-class AnonymousDiiaNode extends ASTNode {
+class FunctionNode extends ASTNode {
     /**
      * @param context
      * @param {ParamNode[]} params
      * @param {ASTNode[]} body
-     * @param {boolean} async
      * @param {IdentifierNode|IdentifiersChainNode|null} type
      */
-    constructor(context, { params, body, async, type }) {
+    constructor(context, { params, body, type }) {
         super(context);
 
         this.params = params || [];
-        this.body = body || [];
-        this.async = async;
+        this.body = body;
         this.type = type;
     }
 }
 
-export default AnonymousDiiaNode;
+export default FunctionNode;

@@ -1,5 +1,10 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * 2 + 2
+ * а + б
+ * а.б + в() - (7 + М.корінь(2))
+ */
 class ArithmeticNode extends ASTNode {
     /**
      * @param context

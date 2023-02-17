@@ -1,67 +1,12 @@
 import antlr4 from "antlr4";
-import DiiaVisitor from "./antlr4/DiiaVisitor.js";
-import DiiaLexer from "./antlr4/build/DiiaLexer.js";
 import { title } from "./utils/text.js";
+import DiiaLexer from "./antlr4/build/DiiaLexer.js";
 import DiiaParser from "./antlr4/build/DiiaParser.js";
-import StructureNode from "./ast/StructureNode.js";
-import DiiaNode from "./ast/DiiaNode.js";
-
-class DiiaParserError extends Error {
-}
-
-class DiiaParserSyntaxError extends DiiaParserError {
-    constructor(recognizer, offendingSymbol, line, column, msg, err) {
-        super(msg);
-
-        this.recognizer = recognizer;
-        this.offendingSymbol = offendingSymbol;
-        this.line = line;
-        this.column = column;
-        this.msg = msg;
-        this.err = err;
-    }
-}
-
-class DiiaErrorListener extends antlr4.error.ErrorListener {
-    syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
-        throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, msg, err);
-    }
-}
-
-function processStructures(ast) {
-    const structures = {};
-
-    ast.forEach((node) => {
-        if (node instanceof StructureNode) {
-            structures[node.name] = node;
-        }
-    });
-
-    ast.forEach((node) => {
-        if (node instanceof DiiaNode) {
-            if (node.structure) {
-                if (node.structure in structures) {
-                    structures[node.structure].methods.push(node);
-                } else {
-                    throw new DiiaParserError(`"${node.structure}" не знайдено в контексті`);
-                }
-            }
-        }
-    });
-
-    return ast.filter((node) => {
-        if (node instanceof DiiaNode) {
-            if (node.structure) {
-                return false;
-            }
-        }
-
-        return true;
-    });
-}
+import DiiaVisitor from "./antlr4/DiiaVisitor.js";
+import { DiiaErrorListener } from "./utils/errors.js";
 
 export function parse(code, options = {}) {
-    options.start = options.start || 'program';
+    options.start = options.start || 'file';
 
     code = code.toString().trim();
 
@@ -83,7 +28,5 @@ export function parse(code, options = {}) {
         return ast;
     }
 
-    ast = ast.flat(Infinity).filter((v) => !!v);
-
-    return processStructures(ast);
+    return ast;
 }

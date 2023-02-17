@@ -1,14 +1,19 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * а.Б.в.г.Ґ.Д
+ */
 class IdentifiersChainNode extends ASTNode {
     /**
      * @param context
-     * @param {string[]} identifiers
+     * @param {IdentifierNode} left
+     * @param {IdentifierNode} right
      */
-    constructor(context, { identifiers }) {
+    constructor(context, { left, right }) {
         super(context);
 
-        this.identifiers = identifiers;
+        this.left = left;
+        this.right = right;
     }
 }
 

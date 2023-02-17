@@ -1,5 +1,12 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * 1
+ * 3.14
+ * -2
+ * 0шАБВГҐД
+ * 0д0010101
+ */
 class NumberNode extends ASTNode {
     /**
      * @param context
@@ -8,7 +15,7 @@ class NumberNode extends ASTNode {
     constructor(context, { value }) {
         super(context);
 
-        this.value = Number(value);
+        this.value = value;
     }
 }
 

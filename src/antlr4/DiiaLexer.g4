@@ -1,17 +1,13 @@
 lexer grammar DiiaLexer;
 
-DEF: 'дія';
 END: 'кінець';
-EACH: 'кожній';
-TAKING: 'беручи';
+DEF: 'дія';
 STRUCTURE: 'структура';
+TAKING: 'перебрати';
 EQ: '==';
 NOT_EQ: '!=';
 GREATER: '>=';
 SMALLER: '<=';
-YES: 'так';
-NO: 'ні';
-NONE: 'пусто';
 FOR: 'для';
 IF: 'якщо';
 WAIT: 'чекати';
@@ -27,6 +23,18 @@ OR: 'або';
 TRY: 'спробувати';
 CATCH: 'зловити';
 ELSE: 'інакше';
+THROW: 'впасти';
+WHILE: 'поки';
+MODULE: 'модуль';
+TERNARY: '?';
+EQ_WORD: 'рівно';
+GR_WORD: 'більше';
+SM_WORD: 'менше';
+NOT_GR_WORD: 'не більше';
+NOT_SM_WORD: 'не менше';
+NOT_EQ_WORD: 'не рівно';
+NOT_IS_WORD: 'не є';
+NOT_WORD: 'не';
 
 SKIP_SPACES
  : ( ' ' | '\t' ) -> skip

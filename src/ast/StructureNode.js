@@ -1,18 +1,25 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * структура Людина є Тварина
+ *   кількість_хромосом число
+ * кінець
+ */
 class StructureNode extends ASTNode {
     /**
      * @param context
-     * @param {string} name
-     * @param {StructureParameterNode[]} parameters
+     * @param {IdentifierNode} name
+     * @param {ParamNode[]} params
      * @param {DiiaNode[]} methods
+     * @param {IdentifierNode|IdentifiersChainNode|null} parent
      */
-    constructor(context, { name, parameters, methods }) {
+    constructor(context, { name, params, methods = [], parent }) {
         super(context);
 
         this.name = name;
-        this.parameters = parameters || [];
+        this.params = params || [];
         this.methods = methods || [];
+        this.parent = parent;
     }
 }
 

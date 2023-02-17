@@ -1,20 +1,19 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * взяти а.Б.в.Г.Ґ як д
+ */
 class TakeNode extends ASTNode {
     /**
      * @param context
-     * @param {string} name
-     * @param {IdentifiersChainNode} chain
-     * @param {string} as
-     * @param {boolean} pak
+     * @param {IdentifiersChainNode|IdentifierNode} id
+     * @param {IdentifierNode|null} as
      */
-    constructor(context, { name, chain, as, pak = false }) {
+    constructor(context, { id, as }) {
         super(context);
 
-        this.name = name;
-        this.chain = chain;
+        this.id = id;
         this.as = as;
-        this.pak = pak;
     }
 }
 

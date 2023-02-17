@@ -1,6 +1,14 @@
 import ASTNode from "./ASTNode.js";
 
-class TestNode extends ASTNode {
+/**
+ * а більше 2
+ * б є число
+ * в == 10
+ * г не менше 3
+ * ґ не є текст
+ * д не 5
+ */
+class ComparisonNode extends ASTNode {
     /**
      * @param context
      * @param {ASTNode} left
@@ -16,4 +24,4 @@ class TestNode extends ASTNode {
     }
 }
 
-export default TestNode;
+export default ComparisonNode;

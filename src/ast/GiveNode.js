@@ -1,15 +1,19 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * дати сума
+ * дати Бот як СуперБот
+ */
 class GiveNode extends ASTNode {
     /**
      * @param context
-     * @param {string} name
-     * @param {string} as
+     * @param {IdentifierNode|IdentifiersChainNode|null} id
+     * @param {IdentifierNode|null} as
      */
-    constructor(context, { name, as }) {
+    constructor(context, { id, as }) {
         super(context);
 
-        this.name = name;
+        this.id = id;
         this.as = as;
     }
 }

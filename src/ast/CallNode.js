@@ -1,16 +1,20 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * а().б.в(1, 2).г(ім'я="Давид")
+ * ((а, б): а + б)(2, 2)
+ */
 class CallNode extends ASTNode {
     /**
      * @param context
-     * @param {string} name
-     * @param {Array|Object} parameters
+     * @param {ASTNode} value
+     * @param {ASTNode[]|Record<string, ASTNode>} args
      */
-    constructor(context, { name, parameters }) {
+    constructor(context, { value, args }) {
         super(context);
 
-        this.name = name;
-        this.parameters = parameters || [];
+        this.value = value;
+        this.args = args || [];
     }
 }
 

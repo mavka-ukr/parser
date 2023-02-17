@@ -1,12 +1,16 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * а = 2
+ * б = Людина(ім'я="Давид")
+ */
 class AssignNode extends ASTNode {
     /**
      * @param context
-     * @param {ASTNode} id
+     * @param {IdentifierNode|IdentifiersChainNode} id
      * @param {ASTNode} value
      * @param {boolean} wait
-     * @param {string} type
+     * @param {IdentifierNode|IdentifiersChainNode|null} type
      */
     constructor(context, { id, value, wait = false, type }) {
         super(context);

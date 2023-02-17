@@ -1,11 +1,16 @@
 import ASTNode from "./ASTNode.js";
 
+/**
+ * перебрати машини як машина
+ *   друк(машина.марка)
+ * кінець
+ */
 class EachNode extends ASTNode {
     /**
      * @param context
-     * @param {string} name
+     * @param {IdentifierNode} name
      * @param {ASTNode} iterator
-     * @param {Array} body
+     * @param {ASTNode[]} body
      */
     constructor(context, { name, iterator, body }) {
         super(context);
