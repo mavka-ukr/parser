@@ -1,6 +1,6 @@
 {
   "name": "mavka-parser",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "Mavka language parser.",
   "main": "src/main.js",
   "type": "module",
@@ -11,22 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kohutd/diia-parser.git"
+    "url": "git+https://github.com/mavka-ukr/parser.git"
   },
   "keywords": [
-    "diia",
+    "mavka",
     "parser",
     "antlr",
     "antlr4",
-    "дія",
+    "мавка",
     "парсер"
   ],
   "author": "kohutd (davyd.kohut@gmail.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kohutd/diia-parser/issues"
+    "url": "https://github.com/mavka-ukr/parser/issues"
   },
-  "homepage": "https://github.com/kohutd/diia-parser#readme",
+  "homepage": "https://github.com/mavka-ukr/parser#readme",
   "devDependencies": {
     "jest": "^29.2.1"
   },
