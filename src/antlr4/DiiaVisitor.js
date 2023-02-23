@@ -107,8 +107,10 @@ class DiiaVisitor extends DiiaParserVisitor {
     visitTake(ctx) {
         let id = singleNode(this.visit(ctx.t_elements_chain));
         const as = ctx.t_as && this.visitIdentifier(ctx.t_as);
+        const pak = !!ctx.t_pak;
+        const star = !!ctx.t_star;
 
-        return new TakeNode(ctx, { id, as });
+        return new TakeNode(ctx, { id, as, pak, star });
     }
 
     visitGive(ctx) {
@@ -131,7 +133,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitId(ctx) {
-        return super.visitIdentifier(ctx);
+        return this.visitIdentifier(ctx);
     }
 
     visitChain(ctx) {
@@ -229,15 +231,6 @@ class DiiaVisitor extends DiiaParserVisitor {
         return this.visit(ctx.n_value);
     }
 
-    visitAssign(ctx) {
-        const wait = !!ctx.a_wait;
-        const id = singleNode(ctx.a_identifiers_chain ? this.visit(ctx.a_identifiers_chain) : this.visit(ctx.a_identifier));
-        const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
-        const value = ctx.a_value && this.visit(ctx.a_value);
-
-        return new AssignNode(ctx, { id, value, wait, type });
-    }
-
     visitThrow(ctx) {
         const value = ctx.t_value && this.visit(ctx.t_value);
 
@@ -255,6 +248,25 @@ class DiiaVisitor extends DiiaParserVisitor {
         const value = this.visit(ctx.w_value);
 
         return new WaitNode(ctx, { value });
+    }
+
+    visitAssign(ctx) {
+        const wait = false;
+        const id = singleNode(ctx.a_identifiers_chain ? this.visit(ctx.a_identifiers_chain) : this.visit(ctx.a_identifier));
+        const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
+        const value = ctx.a_value && this.visit(ctx.a_value);
+
+        return new AssignNode(ctx, { id, value, wait, type });
+    }
+
+    visitAssign_value(ctx) {
+        return singleNode(super.visitAssign_value(ctx));
+    }
+
+    visitWait_assign(ctx) {
+        const assign = this.visitAssign(ctx.wa_assign);
+        assign.wait = true;
+        return assign;
     }
 
     visitIdentifier(ctx) {
@@ -296,7 +308,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const argsObject = {};
 
         args.forEach((arg) => {
-            argsObject[arg.name] = arg.value;
+            argsObject[arg.name.name] = arg.value;
         });
 
         return argsObject;
@@ -321,12 +333,24 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new ParamNode(ctx, { name, type, defaultValue });
     }
 
+    visitParam_value_number(ctx) {
+        return this.visitNumber(ctx);
+    }
+
+    visitParam_value_string(ctx) {
+        return this.visitString(ctx);
+    }
+
+    visitParam_value_identifier(ctx) {
+        return this.visitIdentifier(ctx);
+    }
+
     visitBody(ctx) {
-        return processStructures(flatNodes(super.visitBody(ctx)));
+        return flatNodes(this.visitChildren(ctx));
     }
 
     visitBody_element(ctx) {
-        return singleNode(super.visitBody_element(ctx));
+        return singleNode(this.visitChildren(ctx));
     }
 
     visitReturn_body_line(ctx) {

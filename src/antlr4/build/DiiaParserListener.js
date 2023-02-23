@@ -176,6 +176,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#anonymous_diia.
+	enterAnonymous_diia(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#anonymous_diia.
+	exitAnonymous_diia(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#wait.
 	enterWait(ctx) {
 	}
@@ -212,6 +221,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#function.
+	enterFunction(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#function.
+	exitFunction(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#call_expr.
 	enterCall_expr(ctx) {
 	}
@@ -239,12 +257,12 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#anonymous_diia.
-	enterAnonymous_diia(ctx) {
+	// Enter a parse tree produced by DiiaParser#ternary.
+	enterTernary(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#anonymous_diia.
-	exitAnonymous_diia(ctx) {
+	// Exit a parse tree produced by DiiaParser#ternary.
+	exitTernary(ctx) {
 	}
 
 
@@ -257,30 +275,30 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#function.
-	enterFunction(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#function.
-	exitFunction(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#ternary.
-	enterTernary(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#ternary.
-	exitTernary(ctx) {
-	}
-
-
 	// Enter a parse tree produced by DiiaParser#assign.
 	enterAssign(ctx) {
 	}
 
 	// Exit a parse tree produced by DiiaParser#assign.
 	exitAssign(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#assign_value.
+	enterAssign_value(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#assign_value.
+	exitAssign_value(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#wait_assign.
+	enterWait_assign(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#wait_assign.
+	exitWait_assign(ctx) {
 	}
 
 
@@ -353,6 +371,33 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#param.
 	exitParam(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#param_value_number.
+	enterParam_value_number(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param_value_number.
+	exitParam_value_number(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#param_value_string.
+	enterParam_value_string(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param_value_string.
+	exitParam_value_string(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#param_value_identifier.
+	enterParam_value_identifier(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param_value_identifier.
+	exitParam_value_identifier(ctx) {
 	}
 
 

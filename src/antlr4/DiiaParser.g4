@@ -6,15 +6,15 @@ options {
 
 file: f_program=program EOF;
 
-program: (take nl)* program_element (nl program_element)* (nl give)*;
-program_element: module | structure | diia | if | each | while | try | expr | nls;
+program: program_element (nl program_element)*;
+program_element: module | structure | diia | if | each | while | try | expr | throw | wait_assign | assign | nls | take | give;
 
 module: 'модуль' m_name=identifier nl (m_program=program nl)? nls 'кінець';
 
 structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_params=structure_params nl)? 'кінець';
 structure_params: param (nl param)*;
 
-diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' nls (d_type=identifier)? nl (d_body=body nl)? nls 'кінець';
+diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=identifiers_chain)? nl (d_body=body nl)? nls 'кінець';
 
 if: 'якщо' i_value=expr nl (i_body=body nl)? ('інакше' i_else_body=body nl)? 'кінець';
 
@@ -24,7 +24,7 @@ while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
 try: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier? (tc_body=body nl)? 'кінець';
 
-take: 'взяти' t_elements_chain=identifiers_chain ('як' t_as=identifier)?;
+take: 'взяти' (t_pak='пак')? t_elements_chain=identifiers_chain (t_star='.*')? ('як' t_as=identifier)?;
 
 give: 'дати' g_name=identifier ('як' g_as=identifier)?;
 
@@ -36,19 +36,23 @@ value: NUMBER #number
      ;
 
 expr: value #simple
-       | '(' f_params=params? ')' f_type=identifier? ':' f_body=expr #function
-       | a_left=expr a_operation=arithmetic_op_mul a_right=expr #arithmetic_mul
-       | a_left=expr a_operation=arithmetic_op_add a_right=expr #arithmetic_add
-       | t_value=expr nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
-       | <assoc=right> t_left=expr t_operation=test_op t_right=expr #test
-       | c_left=expr c_operation=comparison_op c_right=expr #comparison
-       | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' nls (d_type=identifier)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
-       | '(' n_value=expr ')' #nested
-       | (a_wait='чекати')? (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=identifier?) '=' a_value=expr #assign
-       | 'впасти' t_value=expr #throw
-       | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
-       | 'чекати' w_value=expr #wait
-       ;
+    | '(' f_params=params? ')' f_type=identifiers_chain? ':' f_body=expr #function
+    | a_left=expr a_operation=arithmetic_op_mul a_right=expr #arithmetic_mul
+    | a_left=expr a_operation=arithmetic_op_add a_right=expr #arithmetic_add
+    | t_value=expr nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
+    | c_left=expr c_operation=comparison_op c_right=expr #comparison
+    | t_left=expr t_operation=test_op t_right=expr #test
+    | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=identifiers_chain)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
+    | '(' n_value=expr ')' #nested
+    | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
+    | 'чекати' w_value=expr #wait
+    ;
+
+throw: 'впасти' t_value=expr;
+
+assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=identifiers_chain?) '=' a_value=assign_value;
+assign_value: expr | assign;
+wait_assign: 'чекати' wa_assign=assign;
 
 identifier: ID;
 identifiers_chain: ic_identifier=identifier | ic_left=identifiers_chain '.' ic_right=identifiers_chain;
@@ -59,10 +63,13 @@ named_args: named_arg (',' named_arg)* ','?;
 named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: p_name=identifier p_type=identifier? ('=' p_value=expr)?;
+param: p_name=identifier p_type=identifiers_chain? ('=' p_value=param_value)?;
+param_value: NUMBER #param_value_number
+           | STRING #param_value_string
+           | identifier #param_value_identifier;
 
 body: body_element (nl body_element)*;
-body_element: structure | diia | if | each | while | try | expr | return_body_line | nls;
+body_element: structure | diia | if | each | while | try | expr | throw | wait_assign | assign | return_body_line | nls;
 return_body_line: 'вернути' rbl=body_element;
 
 arithmetic_op_mul: '*' | '/';

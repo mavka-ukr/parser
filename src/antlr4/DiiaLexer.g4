@@ -35,87 +35,30 @@ NOT_SM_WORD: 'не менше';
 NOT_EQ_WORD: 'не рівно';
 NOT_IS_WORD: 'не є';
 NOT_WORD: 'не';
+STAR: '.*';
 
-SKIP_SPACES
- : ( ' ' | '\t' ) -> skip
- ;
-
-NL
-    : ( '\r'? '\n' )
-    ;
-
-OPEN_PAREN
-    : '('
-    ;
-
-CLOSE_PAREN
-    : ')'
-    ;
-
-OPEN_ARRAY
-    : '['
-    ;
-
-CLOSE_ARRAY
-    : ']'
-    ;
-
-COMMA
-    : ','
-    ;
-
-ASSIGN
-    : '='
-    ;
-
-PLUS
-    : '+'
-    ;
-
-MINUS
-    : '-'
-    ;
-
-MUL
-    : '*'
-    ;
-
-DIV
-    : '/'
-    ;
-
-COLON
-    : ':'
-    ;
-
-DOT
-    : '.'
-    ;
-
-NOT
-    : '!'
-    ;
-
-ID
-    : ID_START ID_CONTINUE*
-    ;
-
-NUMBER
-    : FLOAT
-    | INTEGER
-    ;
-
-INTEGER
-    : DIGIT+
-    ;
-
-FLOAT
-    : INTEGER '.' INTEGER
-    ;
-
-STRING
-    : '"' ( ~[\\"\r\n] | ESCAPE_CHAR )* '"'
-    ;
+SKIP_SPACES: ( ' ' | '\t' ) -> skip;
+NL: ( '\r'? '\n' );
+OPEN_PAREN: '(';
+CLOSE_PAREN: ')';
+OPEN_ARRAY: '[';
+CLOSE_ARRAY: ']';
+COMMA: ',';
+ASSIGN: '=';
+PLUS: '+';
+MINUS: '-';
+MUL: '*';
+DIV: '/';
+COLON: ':';
+DOT: '.';
+NOT: '!';
+ID: ID_START ID_CONTINUE*;
+NUMBER: FLOAT| INTEGER;
+INTEGER: DIGIT+;
+FLOAT: INTEGER '.' INTEGER;
+STRING: '"' ( ~[\\"] | ESCAPE_CHAR )* '"';
+LINE_COMMENT: ';;' ~[\r\n]* -> skip;
+COMMENT: ';--' .*? '--;' -> skip;
 
 fragment DIGIT
     : '0'..'9'
