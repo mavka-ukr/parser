@@ -279,7 +279,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         }
 
         if (name === 'ні') {
-            return new BooleanNode(ctx, { value: true });
+            return new BooleanNode(ctx, { value: false });
         }
 
         return new IdentifierNode(ctx, { name });
