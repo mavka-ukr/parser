@@ -14,7 +14,7 @@ module: 'модуль' m_name=identifier nl (m_program=program nl)? nls 'кін�
 structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_params=structure_params nl)? 'кінець';
 structure_params: param (nl param)*;
 
-diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=identifiers_chain)? nl (d_body=body nl)? nls 'кінець';
+diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 
 if: 'якщо' i_value=expr nl (i_body=body nl)? ('інакше' i_else_body=body nl)? 'кінець';
 
@@ -36,13 +36,13 @@ value: NUMBER #number
      ;
 
 expr: value #simple
-    | '(' f_params=params? ')' f_type=identifiers_chain? ':' f_body=expr #function
+    | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | a_left=expr a_operation=arithmetic_op_mul a_right=expr #arithmetic_mul
     | a_left=expr a_operation=arithmetic_op_add a_right=expr #arithmetic_add
     | t_value=expr nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
     | c_left=expr c_operation=comparison_op c_right=expr #comparison
     | t_left=expr t_operation=test_op t_right=expr #test
-    | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=identifiers_chain)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
+    | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
     | '(' n_value=expr ')' #nested
     | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
     | 'чекати' w_value=expr #wait
@@ -50,12 +50,14 @@ expr: value #simple
 
 throw: 'впасти' t_value=expr;
 
-assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=identifiers_chain?) '=' a_value=assign_value;
+assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value?) '=' a_value=assign_value;
 assign_value: expr | assign;
 wait_assign: 'чекати' wa_assign=assign;
 
 identifier: ID;
 identifiers_chain: ic_identifier=identifier | ic_left=identifiers_chain '.' ic_right=identifiers_chain;
+
+type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_op tv_right=type_value;
 
 args: arg (',' arg)* ','?;
 arg: nls a_value=expr nls;
@@ -63,7 +65,7 @@ named_args: named_arg (',' named_arg)* ','?;
 named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: p_name=identifier p_type=identifiers_chain? ('=' p_value=param_value)?;
+param: p_name=identifier p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | STRING #param_value_string
            | identifier #param_value_identifier;

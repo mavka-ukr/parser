@@ -29,6 +29,7 @@ import IdentifiersChainNode from "../ast/IdentifiersChainNode.js";
 import DiiaParserVisitor from "./build/DiiaParserVisitor.js";
 import { processStructures } from "../utils/structures.js";
 import BooleanNode from "../ast/BooleanNode.js";
+import TypeValueNode from "../ast/TypeValueNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -293,6 +294,18 @@ class DiiaVisitor extends DiiaParserVisitor {
         const right = singleNode(this.visit(ctx.ic_right));
 
         return new IdentifiersChainNode(ctx, { left, right });
+    }
+
+    visitType_value(ctx) {
+        if (ctx.tv_single) {
+            return this.visit(ctx.tv_single);
+        }
+
+        const left = this.visit(ctx.tv_left);
+        const right = this.visit(ctx.tv_right);
+        const operation = this.visit(ctx.tv_operation);
+
+        return new TypeValueNode(ctx, { left, right, operation });
     }
 
     visitArgs(ctx) {

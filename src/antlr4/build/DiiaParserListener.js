@@ -320,6 +320,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#type_value.
+	enterType_value(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#type_value.
+	exitType_value(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#args.
 	enterArgs(ctx) {
 	}
