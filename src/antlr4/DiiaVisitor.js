@@ -159,7 +159,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     visitFunction(ctx) {
         const params = ctx.f_params ? this.visitParams(ctx.f_params) : [];
         const type = ctx.f_type && singleNode(this.visit(ctx.f_type));
-        const body = ctx.f_body ? this.visitBody(ctx.f_body) : [];
+        const body = ctx.f_body ? flatNodes(this.visit(ctx.f_body)) : [];
 
         return new FunctionNode(ctx, { params, type, body });
     }
@@ -360,11 +360,11 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitBody(ctx) {
-        return flatNodes(this.visitChildren(ctx));
+        return flatNodes(super.visitBody(ctx));
     }
 
     visitBody_element(ctx) {
-        return singleNode(this.visitChildren(ctx));
+        return singleNode(super.visitBody_element(ctx));
     }
 
     visitReturn_body_line(ctx) {
