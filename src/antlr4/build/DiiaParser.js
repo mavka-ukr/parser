@@ -103,32 +103,32 @@ const serializedATN = [4,1,58,491,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 259,260,1,0,0,0,260,27,1,0,0,0,261,259,1,0,0,0,262,263,6,14,-1,0,263,315,
 3,26,13,0,264,266,5,39,0,0,265,267,3,52,26,0,266,265,1,0,0,0,266,267,1,0,
 0,0,267,268,1,0,0,0,268,270,5,40,0,0,269,271,3,42,21,0,270,269,1,0,0,0,270,
-271,1,0,0,0,271,272,1,0,0,0,272,273,5,49,0,0,273,315,3,28,14,10,274,276,
-5,18,0,0,275,274,1,0,0,0,275,276,1,0,0,0,276,277,1,0,0,0,277,278,5,2,0,0,
-278,279,5,39,0,0,279,281,3,74,37,0,280,282,3,52,26,0,281,280,1,0,0,0,281,
-282,1,0,0,0,282,283,1,0,0,0,283,284,3,74,37,0,284,285,1,0,0,0,285,287,5,
-40,0,0,286,288,3,42,21,0,287,286,1,0,0,0,287,288,1,0,0,0,288,289,1,0,0,0,
-289,293,3,72,36,0,290,291,3,58,29,0,291,292,3,72,36,0,292,294,1,0,0,0,293,
-290,1,0,0,0,293,294,1,0,0,0,294,295,1,0,0,0,295,296,3,74,37,0,296,297,5,
-1,0,0,297,315,1,0,0,0,298,299,5,39,0,0,299,300,3,28,14,0,300,301,5,40,0,
-0,301,315,1,0,0,0,302,303,5,39,0,0,303,304,3,28,14,0,304,305,5,40,0,0,305,
-308,5,39,0,0,306,309,3,44,22,0,307,309,3,48,24,0,308,306,1,0,0,0,308,307,
-1,0,0,0,308,309,1,0,0,0,309,310,1,0,0,0,310,311,5,40,0,0,311,315,1,0,0,0,
-312,313,5,11,0,0,313,315,3,28,14,1,314,262,1,0,0,0,314,264,1,0,0,0,314,275,
-1,0,0,0,314,298,1,0,0,0,314,302,1,0,0,0,314,312,1,0,0,0,315,344,1,0,0,0,
-316,317,10,9,0,0,317,318,3,64,32,0,318,319,3,28,14,10,319,343,1,0,0,0,320,
-321,10,8,0,0,321,322,3,66,33,0,322,323,3,28,14,9,323,343,1,0,0,0,324,325,
-10,7,0,0,325,326,3,74,37,0,326,327,5,27,0,0,327,328,3,74,37,0,328,329,3,
-28,14,0,329,330,3,74,37,0,330,331,5,49,0,0,331,332,3,74,37,0,332,333,3,28,
-14,8,333,343,1,0,0,0,334,335,10,6,0,0,335,336,3,70,35,0,336,337,3,28,14,
-7,337,343,1,0,0,0,338,339,10,5,0,0,339,340,3,68,34,0,340,341,3,28,14,6,341,
-343,1,0,0,0,342,316,1,0,0,0,342,320,1,0,0,0,342,324,1,0,0,0,342,334,1,0,
-0,0,342,338,1,0,0,0,343,346,1,0,0,0,344,342,1,0,0,0,344,345,1,0,0,0,345,
-29,1,0,0,0,346,344,1,0,0,0,347,348,5,24,0,0,348,349,3,28,14,0,349,31,1,0,
-0,0,350,356,3,40,20,0,351,353,3,38,19,0,352,354,3,42,21,0,353,352,1,0,0,
-0,353,354,1,0,0,0,354,356,1,0,0,0,355,350,1,0,0,0,355,351,1,0,0,0,356,357,
-1,0,0,0,357,358,5,44,0,0,358,359,3,34,17,0,359,33,1,0,0,0,360,363,3,28,14,
-0,361,363,3,32,16,0,362,360,1,0,0,0,362,361,1,0,0,0,363,35,1,0,0,0,364,365,
+271,1,0,0,0,271,272,1,0,0,0,272,273,5,49,0,0,273,315,3,28,14,5,274,276,5,
+18,0,0,275,274,1,0,0,0,275,276,1,0,0,0,276,277,1,0,0,0,277,278,5,2,0,0,278,
+279,5,39,0,0,279,281,3,74,37,0,280,282,3,52,26,0,281,280,1,0,0,0,281,282,
+1,0,0,0,282,283,1,0,0,0,283,284,3,74,37,0,284,285,1,0,0,0,285,287,5,40,0,
+0,286,288,3,42,21,0,287,286,1,0,0,0,287,288,1,0,0,0,288,289,1,0,0,0,289,
+293,3,72,36,0,290,291,3,58,29,0,291,292,3,72,36,0,292,294,1,0,0,0,293,290,
+1,0,0,0,293,294,1,0,0,0,294,295,1,0,0,0,295,296,3,74,37,0,296,297,5,1,0,
+0,297,315,1,0,0,0,298,299,5,39,0,0,299,300,3,28,14,0,300,301,5,40,0,0,301,
+315,1,0,0,0,302,303,5,39,0,0,303,304,3,28,14,0,304,305,5,40,0,0,305,308,
+5,39,0,0,306,309,3,44,22,0,307,309,3,48,24,0,308,306,1,0,0,0,308,307,1,0,
+0,0,308,309,1,0,0,0,309,310,1,0,0,0,310,311,5,40,0,0,311,315,1,0,0,0,312,
+313,5,11,0,0,313,315,3,28,14,1,314,262,1,0,0,0,314,264,1,0,0,0,314,275,1,
+0,0,0,314,298,1,0,0,0,314,302,1,0,0,0,314,312,1,0,0,0,315,344,1,0,0,0,316,
+317,10,10,0,0,317,318,3,64,32,0,318,319,3,28,14,11,319,343,1,0,0,0,320,321,
+10,9,0,0,321,322,3,66,33,0,322,323,3,28,14,10,323,343,1,0,0,0,324,325,10,
+8,0,0,325,326,3,74,37,0,326,327,5,27,0,0,327,328,3,74,37,0,328,329,3,28,
+14,0,329,330,3,74,37,0,330,331,5,49,0,0,331,332,3,74,37,0,332,333,3,28,14,
+9,333,343,1,0,0,0,334,335,10,7,0,0,335,336,3,70,35,0,336,337,3,28,14,8,337,
+343,1,0,0,0,338,339,10,6,0,0,339,340,3,68,34,0,340,341,3,28,14,7,341,343,
+1,0,0,0,342,316,1,0,0,0,342,320,1,0,0,0,342,324,1,0,0,0,342,334,1,0,0,0,
+342,338,1,0,0,0,343,346,1,0,0,0,344,342,1,0,0,0,344,345,1,0,0,0,345,29,1,
+0,0,0,346,344,1,0,0,0,347,348,5,24,0,0,348,349,3,28,14,0,349,31,1,0,0,0,
+350,356,3,40,20,0,351,353,3,38,19,0,352,354,3,42,21,0,353,352,1,0,0,0,353,
+354,1,0,0,0,354,356,1,0,0,0,355,350,1,0,0,0,355,351,1,0,0,0,356,357,1,0,
+0,0,357,358,5,44,0,0,358,359,3,34,17,0,359,33,1,0,0,0,360,363,3,28,14,0,
+361,363,3,32,16,0,362,360,1,0,0,0,362,361,1,0,0,0,363,35,1,0,0,0,364,365,
 5,11,0,0,365,366,3,32,16,0,366,37,1,0,0,0,367,368,5,52,0,0,368,39,1,0,0,
 0,369,370,6,20,-1,0,370,371,3,38,19,0,371,377,1,0,0,0,372,373,10,1,0,0,373,
 374,5,50,0,0,374,376,3,40,20,2,375,372,1,0,0,0,376,379,1,0,0,0,377,375,1,
@@ -264,15 +264,15 @@ export default class DiiaParser extends antlr4.Parser {
     expr_sempred(localctx, predIndex) {
     	switch(predIndex) {
     		case 2:
-    			return this.precpred(this._ctx, 9);
+    			return this.precpred(this._ctx, 10);
     		case 3:
-    			return this.precpred(this._ctx, 8);
+    			return this.precpred(this._ctx, 9);
     		case 4:
-    			return this.precpred(this._ctx, 7);
+    			return this.precpred(this._ctx, 8);
     		case 5:
-    			return this.precpred(this._ctx, 6);
+    			return this.precpred(this._ctx, 7);
     		case 6:
-    			return this.precpred(this._ctx, 5);
+    			return this.precpred(this._ctx, 6);
     		default:
     			throw "No predicate with index:" + predIndex;
     	}
@@ -1139,7 +1139,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 272;
 	            this.match(DiiaParser.COLON);
 	            this.state = 273;
-	            localctx.f_body = this.expr(10);
+	            localctx.f_body = this.expr(5);
 	            break;
 
 	        case 3:
@@ -1269,13 +1269,13 @@ export default class DiiaParser extends antlr4.Parser {
 	                    localctx.a_left = _prevctx;
 	                    this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_expr);
 	                    this.state = 316;
-	                    if (!( this.precpred(this._ctx, 9))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 9)");
+	                    if (!( this.precpred(this._ctx, 10))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 10)");
 	                    }
 	                    this.state = 317;
 	                    localctx.a_operation = this.arithmetic_op_mul();
 	                    this.state = 318;
-	                    localctx.a_right = this.expr(10);
+	                    localctx.a_right = this.expr(11);
 	                    break;
 
 	                case 2:
@@ -1283,13 +1283,13 @@ export default class DiiaParser extends antlr4.Parser {
 	                    localctx.a_left = _prevctx;
 	                    this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_expr);
 	                    this.state = 320;
-	                    if (!( this.precpred(this._ctx, 8))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 8)");
+	                    if (!( this.precpred(this._ctx, 9))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 9)");
 	                    }
 	                    this.state = 321;
 	                    localctx.a_operation = this.arithmetic_op_add();
 	                    this.state = 322;
-	                    localctx.a_right = this.expr(9);
+	                    localctx.a_right = this.expr(10);
 	                    break;
 
 	                case 3:
@@ -1297,8 +1297,8 @@ export default class DiiaParser extends antlr4.Parser {
 	                    localctx.t_value = _prevctx;
 	                    this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_expr);
 	                    this.state = 324;
-	                    if (!( this.precpred(this._ctx, 7))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 7)");
+	                    if (!( this.precpred(this._ctx, 8))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 8)");
 	                    }
 	                    this.state = 325;
 	                    this.nls();
@@ -1315,7 +1315,7 @@ export default class DiiaParser extends antlr4.Parser {
 	                    this.state = 331;
 	                    this.nls();
 	                    this.state = 332;
-	                    localctx.t_negative = this.expr(8);
+	                    localctx.t_negative = this.expr(9);
 	                    break;
 
 	                case 4:
@@ -1323,13 +1323,13 @@ export default class DiiaParser extends antlr4.Parser {
 	                    localctx.c_left = _prevctx;
 	                    this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_expr);
 	                    this.state = 334;
-	                    if (!( this.precpred(this._ctx, 6))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 6)");
+	                    if (!( this.precpred(this._ctx, 7))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 7)");
 	                    }
 	                    this.state = 335;
 	                    localctx.c_operation = this.comparison_op();
 	                    this.state = 336;
-	                    localctx.c_right = this.expr(7);
+	                    localctx.c_right = this.expr(8);
 	                    break;
 
 	                case 5:
@@ -1337,13 +1337,13 @@ export default class DiiaParser extends antlr4.Parser {
 	                    localctx.t_left = _prevctx;
 	                    this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_expr);
 	                    this.state = 338;
-	                    if (!( this.precpred(this._ctx, 5))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
+	                    if (!( this.precpred(this._ctx, 6))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 6)");
 	                    }
 	                    this.state = 339;
 	                    localctx.t_operation = this.test_op();
 	                    this.state = 340;
-	                    localctx.t_right = this.expr(6);
+	                    localctx.t_right = this.expr(7);
 	                    break;
 
 	                } 

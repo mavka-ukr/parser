@@ -36,12 +36,12 @@ value: NUMBER #number
      ;
 
 expr: value #simple
-    | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | a_left=expr a_operation=arithmetic_op_mul a_right=expr #arithmetic_mul
     | a_left=expr a_operation=arithmetic_op_add a_right=expr #arithmetic_add
     | t_value=expr nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
     | c_left=expr c_operation=comparison_op c_right=expr #comparison
     | t_left=expr t_operation=test_op t_right=expr #test
+    | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
     | '(' n_value=expr ')' #nested
     | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
