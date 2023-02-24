@@ -108,9 +108,10 @@ class DiiaVisitor extends DiiaParserVisitor {
         let id = singleNode(this.visit(ctx.t_elements_chain));
         const as = ctx.t_as && this.visitIdentifier(ctx.t_as);
         const pak = !!ctx.t_pak;
+        const relative = !!ctx.t_relative;
         const star = !!ctx.t_star;
 
-        return new TakeNode(ctx, { id, as, pak, star });
+        return new TakeNode(ctx, { id, as, pak, relative, star });
     }
 
     visitGive(ctx) {

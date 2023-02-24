@@ -9,14 +9,16 @@ class TakeNode extends ASTNode {
      * @param {IdentifiersChainNode|IdentifierNode} id
      * @param {IdentifierNode|null} as
      * @param {boolean} pak
+     * @param {boolean} relative
      * @param {boolean} star
      */
-    constructor(context, { id, as, pak, star }) {
+    constructor(context, { id, as, pak, relative, star }) {
         super(context);
 
         this.id = id;
         this.as = as;
         this.pak = pak;
+        this.relative = relative;
         this.star = star;
     }
 }
