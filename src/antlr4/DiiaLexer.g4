@@ -57,8 +57,8 @@ NUMBER: FLOAT| INTEGER;
 INTEGER: DIGIT+;
 FLOAT: INTEGER '.' INTEGER;
 STRING: '"' ( ~[\\"] | ESCAPE_CHAR )* '"';
-LINE_COMMENT: ';;' ~[\r\n]* -> skip;
-COMMENT: ';--' .*? '--;' -> skip;
+LINE_COMMENT: ';;' (LINE_COMMENT | ~[\r\n])* -> skip;
+COMMENT: ';--' (COMMENT | .)*? '--;' -> skip;
 
 fragment DIGIT
     : '0'..'9'
