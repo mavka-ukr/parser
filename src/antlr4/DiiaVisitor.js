@@ -27,7 +27,6 @@ import ProgramNode from "../ast/ProgramNode.js";
 import IdentifierNode from "../ast/IdentifierNode.js";
 import IdentifiersChainNode from "../ast/IdentifiersChainNode.js";
 import DiiaParserVisitor from "./build/DiiaParserVisitor.js";
-import { processStructures } from "../utils/structures.js";
 import BooleanNode from "../ast/BooleanNode.js";
 import TypeValueNode from "../ast/TypeValueNode.js";
 
@@ -37,7 +36,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitProgram(ctx) {
-        return new ProgramNode(ctx, { body: processStructures(flatNodes(super.visitProgram(ctx))) });
+        return new ProgramNode(ctx, { body: flatNodes(super.visitProgram(ctx)) });
     }
 
     visitProgram_element(ctx) {

@@ -13,12 +13,11 @@ class StructureNode extends ASTNode {
      * @param {DiiaNode[]} methods
      * @param {IdentifierNode|IdentifiersChainNode|null} parent
      */
-    constructor(context, { name, params, methods = [], parent }) {
+    constructor(context, { name, params, parent }) {
         super(context);
 
         this.name = name;
         this.params = params || [];
-        this.methods = methods || [];
         this.parent = parent;
     }
 }

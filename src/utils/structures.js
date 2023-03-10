@@ -2,6 +2,7 @@ import StructureNode from "../ast/StructureNode.js";
 import DiiaNode from "../ast/DiiaNode.js";
 import { DiiaParserError } from "./errors.js";
 
+// @deprecated
 export function processStructures(ast) {
     const structures = {};
 
