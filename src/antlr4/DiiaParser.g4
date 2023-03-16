@@ -24,7 +24,7 @@ while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
 try: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier? (tc_body=body nl)? 'кінець';
 
-take: 'взяти' (t_pak='пак' | t_relative='.')? t_elements_chain=identifiers_chain (t_star='.*')? ('як' t_as=identifier)?;
+take: 'взяти' (((t_pak='пак' | t_relative='.')? t_elements_chain=identifiers_chain (t_star='.*')?) | t_remote=STRING) ('як' t_as=identifier)?;
 
 give: 'дати' g_name=identifier ('як' g_as=identifier)?;
 

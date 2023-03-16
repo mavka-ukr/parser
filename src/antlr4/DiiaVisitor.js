@@ -105,13 +105,14 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitTake(ctx) {
-        let id = singleNode(this.visit(ctx.t_elements_chain));
+        let id = ctx.t_elements_chain && singleNode(this.visit(ctx.t_elements_chain));
         const as = ctx.t_as && this.visitIdentifier(ctx.t_as);
         const pak = !!ctx.t_pak;
         const relative = !!ctx.t_relative;
         const star = !!ctx.t_star;
+        const remote = ctx.t_remote && ctx.t_remote.text.substring(1, ctx.t_remote.text.length - 1);
 
-        return new TakeNode(ctx, { id, as, pak, relative, star });
+        return new TakeNode(ctx, { id, as, pak, relative, star, remote });
     }
 
     visitGive(ctx) {

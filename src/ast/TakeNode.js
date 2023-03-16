@@ -11,8 +11,9 @@ class TakeNode extends ASTNode {
      * @param {boolean} pak
      * @param {boolean} relative
      * @param {boolean} star
+     * @param {StringNode} remote
      */
-    constructor(context, { id, as, pak, relative, star }) {
+    constructor(context, { id, as, pak, relative, star, remote }) {
         super(context);
 
         this.id = id;
@@ -20,6 +21,7 @@ class TakeNode extends ASTNode {
         this.pak = pak;
         this.relative = relative;
         this.star = star;
+        this.remote = remote;
     }
 }
 
