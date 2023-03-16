@@ -29,6 +29,8 @@ import IdentifiersChainNode from "../ast/IdentifiersChainNode.js";
 import DiiaParserVisitor from "./build/DiiaParserVisitor.js";
 import BooleanNode from "../ast/BooleanNode.js";
 import TypeValueNode from "../ast/TypeValueNode.js";
+import ContinueNode from "../ast/ContinueNode.js";
+import BreakNode from "../ast/BreakNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -135,6 +137,13 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitId(ctx) {
+        if (ctx.getText() === 'пропустити') {
+            return new ContinueNode(ctx);
+        }
+        if (ctx.getText() === 'зупинити') {
+            return new BreakNode(ctx);
+        }
+
         return this.visitIdentifier(ctx);
     }
 
