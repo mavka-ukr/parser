@@ -33,6 +33,7 @@ value: NUMBER #number
      | identifier #id
      | c_left=value '.' c_right=value #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call
+     | '-' c_negative_value=value  #negative
      ;
 
 expr: value #simple
@@ -43,8 +44,8 @@ expr: value #simple
     | t_left=expr t_operation=test_op t_right=expr #test
     | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
-    | '(' n_value=expr ')' #nested
-    | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
+    | (n_negative='-')? '(' n_value=expr ')' #nested
+    | (c_negative='-')? '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
     | 'чекати' w_value=expr #wait
     ;
 

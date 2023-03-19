@@ -96,6 +96,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#negative.
+	visitNegative(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#chain.
 	visitChain(ctx) {
 	  return this.visitChildren(ctx);
