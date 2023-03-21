@@ -43,7 +43,6 @@ value: NUMBER #number
      | a_left=value '[' a_inner=expr ']' #access
      | '(' n_value=expr ')' #nested
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
-     | 'чекати' w_value=value #wait
      | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
      | a_left=value a_operation=arithmetic_op_add a_right=value #arithmetic_add
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
@@ -52,6 +51,7 @@ value: NUMBER #number
      ;
 
 expr: value #simple
+    | 'чекати' w_value=value #wait
     | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
     ;
