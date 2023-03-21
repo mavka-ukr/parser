@@ -1,14 +1,13 @@
 lexer grammar DiiaLexer;
 
 END: 'кінець';
-DEF: 'дія';
+DIIA: 'дія';
 STRUCTURE: 'структура';
-TAKING: 'перебрати';
+FOR: 'перебрати';
 EQ: '==';
 NOT_EQ: '!=';
 GREATER: '>=';
 SMALLER: '<=';
-FOR: 'для';
 IF: 'якщо';
 WAIT: 'чекати';
 TAKE: 'взяти';
@@ -35,7 +34,7 @@ NOT_SM_WORD: 'не менше';
 NOT_EQ_WORD: 'не рівно';
 NOT_IS_WORD: 'не є';
 NOT_WORD: 'не';
-STAR: '.*';
+STAR_ALL: '.*';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
 NL: ( '\r'? '\n' );

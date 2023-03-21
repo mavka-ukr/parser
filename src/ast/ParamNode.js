@@ -9,7 +9,7 @@ import ASTNode from "./ASTNode.js";
 class ParamNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode} name
+     * @param {IdentifierNode|ArrayDestructionNode} name
      * @param {IdentifierNode|IdentifiersChainNode|null} type
      * @param {ASTNode|null} defaultValue
      */

@@ -12,6 +12,8 @@ export function parse(code, options = {}) {
 
     const chars = new antlr4.InputStream(code);
     const lexer = new DiiaLexer(chars);
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(new DiiaErrorListener());
 
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new DiiaParser(tokens, lexer);

@@ -50,12 +50,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#structure_params.
-	enterStructure_params(ctx) {
+	// Enter a parse tree produced by DiiaParser#structure_elements.
+	enterStructure_elements(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#structure_params.
-	exitStructure_params(ctx) {
+	// Exit a parse tree produced by DiiaParser#structure_elements.
+	exitStructure_elements(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#structure_element.
+	enterStructure_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#structure_element.
+	exitStructure_element(ctx) {
 	}
 
 
@@ -257,6 +266,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#array.
+	enterArray(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#array.
+	exitArray(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#pre_decrement.
 	enterPre_decrement(ctx) {
 	}
@@ -302,6 +320,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#array_elements.
+	enterArray_elements(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#array_elements.
+	exitArray_elements(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#array_element.
+	enterArray_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#array_element.
+	exitArray_element(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#simple.
 	enterSimple(ctx) {
 	}
@@ -344,6 +380,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#throw.
 	exitThrow(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#array_destruction.
+	enterArray_destruction(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#array_destruction.
+	exitArray_destruction(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#array_destruction_el.
+	enterArray_destruction_el(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#array_destruction_el.
+	exitArray_destruction_el(ctx) {
 	}
 
 

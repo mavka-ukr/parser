@@ -36,8 +36,14 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#structure_params.
-	visitStructure_params(ctx) {
+	// Visit a parse tree produced by DiiaParser#structure_elements.
+	visitStructure_elements(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#structure_element.
+	visitStructure_element(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -174,6 +180,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#array.
+	visitArray(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#pre_decrement.
 	visitPre_decrement(ctx) {
 	  return this.visitChildren(ctx);
@@ -204,6 +216,18 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#array_elements.
+	visitArray_elements(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#array_element.
+	visitArray_element(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#simple.
 	visitSimple(ctx) {
 	  return this.visitChildren(ctx);
@@ -230,6 +254,18 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#throw.
 	visitThrow(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#array_destruction.
+	visitArray_destruction(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#array_destruction_el.
+	visitArray_destruction_el(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

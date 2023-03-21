@@ -11,8 +11,9 @@ program_element: module | structure | diia | if | each | while | try | expr | th
 
 module: 'модуль' m_name=identifier nl (m_program=program nl)? nls 'кінець';
 
-structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_params=structure_params nl)? 'кінець';
-structure_params: param (nl param)*;
+structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_elements=structure_elements nl)? 'кінець';
+structure_elements: structure_element (nl structure_element)*;
+structure_element: param | diia | nls;
 
 diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 
@@ -48,7 +49,11 @@ value: NUMBER #number
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
      | t_left=value t_operation=test_op t_right=value #test
      | c_left=value c_operation=comparison_op c_right=value #comparison
+     | '[' a_elements=array_elements ']' #array
      ;
+
+array_elements: array_element (',' array_element)* ','?;
+array_element: nls ae_value=expr nls;
 
 expr: value #simple
     | 'чекати' w_value=value #wait
@@ -58,7 +63,10 @@ expr: value #simple
 
 throw: 'впасти' t_value=expr;
 
-assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value?) '=' a_value=assign_value;
+array_destruction: '[' array_destruction_el (',' array_destruction_el)* ','? ']';
+array_destruction_el: nls aade_id=identifier nls;
+
+assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction) '=' a_value=assign_value;
 assign_value: expr | assign;
 wait_assign: 'чекати' wa_assign=assign;
 
@@ -73,7 +81,7 @@ named_args: named_arg (',' named_arg)* ','?;
 named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: p_name=identifier p_type=type_value? ('=' p_value=param_value)?;
+param: (p_name=identifier | p_array_destruction=array_destruction) p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | STRING #param_value_string
            | identifier #param_value_identifier;

@@ -7,7 +7,7 @@ import ASTNode from "./ASTNode.js";
 class AssignNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode|IdentifiersChainNode} id
+     * @param {IdentifierNode|IdentifiersChainNode|ArrayDestructionNode} id
      * @param {ASTNode} value
      * @param {boolean} wait
      * @param {IdentifierNode|IdentifiersChainNode|null} type

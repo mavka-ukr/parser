@@ -39,6 +39,8 @@ import PostIncrementNode from "../ast/PostIncrementNode.js";
 import AccessNode from "../ast/AccessNode.js";
 import NotNode from "../ast/NotNode.js";
 import PositiveNode from "../ast/PositiveNode.js";
+import ArrayNode from "../ast/ArrayNode.js";
+import ArrayDestructionNode from "../ast/ArrayDestructionNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -47,6 +49,10 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitProgram(ctx) {
         return new ProgramNode(ctx, { body: flatNodes(super.visitProgram(ctx)) });
+    }
+
+    visitProgram_take(ctx) {
+        return flatNodes(super.visitProgram_take(ctx));
     }
 
     visitProgram_element(ctx) {
@@ -62,14 +68,30 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitStructure(ctx) {
         const name = this.visitIdentifier(ctx.s_name);
-        const params = ctx.s_params && this.visit(ctx.s_params);
+        const elements = ctx.s_elements && this.visitStructure_elements(ctx.s_elements);
+        const params = [];
+        const methods = [];
+        for (const element of elements) {
+            if (element instanceof ParamNode) {
+                params.push(element);
+            } else if (element instanceof DiiaNode) {
+                if (element.structure) {
+                    throw new Error('Синтаксична помилка'); // todo: add proper text
+                }
+                methods.push(element);
+            }
+        }
         const parent = ctx.s_parent && singleNode(this.visit(ctx.s_parent));
 
-        return new StructureNode(ctx, { name, params, parent });
+        return new StructureNode(ctx, { name, params, parent, methods });
     }
 
-    visitStructure_params(ctx) {
-        return flatNodes(super.visitStructure_params(ctx));
+    visitStructure_elements(ctx) {
+        return flatNodes(super.visitStructure_elements(ctx));
+    }
+
+    visitStructure_element(ctx) {
+        return singleNode(super.visitStructure_element(ctx));
     }
 
     visitDiia(ctx) {
@@ -276,6 +298,12 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new ComparisonNode(ctx, { left, right, operation });
     }
 
+    visitArray(ctx) {
+        const elements = this.visit(ctx.a_elements);
+
+        return new ArrayNode(ctx, { elements });
+    }
+
     visitComparison_op(ctx) {
         return ctx.getText();
     }
@@ -321,11 +349,28 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitAssign(ctx) {
         const wait = false;
-        const id = singleNode(ctx.a_identifiers_chain ? this.visit(ctx.a_identifiers_chain) : this.visit(ctx.a_identifier));
+        let id;
+        if (ctx.a_identifiers_chain) {
+            id = singleNode(this.visit(ctx.a_identifiers_chain));
+        } else if (ctx.a_identifier) {
+            id = singleNode(this.visit(ctx.a_identifier));
+        } else if (ctx.a_array_destruction) {
+            id = this.visitArray_destruction(ctx.a_array_destruction);
+        }
         const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
         const value = ctx.a_value && this.visit(ctx.a_value);
 
         return new AssignNode(ctx, { id, value, wait, type });
+    }
+
+    visitArray_destruction(ctx) {
+        const elements = flatNodes(super.visitArray_destruction(ctx));
+
+        return new ArrayDestructionNode(ctx, { elements });
+    }
+
+    visitArray_destruction_el(ctx) {
+        return this.visitIdentifier(ctx.aade_id);
     }
 
     visitAssign_value(ctx) {
@@ -383,6 +428,14 @@ class DiiaVisitor extends DiiaParserVisitor {
         return this.visit(ctx.a_value);
     }
 
+    visitArray_elements(ctx) {
+        return flatNodes(super.visitArray_elements(ctx));
+    }
+
+    visitArray_element(ctx) {
+        return this.visit(ctx.ae_value);
+    }
+
     visitNamed_args(ctx) {
         let args = flatNodes(super.visitNamed_args(ctx));
 
@@ -407,7 +460,12 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitParam(ctx) {
-        const name = this.visitIdentifier(ctx.p_name);
+        let name;
+        if (ctx.p_name) {
+            name = this.visitIdentifier(ctx.p_name);
+        } else if (ctx.p_array_destruction) {
+            name = this.visitArray_destruction(ctx.p_array_destruction);
+        }
         const type = ctx.p_type && singleNode(this.visit(ctx.p_type));
         const defaultValue = ctx.p_value && singleNode(this.visit(ctx.p_value));
 

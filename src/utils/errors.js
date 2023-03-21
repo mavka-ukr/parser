@@ -7,12 +7,12 @@ export class DiiaParserSyntaxError extends DiiaParserError {
     constructor(recognizer, offendingSymbol, line, column, msg, err) {
         super(msg);
 
-        this.recognizer = recognizer;
-        this.offendingSymbol = offendingSymbol;
-        this.line = line;
-        this.column = column;
+        // this.recognizer = recognizer;
+        // this.offendingSymbol = offendingSymbol;
+        // this.line = line;
+        // this.column = column;
         this.msg = msg;
-        this.err = err;
+        // this.err = err;
     }
 }
 
