@@ -39,6 +39,8 @@ STAR: '.*';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
 NL: ( '\r'? '\n' );
+DECREMENT: '--';
+INCREMENT: '++';
 OPEN_PAREN: '(';
 CLOSE_PAREN: ')';
 OPEN_ARRAY: '[';
@@ -52,6 +54,10 @@ DIV: '/';
 COLON: ':';
 DOT: '.';
 NOT: '!';
+PERCENT: '%';
+DIVDIV: '//';
+POW: '**';
+XOR: '^';
 ID: ID_START ID_CONTINUE*;
 NUMBER: FLOAT| INTEGER;
 INTEGER: DIGIT+;
@@ -73,7 +79,7 @@ fragment ID_START
 fragment ID_CONTINUE
     : ID_START
     | '0'..'9'
-    | '\'' ID_START
+    | 'ʼ' ID_START
     ;
 
 fragment ESCAPE_CHAR

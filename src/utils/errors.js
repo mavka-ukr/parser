@@ -18,6 +18,6 @@ export class DiiaParserSyntaxError extends DiiaParserError {
 
 export class DiiaErrorListener extends antlr4.error.ErrorListener {
     syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
-        throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, msg, err);
+        throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, `Синтаксична помилка на ${line}:${column}`, err);
     }
 }

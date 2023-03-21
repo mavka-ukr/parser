@@ -84,6 +84,78 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#arithmetic_mul.
+	visitArithmetic_mul(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#wait.
+	visitWait(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#chain.
+	visitChain(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#pre_increment.
+	visitPre_increment(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#arithmetic_add.
+	visitArithmetic_add(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#comparison.
+	visitComparison(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#access.
+	visitAccess(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#string.
+	visitString(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#test.
+	visitTest(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#call_expr.
+	visitCall_expr(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#positive.
+	visitPositive(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#nested.
+	visitNested(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#call.
 	visitCall(ctx) {
 	  return this.visitChildren(ctx);
@@ -102,14 +174,20 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#chain.
-	visitChain(ctx) {
+	// Visit a parse tree produced by DiiaParser#not.
+	visitNot(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#string.
-	visitString(ctx) {
+	// Visit a parse tree produced by DiiaParser#pre_decrement.
+	visitPre_decrement(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#post_decrement.
+	visitPost_decrement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -120,50 +198,14 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#arithmetic_mul.
-	visitArithmetic_mul(ctx) {
+	// Visit a parse tree produced by DiiaParser#post_increment.
+	visitPost_increment(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#anonymous_diia.
-	visitAnonymous_diia(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#wait.
-	visitWait(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#arithmetic_add.
-	visitArithmetic_add(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#comparison.
-	visitComparison(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#test.
-	visitTest(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#function.
-	visitFunction(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#call_expr.
-	visitCall_expr(ctx) {
+	// Visit a parse tree produced by DiiaParser#ternary.
+	visitTernary(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -174,14 +216,14 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#nested.
-	visitNested(ctx) {
+	// Visit a parse tree produced by DiiaParser#function.
+	visitFunction(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#ternary.
-	visitTernary(ctx) {
+	// Visit a parse tree produced by DiiaParser#anonymous_diia.
+	visitAnonymous_diia(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

@@ -32,6 +32,13 @@ import TypeValueNode from "../ast/TypeValueNode.js";
 import ContinueNode from "../ast/ContinueNode.js";
 import BreakNode from "../ast/BreakNode.js";
 import NegativeNode from "../ast/NegativeNode.js";
+import PreDecrementNode from "../ast/PreDecrementNode.js";
+import PreIncrementNode from "../ast/PreIncrementNode.js";
+import PostDecrementNode from "../ast/PostDecrementNode.js";
+import PostIncrementNode from "../ast/PostIncrementNode.js";
+import AccessNode from "../ast/AccessNode.js";
+import NotNode from "../ast/NotNode.js";
+import PositiveNode from "../ast/PositiveNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -79,17 +86,18 @@ class DiiaVisitor extends DiiaParserVisitor {
     visitIf(ctx) {
         const value = this.visit(ctx.i_value);
         const body = ctx.i_body && this.visit(ctx.i_body);
-        const elseBody = ctx.i_else_body && this.visit(ctx.i_else_body);
+        const elseBody = ctx.i_else_body ? this.visit(ctx.i_else_body) : ctx.i_else_if ? this.visit(ctx.i_else_if) : null;
 
         return new IfNode(ctx, { value, body, elseBody });
     }
 
     visitEach(ctx) {
+        const keyName = ctx.e_key_name && this.visitIdentifier(ctx.e_key_name);
         const name = this.visitIdentifier(ctx.e_name);
         const iterator = this.visit(ctx.e_iterator);
         const body = this.visit(ctx.e_body);
 
-        return new EachNode(ctx, { name, iterator, body });
+        return new EachNode(ctx, { keyName, name, iterator, body });
     }
 
     visitWhile(ctx) {
@@ -162,10 +170,46 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new CallNode(ctx, { value, args });
     }
 
+    visitPre_decrement(ctx) {
+        const value = this.visit(ctx.pd_value);
+
+        return new PreDecrementNode(ctx, { value });
+    }
+
+    visitPre_increment(ctx) {
+        const value = this.visit(ctx.pi_value);
+
+        return new PreIncrementNode(ctx, { value });
+    }
+
+    visitPost_decrement(ctx) {
+        const value = this.visit(ctx.pd_value);
+
+        return new PostDecrementNode(ctx, { value });
+    }
+
+    visitPost_increment(ctx) {
+        const value = this.visit(ctx.pi_value);
+
+        return new PostIncrementNode(ctx, { value });
+    }
+
+    visitPositive(ctx) {
+        const value = this.visit(ctx.p_value);
+
+        return new PositiveNode(ctx, { value });
+    }
+
     visitNegative(ctx) {
-        const value = this.visit(ctx.c_negative_value);
+        const value = this.visit(ctx.n_value);
 
         return new NegativeNode(ctx, { value });
+    }
+
+    visitNot(ctx) {
+        const value = this.visit(ctx.n_value);
+
+        return new NotNode(ctx, { value });
     }
 
     visitSimple(ctx) {
@@ -246,12 +290,6 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitNested(ctx) {
-        if (ctx.n_negative) {
-            const value = this.visit(ctx.n_value);
-
-            return new NegativeNode(ctx, { value });
-        }
-
         return this.visit(ctx.n_value);
     }
 
@@ -265,19 +303,20 @@ class DiiaVisitor extends DiiaParserVisitor {
         const value = singleNode(this.visit(ctx.c_value));
         const args = ctx.c_args ? this.visit(ctx.c_args) : ctx.c_named_args ? this.visit(ctx.c_named_args) : [];
 
-        const result = new CallNode(ctx, { value, args });
-
-        if (ctx.n_negative) {
-            return new NegativeNode(ctx, { value: result });
-        }
-
-        return result;
+        return new CallNode(ctx, { value, args });
     }
 
     visitWait(ctx) {
         const value = this.visit(ctx.w_value);
 
         return new WaitNode(ctx, { value });
+    }
+
+    visitAccess(ctx) {
+        const left = this.visit(ctx.a_left);
+        const inner = this.visit(ctx.a_inner);
+
+        return new AccessNode(ctx, { left, inner });
     }
 
     visitAssign(ctx) {

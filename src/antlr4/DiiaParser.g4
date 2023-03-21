@@ -16,9 +16,9 @@ structure_params: param (nl param)*;
 
 diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 
-if: 'якщо' i_value=expr nl (i_body=body nl)? ('інакше' i_else_body=body nl)? 'кінець';
+if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=body nl)? 'кінець') | (i_else_if=if));
 
-each: 'перебрати' e_iterator=expr 'як' e_name=identifier nl (e_body=body nl)? 'кінець';
+each: 'перебрати' e_iterator=expr 'як' (e_key_name=identifier ',')? e_name=identifier nl (e_body=body nl)? 'кінець';
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
@@ -33,20 +33,27 @@ value: NUMBER #number
      | identifier #id
      | c_left=value '.' c_right=value #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call
-     | '-' c_negative_value=value  #negative
+     | '+' p_value=value  #positive
+     | '-' n_value=value  #negative
+     | DECREMENT pd_value=value  #pre_decrement
+     | INCREMENT pi_value=value  #pre_increment
+     | pd_value=value DECREMENT #post_decrement
+     | pi_value=value INCREMENT #post_increment
+     | '!' n_value=value  #not
+     | a_left=value '[' a_inner=expr ']' #access
+     | '(' n_value=expr ')' #nested
+     | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
+     | 'чекати' w_value=value #wait
+     | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
+     | a_left=value a_operation=arithmetic_op_add a_right=value #arithmetic_add
+     | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
+     | t_left=value t_operation=test_op t_right=value #test
+     | c_left=value c_operation=comparison_op c_right=value #comparison
      ;
 
 expr: value #simple
-    | a_left=expr a_operation=arithmetic_op_mul a_right=expr #arithmetic_mul
-    | a_left=expr a_operation=arithmetic_op_add a_right=expr #arithmetic_add
-    | t_value=expr nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
-    | c_left=expr c_operation=comparison_op c_right=expr #comparison
-    | t_left=expr t_operation=test_op t_right=expr #test
     | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
-    | (n_negative='-')? '(' n_value=expr ')' #nested
-    | (c_negative='-')? '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
-    | 'чекати' w_value=expr #wait
     ;
 
 throw: 'впасти' t_value=expr;
@@ -75,7 +82,7 @@ body: body_element (nl body_element)*;
 body_element: structure | diia | if | each | while | try | expr | throw | wait_assign | assign | return_body_line | nls;
 return_body_line: 'вернути' rbl=body_element;
 
-arithmetic_op_mul: '*' | '/';
+arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW | XOR;
 arithmetic_op_add: '+' | '-';
 test_op: 'і' | 'або';
 comparison_op: '==' | '!=' | '>=' | '<=' | 'є' | 'рівно' | 'більше' | 'менше' | 'не більше' | 'не менше' | 'не рівно' | 'не є' | 'не';
