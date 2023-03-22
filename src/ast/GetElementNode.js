@@ -3,18 +3,18 @@ import ASTNode from "./ASTNode.js";
 /**
  * a[1]
  */
-class AccessNode extends ASTNode {
+class GetElementNode extends ASTNode {
     /**
      * @param context
      * @param {ASTNode} left
-     * @param {ASTNode} inner
+     * @param {ASTNode} element
      */
-    constructor(context, { left, inner }) {
+    constructor(context, { left, element }) {
         super(context);
 
         this.left = left;
-        this.inner = inner;
+        this.element = element;
     }
 }
 
-export default AccessNode;
+export default GetElementNode;

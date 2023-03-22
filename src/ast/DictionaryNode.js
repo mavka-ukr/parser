@@ -3,7 +3,7 @@ import ASTNode from "./ASTNode.js";
 /**
  * (а=1, б=3)
  */
-class ObjectNode extends ASTNode {
+class DictionaryNode extends ASTNode {
     /**
      * @param context
      * @param {Object} args
@@ -15,4 +15,4 @@ class ObjectNode extends ASTNode {
     }
 }
 
-export default ObjectNode;
+export default DictionaryNode;

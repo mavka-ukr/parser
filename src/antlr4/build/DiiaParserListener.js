@@ -140,6 +140,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#get_element.
+	enterGet_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#get_element.
+	exitGet_element(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#chain.
 	enterChain(ctx) {
 	}
@@ -173,15 +182,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#comparison.
 	exitComparison(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#access.
-	enterAccess(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#access.
-	exitAccess(ctx) {
 	}
 
 
@@ -266,6 +266,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#dictionary.
+	enterDictionary(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#dictionary.
+	exitDictionary(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#array.
 	enterArray(ctx) {
 	}
@@ -320,15 +329,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#object.
-	enterObject(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#object.
-	exitObject(ctx) {
-	}
-
-
 	// Enter a parse tree produced by DiiaParser#array_elements.
 	enterArray_elements(ctx) {
 	}
@@ -347,21 +347,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#object_args.
-	enterObject_args(ctx) {
+	// Enter a parse tree produced by DiiaParser#dictionary_args.
+	enterDictionary_args(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#object_args.
-	exitObject_args(ctx) {
+	// Exit a parse tree produced by DiiaParser#dictionary_args.
+	exitDictionary_args(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#object_arg.
-	enterObject_arg(ctx) {
+	// Enter a parse tree produced by DiiaParser#dictionary_arg.
+	enterDictionary_arg(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#object_arg.
-	exitObject_arg(ctx) {
+	// Exit a parse tree produced by DiiaParser#dictionary_arg.
+	exitDictionary_arg(ctx) {
 	}
 
 

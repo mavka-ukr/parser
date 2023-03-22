@@ -156,8 +156,8 @@ give
 value
 array_elements
 array_element
-object_args
-object_arg
+dictionary_args
+dictionary_arg
 expr
 throw
 array_destruction

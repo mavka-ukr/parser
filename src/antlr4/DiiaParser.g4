@@ -41,7 +41,7 @@ value: NUMBER #number
      | pd_value=value DECREMENT #post_decrement
      | pi_value=value INCREMENT #post_increment
      | '!' n_value=value  #not
-     | a_left=value '[' a_inner=expr ']' #access
+     | a_left=value '[' a_element=expr ']' #get_element
      | '(' n_value=expr ')' #nested
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
      | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
@@ -50,14 +50,14 @@ value: NUMBER #number
      | t_left=value t_operation=test_op t_right=value #test
      | c_left=value c_operation=comparison_op c_right=value #comparison
      | '[' a_elements=array_elements? ']' #array
-     | '(' o_args=object_args? ')' #object
+     | '(' d_args=dictionary_args? ')' #dictionary
      ;
 
 array_elements: array_element (',' array_element)* ','?;
 array_element: nls ae_value=expr nls;
 
-object_args: object_arg (',' object_arg)* ','?;
-object_arg: nls (oa_name_id=identifier | oa_name_string=STRING) '=' oa_value=expr nls;
+dictionary_args: dictionary_arg (',' dictionary_arg)* ','?;
+dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value=expr nls;
 
 expr: value #simple
     | 'чекати' w_value=value #wait

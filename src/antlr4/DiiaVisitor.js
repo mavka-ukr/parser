@@ -36,12 +36,12 @@ import PreDecrementNode from "../ast/PreDecrementNode.js";
 import PreIncrementNode from "../ast/PreIncrementNode.js";
 import PostDecrementNode from "../ast/PostDecrementNode.js";
 import PostIncrementNode from "../ast/PostIncrementNode.js";
-import AccessNode from "../ast/AccessNode.js";
+import GetElementNode from "../ast/GetElementNode.js";
 import NotNode from "../ast/NotNode.js";
 import PositiveNode from "../ast/PositiveNode.js";
 import ArrayNode from "../ast/ArrayNode.js";
 import ArrayDestructionNode from "../ast/ArrayDestructionNode.js";
-import ObjectNode from "../ast/ObjectNode.js";
+import DictionaryNode from "../ast/DictionaryNode.js";
 import ObjectDestructionNode from "../ast/ObjectDestructionNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
@@ -306,10 +306,10 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new ArrayNode(ctx, { elements });
     }
 
-    visitObject(ctx) {
-        const args = ctx.o_args ? this.visit(ctx.o_args) : {};
+    visitDictionary(ctx) {
+        const args = ctx.d_args ? this.visit(ctx.d_args) : {};
 
-        return new ObjectNode(ctx, { args });
+        return new DictionaryNode(ctx, { args });
     }
 
     visitComparison_op(ctx) {
@@ -348,11 +348,11 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new WaitNode(ctx, { value });
     }
 
-    visitAccess(ctx) {
+    visitGet_element(ctx) {
         const left = this.visit(ctx.a_left);
-        const inner = this.visit(ctx.a_inner);
+        const element = this.visit(ctx.a_element);
 
-        return new AccessNode(ctx, { left, inner });
+        return new GetElementNode(ctx, { left, element });
     }
 
     visitAssign(ctx) {
@@ -456,8 +456,8 @@ class DiiaVisitor extends DiiaParserVisitor {
         return this.visit(ctx.ae_value);
     }
 
-    visitObject_args(ctx) {
-        let args = flatNodes(super.visitObject_args(ctx));
+    visitDictionary_args(ctx) {
+        let args = flatNodes(super.visitDictionary_arg(ctx));
 
         const argsObject = {};
 
@@ -468,16 +468,16 @@ class DiiaVisitor extends DiiaParserVisitor {
         return argsObject;
     }
 
-    visitObject_arg(ctx) {
+    visitDictionary_arg(ctx) {
         let name;
 
-        if (ctx.oa_name_id) {
-            name = this.visitIdentifier(ctx.oa_name_id).name;
-        } else if (ctx.oa_name_string) {
-            name = ctx.oa_name_string.text.substring(1, ctx.oa_name_string.text.length - 1);
+        if (ctx.da_name_id) {
+            name = this.visitIdentifier(ctx.da_name_id).name;
+        } else if (ctx.da_name_string) {
+            name = ctx.da_name_string.text.substring(1, ctx.da_name_string.text.length - 1);
         }
 
-        const value = this.visit(ctx.oa_value);
+        const value = this.visit(ctx.da_value);
 
         return { name, value };
     }

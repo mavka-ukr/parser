@@ -267,8 +267,8 @@ export default class DiiaParser extends antlr4.Parser {
     static ruleNames = [ "file", "program", "program_element", "module", 
                          "structure", "structure_elements", "structure_element", 
                          "diia", "if", "each", "while", "try", "take", "give", 
-                         "value", "array_elements", "array_element", "object_args", 
-                         "object_arg", "expr", "throw", "array_destruction", 
+                         "value", "array_elements", "array_element", "dictionary_args", 
+                         "dictionary_arg", "expr", "throw", "array_destruction", 
                          "array_destruction_el", "object_destruction", "object_destruction_el", 
                          "assign", "assign_value", "wait_assign", "identifier", 
                          "identifiers_chain", "type_value", "args", "arg", 
@@ -1253,7 +1253,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            break;
 
 	        case 12:
-	            localctx = new ObjectContext(this, localctx);
+	            localctx = new DictionaryContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
 	            this.state = 307;
@@ -1263,7 +1263,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            _la = this._input.LA(1);
 	            if(((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 17825793) !== 0)) {
 	                this.state = 308;
-	                localctx.o_args = this.object_args();
+	                localctx.d_args = this.dictionary_args();
 	            }
 
 	            this.state = 311;
@@ -1406,7 +1406,7 @@ export default class DiiaParser extends antlr4.Parser {
 	                    break;
 
 	                case 9:
-	                    localctx = new AccessContext(this, new ValueContext(this, _parentctx, _parentState));
+	                    localctx = new Get_elementContext(this, new ValueContext(this, _parentctx, _parentState));
 	                    localctx.a_left = _prevctx;
 	                    this.pushNewRecursionContext(localctx, _startState, DiiaParser.RULE_value);
 	                    this.state = 344;
@@ -1416,7 +1416,7 @@ export default class DiiaParser extends antlr4.Parser {
 	                    this.state = 345;
 	                    this.match(DiiaParser.OPEN_ARRAY);
 	                    this.state = 346;
-	                    localctx.a_inner = this.expr();
+	                    localctx.a_element = this.expr();
 	                    this.state = 347;
 	                    this.match(DiiaParser.CLOSE_ARRAY);
 	                    break;
@@ -1544,14 +1544,14 @@ export default class DiiaParser extends antlr4.Parser {
 
 
 
-	object_args() {
-	    let localctx = new Object_argsContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 34, DiiaParser.RULE_object_args);
+	dictionary_args() {
+	    let localctx = new Dictionary_argsContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 34, DiiaParser.RULE_dictionary_args);
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 379;
-	        this.object_arg();
+	        this.dictionary_arg();
 	        this.state = 384;
 	        this._errHandler.sync(this);
 	        var _alt = this._interp.adaptivePredict(this._input,34,this._ctx)
@@ -1560,7 +1560,7 @@ export default class DiiaParser extends antlr4.Parser {
 	                this.state = 380;
 	                this.match(DiiaParser.COMMA);
 	                this.state = 381;
-	                this.object_arg(); 
+	                this.dictionary_arg(); 
 	            }
 	            this.state = 386;
 	            this._errHandler.sync(this);
@@ -1591,9 +1591,9 @@ export default class DiiaParser extends antlr4.Parser {
 
 
 
-	object_arg() {
-	    let localctx = new Object_argContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 36, DiiaParser.RULE_object_arg);
+	dictionary_arg() {
+	    let localctx = new Dictionary_argContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 36, DiiaParser.RULE_dictionary_arg);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 390;
@@ -1603,11 +1603,11 @@ export default class DiiaParser extends antlr4.Parser {
 	        switch(this._input.LA(1)) {
 	        case 61:
 	            this.state = 391;
-	            localctx.oa_name_id = this.identifier();
+	            localctx.da_name_id = this.identifier();
 	            break;
 	        case 65:
 	            this.state = 392;
-	            localctx.oa_name_string = this.match(DiiaParser.STRING);
+	            localctx.da_name_string = this.match(DiiaParser.STRING);
 	            break;
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
@@ -1615,7 +1615,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 395;
 	        this.match(DiiaParser.ASSIGN);
 	        this.state = 396;
-	        localctx.oa_value = this.expr();
+	        localctx.da_value = this.expr();
 	        this.state = 397;
 	        this.nls();
 	    } catch (re) {
@@ -2922,8 +2922,8 @@ DiiaParser.RULE_give = 13;
 DiiaParser.RULE_value = 14;
 DiiaParser.RULE_array_elements = 15;
 DiiaParser.RULE_array_element = 16;
-DiiaParser.RULE_object_args = 17;
-DiiaParser.RULE_object_arg = 18;
+DiiaParser.RULE_dictionary_args = 17;
+DiiaParser.RULE_dictionary_arg = 18;
 DiiaParser.RULE_expr = 19;
 DiiaParser.RULE_throw = 20;
 DiiaParser.RULE_array_destruction = 21;
@@ -4068,6 +4068,56 @@ class Arithmetic_mulContext extends ValueContext {
 
 DiiaParser.Arithmetic_mulContext = Arithmetic_mulContext;
 
+class Get_elementContext extends ValueContext {
+
+    constructor(parser, ctx) {
+        super(parser);
+        this.a_left = null; // ValueContext;
+        this.a_element = null; // ExprContext;
+        super.copyFrom(ctx);
+    }
+
+	OPEN_ARRAY() {
+	    return this.getToken(DiiaParser.OPEN_ARRAY, 0);
+	};
+
+	CLOSE_ARRAY() {
+	    return this.getToken(DiiaParser.CLOSE_ARRAY, 0);
+	};
+
+	value() {
+	    return this.getTypedRuleContext(ValueContext,0);
+	};
+
+	expr() {
+	    return this.getTypedRuleContext(ExprContext,0);
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.enterGet_element(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.exitGet_element(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof DiiaParserVisitor ) {
+	        return visitor.visitGet_element(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+DiiaParser.Get_elementContext = Get_elementContext;
+
 class ChainContext extends ValueContext {
 
     constructor(parser, ctx) {
@@ -4254,56 +4304,6 @@ class ComparisonContext extends ValueContext {
 }
 
 DiiaParser.ComparisonContext = ComparisonContext;
-
-class AccessContext extends ValueContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        this.a_left = null; // ValueContext;
-        this.a_inner = null; // ExprContext;
-        super.copyFrom(ctx);
-    }
-
-	OPEN_ARRAY() {
-	    return this.getToken(DiiaParser.OPEN_ARRAY, 0);
-	};
-
-	CLOSE_ARRAY() {
-	    return this.getToken(DiiaParser.CLOSE_ARRAY, 0);
-	};
-
-	value() {
-	    return this.getTypedRuleContext(ValueContext,0);
-	};
-
-	expr() {
-	    return this.getTypedRuleContext(ExprContext,0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof DiiaParserListener ) {
-	        listener.enterAccess(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof DiiaParserListener ) {
-	        listener.exitAccess(this);
-		}
-	}
-
-	accept(visitor) {
-	    if ( visitor instanceof DiiaParserVisitor ) {
-	        return visitor.visitAccess(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
-	}
-
-
-}
-
-DiiaParser.AccessContext = AccessContext;
 
 class StringContext extends ValueContext {
 
@@ -4721,6 +4721,51 @@ class NotContext extends ValueContext {
 
 DiiaParser.NotContext = NotContext;
 
+class DictionaryContext extends ValueContext {
+
+    constructor(parser, ctx) {
+        super(parser);
+        this.d_args = null; // Dictionary_argsContext;
+        super.copyFrom(ctx);
+    }
+
+	OPEN_PAREN() {
+	    return this.getToken(DiiaParser.OPEN_PAREN, 0);
+	};
+
+	CLOSE_PAREN() {
+	    return this.getToken(DiiaParser.CLOSE_PAREN, 0);
+	};
+
+	dictionary_args() {
+	    return this.getTypedRuleContext(Dictionary_argsContext,0);
+	};
+
+	enterRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.enterDictionary(this);
+		}
+	}
+
+	exitRule(listener) {
+	    if(listener instanceof DiiaParserListener ) {
+	        listener.exitDictionary(this);
+		}
+	}
+
+	accept(visitor) {
+	    if ( visitor instanceof DiiaParserVisitor ) {
+	        return visitor.visitDictionary(this);
+	    } else {
+	        return visitor.visitChildren(this);
+	    }
+	}
+
+
+}
+
+DiiaParser.DictionaryContext = DictionaryContext;
+
 class ArrayContext extends ValueContext {
 
     constructor(parser, ctx) {
@@ -4994,51 +5039,6 @@ class TernaryContext extends ValueContext {
 
 DiiaParser.TernaryContext = TernaryContext;
 
-class ObjectContext extends ValueContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        this.o_args = null; // Object_argsContext;
-        super.copyFrom(ctx);
-    }
-
-	OPEN_PAREN() {
-	    return this.getToken(DiiaParser.OPEN_PAREN, 0);
-	};
-
-	CLOSE_PAREN() {
-	    return this.getToken(DiiaParser.CLOSE_PAREN, 0);
-	};
-
-	object_args() {
-	    return this.getTypedRuleContext(Object_argsContext,0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof DiiaParserListener ) {
-	        listener.enterObject(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof DiiaParserListener ) {
-	        listener.exitObject(this);
-		}
-	}
-
-	accept(visitor) {
-	    if ( visitor instanceof DiiaParserVisitor ) {
-	        return visitor.visitObject(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
-	}
-
-
-}
-
-DiiaParser.ObjectContext = ObjectContext;
-
 class Array_elementsContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
@@ -5156,7 +5156,7 @@ class Array_elementContext extends antlr4.ParserRuleContext {
 
 
 
-class Object_argsContext extends antlr4.ParserRuleContext {
+class Dictionary_argsContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -5167,17 +5167,17 @@ class Object_argsContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = DiiaParser.RULE_object_args;
+        this.ruleIndex = DiiaParser.RULE_dictionary_args;
     }
 
-	object_arg = function(i) {
+	dictionary_arg = function(i) {
 	    if(i===undefined) {
 	        i = null;
 	    }
 	    if(i===null) {
-	        return this.getTypedRuleContexts(Object_argContext);
+	        return this.getTypedRuleContexts(Dictionary_argContext);
 	    } else {
-	        return this.getTypedRuleContext(Object_argContext,i);
+	        return this.getTypedRuleContext(Dictionary_argContext,i);
 	    }
 	};
 
@@ -5195,19 +5195,19 @@ class Object_argsContext extends antlr4.ParserRuleContext {
 
 	enterRule(listener) {
 	    if(listener instanceof DiiaParserListener ) {
-	        listener.enterObject_args(this);
+	        listener.enterDictionary_args(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof DiiaParserListener ) {
-	        listener.exitObject_args(this);
+	        listener.exitDictionary_args(this);
 		}
 	}
 
 	accept(visitor) {
 	    if ( visitor instanceof DiiaParserVisitor ) {
-	        return visitor.visitObject_args(this);
+	        return visitor.visitDictionary_args(this);
 	    } else {
 	        return visitor.visitChildren(this);
 	    }
@@ -5218,7 +5218,7 @@ class Object_argsContext extends antlr4.ParserRuleContext {
 
 
 
-class Object_argContext extends antlr4.ParserRuleContext {
+class Dictionary_argContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -5229,10 +5229,10 @@ class Object_argContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = DiiaParser.RULE_object_arg;
-        this.oa_name_id = null; // IdentifierContext
-        this.oa_name_string = null; // Token
-        this.oa_value = null; // ExprContext
+        this.ruleIndex = DiiaParser.RULE_dictionary_arg;
+        this.da_name_id = null; // IdentifierContext
+        this.da_name_string = null; // Token
+        this.da_value = null; // ExprContext
     }
 
 	nls = function(i) {
@@ -5264,19 +5264,19 @@ class Object_argContext extends antlr4.ParserRuleContext {
 
 	enterRule(listener) {
 	    if(listener instanceof DiiaParserListener ) {
-	        listener.enterObject_arg(this);
+	        listener.enterDictionary_arg(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof DiiaParserListener ) {
-	        listener.exitObject_arg(this);
+	        listener.exitDictionary_arg(this);
 		}
 	}
 
 	accept(visitor) {
 	    if ( visitor instanceof DiiaParserVisitor ) {
-	        return visitor.visitObject_arg(this);
+	        return visitor.visitDictionary_arg(this);
 	    } else {
 	        return visitor.visitChildren(this);
 	    }
@@ -7254,8 +7254,8 @@ DiiaParser.GiveContext = GiveContext;
 DiiaParser.ValueContext = ValueContext; 
 DiiaParser.Array_elementsContext = Array_elementsContext; 
 DiiaParser.Array_elementContext = Array_elementContext; 
-DiiaParser.Object_argsContext = Object_argsContext; 
-DiiaParser.Object_argContext = Object_argContext; 
+DiiaParser.Dictionary_argsContext = Dictionary_argsContext; 
+DiiaParser.Dictionary_argContext = Dictionary_argContext; 
 DiiaParser.ExprContext = ExprContext; 
 DiiaParser.ThrowContext = ThrowContext; 
 DiiaParser.Array_destructionContext = Array_destructionContext; 

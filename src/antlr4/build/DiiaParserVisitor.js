@@ -96,6 +96,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#get_element.
+	visitGet_element(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#chain.
 	visitChain(ctx) {
 	  return this.visitChildren(ctx);
@@ -116,12 +122,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#comparison.
 	visitComparison(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#access.
-	visitAccess(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -180,6 +180,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#dictionary.
+	visitDictionary(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#array.
 	visitArray(ctx) {
 	  return this.visitChildren(ctx);
@@ -216,12 +222,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#object.
-	visitObject(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by DiiaParser#array_elements.
 	visitArray_elements(ctx) {
 	  return this.visitChildren(ctx);
@@ -234,14 +234,14 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#object_args.
-	visitObject_args(ctx) {
+	// Visit a parse tree produced by DiiaParser#dictionary_args.
+	visitDictionary_args(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#object_arg.
-	visitObject_arg(ctx) {
+	// Visit a parse tree produced by DiiaParser#dictionary_arg.
+	visitDictionary_arg(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
