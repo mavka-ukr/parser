@@ -32,7 +32,7 @@ give: 'дати' g_name=identifier ('як' g_as=identifier)?;
 value: NUMBER #number
      | STRING #string
      | identifier #id
-     | c_left=value '.' c_right=value #chain
+     | c_left=value '.' c_right=identifier #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call
      | '+' p_value=value  #positive
      | '-' n_value=value  #negative
@@ -68,9 +68,12 @@ expr: value #simple
 throw: 'впасти' t_value=expr;
 
 array_destruction: '[' array_destruction_el (',' array_destruction_el)* ','? ']';
-array_destruction_el: nls aade_id=identifier nls;
+array_destruction_el: nls ade_id=identifier nls;
 
-assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction) '=' a_value=assign_value;
+object_destruction: '(' object_destruction_el (',' object_destruction_el)* ','? ')';
+object_destruction_el: nls ode_id=identifier nls;
+
+assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction | a_object_destruction=object_destruction) '=' a_value=assign_value;
 assign_value: expr | assign;
 wait_assign: 'чекати' wa_assign=assign;
 
@@ -85,7 +88,7 @@ named_args: named_arg (',' named_arg)* ','?;
 named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: (p_name=identifier | p_array_destruction=array_destruction) p_type=type_value? ('=' p_value=param_value)?;
+param: (p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | STRING #param_value_string
            | identifier #param_value_identifier;
@@ -97,7 +100,7 @@ return_body_line: 'вернути' rbl=body_element;
 arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW | XOR;
 arithmetic_op_add: '+' | '-';
 test_op: 'і' | 'або';
-comparison_op: '==' | '!=' | '>=' | '<=' | 'є' | 'рівно' | 'більше' | 'менше' | 'не більше' | 'не менше' | 'не рівно' | 'не є' | 'не';
+comparison_op: '==' | '!=' | '>' | '<' | '>=' | '<=' | 'є' | 'не є' | 'рівно' | 'не рівно' | 'більше' | 'не більше' | 'менше' | 'не менше' | 'містить' | 'не містить' | 'не';
 
 nl: NL;
 nls: nl*;

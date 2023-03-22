@@ -1,9 +1,9 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * [а, б, в] = [1, 2, 3]
+ * (а, б, в) = (а=1, б=2, в=3)
  */
-class ArrayDestructionNode extends ASTNode {
+class ObjectDestructionNode extends ASTNode {
     /**
      * @param context
      * @param {ASTNode[]} elements
@@ -15,4 +15,4 @@ class ArrayDestructionNode extends ASTNode {
     }
 }
 
-export default ArrayDestructionNode;
+export default ObjectDestructionNode;

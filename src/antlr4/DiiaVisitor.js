@@ -42,6 +42,7 @@ import PositiveNode from "../ast/PositiveNode.js";
 import ArrayNode from "../ast/ArrayNode.js";
 import ArrayDestructionNode from "../ast/ArrayDestructionNode.js";
 import ObjectNode from "../ast/ObjectNode.js";
+import ObjectDestructionNode from "../ast/ObjectDestructionNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -363,6 +364,8 @@ class DiiaVisitor extends DiiaParserVisitor {
             id = singleNode(this.visit(ctx.a_identifier));
         } else if (ctx.a_array_destruction) {
             id = this.visitArray_destruction(ctx.a_array_destruction);
+        } else if (ctx.a_object_destruction) {
+            id = this.visitObject_destruction(ctx.a_object_destruction);
         }
         const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
         const value = ctx.a_value && this.visit(ctx.a_value);
@@ -377,7 +380,17 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitArray_destruction_el(ctx) {
-        return this.visitIdentifier(ctx.aade_id);
+        return this.visitIdentifier(ctx.ade_id);
+    }
+
+    visitObject_destruction(ctx) {
+        const elements = flatNodes(super.visitObject_destruction(ctx));
+
+        return new ObjectDestructionNode(ctx, { elements });
+    }
+
+    visitObject_destruction_el(ctx) {
+        return this.visitIdentifier(ctx.ode_id);
     }
 
     visitAssign_value(ctx) {
@@ -498,6 +511,8 @@ class DiiaVisitor extends DiiaParserVisitor {
             name = this.visitIdentifier(ctx.p_name);
         } else if (ctx.p_array_destruction) {
             name = this.visitArray_destruction(ctx.p_array_destruction);
+        } else if (ctx.p_object_destruction) {
+            name = this.visitObject_destruction(ctx.p_object_destruction);
         }
         const type = ctx.p_type && singleNode(this.visit(ctx.p_type));
         const defaultValue = ctx.p_value && singleNode(this.visit(ctx.p_value));
