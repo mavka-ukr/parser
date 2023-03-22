@@ -41,6 +41,7 @@ import NotNode from "../ast/NotNode.js";
 import PositiveNode from "../ast/PositiveNode.js";
 import ArrayNode from "../ast/ArrayNode.js";
 import ArrayDestructionNode from "../ast/ArrayDestructionNode.js";
+import ObjectNode from "../ast/ObjectNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -68,7 +69,7 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitStructure(ctx) {
         const name = this.visitIdentifier(ctx.s_name);
-        const elements = ctx.s_elements && this.visitStructure_elements(ctx.s_elements);
+        const elements = ctx.s_elements ? this.visitStructure_elements(ctx.s_elements) : [];
         const params = [];
         const methods = [];
         for (const element of elements) {
@@ -299,9 +300,15 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitArray(ctx) {
-        const elements = this.visit(ctx.a_elements);
+        const elements = ctx.a_elements ? this.visit(ctx.a_elements) : [];
 
         return new ArrayNode(ctx, { elements });
+    }
+
+    visitObject(ctx) {
+        const args = ctx.o_args ? this.visit(ctx.o_args) : {};
+
+        return new ObjectNode(ctx, { args });
     }
 
     visitComparison_op(ctx) {
@@ -434,6 +441,32 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitArray_element(ctx) {
         return this.visit(ctx.ae_value);
+    }
+
+    visitObject_args(ctx) {
+        let args = flatNodes(super.visitObject_args(ctx));
+
+        const argsObject = {};
+
+        args.forEach((arg) => {
+            argsObject[arg.name] = arg.value;
+        });
+
+        return argsObject;
+    }
+
+    visitObject_arg(ctx) {
+        let name;
+
+        if (ctx.oa_name_id) {
+            name = this.visitIdentifier(ctx.oa_name_id).name;
+        } else if (ctx.oa_name_string) {
+            name = ctx.oa_name_string.text.substring(1, ctx.oa_name_string.text.length - 1);
+        }
+
+        const value = this.visit(ctx.oa_value);
+
+        return { name, value };
     }
 
     visitNamed_args(ctx) {

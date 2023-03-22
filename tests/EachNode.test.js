@@ -3,13 +3,13 @@ import EachNode from "../src/ast/EachNode.js";
 
 test('parse EachNode', () => {
     const code = `
-для х беручи діапазон(1, 10)
+перебрати діапазон(1, 10) як х
   друк(х)
 кінець
     `;
 
-    const ast = parse(code, { start: 'only_for_testing' });
-    const node = ast[0];
+    const ast = parse(code);
+    const node = ast.body[0];
 
     expect(node).toBeInstanceOf(EachNode);
 });

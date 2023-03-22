@@ -320,6 +320,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#object.
+	enterObject(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#object.
+	exitObject(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#array_elements.
 	enterArray_elements(ctx) {
 	}
@@ -335,6 +344,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#array_element.
 	exitArray_element(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#object_args.
+	enterObject_args(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#object_args.
+	exitObject_args(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#object_arg.
+	enterObject_arg(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#object_arg.
+	exitObject_arg(ctx) {
 	}
 
 

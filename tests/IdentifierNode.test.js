@@ -4,8 +4,8 @@ import IdentifierNode from "../src/ast/IdentifierNode.js";
 test('parse IdentifierNode', () => {
     const code = `добуток`;
 
-    const ast = parse(code, { start: 'only_for_testing' });
-    const node = ast[0];
+    const ast = parse(code);
+    const node = ast.body[0];
 
     expect(node).toBeInstanceOf(IdentifierNode);
 });

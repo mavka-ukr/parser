@@ -49,11 +49,15 @@ value: NUMBER #number
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
      | t_left=value t_operation=test_op t_right=value #test
      | c_left=value c_operation=comparison_op c_right=value #comparison
-     | '[' a_elements=array_elements ']' #array
+     | '[' a_elements=array_elements? ']' #array
+     | '(' o_args=object_args? ')' #object
      ;
 
 array_elements: array_element (',' array_element)* ','?;
 array_element: nls ae_value=expr nls;
+
+object_args: object_arg (',' object_arg)* ','?;
+object_arg: nls (oa_name_id=identifier | oa_name_string=STRING) '=' oa_value=expr nls;
 
 expr: value #simple
     | 'чекати' w_value=value #wait
