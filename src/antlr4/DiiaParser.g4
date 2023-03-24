@@ -47,16 +47,16 @@ value: NUMBER #number
      | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
      | a_left=value a_operation=arithmetic_op_add a_right=value #arithmetic_add
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
-     | t_left=value t_operation=test_op t_right=value #test
      | c_left=value c_operation=comparison_op c_right=value #comparison
+     | t_left=value t_operation=test_op t_right=value #test
      | '[' a_elements=array_elements? ']' #array
      | '(' d_args=dictionary_args? ')' #dictionary
      ;
 
-array_elements: array_element (',' array_element)* ','?;
+array_elements: array_element (',' array_element)*;
 array_element: nls ae_value=expr nls;
 
-dictionary_args: dictionary_arg (',' dictionary_arg)* ','?;
+dictionary_args: dictionary_arg (',' dictionary_arg)*;
 dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value=expr nls;
 
 expr: value #simple
@@ -67,14 +67,15 @@ expr: value #simple
 
 throw: 'впасти' t_value=expr;
 
-array_destruction: '[' array_destruction_el (',' array_destruction_el)* ','? ']';
+array_destruction: '[' array_destruction_el (',' array_destruction_el)* ']';
 array_destruction_el: nls ade_id=identifier nls;
 
-object_destruction: '(' object_destruction_el (',' object_destruction_el)* ','? ')';
+object_destruction: '(' object_destruction_el (',' object_destruction_el)* ')';
 object_destruction_el: nls ode_id=identifier nls;
 
-assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction | a_object_destruction=object_destruction) '=' a_value=assign_value;
+assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction | a_object_destruction=object_destruction) a_symbol=assign_symbol a_value=assign_value;
 assign_value: expr | assign;
+assign_symbol: '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '//=' | '%=' | '^=' | '**=';
 wait_assign: 'чекати' wa_assign=assign;
 
 identifier: ID;
@@ -82,9 +83,9 @@ identifiers_chain: ic_identifier=identifier | ic_left=identifiers_chain '.' ic_r
 
 type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_op tv_right=type_value;
 
-args: arg (',' arg)* ','?;
+args: arg (',' arg)*;
 arg: nls a_value=expr nls;
-named_args: named_arg (',' named_arg)* ','?;
+named_args: named_arg (',' named_arg)*;
 named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;

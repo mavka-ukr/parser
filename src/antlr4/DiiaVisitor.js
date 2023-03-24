@@ -369,8 +369,13 @@ class DiiaVisitor extends DiiaParserVisitor {
         }
         const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
         const value = ctx.a_value && this.visit(ctx.a_value);
+        const symbol = this.visit(ctx.a_symbol);
 
-        return new AssignNode(ctx, { id, value, wait, type });
+        return new AssignNode(ctx, { id, value, wait, type, symbol });
+    }
+
+    visitAssign_symbol(ctx) {
+        return ctx.getText();
     }
 
     visitArray_destruction(ctx) {

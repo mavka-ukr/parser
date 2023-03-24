@@ -312,6 +312,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#assign_symbol.
+	visitAssign_symbol(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#wait_assign.
 	visitWait_assign(ctx) {
 	  return this.visitChildren(ctx);

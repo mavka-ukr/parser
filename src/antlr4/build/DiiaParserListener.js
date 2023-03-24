@@ -464,6 +464,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#assign_symbol.
+	enterAssign_symbol(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#assign_symbol.
+	exitAssign_symbol(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#wait_assign.
 	enterWait_assign(ctx) {
 	}
