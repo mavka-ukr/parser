@@ -73,7 +73,7 @@ array_destruction_el: nls ade_id=identifier nls;
 object_destruction: '(' object_destruction_el (',' object_destruction_el)* ')';
 object_destruction_el: nls ode_id=identifier nls;
 
-assign: (a_identifiers_chain=identifiers_chain | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction | a_object_destruction=object_destruction) a_symbol=assign_symbol a_value=assign_value;
+assign: ((a_identifiers_chain=identifiers_chain ('[' a_set_element=expr ']')?) | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction | a_object_destruction=object_destruction) a_symbol=assign_symbol a_value=assign_value;
 assign_value: expr | assign;
 assign_symbol: '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '//=' | '%=' | '^=' | '**=';
 wait_assign: 'чекати' wa_assign=assign;

@@ -43,6 +43,7 @@ import ArrayNode from "../ast/ArrayNode.js";
 import ArrayDestructionNode from "../ast/ArrayDestructionNode.js";
 import DictionaryNode from "../ast/DictionaryNode.js";
 import ObjectDestructionNode from "../ast/ObjectDestructionNode.js";
+import SetElementNode from "../ast/SetElementNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -370,8 +371,9 @@ class DiiaVisitor extends DiiaParserVisitor {
         const type = ctx.a_type && singleNode(this.visit(ctx.a_type));
         const value = ctx.a_value && this.visit(ctx.a_value);
         const symbol = this.visit(ctx.a_symbol);
+        const setElement = ctx.a_set_element ? this.visit(ctx.a_set_element) : null;
 
-        return new AssignNode(ctx, { id, value, wait, type, symbol });
+        return new AssignNode(ctx, { id, value, wait, type, symbol, setElement });
     }
 
     visitAssign_symbol(ctx) {

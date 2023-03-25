@@ -13,8 +13,9 @@ class AssignNode extends ASTNode {
      * @param {boolean} wait
      * @param {IdentifierNode|IdentifiersChainNode|null} type
      * @param {string} symbol
+     * @param {ASTNode|null} setElement
      */
-    constructor(context, { id, value, wait = false, type, symbol }) {
+    constructor(context, { id, value, wait = false, type, symbol, setElement }) {
         super(context);
 
         this.id = id;
@@ -22,6 +23,7 @@ class AssignNode extends ASTNode {
         this.wait = wait;
         this.type = type;
         this.symbol = symbol;
+        this.setElement = setElement;
     }
 }
 

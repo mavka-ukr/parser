@@ -91,7 +91,9 @@ fragment ID_START
 fragment ID_CONTINUE
     : ID_START
     | '0'..'9'
-    | 'ʼ' ID_START
+    | 'ʼ'
+    | '\''
+    | ID_START
     ;
 
 fragment ESCAPE_CHAR
