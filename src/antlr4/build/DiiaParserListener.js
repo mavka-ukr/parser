@@ -113,12 +113,30 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#take.
-	enterTake(ctx) {
+	// Enter a parse tree produced by DiiaParser#take_module.
+	enterTake_module(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#take.
-	exitTake(ctx) {
+	// Exit a parse tree produced by DiiaParser#take_module.
+	exitTake_module(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#take_pak.
+	enterTake_pak(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#take_pak.
+	exitTake_pak(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#take_remote.
+	enterTake_remote(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#take_remote.
+	exitTake_remote(ctx) {
 	}
 
 

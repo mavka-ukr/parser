@@ -3,26 +3,22 @@ import ASTNode from "./ASTNode.js";
 /**
  * взяти а.Б.в.Г.Ґ як д
  */
-class TakeNode extends ASTNode {
+class TakeModuleNode extends ASTNode {
     /**
      * @param context
      * @param {IdentifiersChainNode|IdentifierNode} id
      * @param {IdentifierNode|null} as
-     * @param {boolean} pak
-     * @param {boolean} relative
+     * @param {boolean} absolute
      * @param {boolean} star
-     * @param {StringNode} remote
      */
-    constructor(context, { id, as, pak, relative, star, remote }) {
+    constructor(context, { id, as, absolute, star }) {
         super(context);
 
         this.id = id;
         this.as = as;
-        this.pak = pak;
-        this.relative = relative;
+        this.absolute = absolute;
         this.star = star;
-        this.remote = remote;
     }
 }
 
-export default TakeNode;
+export default TakeModuleNode;

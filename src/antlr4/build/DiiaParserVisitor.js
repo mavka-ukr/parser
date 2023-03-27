@@ -78,8 +78,20 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#take.
-	visitTake(ctx) {
+	// Visit a parse tree produced by DiiaParser#take_module.
+	visitTake_module(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#take_pak.
+	visitTake_pak(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#take_remote.
+	visitTake_remote(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

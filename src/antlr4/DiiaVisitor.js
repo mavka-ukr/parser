@@ -20,7 +20,6 @@ import TryNode from "../ast/TryNode.js";
 import ThrowNode from "../ast/ThrowNode.js";
 import ReturnNode from "../ast/ReturnNode.js";
 import ModuleNode from "../ast/ModuleNode.js";
-import TakeNode from "../ast/TakeNode.js";
 import GiveNode from "../ast/GiveNode.js";
 import WaitNode from "../ast/WaitNode.js";
 import ProgramNode from "../ast/ProgramNode.js";
@@ -43,7 +42,9 @@ import ArrayNode from "../ast/ArrayNode.js";
 import ArrayDestructionNode from "../ast/ArrayDestructionNode.js";
 import DictionaryNode from "../ast/DictionaryNode.js";
 import ObjectDestructionNode from "../ast/ObjectDestructionNode.js";
-import SetElementNode from "../ast/SetElementNode.js";
+import TakeModuleNode from "../ast/TakeModuleNode.js";
+import TakePakNode from "../ast/TakePakNode.js";
+import TakeRemoteNode from "../ast/TakeRemoteNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -140,15 +141,28 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new TryNode(ctx, { tryBody, catchBody, catchName });
     }
 
-    visitTake(ctx) {
-        let id = ctx.t_elements_chain && singleNode(this.visit(ctx.t_elements_chain));
-        const as = ctx.t_as && this.visitIdentifier(ctx.t_as);
-        const pak = !!ctx.t_pak;
-        const relative = !!ctx.t_relative;
-        const star = !!ctx.t_star;
-        const remote = ctx.t_remote && ctx.t_remote.text.substring(1, ctx.t_remote.text.length - 1);
+    visitTake_module(ctx) {
+        let id = ctx.tm_elements_chain && singleNode(this.visit(ctx.tm_elements_chain));
+        const as = ctx.tm_as && this.visitIdentifier(ctx.tm_as);
+        const absolute = !!ctx.tm_absolute;
+        const star = !!ctx.tm_star;
 
-        return new TakeNode(ctx, { id, as, pak, relative, star, remote });
+        return new TakeModuleNode(ctx, { id, as, absolute, star });
+    }
+
+    visitTake_pak(ctx) {
+        let id = ctx.tp_elements_chain && singleNode(this.visit(ctx.tp_elements_chain));
+        const as = ctx.tp_as && this.visitIdentifier(ctx.tp_as);
+        const star = !!ctx.tp_star;
+
+        return new TakePakNode(ctx, { id, as, star });
+    }
+
+    visitTake_remote(ctx) {
+        const url = ctx.tr_url.text.substring(1, ctx.tr_url.text.length - 1);
+        const as = ctx.tr_as && this.visitIdentifier(ctx.tr_as);
+
+        return new TakeRemoteNode(ctx, { url, as });
     }
 
     visitGive(ctx) {
