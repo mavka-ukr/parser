@@ -45,6 +45,7 @@ import ObjectDestructionNode from "../ast/ObjectDestructionNode.js";
 import TakeModuleNode from "../ast/TakeModuleNode.js";
 import TakePakNode from "../ast/TakePakNode.js";
 import TakeRemoteNode from "../ast/TakeRemoteNode.js";
+import GiveElementNode from "../ast/GiveElementNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -119,7 +120,7 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitEach(ctx) {
         const keyName = ctx.e_key_name && this.visitIdentifier(ctx.e_key_name);
-        const name = this.visitIdentifier(ctx.e_name);
+        const name = ctx.e_name && this.visitIdentifier(ctx.e_name);
         const iterator = this.visit(ctx.e_iterator);
         const body = this.visit(ctx.e_body);
 
@@ -166,10 +167,16 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitGive(ctx) {
-        const id = singleNode(this.visit(ctx.g_name));
-        const as = ctx.g_as && this.visitIdentifier(ctx.g_as);
+        const elements = flatNodes(super.visitGive(ctx));
 
-        return new GiveNode(ctx, { id, as });
+        return new GiveNode(ctx, { elements });
+    }
+
+    visitGive_element(ctx) {
+        const id = singleNode(this.visit(ctx.ge_name));
+        const as = ctx.ge_as && this.visitIdentifier(ctx.ge_as);
+
+        return new GiveElementNode(ctx, { id, as });
     }
 
     visitNumber(ctx) {

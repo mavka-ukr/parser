@@ -1,20 +1,21 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * дати сума
- * дати Бот як СуперБот
+ * дати сума як сум
+ * дати а, б, в
+ * дати Бот як СуперБот, а, б як Б, в
+ *
+ * @see GiveElementNode
  */
 class GiveNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode|IdentifiersChainNode|null} id
-     * @param {IdentifierNode|null} as
+     * @param {GiveElementNode[]} elements
      */
-    constructor(context, { id, as }) {
+    constructor(context, { elements }) {
         super(context);
 
-        this.id = id;
-        this.as = as;
+        this.elements = elements;
     }
 }
 

@@ -19,7 +19,7 @@ diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=
 
 if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=body nl)? 'кінець') | (i_else_if=if));
 
-each: 'перебрати' e_iterator=expr 'як' (e_key_name=identifier ',')? e_name=identifier nl (e_body=body nl)? 'кінець';
+each: 'перебрати' e_iterator=expr ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
@@ -29,7 +29,8 @@ take: 'взяти' (tm_absolute='.')? tm_elements_chain=identifiers_chain (tm_st
     | 'взяти' 'пак' tp_elements_chain=identifiers_chain (tp_star='.*')? ('як' tp_as=identifier)? #take_pak
     | 'взяти' tr_url=STRING ('як' tr_as=identifier)? #take_remote;
 
-give: 'дати' g_name=identifier ('як' g_as=identifier)?;
+give: 'дати' give_element (',' give_element)*;
+give_element: ge_name=identifier ('як' ge_as=identifier)?;
 
 value: NUMBER #number
      | STRING #string

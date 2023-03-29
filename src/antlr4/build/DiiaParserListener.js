@@ -149,6 +149,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#give_element.
+	enterGive_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#give_element.
+	exitGive_element(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#arithmetic_mul.
 	enterArithmetic_mul(ctx) {
 	}
