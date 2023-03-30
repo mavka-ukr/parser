@@ -7,7 +7,7 @@ options {
 file: f_program=program EOF;
 
 program: program_element (nl program_element)*;
-program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | nls | take | give;
+program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | nls | take | give;
 
 module: 'модуль' m_name=identifier nl (m_program=program nl)? nls 'кінець';
 
@@ -27,6 +27,8 @@ if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=b
 each: 'перебрати' e_iterator=expr ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
+
+eval: 'eval' e_value=value;
 
 try: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier? (tc_body=body nl)? 'кінець';
 
@@ -104,7 +106,7 @@ param_value: NUMBER #param_value_number
            | identifier #param_value_identifier;
 
 body: body_element (nl body_element)*;
-body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | return_body_line | nls;
+body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | eval | return_body_line | nls;
 return_body_line: 'вернути' rbl=body_element;
 
 arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW | XOR;

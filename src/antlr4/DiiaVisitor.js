@@ -47,6 +47,7 @@ import TakePakNode from "../ast/TakePakNode.js";
 import TakeRemoteNode from "../ast/TakeRemoteNode.js";
 import GiveElementNode from "../ast/GiveElementNode.js";
 import { extractStringValue } from "../utils/text.js";
+import EvalNode from "../ast/EvalNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -181,6 +182,12 @@ class DiiaVisitor extends DiiaParserVisitor {
         const as = ctx.tr_as && this.visitIdentifier(ctx.tr_as);
 
         return new TakeRemoteNode(ctx, { url, as });
+    }
+
+    visitEval(ctx) {
+        const value = this.visit(ctx.e_value);
+
+        return new EvalNode(ctx, { value });
     }
 
     visitGive(ctx) {
