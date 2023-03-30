@@ -1,7 +1,7 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * eval "console.log('hello from js!')"
+ * js "console.log('hello from js!')"
  */
 class EvalNode extends ASTNode {
     /**

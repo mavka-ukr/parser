@@ -42,7 +42,7 @@ NOT_WORD: 'не';
 STAR_ALL: '.*';
 MOCKUP: 'макет';
 IMPLEMENTS: 'втілює';
-EVAL: 'eval';
+EVAL: 'js';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
 NL: ( '\r'? '\n' );

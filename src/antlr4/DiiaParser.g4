@@ -28,7 +28,7 @@ each: 'перебрати' e_iterator=expr ('як' (e_key_name=identifier ',')? 
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
-eval: 'eval' e_value=value;
+eval: 'js' e_value=value;
 
 try: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier? (tc_body=body nl)? 'кінець';
 
