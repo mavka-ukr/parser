@@ -48,6 +48,7 @@ import TakeRemoteNode from "../ast/TakeRemoteNode.js";
 import GiveElementNode from "../ast/GiveElementNode.js";
 import { extractStringValue } from "../utils/text.js";
 import EvalNode from "../ast/EvalNode.js";
+import TakeFileNode from "../ast/TakeFileNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -158,6 +159,13 @@ class DiiaVisitor extends DiiaParserVisitor {
         const catchBody = ctx.tc_body && this.visit(ctx.tc_body);
 
         return new TryNode(ctx, { tryBody, catchBody, catchName });
+    }
+
+    visitTake_file(ctx) {
+        const name = extractStringValue(ctx.tf_name.text);
+        const as = this.visitIdentifier(ctx.tf_as);
+
+        return new TakeFileNode(ctx, { name, as });
     }
 
     visitTake_module(ctx) {
