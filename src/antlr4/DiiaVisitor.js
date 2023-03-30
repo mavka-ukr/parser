@@ -46,6 +46,7 @@ import TakeModuleNode from "../ast/TakeModuleNode.js";
 import TakePakNode from "../ast/TakePakNode.js";
 import TakeRemoteNode from "../ast/TakeRemoteNode.js";
 import GiveElementNode from "../ast/GiveElementNode.js";
+import { extractStringValue } from "../utils/text.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -110,6 +111,22 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new DiiaNode(ctx, { async, name, params, structure, type, body });
     }
 
+    visitMockup(ctx) {
+        throw 'not implemented';
+    }
+
+    visitMockup_elements(ctx) {
+        throw 'not implemented';
+    }
+
+    visitMockup_parents(ctx) {
+        throw 'not implemented';
+    }
+
+    visitMockup_element(ctx) {
+        throw 'not implemented';
+    }
+
     visitIf(ctx) {
         const value = this.visit(ctx.i_value);
         const body = ctx.i_body && this.visit(ctx.i_body);
@@ -160,7 +177,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitTake_remote(ctx) {
-        const url = ctx.tr_url.text.substring(1, ctx.tr_url.text.length - 1);
+        const url = extractStringValue(ctx.tr_url.text);
         const as = ctx.tr_as && this.visitIdentifier(ctx.tr_as);
 
         return new TakeRemoteNode(ctx, { url, as });
@@ -186,9 +203,9 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitString(ctx) {
-        let value = ctx.getText();
+        let value = extractStringValue(ctx.getText());
 
-        return new StringNode(ctx, { value: value.substring(1, value.length - 1) });
+        return new StringNode(ctx, { value: value });
     }
 
     visitId(ctx) {
@@ -502,7 +519,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         if (ctx.da_name_id) {
             name = this.visitIdentifier(ctx.da_name_id).name;
         } else if (ctx.da_name_string) {
-            name = ctx.da_name_string.text.substring(1, ctx.da_name_string.text.length - 1);
+            name = extractStringValue(ctx.da_name_string.text);
         }
 
         const value = this.visit(ctx.da_value);

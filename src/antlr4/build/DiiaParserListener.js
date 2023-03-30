@@ -68,6 +68,42 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#mockup.
+	enterMockup(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#mockup.
+	exitMockup(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#mockup_parents.
+	enterMockup_parents(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#mockup_parents.
+	exitMockup_parents(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#mockup_elements.
+	enterMockup_elements(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#mockup_elements.
+	exitMockup_elements(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#mockup_element.
+	enterMockup_element(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#mockup_element.
+	exitMockup_element(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#diia.
 	enterDiia(ctx) {
 	}
@@ -128,6 +164,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#take_pak.
 	exitTake_pak(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#take_file.
+	enterTake_file(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#take_file.
+	exitTake_file(ctx) {
 	}
 
 

@@ -7,13 +7,18 @@ options {
 file: f_program=program EOF;
 
 program: program_element (nl program_element)*;
-program_element: module | structure | diia | if | each | while | try | expr | throw | wait_assign | assign | nls | take | give;
+program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | nls | take | give;
 
 module: 'модуль' m_name=identifier nl (m_program=program nl)? nls 'кінець';
 
-structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_elements=structure_elements nl)? 'кінець';
+structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? ('втілює' m_parents=mockup_parents)? nl nls (s_elements=structure_elements nl)? 'кінець';
 structure_elements: structure_element (nl structure_element)*;
 structure_element: param | diia | nls;
+
+mockup: 'макет' m_name=identifier ('втілює' m_parents=mockup_parents)? nl nls (m_elements=mockup_elements nl)? 'кінець';
+mockup_parents: identifiers_chain (',' identifiers_chain)*;
+mockup_elements: mockup_element (nl mockup_element)*;
+mockup_element: me_name=identifier '(' ( nls m_params=params? nls ) ')' (m_type=type_value)?;
 
 diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 
@@ -26,7 +31,8 @@ while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 try: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier? (tc_body=body nl)? 'кінець';
 
 take: 'взяти' (tm_absolute='.')? tm_elements_chain=identifiers_chain (tm_star='.*')? ('як' tm_as=identifier)? #take_module
-    | 'взяти' 'пак' tp_elements_chain=identifiers_chain (tp_star='.*')? ('як' tp_as=identifier)? #take_pak
+    | 'взяти пак' tp_elements_chain=identifiers_chain (tp_star='.*')? ('як' tp_as=identifier)? #take_pak
+    | 'взяти файл' tf_name=STRING 'як' tf_as=identifier #take_file
     | 'взяти' tr_url=STRING ('як' tr_as=identifier)? #take_remote;
 
 give: 'дати' give_element (',' give_element)*;
@@ -49,9 +55,9 @@ value: NUMBER #number
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
      | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
      | a_left=value a_operation=arithmetic_op_add a_right=value #arithmetic_add
-     | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
      | c_left=value c_operation=comparison_op c_right=value #comparison
      | t_left=value t_operation=test_op t_right=value #test
+     | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
      | '[' a_elements=array_elements? ']' #array
      | '(' d_args=dictionary_args? ')' #dictionary
      ;
@@ -98,12 +104,12 @@ param_value: NUMBER #param_value_number
            | identifier #param_value_identifier;
 
 body: body_element (nl body_element)*;
-body_element: structure | diia | if | each | while | try | expr | throw | wait_assign | assign | return_body_line | nls;
+body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | return_body_line | nls;
 return_body_line: 'вернути' rbl=body_element;
 
 arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW | XOR;
 arithmetic_op_add: '+' | '-';
-test_op: 'і' | 'або';
+test_op: 'і' | 'або' | '||' | '&&';
 comparison_op: '==' | '!=' | '>' | '<' | '>=' | '<=' | 'є' | 'не є' | 'рівно' | 'не рівно' | 'більше' | 'не більше' | 'менше' | 'не менше' | 'містить' | 'не містить' | 'не';
 
 nl: NL;
