@@ -1,6 +1,6 @@
 class ASTNode {
     constructor(ctx) {
-        Object.assign(this, {
+        this.context = {
             start: {
                 line: ctx.start.line,
                 column: ctx.start.column,
@@ -9,7 +9,7 @@ class ASTNode {
                 line: ctx.stop.line,
                 column: ctx.stop.column,
             },
-        });
+        };
     }
 }
 
