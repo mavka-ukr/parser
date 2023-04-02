@@ -108,5 +108,4 @@ fragment ID_CONTINUE
 
 fragment ESCAPE_CHAR
     : '\\' [0btnfr"'\\]
-    | '\\' ESCAPE_CHAR
     ;
