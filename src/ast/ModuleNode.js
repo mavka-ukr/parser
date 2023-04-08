@@ -16,7 +16,7 @@ import ASTNode from "./ASTNode.js";
 class ModuleNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode} name
+     * @param {IdentifierNode|null} name
      * @param {ProgramNode} program
      */
 

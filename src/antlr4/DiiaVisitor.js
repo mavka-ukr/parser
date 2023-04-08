@@ -68,7 +68,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitModule(ctx) {
-        const name = this.visitIdentifier(ctx.m_name);
+        const name = ctx.m_name && this.visitIdentifier(ctx.m_name);
         const program = ctx.m_program && this.visit(ctx.m_program);
 
         return new ModuleNode(ctx, { name, program });

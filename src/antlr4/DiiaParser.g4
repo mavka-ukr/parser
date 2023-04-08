@@ -9,7 +9,7 @@ file: f_program=program EOF;
 program: program_element (nl program_element)*;
 program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | nls | take | give;
 
-module: 'модуль' m_name=identifier nl (m_program=program nl)? nls 'кінець';
+module: 'модуль' (m_name=identifier)? nl (m_program=program nl)? nls 'кінець';
 
 structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? ('втілює' m_parents=mockup_parents)? nl nls (s_elements=structure_elements nl)? 'кінець';
 structure_elements: structure_element (nl structure_element)*;
