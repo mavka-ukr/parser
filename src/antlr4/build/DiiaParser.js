@@ -4,7 +4,7 @@ import antlr4 from 'antlr4';
 import DiiaParserListener from './DiiaParserListener.js';
 import DiiaParserVisitor from './DiiaParserVisitor.js';
 
-const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
+const serializedATN = [4,1,95,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,
 2,13,7,13,2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,
 20,7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,
@@ -60,9 +60,9 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 1,53,1,53,1,54,1,54,1,55,5,55,719,8,55,10,55,12,55,722,9,55,1,55,0,3,40,
 74,76,56,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,
 46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,
-94,96,98,100,102,104,106,108,110,0,7,1,0,55,64,7,0,1,4,11,13,16,28,30,32,
-39,39,41,45,82,82,2,0,67,68,72,74,1,0,65,66,2,0,75,75,78,81,2,0,21,22,76,
-77,3,0,5,10,18,18,30,39,796,0,112,1,0,0,0,2,115,1,0,0,0,4,140,1,0,0,0,6,
+94,96,98,100,102,104,106,108,110,0,7,1,0,55,71,7,0,1,4,11,13,16,28,30,32,
+39,39,41,45,89,89,2,0,74,75,79,81,1,0,72,73,2,0,82,82,85,88,2,0,21,22,83,
+84,3,0,5,10,18,18,30,39,796,0,112,1,0,0,0,2,115,1,0,0,0,4,140,1,0,0,0,6,
 142,1,0,0,0,8,155,1,0,0,0,10,174,1,0,0,0,12,186,1,0,0,0,14,188,1,0,0,0,16,
 203,1,0,0,0,18,211,1,0,0,0,20,220,1,0,0,0,22,233,1,0,0,0,24,262,1,0,0,0,
 26,280,1,0,0,0,28,299,1,0,0,0,30,309,1,0,0,0,32,312,1,0,0,0,34,358,1,0,0,
@@ -109,7 +109,7 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 1,0,0,0,225,226,1,0,0,0,226,227,3,110,55,0,227,228,1,0,0,0,228,230,5,51,
 0,0,229,231,3,76,38,0,230,229,1,0,0,0,230,231,1,0,0,0,231,21,1,0,0,0,232,
 234,5,20,0,0,233,232,1,0,0,0,233,234,1,0,0,0,234,235,1,0,0,0,235,239,5,2,
-0,0,236,237,3,70,35,0,237,238,5,70,0,0,238,240,1,0,0,0,239,236,1,0,0,0,239,
+0,0,236,237,3,70,35,0,237,238,5,77,0,0,238,240,1,0,0,0,239,236,1,0,0,0,239,
 240,1,0,0,0,240,241,1,0,0,0,241,242,3,70,35,0,242,243,5,50,0,0,243,245,3,
 110,55,0,244,246,3,86,43,0,245,244,1,0,0,0,245,246,1,0,0,0,246,247,1,0,0,
 0,247,248,3,110,55,0,248,249,1,0,0,0,249,251,5,51,0,0,250,252,3,76,38,0,
@@ -133,23 +133,23 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 3,108,54,0,316,318,5,24,0,0,317,319,3,70,35,0,318,317,1,0,0,0,318,319,1,
 0,0,0,319,323,1,0,0,0,320,321,3,92,46,0,321,322,3,108,54,0,322,324,1,0,0,
 0,323,320,1,0,0,0,323,324,1,0,0,0,324,325,1,0,0,0,325,326,5,1,0,0,326,33,
-1,0,0,0,327,329,5,13,0,0,328,330,5,70,0,0,329,328,1,0,0,0,329,330,1,0,0,
+1,0,0,0,327,329,5,13,0,0,328,330,5,77,0,0,329,328,1,0,0,0,329,330,1,0,0,
 0,330,331,1,0,0,0,331,333,3,74,37,0,332,334,5,40,0,0,333,332,1,0,0,0,333,
 334,1,0,0,0,334,337,1,0,0,0,335,336,5,17,0,0,336,338,3,70,35,0,337,335,1,
 0,0,0,337,338,1,0,0,0,338,359,1,0,0,0,339,340,5,14,0,0,340,342,3,74,37,0,
 341,343,5,40,0,0,342,341,1,0,0,0,342,343,1,0,0,0,343,346,1,0,0,0,344,345,
 5,17,0,0,345,347,3,70,35,0,346,344,1,0,0,0,346,347,1,0,0,0,347,359,1,0,0,
-0,348,349,5,15,0,0,349,350,5,86,0,0,350,351,5,17,0,0,351,359,3,70,35,0,352,
-353,5,13,0,0,353,356,5,86,0,0,354,355,5,17,0,0,355,357,3,70,35,0,356,354,
+0,348,349,5,15,0,0,349,350,5,93,0,0,350,351,5,17,0,0,351,359,3,70,35,0,352,
+353,5,13,0,0,353,356,5,93,0,0,354,355,5,17,0,0,355,357,3,70,35,0,356,354,
 1,0,0,0,356,357,1,0,0,0,357,359,1,0,0,0,358,327,1,0,0,0,358,339,1,0,0,0,
 358,348,1,0,0,0,358,352,1,0,0,0,359,35,1,0,0,0,360,361,5,16,0,0,361,366,
 3,38,19,0,362,363,5,54,0,0,363,365,3,38,19,0,364,362,1,0,0,0,365,368,1,0,
 0,0,366,364,1,0,0,0,366,367,1,0,0,0,367,37,1,0,0,0,368,366,1,0,0,0,369,372,
 3,70,35,0,370,371,5,17,0,0,371,373,3,70,35,0,372,370,1,0,0,0,372,373,1,0,
-0,0,373,39,1,0,0,0,374,375,6,20,-1,0,375,413,5,83,0,0,376,413,5,86,0,0,377,
-413,3,70,35,0,378,379,5,65,0,0,379,413,3,40,20,18,380,381,5,66,0,0,381,413,
+0,0,373,39,1,0,0,0,374,375,6,20,-1,0,375,413,5,90,0,0,376,413,5,93,0,0,377,
+413,3,70,35,0,378,379,5,72,0,0,379,413,3,40,20,18,380,381,5,73,0,0,381,413,
 3,40,20,17,382,383,5,48,0,0,383,413,3,40,20,16,384,385,5,49,0,0,385,413,
-3,40,20,15,386,387,5,71,0,0,387,413,3,40,20,12,388,389,5,50,0,0,389,390,
+3,40,20,15,386,387,5,78,0,0,387,413,3,40,20,12,388,389,5,50,0,0,389,390,
 3,50,25,0,390,391,5,51,0,0,391,413,1,0,0,0,392,393,5,50,0,0,393,394,3,50,
 25,0,394,395,5,51,0,0,395,398,5,50,0,0,396,399,3,78,39,0,397,399,3,82,41,
 0,398,396,1,0,0,0,398,397,1,0,0,0,398,399,1,0,0,0,399,400,1,0,0,0,400,401,
@@ -164,13 +164,13 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 6,0,0,423,424,3,102,51,0,424,425,3,40,20,7,425,464,1,0,0,0,426,427,10,5,
 0,0,427,428,3,106,53,0,428,429,3,40,20,6,429,464,1,0,0,0,430,431,10,4,0,
 0,431,432,3,104,52,0,432,433,3,40,20,5,433,464,1,0,0,0,434,435,10,20,0,0,
-435,436,5,70,0,0,436,464,3,72,36,0,437,438,10,19,0,0,438,441,5,50,0,0,439,
+435,436,5,77,0,0,436,464,3,72,36,0,437,438,10,19,0,0,438,441,5,50,0,0,439,
 442,3,78,39,0,440,442,3,82,41,0,441,439,1,0,0,0,441,440,1,0,0,0,441,442,
 1,0,0,0,442,443,1,0,0,0,443,464,5,51,0,0,444,445,10,14,0,0,445,464,5,48,
 0,0,446,447,10,13,0,0,447,464,5,49,0,0,448,449,10,11,0,0,449,450,5,52,0,
 0,450,451,3,50,25,0,451,452,5,53,0,0,452,464,1,0,0,0,453,454,10,3,0,0,454,
 455,3,110,55,0,455,456,5,29,0,0,456,457,3,110,55,0,457,458,3,50,25,0,458,
-459,3,110,55,0,459,460,5,69,0,0,460,461,3,110,55,0,461,462,3,50,25,0,462,
+459,3,110,55,0,459,460,5,76,0,0,460,461,3,110,55,0,461,462,3,50,25,0,462,
 464,1,0,0,0,463,414,1,0,0,0,463,418,1,0,0,0,463,422,1,0,0,0,463,426,1,0,
 0,0,463,430,1,0,0,0,463,434,1,0,0,0,463,437,1,0,0,0,463,444,1,0,0,0,463,
 446,1,0,0,0,463,448,1,0,0,0,463,453,1,0,0,0,464,467,1,0,0,0,465,463,1,0,
@@ -180,12 +180,12 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 477,478,3,50,25,0,478,479,3,110,55,0,479,45,1,0,0,0,480,485,3,48,24,0,481,
 482,5,54,0,0,482,484,3,48,24,0,483,481,1,0,0,0,484,487,1,0,0,0,485,483,1,
 0,0,0,485,486,1,0,0,0,486,47,1,0,0,0,487,485,1,0,0,0,488,491,3,110,55,0,
-489,492,3,72,36,0,490,492,5,86,0,0,491,489,1,0,0,0,491,490,1,0,0,0,492,493,
+489,492,3,72,36,0,490,492,5,93,0,0,491,489,1,0,0,0,491,490,1,0,0,0,492,493,
 1,0,0,0,493,494,5,55,0,0,494,495,3,50,25,0,495,496,3,110,55,0,496,49,1,0,
 0,0,497,535,3,40,20,0,498,499,5,12,0,0,499,535,3,40,20,0,500,502,5,50,0,
 0,501,503,3,86,43,0,502,501,1,0,0,0,502,503,1,0,0,0,503,504,1,0,0,0,504,
 506,5,51,0,0,505,507,3,76,38,0,506,505,1,0,0,0,506,507,1,0,0,0,507,508,1,
-0,0,0,508,509,5,69,0,0,509,535,3,50,25,0,510,512,5,20,0,0,511,510,1,0,0,
+0,0,0,508,509,5,76,0,0,509,535,3,50,25,0,510,512,5,20,0,0,511,510,1,0,0,
 0,511,512,1,0,0,0,512,513,1,0,0,0,513,514,5,2,0,0,514,515,5,50,0,0,515,517,
 3,110,55,0,516,518,3,86,43,0,517,516,1,0,0,0,517,518,1,0,0,0,518,519,1,0,
 0,0,519,520,3,110,55,0,520,521,1,0,0,0,521,523,5,51,0,0,522,524,3,76,38,
@@ -208,9 +208,9 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 0,0,582,580,1,0,0,0,582,581,1,0,0,0,583,584,1,0,0,0,584,585,3,66,33,0,585,
 586,3,64,32,0,586,63,1,0,0,0,587,590,3,50,25,0,588,590,3,62,31,0,589,587,
 1,0,0,0,589,588,1,0,0,0,590,65,1,0,0,0,591,592,7,0,0,0,592,67,1,0,0,0,593,
-594,5,12,0,0,594,595,3,62,31,0,595,69,1,0,0,0,596,597,5,82,0,0,597,71,1,
+594,5,12,0,0,594,595,3,62,31,0,595,69,1,0,0,0,596,597,5,89,0,0,597,71,1,
 0,0,0,598,599,7,1,0,0,599,73,1,0,0,0,600,601,6,37,-1,0,601,602,3,70,35,0,
-602,608,1,0,0,0,603,604,10,1,0,0,604,605,5,70,0,0,605,607,3,74,37,2,606,
+602,608,1,0,0,0,603,604,10,1,0,0,604,605,5,77,0,0,605,607,3,74,37,2,606,
 603,1,0,0,0,607,610,1,0,0,0,608,606,1,0,0,0,608,609,1,0,0,0,609,75,1,0,0,
 0,610,608,1,0,0,0,611,612,6,38,-1,0,612,613,3,74,37,0,613,620,1,0,0,0,614,
 615,10,1,0,0,615,616,3,104,52,0,616,617,3,76,38,2,617,619,1,0,0,0,618,614,
@@ -228,7 +228,7 @@ const serializedATN = [4,1,88,724,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 58,29,0,663,660,1,0,0,0,663,661,1,0,0,0,663,662,1,0,0,0,664,666,1,0,0,0,
 665,667,3,76,38,0,666,665,1,0,0,0,666,667,1,0,0,0,667,670,1,0,0,0,668,669,
 5,55,0,0,669,671,3,90,45,0,670,668,1,0,0,0,670,671,1,0,0,0,671,89,1,0,0,
-0,672,676,5,83,0,0,673,676,5,86,0,0,674,676,3,70,35,0,675,672,1,0,0,0,675,
+0,672,676,5,90,0,0,673,676,5,93,0,0,674,676,3,70,35,0,675,672,1,0,0,0,675,
 673,1,0,0,0,675,674,1,0,0,0,676,91,1,0,0,0,677,683,3,94,47,0,678,679,3,108,
 54,0,679,680,3,94,47,0,680,682,1,0,0,0,681,678,1,0,0,0,682,685,1,0,0,0,683,
 681,1,0,0,0,683,684,1,0,0,0,684,93,1,0,0,0,685,683,1,0,0,0,686,701,3,8,4,
@@ -286,10 +286,12 @@ export default class DiiaParser extends antlr4.Parser {
                             "'js'", "'\\u043A\\u043E\\u043B\\u0438'", "'\\u0442\\u0430'", 
                             null, null, "'--'", "'++'", "'('", "')'", "'['", 
                             "']'", "','", "'='", "':='", "'+='", "'-='", 
-                            "'*='", "'/='", "'//='", "'%='", "'^='", "'**='", 
-                            "'+'", "'-'", "'*'", "'/'", "':'", "'.'", "'!'", 
-                            "'%'", "'//'", "'**'", "'^'", "'||'", "'&&'", 
-                            "'|'", "'&'", "'<<'", "'>>'" ];
+                            "'*='", "'/='", "'//='", "'%='", "'|='", "'&='", 
+                            "'<<='", "'>>='", "'^='", "'**='", "'||='", 
+                            "'&&='", "'??='", "'+'", "'-'", "'*'", "'/'", 
+                            "':'", "'.'", "'!'", "'%'", "'//'", "'**'", 
+                            "'^'", "'||'", "'&&'", "'|'", "'&'", "'<<'", 
+                            "'>>'" ];
     static symbolicNames = [ null, "END", "DIIA", "STRUCTURE", "FOR", "EQ", 
                              "NOT_EQ", "GREATER_EQ", "SMALLER_EQ", "GREATER", 
                              "SMALLER", "IF", "WAIT", "TAKE", "TAKE_PAK", 
@@ -304,8 +306,10 @@ export default class DiiaParser extends antlr4.Parser {
                              "OPEN_PAREN", "CLOSE_PAREN", "OPEN_ARRAY", 
                              "CLOSE_ARRAY", "COMMA", "ASSIGN", "ASSIGN_PARENT", 
                              "ASSIGN_ADD", "ASSIGN_SUB", "ASSIGN_MUL", "ASSIGN_DIV", 
-                             "ASSIGN_DIVDIV", "ASSIGN_MOD", "ASSIGN_XOR", 
-                             "ASSIGN_POW", "PLUS", "MINUS", "MUL", "DIV", 
+                             "ASSIGN_DIVDIV", "ASSIGN_MOD", "ASSIGN_BW_OR", 
+                             "ASSIGN_BW_AND", "ASSIGN_BW_SHIFT_LEFT", "ASSIGN_BW_SHIFT_RIGHT", 
+                             "ASSIGN_XOR", "ASSIGN_POW", "ASSIGN_OR", "ASSIGN_AND", 
+                             "ASSIGN_IF", "PLUS", "MINUS", "MUL", "DIV", 
                              "COLON", "DOT", "NOT", "PERCENT", "DIVDIV", 
                              "POW", "XOR", "OR_SYM", "AND_SYM", "OR_BW", 
                              "AND_BW", "BW_SHIFT_LEFT", "BW_SHIFT_RIGHT", 
@@ -597,7 +601,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 144;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===82) {
+	        if(_la===89) {
 	            this.state = 143;
 	            localctx.m_name = this.identifier();
 	        }
@@ -804,7 +808,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 199;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===82) {
+	        if(_la===89) {
 	            this.state = 196;
 	            localctx.m_elements = this.mockup_elements();
 	            this.state = 197;
@@ -919,7 +923,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 224;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===82) {
+	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===89) {
 	            this.state = 223;
 	            localctx.m_params = this.params();
 	        }
@@ -931,7 +935,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 230;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===82) {
+	        if(_la===89) {
 	            this.state = 229;
 	            localctx.m_type = this.type_value(0);
 	        }
@@ -988,7 +992,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 245;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===82) {
+	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===89) {
 	            this.state = 244;
 	            localctx.d_params = this.params();
 	        }
@@ -1000,7 +1004,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 251;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===82) {
+	        if(_la===89) {
 	            this.state = 250;
 	            localctx.d_type = this.type_value(0);
 	        }
@@ -1137,7 +1141,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 295;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 211294236) !== 0) || ((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 1124076485) !== 0) || ((((_la - 82)) & ~0x1f) == 0 && ((1 << (_la - 82)) & 19) !== 0)) {
+	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 211294236) !== 0) || ((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 2147486661) !== 0) || ((((_la - 73)) & ~0x1f) == 0 && ((1 << (_la - 73)) & 1245217) !== 0)) {
 	            this.state = 292;
 	            localctx.e_body = this.body();
 	            this.state = 293;
@@ -1177,7 +1181,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 305;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 211294236) !== 0) || ((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 1124076485) !== 0) || ((((_la - 82)) & ~0x1f) == 0 && ((1 << (_la - 82)) & 19) !== 0)) {
+	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 211294236) !== 0) || ((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 2147486661) !== 0) || ((((_la - 73)) & ~0x1f) == 0 && ((1 << (_la - 73)) & 1245217) !== 0)) {
 	            this.state = 302;
 	            localctx.w_body = this.body();
 	            this.state = 303;
@@ -1254,7 +1258,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 323;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 211294236) !== 0) || ((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 1124076485) !== 0) || ((((_la - 82)) & ~0x1f) == 0 && ((1 << (_la - 82)) & 19) !== 0)) {
+	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 211294236) !== 0) || ((((_la - 41)) & ~0x1f) == 0 && ((1 << (_la - 41)) & 2147486661) !== 0) || ((((_la - 73)) & ~0x1f) == 0 && ((1 << (_la - 73)) & 1245217) !== 0)) {
 	            this.state = 320;
 	            localctx.tc_body = this.body();
 	            this.state = 321;
@@ -1296,7 +1300,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 329;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===70) {
+	            if(_la===77) {
 	                this.state = 328;
 	                localctx.tm_absolute = this.match(DiiaParser.DOT);
 	            }
@@ -1611,7 +1615,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 404;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 1052676) !== 0) || ((((_la - 47)) & ~0x1f) == 0 && ((1 << (_la - 47)) & 17563695) !== 0) || ((((_la - 82)) & ~0x1f) == 0 && ((1 << (_la - 82)) & 19) !== 0)) {
+	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 1052676) !== 0) || ((((_la - 47)) & ~0x1f) == 0 && ((1 << (_la - 47)) & 2248146991) !== 0) || ((((_la - 89)) & ~0x1f) == 0 && ((1 << (_la - 89)) & 19) !== 0)) {
 	                this.state = 403;
 	                localctx.a_elements = this.array_elements();
 	            }
@@ -1629,7 +1633,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 409;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 48769) !== 0) || _la===82 || _la===86) {
+	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 48769) !== 0) || _la===89 || _la===93) {
 	                this.state = 408;
 	                localctx.d_args = this.dictionary_args();
 	            }
@@ -1990,11 +1994,11 @@ export default class DiiaParser extends antlr4.Parser {
 	        case 43:
 	        case 44:
 	        case 45:
-	        case 82:
+	        case 89:
 	            this.state = 489;
 	            localctx.da_name_id = this.extended_identifier();
 	            break;
-	        case 86:
+	        case 93:
 	            this.state = 490;
 	            localctx.da_name_string = this.match(DiiaParser.STRING);
 	            break;
@@ -2056,7 +2060,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 502;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===82) {
+	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===89) {
 	                this.state = 501;
 	                localctx.f_params = this.params();
 	            }
@@ -2066,7 +2070,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 506;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===82) {
+	            if(_la===89) {
 	                this.state = 505;
 	                localctx.f_type = this.type_value(0);
 	            }
@@ -2098,7 +2102,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 517;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===82) {
+	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===89) {
 	                this.state = 516;
 	                localctx.d_params = this.params();
 	            }
@@ -2110,7 +2114,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 523;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===82) {
+	            if(_la===89) {
 	                this.state = 522;
 	                localctx.d_type = this.type_value(0);
 	            }
@@ -2342,7 +2346,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 578;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if(_la===82) {
+	            if(_la===89) {
 	                this.state = 577;
 	                localctx.a_type = this.type_value(0);
 	            }
@@ -2425,7 +2429,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 591;
 	        _la = this._input.LA(1);
-	        if(!(((((_la - 55)) & ~0x1f) == 0 && ((1 << (_la - 55)) & 1023) !== 0))) {
+	        if(!(((((_la - 55)) & ~0x1f) == 0 && ((1 << (_la - 55)) & 131071) !== 0))) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -2504,7 +2508,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 598;
 	        _la = this._input.LA(1);
-	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 16001) !== 0) || _la===82)) {
+	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 16001) !== 0) || _la===89)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -2849,7 +2853,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        case 43:
 	        case 44:
 	        case 45:
-	        case 82:
+	        case 89:
 	            this.state = 660;
 	            localctx.p_name = this.extended_identifier();
 	            break;
@@ -2867,7 +2871,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 666;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if(_la===82) {
+	        if(_la===89) {
 	            this.state = 665;
 	            localctx.p_type = this.type_value(0);
 	        }
@@ -2905,19 +2909,19 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 675;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case 83:
+	        case 90:
 	            localctx = new Param_value_numberContext(this, localctx);
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 672;
 	            this.match(DiiaParser.NUMBER);
 	            break;
-	        case 86:
+	        case 93:
 	            localctx = new Param_value_stringContext(this, localctx);
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 673;
 	            this.match(DiiaParser.STRING);
 	            break;
-	        case 82:
+	        case 89:
 	            localctx = new Param_value_identifierContext(this, localctx);
 	            this.enterOuterAlt(localctx, 3);
 	            this.state = 674;
@@ -3122,7 +3126,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 705;
 	        _la = this._input.LA(1);
-	        if(!(((((_la - 67)) & ~0x1f) == 0 && ((1 << (_la - 67)) & 227) !== 0))) {
+	        if(!(((((_la - 74)) & ~0x1f) == 0 && ((1 << (_la - 74)) & 227) !== 0))) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -3153,7 +3157,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 707;
 	        _la = this._input.LA(1);
-	        if(!(_la===65 || _la===66)) {
+	        if(!(_la===72 || _la===73)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -3184,7 +3188,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 709;
 	        _la = this._input.LA(1);
-	        if(!(((((_la - 75)) & ~0x1f) == 0 && ((1 << (_la - 75)) & 121) !== 0))) {
+	        if(!(((((_la - 82)) & ~0x1f) == 0 && ((1 << (_la - 82)) & 121) !== 0))) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -3215,7 +3219,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 711;
 	        _la = this._input.LA(1);
-	        if(!(_la===21 || _la===22 || _la===76 || _la===77)) {
+	        if(!(_la===21 || _la===22 || _la===83 || _la===84)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -3390,32 +3394,39 @@ DiiaParser.ASSIGN_MUL = 59;
 DiiaParser.ASSIGN_DIV = 60;
 DiiaParser.ASSIGN_DIVDIV = 61;
 DiiaParser.ASSIGN_MOD = 62;
-DiiaParser.ASSIGN_XOR = 63;
-DiiaParser.ASSIGN_POW = 64;
-DiiaParser.PLUS = 65;
-DiiaParser.MINUS = 66;
-DiiaParser.MUL = 67;
-DiiaParser.DIV = 68;
-DiiaParser.COLON = 69;
-DiiaParser.DOT = 70;
-DiiaParser.NOT = 71;
-DiiaParser.PERCENT = 72;
-DiiaParser.DIVDIV = 73;
-DiiaParser.POW = 74;
-DiiaParser.XOR = 75;
-DiiaParser.OR_SYM = 76;
-DiiaParser.AND_SYM = 77;
-DiiaParser.OR_BW = 78;
-DiiaParser.AND_BW = 79;
-DiiaParser.BW_SHIFT_LEFT = 80;
-DiiaParser.BW_SHIFT_RIGHT = 81;
-DiiaParser.ID = 82;
-DiiaParser.NUMBER = 83;
-DiiaParser.INTEGER = 84;
-DiiaParser.FLOAT = 85;
-DiiaParser.STRING = 86;
-DiiaParser.LINE_COMMENT = 87;
-DiiaParser.COMMENT = 88;
+DiiaParser.ASSIGN_BW_OR = 63;
+DiiaParser.ASSIGN_BW_AND = 64;
+DiiaParser.ASSIGN_BW_SHIFT_LEFT = 65;
+DiiaParser.ASSIGN_BW_SHIFT_RIGHT = 66;
+DiiaParser.ASSIGN_XOR = 67;
+DiiaParser.ASSIGN_POW = 68;
+DiiaParser.ASSIGN_OR = 69;
+DiiaParser.ASSIGN_AND = 70;
+DiiaParser.ASSIGN_IF = 71;
+DiiaParser.PLUS = 72;
+DiiaParser.MINUS = 73;
+DiiaParser.MUL = 74;
+DiiaParser.DIV = 75;
+DiiaParser.COLON = 76;
+DiiaParser.DOT = 77;
+DiiaParser.NOT = 78;
+DiiaParser.PERCENT = 79;
+DiiaParser.DIVDIV = 80;
+DiiaParser.POW = 81;
+DiiaParser.XOR = 82;
+DiiaParser.OR_SYM = 83;
+DiiaParser.AND_SYM = 84;
+DiiaParser.OR_BW = 85;
+DiiaParser.AND_BW = 86;
+DiiaParser.BW_SHIFT_LEFT = 87;
+DiiaParser.BW_SHIFT_RIGHT = 88;
+DiiaParser.ID = 89;
+DiiaParser.NUMBER = 90;
+DiiaParser.INTEGER = 91;
+DiiaParser.FLOAT = 92;
+DiiaParser.STRING = 93;
+DiiaParser.LINE_COMMENT = 94;
+DiiaParser.COMMENT = 95;
 
 DiiaParser.RULE_file = 0;
 DiiaParser.RULE_program = 1;
@@ -7150,12 +7161,40 @@ class Assign_symbolContext extends antlr4.ParserRuleContext {
 	    return this.getToken(DiiaParser.ASSIGN_MOD, 0);
 	};
 
+	ASSIGN_POW() {
+	    return this.getToken(DiiaParser.ASSIGN_POW, 0);
+	};
+
+	ASSIGN_BW_AND() {
+	    return this.getToken(DiiaParser.ASSIGN_BW_AND, 0);
+	};
+
+	ASSIGN_BW_OR() {
+	    return this.getToken(DiiaParser.ASSIGN_BW_OR, 0);
+	};
+
+	ASSIGN_BW_SHIFT_LEFT() {
+	    return this.getToken(DiiaParser.ASSIGN_BW_SHIFT_LEFT, 0);
+	};
+
+	ASSIGN_BW_SHIFT_RIGHT() {
+	    return this.getToken(DiiaParser.ASSIGN_BW_SHIFT_RIGHT, 0);
+	};
+
 	ASSIGN_XOR() {
 	    return this.getToken(DiiaParser.ASSIGN_XOR, 0);
 	};
 
-	ASSIGN_POW() {
-	    return this.getToken(DiiaParser.ASSIGN_POW, 0);
+	ASSIGN_AND() {
+	    return this.getToken(DiiaParser.ASSIGN_AND, 0);
+	};
+
+	ASSIGN_OR() {
+	    return this.getToken(DiiaParser.ASSIGN_OR, 0);
+	};
+
+	ASSIGN_IF() {
+	    return this.getToken(DiiaParser.ASSIGN_IF, 0);
 	};
 
 	enterRule(listener) {
