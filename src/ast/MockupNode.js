@@ -5,7 +5,7 @@ import ASTNode from "./ASTNode.js";
  *   кількість_хромосом число
  * кінець
  */
-class StructureNode extends ASTNode {
+class MockupNode extends ASTNode {
     /**
      * @param context
      * @param {IdentifierNode} name
@@ -21,4 +21,4 @@ class StructureNode extends ASTNode {
     }
 }
 
-export default StructureNode;
+export default MockupNode;

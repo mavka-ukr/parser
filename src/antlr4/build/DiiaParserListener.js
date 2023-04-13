@@ -374,6 +374,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#bitwise.
+	enterBitwise(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#bitwise.
+	exitBitwise(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#post_decrement.
 	enterPost_decrement(ctx) {
 	}
@@ -572,6 +581,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#extended_identifier.
+	enterExtended_identifier(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#extended_identifier.
+	exitExtended_identifier(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#identifiers_chain.
 	enterIdentifiers_chain(ctx) {
 	}
@@ -713,6 +731,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#arithmetic_op_add.
 	exitArithmetic_op_add(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#bitwise_op.
+	enterBitwise_op(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#bitwise_op.
+	exitBitwise_op(ctx) {
 	}
 
 

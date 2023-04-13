@@ -43,6 +43,8 @@ STAR_ALL: '.*';
 MOCKUP: 'макет';
 IMPLEMENTS: 'втілює';
 EVAL: 'js';
+WHEN: 'коли';
+TA: 'та';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
 NL: ( '\r'? '\n' );

@@ -49,6 +49,7 @@ import GiveElementNode from "../ast/GiveElementNode.js";
 import { extractStringValue } from "../utils/text.js";
 import EvalNode from "../ast/EvalNode.js";
 import TakeFileNode from "../ast/TakeFileNode.js";
+import BitwiseNode from "../ast/BitwiseNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -326,6 +327,18 @@ class DiiaVisitor extends DiiaParserVisitor {
         return ctx.getText();
     }
 
+    visitBitwise(ctx) {
+        const left = this.visit(ctx.b_left);
+        const right = this.visit(ctx.b_right);
+        const operation = this.visit(ctx.b_operation);
+
+        return new BitwiseNode(ctx, { left, right, operation });
+    }
+
+    visitBitwise_op(ctx) {
+        return ctx.getText();
+    }
+
     visitTernary(ctx) {
         const value = this.visit(ctx.t_value);
         const positiveValue = this.visit(ctx.t_positive);
@@ -475,6 +488,10 @@ class DiiaVisitor extends DiiaParserVisitor {
         }
 
         return new IdentifierNode(ctx, { name });
+    }
+
+    visitExtended_identifier(ctx) {
+        return this.visitIdentifier(ctx);
     }
 
     visitIdentifiers_chain(ctx) {

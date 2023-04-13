@@ -43,7 +43,7 @@ give_element: ge_name=identifier ('як' ge_as=identifier)?;
 value: NUMBER #number
      | STRING #string
      | identifier #id
-     | c_left=value '.' c_right=identifier #chain
+     | c_left=value '.' c_right=extended_identifier #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call
      | '+' p_value=value  #positive
      | '-' n_value=value  #negative
@@ -57,6 +57,7 @@ value: NUMBER #number
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
      | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
      | a_left=value a_operation=arithmetic_op_add a_right=value #arithmetic_add
+     | b_left=value b_operation=bitwise_op b_right=value #bitwise
      | c_left=value c_operation=comparison_op c_right=value #comparison
      | t_left=value t_operation=test_op t_right=value #test
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
@@ -68,7 +69,7 @@ array_elements: array_element (',' array_element)*;
 array_element: nls ae_value=expr nls;
 
 dictionary_args: dictionary_arg (',' dictionary_arg)*;
-dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value=expr nls;
+dictionary_arg: nls (da_name_id=extended_identifier | da_name_string=STRING) '=' da_value=expr nls;
 
 expr: value #simple
     | 'чекати' w_value=value #wait
@@ -90,6 +91,8 @@ assign_symbol: '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '//=' | '%=' | '^=' | '*
 wait_assign: 'чекати' wa_assign=assign;
 
 identifier: ID;
+extended_identifier: ID | END | DIIA | STRUCTURE | FOR | IF | WAIT | TAKE | GIVE | AS | IS | RETURN | ASYNC | AND | OR | TRY | CATCH | ELSE | THROW | WHILE | MODULE | EQ_WORD | GR_WORD | SM_WORD | NOT_WORD | MOCKUP | IMPLEMENTS | EVAL | WHEN | TA;
+
 identifiers_chain: ic_identifier=identifier | ic_left=identifiers_chain '.' ic_right=identifiers_chain;
 
 type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_op tv_right=type_value;
@@ -97,10 +100,10 @@ type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_o
 args: arg (',' arg)*;
 arg: nls a_value=expr nls;
 named_args: named_arg (',' named_arg)*;
-named_arg: nls na_name=identifier '=' na_value=expr nls;
+named_arg: nls na_name=extended_identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: (p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
+param: (p_name=extended_identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | STRING #param_value_string
            | identifier #param_value_identifier;
@@ -109,8 +112,9 @@ body: body_element (nl body_element)*;
 body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | eval | return_body_line | nls;
 return_body_line: 'вернути' rbl=body_element;
 
-arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW | XOR;
+arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW;
 arithmetic_op_add: '+' | '-';
+bitwise_op: XOR | OR_BW | AND_BW | BW_SHIFT_LEFT | BW_SHIFT_RIGHT;
 test_op: 'і' | 'або' | '||' | '&&';
 comparison_op: '==' | '!=' | '>' | '<' | '>=' | '<=' | 'є' | 'не є' | 'рівно' | 'не рівно' | 'більше' | 'не більше' | 'менше' | 'не менше' | 'містить' | 'не містить' | 'не';
 
