@@ -50,6 +50,7 @@ import { extractStringValue } from "../utils/text.js";
 import EvalNode from "../ast/EvalNode.js";
 import TakeFileNode from "../ast/TakeFileNode.js";
 import BitwiseNode from "../ast/BitwiseNode.js";
+import BitwiseNotNode from "../ast/BitwiseNotNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -289,6 +290,12 @@ class DiiaVisitor extends DiiaParserVisitor {
         const value = this.visit(ctx.n_value);
 
         return new NotNode(ctx, { value });
+    }
+
+    visitBitwise_not(ctx) {
+        const value = this.visit(ctx.bn_value);
+
+        return new BitwiseNotNode(ctx, { value });
     }
 
     visitSimple(ctx) {

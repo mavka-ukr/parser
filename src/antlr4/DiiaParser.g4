@@ -52,6 +52,7 @@ value: NUMBER #number
      | pd_value=value DECREMENT #post_decrement
      | pi_value=value INCREMENT #post_increment
      | '!' n_value=value  #not
+     | '~' bn_value=value  #bitwise_not
      | a_left=value '[' a_element=expr ']' #get_element
      | '(' n_value=expr ')' #nested
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr

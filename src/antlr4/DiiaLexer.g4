@@ -79,6 +79,7 @@ DIV: '/';
 COLON: ':';
 DOT: '.';
 NOT: '!';
+TILDA: '~';
 PERCENT: '%';
 DIVDIV: '//';
 POW: '**';

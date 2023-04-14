@@ -275,6 +275,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#bitwise_not.
+	enterBitwise_not(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#bitwise_not.
+	exitBitwise_not(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#test.
 	enterTest(ctx) {
 	}
