@@ -180,7 +180,7 @@ const serializedATN = [4,1,98,726,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 1,0,0,0,477,475,1,0,0,0,478,479,3,110,55,0,479,480,3,50,25,0,480,481,3,110,
 55,0,481,45,1,0,0,0,482,487,3,48,24,0,483,484,5,54,0,0,484,486,3,48,24,0,
 485,483,1,0,0,0,486,489,1,0,0,0,487,485,1,0,0,0,487,488,1,0,0,0,488,47,1,
-0,0,0,489,487,1,0,0,0,490,493,3,110,55,0,491,494,3,72,36,0,492,494,5,96,
+0,0,0,489,487,1,0,0,0,490,493,3,110,55,0,491,494,3,70,35,0,492,494,5,96,
 0,0,493,491,1,0,0,0,493,492,1,0,0,0,494,495,1,0,0,0,495,496,5,55,0,0,496,
 497,3,50,25,0,497,498,3,110,55,0,498,49,1,0,0,0,499,537,3,40,20,0,500,501,
 5,12,0,0,501,537,3,40,20,0,502,504,5,50,0,0,503,505,3,86,43,0,504,503,1,
@@ -221,11 +221,11 @@ const serializedATN = [4,1,98,726,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 110,55,0,634,635,3,50,25,0,635,636,3,110,55,0,636,81,1,0,0,0,637,642,3,84,
 42,0,638,639,5,54,0,0,639,641,3,84,42,0,640,638,1,0,0,0,641,644,1,0,0,0,
 642,640,1,0,0,0,642,643,1,0,0,0,643,83,1,0,0,0,644,642,1,0,0,0,645,646,3,
-110,55,0,646,647,3,72,36,0,647,648,5,55,0,0,648,649,3,50,25,0,649,650,3,
+110,55,0,646,647,3,70,35,0,647,648,5,55,0,0,648,649,3,50,25,0,649,650,3,
 110,55,0,650,85,1,0,0,0,651,659,3,88,44,0,652,653,3,110,55,0,653,654,5,54,
 0,0,654,655,3,110,55,0,655,656,3,88,44,0,656,658,1,0,0,0,657,652,1,0,0,0,
 658,661,1,0,0,0,659,657,1,0,0,0,659,660,1,0,0,0,660,87,1,0,0,0,661,659,1,
-0,0,0,662,666,3,72,36,0,663,666,3,54,27,0,664,666,3,58,29,0,665,662,1,0,
+0,0,0,662,666,3,70,35,0,663,666,3,54,27,0,664,666,3,58,29,0,665,662,1,0,
 0,0,665,663,1,0,0,0,665,664,1,0,0,0,666,668,1,0,0,0,667,669,3,76,38,0,668,
 667,1,0,0,0,668,669,1,0,0,0,669,672,1,0,0,0,670,671,5,55,0,0,671,673,3,90,
 45,0,672,670,1,0,0,0,672,673,1,0,0,0,673,89,1,0,0,0,674,678,5,92,0,0,675,
@@ -675,14 +675,14 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.nls();
 	        this.state = 170;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,6,this._ctx);
-	        if(la_===1) {
+	        _la = this._input.LA(1);
+	        if(_la===2 || _la===20 || ((((_la - 47)) & ~0x1f) == 0 && ((1 << (_la - 47)) & 41) !== 0) || _la===91) {
 	            this.state = 167;
 	            localctx.s_elements = this.structure_elements();
 	            this.state = 168;
 	            this.nl();
-
 	        }
+
 	        this.state = 172;
 	        this.match(DiiaParser.END);
 	    } catch (re) {
@@ -745,26 +745,27 @@ export default class DiiaParser extends antlr4.Parser {
 	    try {
 	        this.state = 186;
 	        this._errHandler.sync(this);
-	        var la_ = this._interp.adaptivePredict(this._input,8,this._ctx);
-	        switch(la_) {
-	        case 1:
+	        switch(this._input.LA(1)) {
+	        case 50:
+	        case 52:
+	        case 91:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 183;
 	            this.param();
 	            break;
-
 	        case 2:
+	        case 20:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 184;
 	            this.diia();
 	            break;
-
-	        case 3:
+	        case 47:
 	            this.enterOuterAlt(localctx, 3);
 	            this.state = 185;
 	            this.nls();
 	            break;
-
+	        default:
+	            throw new antlr4.error.NoViableAltException(this);
 	        }
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -924,7 +925,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 224;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===91) {
+	        if(_la===50 || _la===52 || _la===91) {
 	            this.state = 223;
 	            localctx.m_params = this.params();
 	        }
@@ -993,7 +994,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 245;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===91) {
+	        if(_la===50 || _la===52 || _la===91) {
 	            this.state = 244;
 	            localctx.d_params = this.params();
 	        }
@@ -1644,7 +1645,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 411;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 48769) !== 0) || _la===91 || _la===96) {
+	            if(_la===47 || _la===91 || _la===96) {
 	                this.state = 410;
 	                localctx.d_args = this.dictionary_args();
 	            }
@@ -1976,38 +1977,9 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 493;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case 1:
-	        case 2:
-	        case 3:
-	        case 4:
-	        case 11:
-	        case 12:
-	        case 13:
-	        case 16:
-	        case 17:
-	        case 18:
-	        case 19:
-	        case 20:
-	        case 21:
-	        case 22:
-	        case 23:
-	        case 24:
-	        case 25:
-	        case 26:
-	        case 27:
-	        case 28:
-	        case 30:
-	        case 31:
-	        case 32:
-	        case 39:
-	        case 41:
-	        case 42:
-	        case 43:
-	        case 44:
-	        case 45:
 	        case 91:
 	            this.state = 491;
-	            localctx.da_name_id = this.extended_identifier();
+	            localctx.da_name_id = this.identifier();
 	            break;
 	        case 96:
 	            this.state = 492;
@@ -2071,7 +2043,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 504;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===91) {
+	            if(_la===50 || _la===52 || _la===91) {
 	                this.state = 503;
 	                localctx.f_params = this.params();
 	            }
@@ -2113,7 +2085,7 @@ export default class DiiaParser extends antlr4.Parser {
 	            this.state = 519;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	            if((((_la) & ~0x1f) == 0 && ((1 << _la) & 3758045214) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & 1326721) !== 0) || _la===91) {
+	            if(_la===50 || _la===52 || _la===91) {
 	                this.state = 518;
 	                localctx.d_params = this.params();
 	            }
@@ -2761,7 +2733,7 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 645;
 	        this.nls();
 	        this.state = 646;
-	        localctx.na_name = this.extended_identifier();
+	        localctx.na_name = this.identifier();
 	        this.state = 647;
 	        this.match(DiiaParser.ASSIGN);
 	        this.state = 648;
@@ -2835,38 +2807,9 @@ export default class DiiaParser extends antlr4.Parser {
 	        this.state = 665;
 	        this._errHandler.sync(this);
 	        switch(this._input.LA(1)) {
-	        case 1:
-	        case 2:
-	        case 3:
-	        case 4:
-	        case 11:
-	        case 12:
-	        case 13:
-	        case 16:
-	        case 17:
-	        case 18:
-	        case 19:
-	        case 20:
-	        case 21:
-	        case 22:
-	        case 23:
-	        case 24:
-	        case 25:
-	        case 26:
-	        case 27:
-	        case 28:
-	        case 30:
-	        case 31:
-	        case 32:
-	        case 39:
-	        case 41:
-	        case 42:
-	        case 43:
-	        case 44:
-	        case 45:
 	        case 91:
 	            this.state = 662;
-	            localctx.p_name = this.extended_identifier();
+	            localctx.p_name = this.identifier();
 	            break;
 	        case 52:
 	            this.state = 663;
@@ -6432,7 +6375,7 @@ class Dictionary_argContext extends antlr4.ParserRuleContext {
         super(parent, invokingState);
         this.parser = parser;
         this.ruleIndex = DiiaParser.RULE_dictionary_arg;
-        this.da_name_id = null; // Extended_identifierContext
+        this.da_name_id = null; // IdentifierContext
         this.da_name_string = null; // Token
         this.da_value = null; // ExprContext
     }
@@ -6456,8 +6399,8 @@ class Dictionary_argContext extends antlr4.ParserRuleContext {
 	    return this.getTypedRuleContext(ExprContext,0);
 	};
 
-	extended_identifier() {
-	    return this.getTypedRuleContext(Extended_identifierContext,0);
+	identifier() {
+	    return this.getTypedRuleContext(IdentifierContext,0);
 	};
 
 	STRING() {
@@ -7841,7 +7784,7 @@ class Named_argContext extends antlr4.ParserRuleContext {
         super(parent, invokingState);
         this.parser = parser;
         this.ruleIndex = DiiaParser.RULE_named_arg;
-        this.na_name = null; // Extended_identifierContext
+        this.na_name = null; // IdentifierContext
         this.na_value = null; // ExprContext
     }
 
@@ -7860,8 +7803,8 @@ class Named_argContext extends antlr4.ParserRuleContext {
 	    return this.getToken(DiiaParser.ASSIGN, 0);
 	};
 
-	extended_identifier() {
-	    return this.getTypedRuleContext(Extended_identifierContext,0);
+	identifier() {
+	    return this.getTypedRuleContext(IdentifierContext,0);
 	};
 
 	expr() {
@@ -7978,15 +7921,15 @@ class ParamContext extends antlr4.ParserRuleContext {
         super(parent, invokingState);
         this.parser = parser;
         this.ruleIndex = DiiaParser.RULE_param;
-        this.p_name = null; // Extended_identifierContext
+        this.p_name = null; // IdentifierContext
         this.p_array_destruction = null; // Array_destructionContext
         this.p_object_destruction = null; // Object_destructionContext
         this.p_type = null; // Type_valueContext
         this.p_value = null; // Param_valueContext
     }
 
-	extended_identifier() {
-	    return this.getTypedRuleContext(Extended_identifierContext,0);
+	identifier() {
+	    return this.getTypedRuleContext(IdentifierContext,0);
 	};
 
 	array_destruction() {

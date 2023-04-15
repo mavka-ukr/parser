@@ -70,7 +70,7 @@ array_elements: array_element (',' array_element)*;
 array_element: nls ae_value=expr nls;
 
 dictionary_args: dictionary_arg (',' dictionary_arg)*;
-dictionary_arg: nls (da_name_id=extended_identifier | da_name_string=STRING) '=' da_value=expr nls;
+dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value=expr nls;
 
 expr: value #simple
     | 'чекати' w_value=value #wait
@@ -101,10 +101,10 @@ type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_o
 args: arg (',' arg)*;
 arg: nls a_value=expr nls;
 named_args: named_arg (',' named_arg)*;
-named_arg: nls na_name=extended_identifier '=' na_value=expr nls;
+named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: (p_name=extended_identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
+param: (p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | STRING #param_value_string
            | identifier #param_value_identifier;
