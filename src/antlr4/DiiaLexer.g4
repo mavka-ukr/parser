@@ -45,7 +45,7 @@ IMPLEMENTS: 'втілює';
 EVAL: 'js';
 WHEN: 'коли';
 TA: 'та';
-TYPE: 'тип';
+//TYPE: 'тип';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
 NL: ( '\r'? '\n' );
