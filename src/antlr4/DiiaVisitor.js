@@ -214,7 +214,33 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitNumber(ctx) {
-        let value = Number(ctx.getText());
+        let text = ctx.getText();
+
+        if (text.includes('ш')) {
+            const right = text.substring(2)
+                .replaceAll('А', 'A')
+                .replaceAll('а', 'a')
+                .replaceAll('Б', 'B')
+                .replaceAll('б', 'b')
+                .replaceAll('В', 'C')
+                .replaceAll('в', 'c')
+                .replaceAll('Г', 'D')
+                .replaceAll('г', 'd')
+                .replaceAll('Ґ', 'E')
+                .replaceAll('ґ', 'e')
+                .replaceAll('Д', 'F')
+                .replaceAll('д', 'f');
+
+            text = `0x${right}`;
+        } else if (text.includes('б')) {
+            const right = text.substring(2);
+
+            text = `0b${right}`;
+        }
+
+        console.log(text)
+
+        const value = Number(text);
 
         return new NumberNode(ctx, { value });
     }
