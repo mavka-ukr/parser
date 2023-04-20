@@ -99,7 +99,7 @@ FLOAT: INTEGER '.' INTEGER;
 HEX: '0x' (DIGIT | 'A'..'F' | 'a'..'f')+;
 HEXUKR: '0ш' (DIGIT | 'А' | 'а' | 'Б' | 'б' | 'В' | 'в' | 'Г' | 'г' | 'Ґ' | 'ґ' | 'Д' | 'д')+;
 BINNUM: '0b' ('0' | '1')+;
-BINNUMUKR: '0ш' ('0' | '1')+;
+BINNUMUKR: '0д' ('0' | '1')+;
 STRING: '"' ( ~[\\"] | ESCAPE_CHAR )* '"';
 LINE_COMMENT: ';;' (LINE_COMMENT | ~[\r\n])* -> skip;
 COMMENT: ';--' (COMMENT | .)*? '--;' -> skip;

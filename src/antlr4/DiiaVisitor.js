@@ -232,13 +232,11 @@ class DiiaVisitor extends DiiaParserVisitor {
                 .replaceAll('д', 'f');
 
             text = `0x${right}`;
-        } else if (text.includes('б')) {
+        } else if (text.includes('д')) {
             const right = text.substring(2);
 
             text = `0b${right}`;
         }
-
-        console.log(text)
 
         const value = Number(text);
 
