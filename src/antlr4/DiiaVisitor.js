@@ -51,6 +51,7 @@ import EvalNode from "../ast/EvalNode.js";
 import TakeFileNode from "../ast/TakeFileNode.js";
 import BitwiseNode from "../ast/BitwiseNode.js";
 import BitwiseNotNode from "../ast/BitwiseNotNode.js";
+import ArgNode from "../ast/ArgNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -553,7 +554,10 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitArg(ctx) {
-        return this.visit(ctx.a_value);
+        const value = this.visit(ctx.a_value);
+        const spread = !!ctx.a_spread;
+
+        return new ArgNode(ctx, { value, spread });
     }
 
     visitArray_elements(ctx) {
@@ -624,8 +628,9 @@ class DiiaVisitor extends DiiaParserVisitor {
         }
         const type = ctx.p_type && singleNode(this.visit(ctx.p_type));
         const defaultValue = ctx.p_value && singleNode(this.visit(ctx.p_value));
+        const spread = !!ctx.p_spread;
 
-        return new ParamNode(ctx, { name, type, defaultValue });
+        return new ParamNode(ctx, { name, type, defaultValue, spread });
     }
 
     visitParam_value_number(ctx) {

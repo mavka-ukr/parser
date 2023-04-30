@@ -38,13 +38,13 @@ NOT_EQ_WORD: 'не рівно';
 NOT_IS_WORD: 'не є';
 HAS_IS_WORD: 'містить';
 NOT_HAS_IS_WORD: 'не містить';
-NOT_WORD: 'не';
 STAR_ALL: '.*';
 MOCKUP: 'макет';
 IMPLEMENTS: 'втілює';
 EVAL: 'js';
 WHEN: 'коли';
 TA: 'та';
+SPREAD: '...';
 //TYPE: 'тип';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;

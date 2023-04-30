@@ -92,19 +92,19 @@ assign_symbol: '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '//=' | '%=' | '**=' | '
 wait_assign: 'чекати' wa_assign=assign;
 
 identifier: ID;
-extended_identifier: ID | END | DIIA | STRUCTURE | FOR | IF | WAIT | TAKE | GIVE | AS | IS | RETURN | ASYNC | AND | OR | TRY | CATCH | ELSE | THROW | WHILE | MODULE | EQ_WORD | GR_WORD | SM_WORD | NOT_WORD | MOCKUP | IMPLEMENTS | EVAL | WHEN | TA;
+extended_identifier: ID | END | DIIA | STRUCTURE | FOR | IF | WAIT | TAKE | GIVE | AS | IS | RETURN | ASYNC | AND | OR | TRY | CATCH | ELSE | THROW | WHILE | MODULE | EQ_WORD | GR_WORD | SM_WORD | MOCKUP | IMPLEMENTS | EVAL | WHEN | TA;
 
 identifiers_chain: ic_identifier=identifier | ic_left=identifiers_chain '.' ic_right=identifiers_chain;
 
 type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_op tv_right=type_value;
 
 args: arg (',' arg)*;
-arg: nls a_value=expr nls;
+arg: nls (a_spread='...')? a_value=expr nls;
 named_args: named_arg (',' named_arg)*;
 named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
-param: (p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
+param: ((p_spread='...')? p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | STRING #param_value_string
            | identifier #param_value_identifier;
@@ -117,7 +117,7 @@ arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW;
 arithmetic_op_add: '+' | '-';
 bitwise_op: XOR | OR_BW | AND_BW | BW_SHIFT_LEFT | BW_SHIFT_RIGHT;
 test_op: 'і' | 'або' | '||' | '&&';
-comparison_op: '==' | '!=' | '>' | '<' | '>=' | '<=' | 'є' | 'не є' | 'рівно' | 'не рівно' | 'більше' | 'не більше' | 'менше' | 'не менше' | 'містить' | 'не містить' | 'не';
+comparison_op: '==' | '!=' | '>' | '<' | '>=' | '<=' | 'є' | 'не є' | 'рівно' | 'не рівно' | 'більше' | 'не більше' | 'менше' | 'не менше' | 'містить' | 'не містить';
 
 nl: NL;
 nls: nl*;

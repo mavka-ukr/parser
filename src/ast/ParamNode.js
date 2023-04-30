@@ -12,13 +12,15 @@ class ParamNode extends ASTNode {
      * @param {IdentifierNode|ArrayDestructionNode} name
      * @param {IdentifierNode|IdentifiersChainNode|null} type
      * @param {ASTNode|null} defaultValue
+     * @param {boolean} spread
      */
-    constructor(context, { name, type, defaultValue }) {
+    constructor(context, { name, type, defaultValue, spread }) {
         super(context);
 
         this.name = name;
         this.type = type;
         this.defaultValue = defaultValue;
+        this.spread = spread;
     }
 }
 
