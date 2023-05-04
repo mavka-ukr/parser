@@ -41,6 +41,7 @@ NOT_HAS_IS_WORD: 'не містить';
 STAR_ALL: '.*';
 MOCKUP: 'макет';
 IMPLEMENTS: 'втілює';
+IMPLEMENT: 'втілити';
 EVAL: 'js';
 WHEN: 'коли';
 TA: 'та';

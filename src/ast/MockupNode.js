@@ -2,7 +2,7 @@ import ASTNode from "./ASTNode.js";
 
 /**
  * макет ІоннийДвигунМ є ДвигунМ
- *   кількість_хромосом число
+ *   запустити()
  * кінець
  */
 class MockupNode extends ASTNode {
@@ -10,7 +10,7 @@ class MockupNode extends ASTNode {
      * @param context
      * @param {IdentifierNode} name
      * @param {IdentifierNode[]|IdentifiersChainNode[]} parents
-     * @param {MockupMethod[]} methods
+     * @param {MockupMethodNode[]} methods
      */
     constructor(context, { name, parents, methods }) {
         super(context);

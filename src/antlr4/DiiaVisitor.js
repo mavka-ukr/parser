@@ -52,6 +52,9 @@ import TakeFileNode from "../ast/TakeFileNode.js";
 import BitwiseNode from "../ast/BitwiseNode.js";
 import BitwiseNotNode from "../ast/BitwiseNotNode.js";
 import ArgNode from "../ast/ArgNode.js";
+import MockupImplNode from "../ast/MockupImplNode.js";
+import MockupMethodNode from "../ast/MockupMethodNode.js";
+import MockupNode from "../ast/MockupNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -117,19 +120,39 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitMockup(ctx) {
-        throw 'not implemented';
+        const name = this.visit(ctx.m_name);
+        const parents = ctx.m_parents ? this.visit(ctx.m_parents) : [];
+        const methods = ctx.m_methods ? this.visit(ctx.m_methods) : [];
+
+        return new MockupNode(ctx, { name, parents, methods });
     }
 
-    visitMockup_elements(ctx) {
-        throw 'not implemented';
+    visitMockup_methods(ctx) {
+        return super.visitMockup_methods(ctx);
+    }
+
+    visitMockup_method(ctx) {
+        const name = this.visit(ctx.mm_name);
+        const params = ctx.mm_params ? this.visit(ctx.mm_params) : [];
+        const type = ctx.mm_type && this.visit(ctx.mm_type);
+
+        return new MockupMethodNode(ctx, { name, params, type });
     }
 
     visitMockup_parents(ctx) {
-        throw 'not implemented';
+        return super.visitMockup_parents(ctx);
     }
 
-    visitMockup_element(ctx) {
-        throw 'not implemented';
+    visitMockup_impl(ctx) {
+        const mockupName = this.visit(ctx.mi_mockup_name);
+        const structureName = this.visit(ctx.mi_structure_name);
+        const body = ctx.mi_body ? this.visit(ctx.mi_body) : [];
+
+        return new MockupImplNode(ctx, { mockupName, structureName, body });
+    }
+
+    visitMockup_impl_body(ctx) {
+        return super.visitMockup_impl_body(ctx);
     }
 
     visitIf(ctx) {
