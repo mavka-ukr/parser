@@ -13,12 +13,12 @@ export function parse(code, options = {}) {
     const chars = new antlr4.InputStream(code);
     const lexer = new DiiaLexer(chars);
     lexer.removeErrorListeners();
-    lexer.addErrorListener(new DiiaErrorListener());
+    lexer.addErrorListener(new DiiaErrorListener(code));
 
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new DiiaParser(tokens, lexer);
     parser.removeErrorListeners();
-    parser.addErrorListener(new DiiaErrorListener());
+    parser.addErrorListener(new DiiaErrorListener(code));
 
     const tree = parser[options.start]();
 

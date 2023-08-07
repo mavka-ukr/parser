@@ -55,6 +55,7 @@ import ArgNode from "../ast/ArgNode.js";
 import MockupImplNode from "../ast/MockupImplNode.js";
 import MockupMethodNode from "../ast/MockupMethodNode.js";
 import MockupNode from "../ast/MockupNode.js";
+import FromtoNode from "../ast/FromtoNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -166,10 +167,33 @@ class DiiaVisitor extends DiiaParserVisitor {
     visitEach(ctx) {
         const keyName = ctx.e_key_name && this.visitIdentifier(ctx.e_key_name);
         const name = ctx.e_name && this.visitIdentifier(ctx.e_name);
-        const iterator = this.visit(ctx.e_iterator);
-        const body = this.visit(ctx.e_body);
+        const iterator = this.visit(ctx.e_iterator || ctx.e_fromto);
+        const body = ctx.e_body ? this.visit(ctx.e_body) : [];
 
         return new EachNode(ctx, { keyName, name, iterator, body });
+    }
+
+    visitFromto(ctx) {
+        const from = this.visit(ctx.f_from);
+        const to = this.visit(ctx.f_to);
+
+        return new FromtoNode(ctx, { from, to });
+    }
+
+    visitFromto_number(ctx) {
+        return this.visitNumber(ctx);
+    }
+
+    visitFromto_string(ctx) {
+        return this.visitString(ctx);
+    }
+
+    visitFromto_id(ctx) {
+        return this.visitIdentifier(ctx);
+    }
+
+    visitFromto_nested(ctx) {
+        return this.visit(ctx.fn_value);
     }
 
     visitWhile(ctx) {

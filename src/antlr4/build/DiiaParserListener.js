@@ -149,6 +149,51 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#fromto.
+	enterFromto(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto.
+	exitFromto(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#fromto_number.
+	enterFromto_number(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_number.
+	exitFromto_number(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#fromto_string.
+	enterFromto_string(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_string.
+	exitFromto_string(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#fromto_id.
+	enterFromto_id(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_id.
+	exitFromto_id(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#fromto_nested.
+	enterFromto_nested(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_nested.
+	exitFromto_nested(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#while.
 	enterWhile(ctx) {
 	}

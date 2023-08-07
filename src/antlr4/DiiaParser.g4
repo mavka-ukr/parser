@@ -27,7 +27,13 @@ diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=
 
 if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=body nl)? 'кінець') | (i_else_if=if));
 
-each: 'перебрати' e_iterator=expr ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
+each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
+
+fromto: f_from=fromto_value '..' f_to=fromto_value;
+fromto_value: NUMBER #fromto_number
+            | STRING #fromto_string
+            | identifier #fromto_id
+            | '(' fn_value=value ')' #fromto_nested;
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
@@ -46,7 +52,7 @@ give_element: ge_name=identifier ('як' ge_as=identifier)?;
 value: NUMBER #number
      | STRING #string
      | identifier #id
-     | c_left=value '.' c_right=extended_identifier #chain
+     | c_left=value nls '.' nls c_right=extended_identifier #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call
      | '+' p_value=value  #positive
      | '-' n_value=value  #negative
@@ -69,8 +75,8 @@ value: NUMBER #number
      | '(' d_args=dictionary_args? ')' #dictionary
      ;
 
-array_elements: array_element (',' array_element)*;
-array_element: nls ae_value=expr nls;
+array_elements: nls array_element nls (nls ',' nls array_element nls)*;
+array_element: ae_value=expr;
 
 dictionary_args: dictionary_arg (',' dictionary_arg)*;
 dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value=expr nls;
@@ -83,8 +89,8 @@ expr: value #simple
 
 throw: 'впасти' t_value=expr;
 
-array_destruction: '[' array_destruction_el (',' array_destruction_el)* ']';
-array_destruction_el: nls ade_id=identifier nls;
+array_destruction: '[' nls array_destruction_el nls (nls ',' nls array_destruction_el nls)* ']';
+array_destruction_el: ade_id=identifier;
 
 object_destruction: '(' object_destruction_el (',' object_destruction_el)* ')';
 object_destruction_el: nls ode_id=identifier nls;

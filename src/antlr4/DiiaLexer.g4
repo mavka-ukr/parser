@@ -46,6 +46,7 @@ EVAL: 'js';
 WHEN: 'коли';
 TA: 'та';
 SPREAD: '...';
+FROMTO: '..';
 //TYPE: 'тип';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
