@@ -29,7 +29,7 @@ if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=b
 
 each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
 
-fromto: f_from=fromto_value '..' f_to=fromto_value;
+fromto: f_from=fromto_value '..' (f_include='=')? f_to=fromto_value;
 fromto_value: NUMBER #fromto_number
             | STRING #fromto_string
             | identifier #fromto_id

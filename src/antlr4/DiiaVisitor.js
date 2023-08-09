@@ -176,8 +176,9 @@ class DiiaVisitor extends DiiaParserVisitor {
     visitFromto(ctx) {
         const from = this.visit(ctx.f_from);
         const to = this.visit(ctx.f_to);
+        const include = !!ctx.f_include;
 
-        return new FromtoNode(ctx, { from, to });
+        return new FromtoNode(ctx, { from, to, include });
     }
 
     visitFromto_number(ctx) {
