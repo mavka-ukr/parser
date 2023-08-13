@@ -313,7 +313,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const left = singleNode(this.visit(ctx.c_left));
         const right = singleNode(this.visit(ctx.c_right));
 
-        return new ChainNode(ctx, { left, right });
+        return new ChainNode(ctx, { left, right, tokenText: ctx.getText() });
     }
 
     visitCall(ctx) {
@@ -567,7 +567,7 @@ class DiiaVisitor extends DiiaParserVisitor {
             return new BooleanNode(ctx, { value: false });
         }
 
-        return new IdentifierNode(ctx, { name });
+        return new IdentifierNode(ctx, { name, tokenText: ctx.getText() });
     }
 
     visitExtended_identifier(ctx) {
@@ -582,7 +582,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const left = singleNode(this.visit(ctx.ic_left));
         const right = singleNode(this.visit(ctx.ic_right));
 
-        return new IdentifiersChainNode(ctx, { left, right });
+        return new IdentifiersChainNode(ctx, { left, right, tokenText: ctx.getText() });
     }
 
     visitType_value(ctx) {

@@ -9,12 +9,14 @@ class IdentifiersChainNode extends ASTNode {
      * @param context
      * @param {IdentifierNode} left
      * @param {IdentifierNode} right
+     * @param {string} tokenText
      */
-    constructor(context, { left, right }) {
+    constructor(context, { left, right, tokenText }) {
         super(context);
 
         this.left = left;
         this.right = right;
+        this.tokenText = tokenText;
     }
 
     toFlatArray() {
