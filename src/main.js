@@ -10,7 +10,14 @@ export function parse(code, options = {}) {
 
     code = code.toString().trim();
 
+    const fileinfo = {
+        name: options.name || 'unknown',
+        path: options.path || 'unknown',
+        code,
+    };
+
     const chars = new antlr4.InputStream(code);
+    chars._mavka_fileinfo = fileinfo;
     const lexer = new DiiaLexer(chars);
     lexer.removeErrorListeners();
     lexer.addErrorListener(new DiiaErrorListener(code));
