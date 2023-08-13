@@ -7,13 +7,11 @@ class IdentifierNode extends ASTNode {
     /**
      * @param context
      * @param {string} name
-     * @param {string} tokenText
      */
-    constructor(context, { name, tokenText }) {
+    constructor(context, { name }) {
         super(context);
 
         this.name = name;
-        this.tokenText = tokenText;
     }
 }
 

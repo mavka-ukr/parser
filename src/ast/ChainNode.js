@@ -8,14 +8,12 @@ class ChainNode extends ASTNode {
      * @param context
      * @param {ASTNode} left
      * @param {ASTNode} right
-     * @param {string} tokenText
      */
-    constructor(context, { left, right, tokenText }) {
+    constructor(context, { left, right }) {
         super(context);
 
         this.left = left;
         this.right = right;
-        this.tokenText = tokenText;
     }
 }
 
