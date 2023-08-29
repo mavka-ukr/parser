@@ -52,7 +52,6 @@ import TakeFileNode from "../ast/TakeFileNode.js";
 import BitwiseNode from "../ast/BitwiseNode.js";
 import BitwiseNotNode from "../ast/BitwiseNotNode.js";
 import ArgNode from "../ast/ArgNode.js";
-import MockupImplNode from "../ast/MockupImplNode.js";
 import MockupMethodNode from "../ast/MockupMethodNode.js";
 import MockupNode from "../ast/MockupNode.js";
 import FromtoNode from "../ast/FromtoNode.js";
@@ -144,18 +143,6 @@ class DiiaVisitor extends DiiaParserVisitor {
         return super.visitMockup_parents(ctx);
     }
 
-    visitMockup_impl(ctx) {
-        const mockupName = this.visit(ctx.mi_mockup_name);
-        const structureName = this.visit(ctx.mi_structure_name);
-        const body = ctx.mi_body ? this.visit(ctx.mi_body) : [];
-
-        return new MockupImplNode(ctx, { mockupName, structureName, body });
-    }
-
-    visitMockup_impl_body(ctx) {
-        return super.visitMockup_impl_body(ctx);
-    }
-
     visitIf(ctx) {
         const value = this.visit(ctx.i_value);
         const body = ctx.i_body && this.visit(ctx.i_body);
@@ -175,10 +162,11 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitFromto(ctx) {
         const from = this.visit(ctx.f_from);
+        const middle = ctx.f_middle ? this.visit(ctx.f_middle) : null;
         const to = this.visit(ctx.f_to);
-        const include = !!ctx.f_include;
+        const symbol = ctx.f_symbol ? ctx.f_symbol.text : '<';
 
-        return new FromtoNode(ctx, { from, to, include });
+        return new FromtoNode(ctx, { from, to, middle, symbol });
     }
 
     visitFromto_number(ctx) {

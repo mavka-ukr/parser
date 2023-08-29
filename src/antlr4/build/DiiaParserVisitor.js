@@ -54,6 +54,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#mockup_type.
+	visitMockup_type(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#mockup_parents.
 	visitMockup_parents(ctx) {
 	  return this.visitChildren(ctx);
@@ -68,18 +74,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#mockup_method.
 	visitMockup_method(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#mockup_impl.
-	visitMockup_impl(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#mockup_impl_body.
-	visitMockup_impl_body(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

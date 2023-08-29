@@ -19,14 +19,16 @@ class FromtoNode extends ASTNode {
      * @param context
      * @param {ASTNode} from
      * @param {ASTNode} to
-     * @param {boolean} include
+     * @param {ASTNode} middle
+     * @param {string} symbol
      */
-    constructor(context, { from, to, include }) {
+    constructor(context, { from, to, middle, symbol }) {
         super(context);
 
         this.from = from;
         this.to = to;
-        this.include = include;
+        this.middle = middle;
+        this.symbol = symbol;
     }
 }
 

@@ -7,7 +7,7 @@ options {
 file: f_program=program EOF;
 
 program: program_element (nl program_element)*;
-program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | nls | take | give | mockup_impl;
+program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | nls | take | give;
 
 module: 'модуль' (m_name=identifier)? nl (m_program=program nl)? nls 'кінець';
 
@@ -15,13 +15,11 @@ structure: 'структура' s_name=identifier ('є' s_parent=identifiers_cha
 structure_elements: structure_element (nl structure_element)*;
 structure_element: param | diia | nls;
 
-mockup: 'макет' m_name=identifier ('є' m_parents=mockup_parents)? nl nls (m_methods=mockup_methods nl)? nls 'кінець';
+mockup: 'макет' m_type=mockup_type m_name=identifier ('є' m_parents=mockup_parents)? nl nls (m_methods=mockup_methods nl)? nls 'кінець';
+mockup_type: 'структура' | 'модуль';
 mockup_parents: identifiers_chain (',' identifiers_chain)*;
 mockup_methods: mockup_method (nl mockup_method)*;
 mockup_method: mm_name=identifier '(' ( nls mm_params=params? nls ) ')' (mm_type=type_value)?;
-
-mockup_impl: 'втілити' mi_mockup_name=identifiers_chain 'як' mi_structure_name=identifiers_chain nl nls (mi_body=mockup_impl_body nl)? nls 'кінець';
-mockup_impl_body: diia (nl diia)*;
 
 diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 
@@ -29,7 +27,7 @@ if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=b
 
 each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
 
-fromto: f_from=fromto_value '..' (f_include='=')? f_to=fromto_value;
+fromto: f_from=fromto_value ('..' f_middle=fromto_value)? '..' (f_symbol='=')? f_to=fromto_value;
 fromto_value: NUMBER #fromto_number
             | STRING #fromto_string
             | identifier #fromto_id
@@ -119,7 +117,7 @@ param_value: NUMBER #param_value_number
            | identifier #param_value_identifier;
 
 body: body_element (nl body_element)*;
-body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | eval | mockup_impl | return_body_line | nls;
+body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | eval | return_body_line | nls;
 return_body_line: 'вернути' rbl=body_element;
 
 arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW;

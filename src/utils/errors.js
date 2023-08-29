@@ -13,23 +13,22 @@ export class DiiaParserSyntaxError extends DiiaParserError {
 
         super(errorMessage);
 
-        // this.recognizer = recognizer;
-        // this.offendingSymbol = offendingSymbol;
-        // this.line = line;
-        // this.column = column;
+        this.recognizer = recognizer;
+        this.offendingSymbol = offendingSymbol;
+        this.line = line;
+        this.column = column;
         this.msg = errorMessage;
-        // this.err = err;
+        this.err = err;
     }
 }
 
 export class DiiaErrorListener extends antlr4.error.ErrorListener {
     constructor(code) {
         super();
-
         this.code = code;
     }
 
     syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
-        throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, `Синтаксична помилка на ${line}:${column}`, err, this.code);
+        throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, msg, err, this.code);
     }
 }
