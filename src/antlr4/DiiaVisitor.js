@@ -164,7 +164,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const from = this.visit(ctx.f_from);
         const middle = ctx.f_middle ? this.visit(ctx.f_middle) : null;
         const to = this.visit(ctx.f_to);
-        const symbol = ctx.f_symbol ? ctx.f_symbol.text : '<=';
+        const symbol = ctx.f_symbol ? ctx.f_symbol.getText() : '<=';
 
         return new FromtoNode(ctx, { from, to, middle, symbol });
     }
