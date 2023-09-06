@@ -105,6 +105,7 @@ BINNUMUKR: '0д' ('0' | '1')+;
 STRING: '"' ( ~[\\"] | ESCAPE_CHAR )* '"';
 COMMENT: ';;;' (COMMENT | .)*? ';;;' -> skip;
 LINE_COMMENT: ';;' (LINE_COMMENT | ~[\r\n])* -> skip;
+OLD_COMMENT: ';--' (OLD_COMMENT | .)*? '--;' -> skip;
 
 fragment DIGIT
     : '0'..'9'
