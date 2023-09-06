@@ -20,7 +20,7 @@ class FromtoNode extends ASTNode {
      * @param {ASTNode} from
      * @param {ASTNode} to
      * @param {ASTNode} middle
-     * @param {string} symbol
+     * @param {string|null} symbol
      */
     constructor(context, { from, to, middle, symbol }) {
         super(context);
