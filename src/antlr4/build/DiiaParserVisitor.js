@@ -126,6 +126,18 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#fromto_middle.
+	visitFromto_middle(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#fromto_symbol.
+	visitFromto_symbol(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#while.
 	visitWhile(ctx) {
 	  return this.visitChildren(ctx);

@@ -185,6 +185,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#fromto_middle.
+	enterFromto_middle(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_middle.
+	exitFromto_middle(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#fromto_symbol.
+	enterFromto_symbol(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_symbol.
+	exitFromto_symbol(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#while.
 	enterWhile(ctx) {
 	}

@@ -47,7 +47,7 @@ WHEN: 'коли';
 TA: 'та';
 SPREAD: '...';
 FROMTO: '..';
-//TYPE: 'тип';
+FARROW: '->';
 
 SKIP_SPACES: ( ' ' | '\t' ) -> skip;
 NL: ( '\r'? '\n' );
@@ -103,8 +103,8 @@ HEXUKR: '0ш' (DIGIT | 'А' | 'а' | 'Б' | 'б' | 'В' | 'в' | 'Г' | 'г' | '
 BINNUM: '0b' ('0' | '1')+;
 BINNUMUKR: '0д' ('0' | '1')+;
 STRING: '"' ( ~[\\"] | ESCAPE_CHAR )* '"';
+COMMENT: ';;;' (COMMENT | .)*? ';;;' -> skip;
 LINE_COMMENT: ';;' (LINE_COMMENT | ~[\r\n])* -> skip;
-COMMENT: ';--' (COMMENT | .)*? '--;' -> skip;
 
 fragment DIGIT
     : '0'..'9'

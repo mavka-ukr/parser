@@ -164,7 +164,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const from = this.visit(ctx.f_from);
         const middle = ctx.f_middle ? this.visit(ctx.f_middle) : null;
         const to = this.visit(ctx.f_to);
-        const symbol = ctx.f_symbol ? ctx.f_symbol.text : '<';
+        const symbol = ctx.f_symbol ? ctx.f_symbol.text : '!=';
 
         return new FromtoNode(ctx, { from, to, middle, symbol });
     }
@@ -183,6 +183,14 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitFromto_nested(ctx) {
         return this.visit(ctx.fn_value);
+    }
+
+    visitFromto_symbol(ctx) {
+        return ctx.getText()
+    }
+
+    visitFromto_middle(ctx) {
+        return this.visit(ctx.fi_value);
     }
 
     visitWhile(ctx) {

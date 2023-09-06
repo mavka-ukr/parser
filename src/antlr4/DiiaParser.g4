@@ -27,11 +27,13 @@ if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=b
 
 each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
 
-fromto: f_from=fromto_value ('..' f_middle=fromto_value)? '..' (f_symbol='=')? f_to=fromto_value;
+fromto: f_from=fromto_value '..' (f_symbol=fromto_symbol)? f_to=fromto_value ('..' f_middle=fromto_middle)?;
 fromto_value: NUMBER #fromto_number
             | STRING #fromto_string
             | identifier #fromto_id
             | '(' fn_value=value ')' #fromto_nested;
+fromto_middle: '(' fi_value=value ')';
+fromto_symbol: '!=' | '==' | '>' | '<' | '>=' | '<=';
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
@@ -81,7 +83,7 @@ dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value
 
 expr: value #simple
     | 'чекати' w_value=value #wait
-    | '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
+    | '(' f_params=params? ')' f_type=type_value? '->' f_body=expr #function
     | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
     ;
 
