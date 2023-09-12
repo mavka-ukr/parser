@@ -55,6 +55,7 @@ import ArgNode from "../ast/ArgNode.js";
 import MockupMethodNode from "../ast/MockupMethodNode.js";
 import MockupNode from "../ast/MockupNode.js";
 import FromtoNode from "../ast/FromtoNode.js";
+import TypeValueSingleNode from "../ast/TypeValueSingleNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -583,7 +584,10 @@ class DiiaVisitor extends DiiaParserVisitor {
 
     visitType_value(ctx) {
         if (ctx.tv_single) {
-            return this.visit(ctx.tv_single);
+            const value = this.visit(ctx.tv_single);
+            const array = !!ctx.tv_array;
+
+            return new TypeValueSingleNode(ctx, { value, array });
         }
 
         const left = this.visit(ctx.tv_left);

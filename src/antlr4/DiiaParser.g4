@@ -105,7 +105,8 @@ extended_identifier: ID | END | DIIA | STRUCTURE | FOR | IF | WAIT | TAKE | GIVE
 
 identifiers_chain: ic_identifier=identifier | ic_left=identifiers_chain '.' ic_right=identifiers_chain;
 
-type_value: tv_single=identifiers_chain | tv_left=type_value tv_operation=test_op tv_right=type_value;
+type_value: (tv_array=type_value_array)? tv_single=identifiers_chain | tv_left=type_value tv_operation=test_op tv_right=type_value;
+type_value_array: '[' ']';
 
 args: arg (',' arg)*;
 arg: nls (a_spread='...')? a_value=expr nls;
