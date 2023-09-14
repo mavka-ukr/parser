@@ -30,6 +30,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#method_declaration.
+	visitMethod_declaration(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#structure.
 	visitStructure(ctx) {
 	  return this.visitChildren(ctx);
@@ -68,12 +74,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#mockup_methods.
 	visitMockup_methods(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#mockup_method.
-	visitMockup_method(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

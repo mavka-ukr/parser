@@ -11,15 +11,16 @@ program_element: module | structure | mockup | diia | if | each | while | try | 
 
 module: 'модуль' (m_name=identifier)? nl (m_program=program nl)? nls 'кінець';
 
+method_declaration: md_name=identifier '(' ( nls md_params=params? nls ) ')' (md_type=type_value)?;
+
 structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_elements=structure_elements nl)? 'кінець';
 structure_elements: structure_element (nl structure_element)*;
-structure_element: param | diia | nls;
+structure_element: param | method_declaration | nls;
 
 mockup: 'макет' m_type=mockup_type m_name=identifier ('є' m_parents=mockup_parents)? nl nls (m_methods=mockup_methods nl)? nls 'кінець';
 mockup_type: 'структура' | 'модуль';
 mockup_parents: identifiers_chain (',' identifiers_chain)*;
-mockup_methods: mockup_method (nl mockup_method)*;
-mockup_method: mm_name=identifier '(' ( nls mm_params=params? nls ) ')' (mm_type=type_value)?;
+mockup_methods: method_declaration (nl method_declaration)*;
 
 diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 

@@ -10,7 +10,7 @@ class MockupNode extends ASTNode {
      * @param context
      * @param {IdentifierNode} name
      * @param {IdentifierNode[]|IdentifiersChainNode[]} parents
-     * @param {MockupMethodNode[]} methods
+     * @param {MethodDeclarationNode[]} methods
      */
     constructor(context, { name, parents, methods }) {
         super(context);

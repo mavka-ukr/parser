@@ -1,9 +1,9 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * запустити()
+ * додати(а число, б число) число
  */
-class MockupMethodNode extends ASTNode {
+class MethodDeclarationNode extends ASTNode {
     /**
      * @param context
      * @param {IdentifierNode} name
@@ -19,4 +19,4 @@ class MockupMethodNode extends ASTNode {
     }
 }
 
-export default MockupMethodNode;
+export default MethodDeclarationNode;

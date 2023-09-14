@@ -52,7 +52,7 @@ import TakeFileNode from "../ast/TakeFileNode.js";
 import BitwiseNode from "../ast/BitwiseNode.js";
 import BitwiseNotNode from "../ast/BitwiseNotNode.js";
 import ArgNode from "../ast/ArgNode.js";
-import MockupMethodNode from "../ast/MockupMethodNode.js";
+import MethodDeclarationNode from "../ast/MethodDeclarationNode.js";
 import MockupNode from "../ast/MockupNode.js";
 import FromtoNode from "../ast/FromtoNode.js";
 import TypeValueSingleNode from "../ast/TypeValueSingleNode.js";
@@ -85,20 +85,17 @@ class DiiaVisitor extends DiiaParserVisitor {
         const name = this.visitIdentifier(ctx.s_name);
         const elements = ctx.s_elements ? this.visitStructure_elements(ctx.s_elements) : [];
         const params = [];
-        const methods = [];
+        const methodDeclarations = [];
         for (const element of elements) {
             if (element instanceof ParamNode) {
                 params.push(element);
-            } else if (element instanceof DiiaNode) {
-                if (element.structure) {
-                    throw new Error('Синтаксична помилка'); // todo: add proper text
-                }
-                methods.push(element);
+            } else if (element instanceof MethodDeclarationNode) {
+                methodDeclarations.push(element);
             }
         }
         const parent = ctx.s_parent && singleNode(this.visit(ctx.s_parent));
 
-        return new StructureNode(ctx, { name, params, parent, methods });
+        return new StructureNode(ctx, { name, params, parent, methodDeclarations });
     }
 
     visitStructure_elements(ctx) {
@@ -132,12 +129,12 @@ class DiiaVisitor extends DiiaParserVisitor {
         return super.visitMockup_methods(ctx);
     }
 
-    visitMockup_method(ctx) {
-        const name = this.visit(ctx.mm_name);
-        const params = ctx.mm_params ? this.visit(ctx.mm_params) : [];
-        const type = ctx.mm_type && this.visit(ctx.mm_type);
+    visitMethod_declaration(ctx) {
+        const name = this.visit(ctx.md_name);
+        const params = ctx.md_params ? this.visit(ctx.md_params) : [];
+        const type = ctx.md_type && this.visit(ctx.md_type);
 
-        return new MockupMethodNode(ctx, { name, params, type });
+        return new MethodDeclarationNode(ctx, { name, params, type });
     }
 
     visitMockup_parents(ctx) {
