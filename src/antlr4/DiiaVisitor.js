@@ -95,7 +95,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         }
         const parent = ctx.s_parent && singleNode(this.visit(ctx.s_parent));
 
-        return new StructureNode(ctx, { name, params, parent, methodDeclarations });
+        return new StructureNode(ctx, { name, params, parent, methods: [], methodDeclarations });
     }
 
     visitStructure_elements(ctx) {
