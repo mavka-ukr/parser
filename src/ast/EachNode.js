@@ -8,8 +8,8 @@ import ASTNode from "./ASTNode.js";
 class EachNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode|null} keyName
-     * @param {IdentifierNode|null} name
+     * @param {string|null} keyName
+     * @param {string|null} name
      * @param {ASTNode} iterator
      * @param {ASTNode[]} body
      */

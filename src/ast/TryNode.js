@@ -11,7 +11,7 @@ class TryNode extends ASTNode {
     /**
      * @param context
      * @param {ASTNode[]} tryBody
-     * @param {IdentifierNode|null} catchName
+     * @param {string|null} catchName
      * @param {ASTNode[]} catchBody
      */
     constructor(context, { tryBody, catchName, catchBody }) {

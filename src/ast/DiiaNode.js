@@ -8,10 +8,10 @@ import ASTNode from "./ASTNode.js";
 class DiiaNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode} name
+     * @param {string} name
      * @param {ParamNode[]} params
      * @param {ASTNode[]} body
-     * @param {IdentifierNode|null} structure
+     * @param {string|null} structure
      * @param {boolean} async
      * @param {IdentifierNode|IdentifiersChainNode|null} type
      */

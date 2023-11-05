@@ -30,6 +30,18 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#module_body.
+	visitModule_body(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#module_body_element.
+	visitModule_body_element(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#method_declaration.
 	visitMethod_declaration(ctx) {
 	  return this.visitChildren(ctx);
@@ -54,26 +66,56 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#structure_param.
+	visitStructure_param(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#structure_param_value.
+	visitStructure_param_value(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#mockup.
 	visitMockup(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#mockup_type.
-	visitMockup_type(ctx) {
+	// Visit a parse tree produced by DiiaParser#mockup_object.
+	visitMockup_object(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#mockup_parents.
-	visitMockup_parents(ctx) {
+	// Visit a parse tree produced by DiiaParser#mockup_structure.
+	visitMockup_structure(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#mockup_methods.
-	visitMockup_methods(ctx) {
+	// Visit a parse tree produced by DiiaParser#mockup_module.
+	visitMockup_module(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#mockup_diia.
+	visitMockup_diia(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#mockup_body.
+	visitMockup_body(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#mockup_body_element.
+	visitMockup_body_element(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -158,12 +200,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#take_module.
 	visitTake_module(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#take_pak.
-	visitTake_pak(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -420,8 +456,50 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#assign_value.
-	visitAssign_value(ctx) {
+	// Visit a parse tree produced by DiiaParser#assign_simple.
+	visitAssign_simple(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_simple_value.
+	visitAssign_simple_value(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_define.
+	visitAssign_define(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_complex.
+	visitAssign_complex(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_complex_left.
+	visitAssign_complex_left(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_complex_right.
+	visitAssign_complex_right(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_array_destruction.
+	visitAssign_array_destruction(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#assign_object_destruction.
+	visitAssign_object_destruction(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
@@ -504,26 +582,20 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#param_value_number.
-	visitParam_value_number(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#param_value_string.
-	visitParam_value_string(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
-	// Visit a parse tree produced by DiiaParser#param_value_identifier.
-	visitParam_value_identifier(ctx) {
+	// Visit a parse tree produced by DiiaParser#param_value.
+	visitParam_value(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
 	// Visit a parse tree produced by DiiaParser#body.
 	visitBody(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#body_element_or_return.
+	visitBody_element_or_return(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

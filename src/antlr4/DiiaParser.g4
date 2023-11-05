@@ -9,22 +9,29 @@ file: f_program=program EOF;
 program: program_element (nl program_element)*;
 program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | nls | take | give;
 
-module: 'модуль' (m_name=identifier)? nl (m_program=program nl)? nls 'кінець';
+module: 'модуль' (m_name=identifier)? nl (m_body=module_body nl)? nls 'кінець';
+module_body: module_body_element (nl module_body_element)*;
+module_body_element: module | structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | nls | give;
 
-method_declaration: md_name=identifier '(' ( nls md_params=params? nls ) ')' (md_type=type_value)?;
+method_declaration: md_name=identifier '(' (nls md_params=params? nls) ')' (md_type=type_value)?;
 
-structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl nls (s_elements=structure_elements nl)? 'кінець';
+structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl (s_elements=structure_elements nl)? nls 'кінець';
 structure_elements: structure_element (nl structure_element)*;
-structure_element: param | method_declaration | nls;
+structure_element: structure_param | nls;
+structure_param: sp_name=identifier sp_type=type_value? ('=' sp_value=structure_param_value)?;
+structure_param_value: NUMBER | STRING | identifier;
 
-mockup: 'макет' m_type=mockup_type m_name=identifier ('є' m_parents=mockup_parents)? nl nls (m_methods=mockup_methods nl)? nls 'кінець';
-mockup_type: 'структура' | 'модуль';
-mockup_parents: identifiers_chain (',' identifiers_chain)*;
-mockup_methods: method_declaration (nl method_declaration)*;
+mockup: mockup_object | mockup_structure | mockup_module | mockup_diia;
+mockup_object: 'макет' mo_name=identifier (mo_type=type_value | (nl nls (mo_elements=mockup_body nl)? nls 'кінець'));
+mockup_structure: 'макет' 'структура' ms_name=identifier nl nls (ms_elements=mockup_body nl)? nls 'кінець';
+mockup_module: 'макет' 'модуль' mm_name=identifier nl nls (mm_elements=mockup_body nl)? nls 'кінець';
+mockup_diia: 'макет' (md_async='тривала')? 'дія' '(' ( nls md_params=params? nls ) ')' (md_type=type_value)?;
+mockup_body: mockup_body_element (nl mockup_body_element)*;
+mockup_body_element: structure_param | method_declaration | nls;
 
 diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=identifier '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець';
 
-if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=body nl)? 'кінець') | (i_else_if=if));
+if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=body nl)? 'кінець') | ('інакше' i_else_if=if));
 
 each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
 
@@ -42,8 +49,7 @@ eval: 'js' e_value=value;
 
 try: 'спробувати' nl t_body=body nl 'зловити' tc_name=identifier? (tc_body=body nl)? 'кінець';
 
-take: 'взяти' (tm_absolute='.')? tm_elements_chain=identifiers_chain (tm_star='.*')? ('як' tm_as=identifier)? #take_module
-    | 'взяти пак' tp_elements_chain=identifiers_chain (tp_star='.*')? ('як' tp_as=identifier)? #take_pak
+take: 'взяти' (tm_relative='.')? tm_elements_chain=identifiers_chain (tm_star='.*')? ('як' tm_as=identifier)? #take_module
     | 'взяти файл' tf_name=STRING 'як' tf_as=identifier #take_file
     | 'взяти' tr_url=STRING ('як' tr_as=identifier)? #take_remote;
 
@@ -84,7 +90,7 @@ dictionary_arg: nls (da_name_id=identifier | da_name_string=STRING) '=' da_value
 
 expr: value #simple
     | 'чекати' w_value=value #wait
-    | '(' f_params=params? ')' f_type=type_value? '->' f_body=expr #function
+    | (f_async='тривала')? '(' f_params=params? ')' f_type=type_value? ':' f_body=expr #function
     | (d_async='тривала')? 'дія' '(' ( nls d_params=params? nls ) ')' (d_type=type_value)? nl (d_body=body nl)? nls 'кінець' #anonymous_diia
     ;
 
@@ -96,9 +102,16 @@ array_destruction_el: ade_id=identifier;
 object_destruction: '(' object_destruction_el (',' object_destruction_el)* ')';
 object_destruction_el: nls ode_id=identifier nls;
 
-assign: ((a_identifiers_chain=identifiers_chain ('[' a_set_element=expr ']')?) | a_identifier=identifier a_type=type_value? | a_array_destruction=array_destruction | a_object_destruction=object_destruction) a_symbol=assign_symbol a_value=assign_value;
-assign_value: expr | assign;
-assign_symbol: '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '//=' | '%=' | '**=' | '&=' | '|=' | '<<=' | '>>=' | '^=' | '&&=' | '||=' | '??=';
+assign: assign_simple | assign_define | assign_complex | assign_array_destruction | assign_object_destruction;
+assign_simple: (as_subject='субʼєкт')? as_identifier=identifier (as_type=type_value)? as_symbol=assign_symbol as_value=assign_simple_value;
+assign_simple_value: expr ('та' expr)*;
+assign_define: 'субʼєкт' as_identifier=identifier (as_type=type_value)?;
+assign_complex: ac_left=assign_complex_left ac_right=assign_complex_right ac_symbol=assign_symbol ac_value=expr;
+assign_complex_left: acl_chain=identifiers_chain | acl_left=assign_complex_left '[' acl_element=expr ']';
+assign_complex_right: ('.' acr_identifier=identifier) | ('[' acr_element=expr ']');
+assign_array_destruction: aad_array_destruction=array_destruction '=' aad_value=expr;
+assign_object_destruction: aod_object_destruction=object_destruction '=' aod_value=expr;
+assign_symbol: 'це' | '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '//=' | '%=' | '**=' | '&=' | '|=' | '<<=' | '>>=' | '^=' | '&&=' | '||=' | '??=';
 wait_assign: 'чекати' wa_assign=assign;
 
 identifier: ID;
@@ -116,12 +129,11 @@ named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
 param: ((p_spread='...')? p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
-param_value: NUMBER #param_value_number
-           | STRING #param_value_string
-           | identifier #param_value_identifier;
+param_value: NUMBER | STRING | identifier;
 
-body: body_element (nl body_element)*;
-body_element: structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | eval | return_body_line | nls;
+body: body_element_or_return (nl body_element_or_return)*;
+body_element_or_return: body_element | return_body_line;
+body_element: if | each | while | try | expr | throw | wait_assign | assign | nls;
 return_body_line: 'вернути' rbl=body_element;
 
 arithmetic_op_mul: '*' | '/' | PERCENT | DIVDIV | POW;

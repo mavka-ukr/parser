@@ -7,7 +7,7 @@ class TakeRemoteNode extends ASTNode {
     /**
      * @param context
      * @param {string} url
-     * @param {IdentifierNode|null} as
+     * @param {string|null} as
      */
     constructor(context, { url, as }) {
         super(context);

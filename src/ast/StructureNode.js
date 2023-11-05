@@ -8,20 +8,18 @@ import ASTNode from "./ASTNode.js";
 class StructureNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode} name
-     * @param {ParamNode[]} params
-     * @param {DiiaNode[]} methods
-     * @param {MethodDeclarationNode[]} methodDeclarations
+     * @param {string} name
+     * @param {StructureParamNode[]} params
      * @param {IdentifierNode|IdentifiersChainNode|null} parent
+     * @param {DiiaNode[]} methods
      */
-    constructor(context, { name, params, parent, methods, methodDeclarations }) {
+    constructor(context, { name, params, parent, methods }) {
         super(context);
 
         this.name = name;
         this.params = params || [];
         this.parent = parent;
         this.methods = methods;
-        this.methodDeclarations = methodDeclarations;
     }
 }
 

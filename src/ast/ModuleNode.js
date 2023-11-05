@@ -16,15 +16,15 @@ import ASTNode from "./ASTNode.js";
 class ModuleNode extends ASTNode {
     /**
      * @param context
-     * @param {IdentifierNode|null} name
-     * @param {ProgramNode} program
+     * @param {string|null} name
+     * @param {ASTNode[]} body
      */
 
-    constructor(context, { name, program }) {
+    constructor(context, { name, body }) {
         super(context);
 
         this.name = name;
-        this.program = program;
+        this.body = body;
     }
 }
 

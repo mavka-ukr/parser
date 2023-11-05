@@ -1,24 +1,24 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * (а, б): а + б
+ * макет дія запустити(відлік число) логічне
  */
-class FunctionNode extends ASTNode {
+class MockupDiiaNode extends ASTNode {
     /**
      * @param context
      * @param {boolean} async
+     * @param {string} name
      * @param {ParamNode[]} params
-     * @param {ASTNode[]} body
      * @param {IdentifierNode|IdentifiersChainNode|null} type
      */
-    constructor(context, { async, params, body, type }) {
+    constructor(context, { async, name, params, type }) {
         super(context);
 
         this.async = async;
-        this.params = params || [];
-        this.body = body;
+        this.name = name;
+        this.params = params;
         this.type = type;
     }
 }
 
-export default FunctionNode;
+export default MockupDiiaNode;

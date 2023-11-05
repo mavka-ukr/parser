@@ -55,7 +55,7 @@ class CustomErrorStrategy extends DefaultErrorStrategy {
         const t = recognizer.getCurrentToken()
         const tokenName = this.getTokenErrorDisplay(t)
         const expecting = this.getExpectedTokens(recognizer)
-        const msg = "зайвий значення " + tokenName + " очікується " +
+        const msg = "зайве значення " + tokenName + " очікується " +
             decodeUnicode(expecting.toString(recognizer.literalNames, recognizer.symbolicNames))
         recognizer.notifyErrorListeners(msg, t, null);
     }

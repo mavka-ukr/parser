@@ -10,7 +10,7 @@ class IfNode extends ASTNode {
      * @param context
      * @param {ASTNode} value
      * @param {ASTNode[]} body
-     * @param {ASTNode[]} elseBody
+     * @param {ASTNode[]|null} elseBody
      */
     constructor(context, { value, body, elseBody }) {
         super(context);

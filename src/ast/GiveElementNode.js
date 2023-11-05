@@ -11,7 +11,7 @@ class GiveElementNode extends ASTNode {
     /**
      * @param context
      * @param {IdentifierNode|IdentifiersChainNode|null} id
-     * @param {IdentifierNode|null} as
+     * @param {string|null} as
      */
     constructor(context, { id, as }) {
         super(context);

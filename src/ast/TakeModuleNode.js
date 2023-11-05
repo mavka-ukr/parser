@@ -7,16 +7,16 @@ class TakeModuleNode extends ASTNode {
     /**
      * @param context
      * @param {IdentifiersChainNode|IdentifierNode} id
-     * @param {IdentifierNode|null} as
-     * @param {boolean} absolute
+     * @param {string|null} as
+     * @param {boolean} relative
      * @param {boolean} star
      */
-    constructor(context, { id, as, absolute, star }) {
+    constructor(context, { id, as, relative, star }) {
         super(context);
 
         this.id = id;
         this.as = as;
-        this.absolute = absolute;
+        this.relative = relative;
         this.star = star;
     }
 }
