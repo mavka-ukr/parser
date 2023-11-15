@@ -485,10 +485,9 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitGod(ctx) {
-        const left = singleNode(this.visit(ctx.g_left));
-        const right = singleNode(this.visit(ctx.g_right));
+        const elements = flatNodes(super.visitGod(ctx));
 
-        return new GodNode(ctx, { left, right });
+        return new GodNode(ctx, { elements });
     }
 
     visitArray_elements(ctx) {

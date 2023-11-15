@@ -83,7 +83,7 @@ value: NUMBER #number
      | '[' a_elements=array_elements? ']' #array
      | '(' d_args=dictionary_args? ')' #dictionary
      | a_left=value 'як' a_right=value #as
-     | g_left=value 'та' g_right=value #god
+     | value ('та' value)+ #god
      ;
 
 array_elements: nls array_element nls (nls ',' nls array_element nls)*;

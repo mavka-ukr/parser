@@ -6,14 +6,12 @@ import ASTNode from "./ASTNode.js";
 class GodNode extends ASTNode {
     /**
      * @param context
-     * @param {ASTNode} left
-     * @param {ASTNode} right
+     * @param {ASTNode[]} elements
      */
-    constructor(context, { left, right }) {
+    constructor(context, { elements }) {
         super(context);
 
-        this.left = left;
-        this.right = right;
+        this.elements = elements;
     }
 }
 

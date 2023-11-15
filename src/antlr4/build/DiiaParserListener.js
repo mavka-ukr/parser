@@ -554,15 +554,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#god.
-	enterGod(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#god.
-	exitGod(ctx) {
-	}
-
-
 	// Enter a parse tree produced by DiiaParser#post_increment.
 	enterPost_increment(ctx) {
 	}
@@ -578,6 +569,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#ternary.
 	exitTernary(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#god.
+	enterGod(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#god.
+	exitGod(ctx) {
 	}
 
 

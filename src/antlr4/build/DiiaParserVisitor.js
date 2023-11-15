@@ -372,12 +372,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#god.
-	visitGod(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by DiiaParser#post_increment.
 	visitPost_increment(ctx) {
 	  return this.visitChildren(ctx);
@@ -386,6 +380,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by DiiaParser#ternary.
 	visitTernary(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#god.
+	visitGod(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
