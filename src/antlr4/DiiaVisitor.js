@@ -418,7 +418,12 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitGod(ctx) {
-        const elements = flatNodes(super.visitGod(ctx));
+        const elements = flatNodes(super.visitGod(ctx)).flatMap((v) => {
+            if (v instanceof GodNode) {
+                return v.elements;
+            }
+            return v;
+        });
 
         return new GodNode(ctx, { elements });
     }
