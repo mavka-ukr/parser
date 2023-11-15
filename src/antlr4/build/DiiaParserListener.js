@@ -338,6 +338,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#string.
+	enterString(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#string.
+	exitString(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#arithmetic_mul.
 	enterArithmetic_mul(ctx) {
 	}
@@ -365,6 +374,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#string_value.
+	enterString_value(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#string_value.
+	exitString_value(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#pre_increment.
 	enterPre_increment(ctx) {
 	}
@@ -389,15 +407,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by DiiaParser#comparison.
 	exitComparison(ctx) {
-	}
-
-
-	// Enter a parse tree produced by DiiaParser#string.
-	enterString(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#string.
-	exitString(ctx) {
 	}
 
 

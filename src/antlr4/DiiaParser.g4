@@ -56,8 +56,10 @@ take: 'взяти' (tm_relative='.')? tm_elements_chain=identifiers_chain (tm_st
 give: 'дати' give_element (',' give_element)*;
 give_element: ge_name=identifier ('як' ge_as=identifier)?;
 
+string: STRING | STRING_MULTILINE;
+
 value: NUMBER #number
-     | STRING #string
+     | string #string_value
      | identifier #id
      | c_left=value nls '.' nls c_right=extended_identifier #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call

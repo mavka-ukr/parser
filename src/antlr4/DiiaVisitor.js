@@ -289,6 +289,14 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new GiveElementNode(ctx, { id, as });
     }
 
+    visitString(ctx) {
+        let value = extractStringValue(ctx.getText());
+
+        // todo: parse interpolation
+
+        return new StringNode(ctx, { value: value });
+    }
+
     visitNumber(ctx) {
         let text = ctx.getText();
 
@@ -319,12 +327,8 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new NumberNode(ctx, { value });
     }
 
-    visitString(ctx) {
-        let value = extractStringValue(ctx.getText());
-
-        // todo: parse interpolation
-
-        return new StringNode(ctx, { value: value });
+    visitString_value(ctx) {
+        return super.visitString_value(ctx);
     }
 
     visitId(ctx) {

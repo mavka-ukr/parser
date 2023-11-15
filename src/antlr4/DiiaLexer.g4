@@ -107,7 +107,9 @@ HEX: '0x' (DIGIT | 'A'..'F' | 'a'..'f')+;
 HEXUKR: '0ш' (DIGIT | 'А' | 'а' | 'Б' | 'б' | 'В' | 'в' | 'Г' | 'г' | 'Ґ' | 'ґ' | 'Д' | 'д')+;
 BINNUM: '0b' ('0' | '1')+;
 BINNUMUKR: '0д' ('0' | '1')+;
-STRING: '"' ( ~[\\"] | ESCAPE_CHAR )* '"';
+TRIPPLE_QUOTE: '"""';
+STRING_MULTILINE: '"""' TRIPPLE_QUOTED_STRING_PART*? '"""';
+STRING: '"' ( ~[\\"\n\r] | ESCAPE_CHAR )* '"';
 COMMENT: ';;;' (COMMENT | .)*? ';;;' -> skip;
 LINE_COMMENT: ';;' (LINE_COMMENT | ~[\r\n])* -> skip;
 OLD_COMMENT: ';--' (OLD_COMMENT | .)*? '--;' -> skip;
@@ -133,3 +135,6 @@ fragment ID_CONTINUE
 fragment ESCAPE_CHAR
     : '\\' [0btnfr"'\\]
     ;
+
+fragment TRIPPLE_QUOTED_STRING_PART : (ESCAPED_TRIPPLE_QUOTE | .)+?;
+fragment ESCAPED_TRIPPLE_QUOTE : '\\"""';
