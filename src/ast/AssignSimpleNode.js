@@ -12,7 +12,7 @@ class AssignSimpleNode extends ASTNode {
      * @param {string} name
      * @param {TypeValueNode|null} type
      * @param {string} symbol
-     * @param {ASTNode[]} value
+     * @param {ASTNode} value
      */
     constructor(context, { subject, name, type, symbol, value }) {
         super(context);

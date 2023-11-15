@@ -82,6 +82,8 @@ value: NUMBER #number
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
      | '[' a_elements=array_elements? ']' #array
      | '(' d_args=dictionary_args? ')' #dictionary
+     | a_left=value 'як' a_right=value #as
+     | g_left=value 'та' g_right=value #god
      ;
 
 array_elements: nls array_element nls (nls ',' nls array_element nls)*;
@@ -105,8 +107,7 @@ object_destruction: '(' object_destruction_el (',' object_destruction_el)* ')';
 object_destruction_el: nls ode_id=identifier nls;
 
 assign: assign_simple | assign_define | assign_complex | assign_array_destruction | assign_object_destruction;
-assign_simple: (as_subject='субʼєкт')? as_identifier=identifier (as_type=type_value)? as_symbol=assign_symbol as_value=assign_simple_value;
-assign_simple_value: expr ('та' expr)*;
+assign_simple: (as_subject='субʼєкт')? as_identifier=identifier (as_type=type_value)? as_symbol=assign_symbol as_value=expr;
 assign_define: 'субʼєкт' as_identifier=identifier (as_type=type_value)?;
 assign_complex: ac_left=assign_complex_left ac_right=assign_complex_right ac_symbol=assign_symbol ac_value=expr;
 assign_complex_left: acl_chain=identifiers_chain | acl_left=assign_complex_left '[' acl_element=expr ']';

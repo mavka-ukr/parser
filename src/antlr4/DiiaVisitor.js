@@ -58,6 +58,8 @@ import MockupObjectNode from "../ast/MockupObjectNode.js";
 import MockupStructureNode from "../ast/MockupStructureNode.js";
 import MockupModuleNode from "../ast/MockupModuleNode.js";
 import MockupDiiaNode from "../ast/MockupDiiaNode.js";
+import AsNode from "../ast/AsNode.js";
+import GodNode from "../ast/GodNode.js";
 
 class DiiaVisitor extends DiiaParserVisitor {
     visitFile(ctx) {
@@ -475,6 +477,20 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new DictionaryNode(ctx, { args });
     }
 
+    visitAs(ctx) {
+        const left = singleNode(this.visit(ctx.a_left));
+        const right = singleNode(this.visit(ctx.a_right));
+
+        return new AsNode(ctx, { left, right });
+    }
+
+    visitGod(ctx) {
+        const left = singleNode(this.visit(ctx.g_left));
+        const right = singleNode(this.visit(ctx.g_right));
+
+        return new GodNode(ctx, { left, right });
+    }
+
     visitArray_elements(ctx) {
         return flatNodes(super.visitArray_elements(ctx));
     }
@@ -575,10 +591,6 @@ class DiiaVisitor extends DiiaParserVisitor {
         const value = this.visit(ctx.as_value);
 
         return new AssignSimpleNode(ctx, { subject, name, type, symbol, value });
-    }
-
-    visitAssign_simple_value(ctx) {
-        return flatNodes(super.visitAssign_simple_value(ctx));
     }
 
     visitAssign_define(ctx) {
