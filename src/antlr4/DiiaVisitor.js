@@ -417,6 +417,12 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new CallNode(ctx, { value, args });
     }
 
+    visitGod(ctx) {
+        const elements = flatNodes(super.visitGod(ctx));
+
+        return new GodNode(ctx, { elements });
+    }
+
     visitArithmetic_mul(ctx) {
         const left = this.visit(ctx.a_left);
         const right = this.visit(ctx.a_right);
@@ -482,12 +488,6 @@ class DiiaVisitor extends DiiaParserVisitor {
         const right = singleNode(this.visit(ctx.a_right));
 
         return new AsNode(ctx, { left, right });
-    }
-
-    visitGod(ctx) {
-        const elements = flatNodes(super.visitGod(ctx));
-
-        return new GodNode(ctx, { elements });
     }
 
     visitArray_elements(ctx) {

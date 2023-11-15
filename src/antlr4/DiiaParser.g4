@@ -74,6 +74,7 @@ value: NUMBER #number
      | a_left=value '[' a_element=expr ']' #get_element
      | '(' n_value=expr ')' #nested
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
+     | a_left=value 'як' a_right=value #as
      | a_left=value a_operation=arithmetic_op_mul a_right=value #arithmetic_mul
      | a_left=value a_operation=arithmetic_op_add a_right=value #arithmetic_add
      | b_left=value b_operation=bitwise_op b_right=value #bitwise
@@ -82,7 +83,6 @@ value: NUMBER #number
      | t_value=value nls '?' nls t_positive=expr nls ':' nls t_negative=expr #ternary
      | '[' a_elements=array_elements? ']' #array
      | '(' d_args=dictionary_args? ')' #dictionary
-     | a_left=value 'як' a_right=value #as
      | value ('та' value)+ #god
      ;
 
