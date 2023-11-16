@@ -168,8 +168,8 @@ const serializedATN = [4,1,112,937,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 66,0,392,393,3,150,75,0,393,395,1,0,0,0,394,390,1,0,0,0,394,395,1,0,0,0,
 395,396,1,0,0,0,396,400,5,1,0,0,397,398,5,27,0,0,398,400,3,40,20,0,399,394,
 1,0,0,0,399,397,1,0,0,0,400,41,1,0,0,0,401,404,5,4,0,0,402,405,3,76,38,0,
-403,405,3,44,22,0,404,402,1,0,0,0,404,403,1,0,0,0,405,410,1,0,0,0,406,407,
-5,17,0,0,407,408,3,108,54,0,408,409,5,62,0,0,409,411,1,0,0,0,410,406,1,0,
+403,405,3,44,22,0,404,402,1,0,0,0,404,403,1,0,0,0,405,406,1,0,0,0,406,410,
+5,17,0,0,407,408,3,108,54,0,408,409,5,62,0,0,409,411,1,0,0,0,410,407,1,0,
 0,0,410,411,1,0,0,0,411,413,1,0,0,0,412,414,3,108,54,0,413,412,1,0,0,0,413,
 414,1,0,0,0,414,415,1,0,0,0,415,419,3,150,75,0,416,417,3,132,66,0,417,418,
 3,150,75,0,418,420,1,0,0,0,419,416,1,0,0,0,419,420,1,0,0,0,420,421,1,0,0,
@@ -1654,18 +1654,18 @@ export default class DiiaParser extends antlr4.Parser {
 	            break;
 
 	        }
+	        this.state = 406;
+	        this.match(DiiaParser.AS);
 	        this.state = 410;
 	        this._errHandler.sync(this);
-	        _la = this._input.LA(1);
-	        if(_la===17) {
-	            this.state = 406;
-	            this.match(DiiaParser.AS);
+	        var la_ = this._interp.adaptivePredict(this._input,34,this._ctx);
+	        if(la_===1) {
 	            this.state = 407;
 	            localctx.e_key_name = this.identifier();
 	            this.state = 408;
 	            this.match(DiiaParser.COMMA);
-	        }
 
+	        }
 	        this.state = 413;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
@@ -6055,6 +6055,10 @@ class EachContext extends antlr4.ParserRuleContext {
 	    return this.getToken(DiiaParser.FOR, 0);
 	};
 
+	AS() {
+	    return this.getToken(DiiaParser.AS, 0);
+	};
+
 	nl = function(i) {
 	    if(i===undefined) {
 	        i = null;
@@ -6076,10 +6080,6 @@ class EachContext extends antlr4.ParserRuleContext {
 
 	fromto() {
 	    return this.getTypedRuleContext(FromtoContext,0);
-	};
-
-	AS() {
-	    return this.getToken(DiiaParser.AS, 0);
 	};
 
 	COMMA() {
