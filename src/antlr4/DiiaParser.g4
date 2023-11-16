@@ -33,7 +33,7 @@ diia: (d_async='тривала')? 'дія' (d_structure=identifier '.')? d_name=
 
 if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=body nl)? 'кінець') | ('інакше' i_else_if=if));
 
-each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' (e_key_name=identifier ',')? e_name=identifier)? nl (e_body=body nl)? 'кінець';
+each: 'перебрати' (e_iterator=expr | e_fromto=fromto) ('як' e_key_name=identifier ',')? e_name=identifier? nl (e_body=body nl)? 'кінець';
 
 fromto: f_from=fromto_value '..' (f_symbol=fromto_symbol)? f_to=fromto_value ('..' f_middle=fromto_middle)?;
 fromto_value: NUMBER #fromto_number
