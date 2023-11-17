@@ -9,12 +9,12 @@ class ASTNode {
             this.context = {
                 __ast_node__: true,
                 start: {
-                    line: ctx.start.line,
-                    column: ctx.start.column,
+                    line: ctx.start?.line ?? 0,
+                    column: ctx.start?.column ?? 0,
                 },
                 stop: {
-                    line: ctx.stop.line,
-                    column: ctx.stop.column,
+                    line: ctx.stop?.line ?? 0,
+                    column: ctx.stop?.column ?? 0,
                 },
                 fileinfo: ctx.parser._input.tokenSource._input._mavka_fileinfo,
             };
