@@ -126,7 +126,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitStructure_param_value(ctx) {
-        return super.visitStructure_param_value(ctx);
+        return singleNode(super.visitStructure_param_value(ctx));
     }
 
     visitMockup(ctx) {
@@ -727,7 +727,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitParam_value(ctx) {
-        return super.visitParam_value(ctx);
+        return singleNode(super.visitParam_value(ctx));
     }
 
     visitParam(ctx) {
