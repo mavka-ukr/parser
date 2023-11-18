@@ -88,13 +88,13 @@ export function parse(code, options = {}) {
     chars._mavka_fileinfo = fileinfo;
     const lexer = new DiiaLexer(chars);
     lexer.removeErrorListeners();
-    lexer.addErrorListener(new DiiaErrorListener(code));
+    lexer.addErrorListener(new DiiaErrorListener(fileinfo));
 
     const tokens = new antlr4.CommonTokenStream(lexer);
     const parser = new DiiaParser(tokens, lexer);
     parser._errHandler = new CustomErrorStrategy();
     parser.removeErrorListeners();
-    parser.addErrorListener(new DiiaErrorListener(code));
+    parser.addErrorListener(new DiiaErrorListener(fileinfo));
 
     const tree = parser[options.start]();
 
