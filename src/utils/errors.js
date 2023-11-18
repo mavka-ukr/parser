@@ -5,20 +5,15 @@ export class DiiaParserError extends Error {
 
 export class DiiaParserSyntaxError extends DiiaParserError {
     constructor(recognizer, offendingSymbol, line, column, msg, err, code) {
-        const errorMessage = [
-            msg,
-            code.split("\n")[line - 1],
-            `${" ".repeat((column || 1) - 1)}^`
-        ].join("\n");
-
-        super(errorMessage);
+        super(msg);
 
         this.recognizer = recognizer;
         this.offendingSymbol = offendingSymbol;
         this.line = line;
         this.column = column;
-        this.msg = errorMessage;
+        this.msg = msg;
         this.err = err;
+        this.highlight = [code.split("\n")[line - 1], `${" ".repeat((column || 1) - 1)}^`].join("\n");
     }
 }
 
