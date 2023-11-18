@@ -453,8 +453,8 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitComparison(ctx) {
-        const left = this.visit(ctx.c_left);
-        const right = this.visit(ctx.c_right);
+        const left = singleNode(this.visit(ctx.c_left));
+        const right = singleNode(this.visit(ctx.c_right));
         const operation = this.visit(ctx.c_operation);
 
         return new ComparisonNode(ctx, { left, right, operation });
