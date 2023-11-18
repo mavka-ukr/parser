@@ -24,6 +24,7 @@ export class DiiaErrorListener extends antlr4.error.ErrorListener {
     }
 
     syntaxError(recognizer, offendingSymbol, line, column, msg, err) {
+        msg = msg.replaceAll("token recognition error at", "не вдалось розпізнати токен").replaceAll("\n", "\\n");
         throw new DiiaParserSyntaxError(recognizer, offendingSymbol, line, column, msg, err, this.code);
     }
 }
