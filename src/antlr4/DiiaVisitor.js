@@ -202,12 +202,25 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitFromto(ctx) {
-        const from = this.visit(ctx.f_from);
-        const middle = ctx.f_middle ? this.visit(ctx.f_middle) : null;
-        const to = this.visit(ctx.f_to);
-        const symbol = ctx.f_symbol ? ctx.f_symbol.getText() : null;
+        return singleNode(super.visitFromto(ctx));
+    }
 
-        return new FromtoNode(ctx, { from, to, middle, symbol });
+    visitFromto_simple(ctx) {
+        const from = this.visit(ctx.fs_from);
+        const to = this.visit(ctx.fs_to);
+        const toSymbol = ctx.fs_to_symbol ? ctx.fs_to_symbol.getText() : null;
+
+        return new FromtoNode(ctx, { from, to, toSymbol, middle: null, middleSymbol: null });
+    }
+
+    visitFromto_complex(ctx) {
+        const from = this.visit(ctx.fc_from);
+        const middle = this.visit(ctx.fc_middle);
+        const middleSymbol = ctx.fc_middle_symbol ? ctx.fc_middle_symbol.getText() : null;
+        const to = this.visit(ctx.fc_to);
+        const toSymbol = ctx.fc_to_symbol ? ctx.fc_to_symbol.getText() : null;
+
+        return new FromtoNode(ctx, { from, to, toSymbol, middle, middleSymbol });
     }
 
     visitFromto_number(ctx) {
@@ -226,12 +239,12 @@ class DiiaVisitor extends DiiaParserVisitor {
         return this.visit(ctx.fn_value);
     }
 
-    visitFromto_symbol(ctx) {
-        return ctx.getText()
+    visitFromto_to_symbol(ctx) {
+        return ctx.getText();
     }
 
-    visitFromto_middle(ctx) {
-        return this.visit(ctx.fi_value);
+    visitFromto_middle_symbol(ctx) {
+        return ctx.getText();
     }
 
     visitWhile(ctx) {

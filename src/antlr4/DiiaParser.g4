@@ -35,13 +35,15 @@ if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' i_else_body=b
 
 each: 'перебрати' (e_iterator=expr | e_fromto=fromto) 'як' (e_key_name=identifier ',')? e_name=identifier? nl (e_body=body nl)? 'кінець';
 
-fromto: f_from=fromto_value '..' (f_symbol=fromto_symbol)? f_to=fromto_value ('..' f_middle=fromto_middle)?;
+fromto: fromto_simple | fromto_complex;
+fromto_simple: fs_from=fromto_value '..' (fs_to_symbol=fromto_to_symbol)? fs_to=fromto_value;
+fromto_complex: fc_from=fromto_value '..' (fc_middle_symbol=fromto_middle_symbol)? fc_middle=fromto_value '..' (fc_to_symbol=fromto_to_symbol)? fc_to=fromto_value;
 fromto_value: NUMBER #fromto_number
             | STRING #fromto_string
             | identifier #fromto_id
             | '(' fn_value=value ')' #fromto_nested;
-fromto_middle: '(' fi_value=value ')';
-fromto_symbol: '!=' | '==' | '>' | '<' | '>=' | '<=';
+fromto_middle_symbol: '+' | '-' | '*' | '/' | PERCENT | DIVDIV | POW;
+fromto_to_symbol: '!=' | '==' | '>' | '<' | '>=' | '<=';
 
 while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 

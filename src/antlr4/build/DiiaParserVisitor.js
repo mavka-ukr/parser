@@ -144,6 +144,18 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#fromto_simple.
+	visitFromto_simple(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#fromto_complex.
+	visitFromto_complex(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#fromto_number.
 	visitFromto_number(ctx) {
 	  return this.visitChildren(ctx);
@@ -168,14 +180,14 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#fromto_middle.
-	visitFromto_middle(ctx) {
+	// Visit a parse tree produced by DiiaParser#fromto_middle_symbol.
+	visitFromto_middle_symbol(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#fromto_symbol.
-	visitFromto_symbol(ctx) {
+	// Visit a parse tree produced by DiiaParser#fromto_to_symbol.
+	visitFromto_to_symbol(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

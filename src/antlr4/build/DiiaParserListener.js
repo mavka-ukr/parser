@@ -212,6 +212,24 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#fromto_simple.
+	enterFromto_simple(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_simple.
+	exitFromto_simple(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#fromto_complex.
+	enterFromto_complex(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#fromto_complex.
+	exitFromto_complex(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#fromto_number.
 	enterFromto_number(ctx) {
 	}
@@ -248,21 +266,21 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#fromto_middle.
-	enterFromto_middle(ctx) {
+	// Enter a parse tree produced by DiiaParser#fromto_middle_symbol.
+	enterFromto_middle_symbol(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#fromto_middle.
-	exitFromto_middle(ctx) {
+	// Exit a parse tree produced by DiiaParser#fromto_middle_symbol.
+	exitFromto_middle_symbol(ctx) {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#fromto_symbol.
-	enterFromto_symbol(ctx) {
+	// Enter a parse tree produced by DiiaParser#fromto_to_symbol.
+	enterFromto_to_symbol(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#fromto_symbol.
-	exitFromto_symbol(ctx) {
+	// Exit a parse tree produced by DiiaParser#fromto_to_symbol.
+	exitFromto_to_symbol(ctx) {
 	}
 
 
