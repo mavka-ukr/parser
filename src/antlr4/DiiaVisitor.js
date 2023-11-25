@@ -450,16 +450,16 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitArithmetic_add(ctx) {
-        const left = this.visit(ctx.a_left);
-        const right = this.visit(ctx.a_right);
+        const left = singleNode(this.visit(ctx.a_left));
+        const right = singleNode(this.visit(ctx.a_right));
         const operation = this.visit(ctx.a_operation);
 
         return new ArithmeticNode(ctx, { left, right, operation });
     }
 
     visitBitwise(ctx) {
-        const left = this.visit(ctx.b_left);
-        const right = this.visit(ctx.b_right);
+        const left = singleNode(this.visit(ctx.b_left));
+        const right = singleNode(this.visit(ctx.b_right));
         const operation = this.visit(ctx.b_operation);
 
         return new BitwiseNode(ctx, { left, right, operation });
@@ -474,17 +474,17 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitTest(ctx) {
-        const left = this.visit(ctx.t_left);
-        const right = this.visit(ctx.t_right);
+        const left = singleNode(this.visit(ctx.t_left));
+        const right = singleNode(this.visit(ctx.t_right));
         const operation = this.visit(ctx.t_operation);
 
         return new TestNode(ctx, { left, right, operation });
     }
 
     visitTernary(ctx) {
-        const value = this.visit(ctx.t_value);
-        const positiveValue = this.visit(ctx.t_positive);
-        const negativeValue = this.visit(ctx.t_negative);
+        const value = singleNode(this.visit(ctx.t_value));
+        const positiveValue = singleNode(this.visit(ctx.t_positive));
+        const negativeValue = singleNode(this.visit(ctx.t_negative));
 
         return new TernaryNode(ctx, { value, positiveValue, negativeValue });
     }
