@@ -597,7 +597,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitAssign(ctx) {
-        return super.visitAssign(ctx);
+        return singleNode(super.visitAssign(ctx));
     }
 
     visitAssign_simple(ctx) {
