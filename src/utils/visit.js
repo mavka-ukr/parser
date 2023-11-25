@@ -1,6 +1,9 @@
 import DiiaNode from "../ast/DiiaNode.js";
 import StructureNode from "../ast/StructureNode.js";
 import { DiiaParserError } from "./errors.js";
+import IdentifierNode from "../ast/IdentifierNode.js";
+import BreakNode from "../ast/BreakNode.js";
+import ContinueNode from "../ast/ContinueNode.js";
 
 export function singleNode(node) {
     if (Array.isArray(node)) {
@@ -22,6 +25,21 @@ export function flatNodes(node) {
     }
 
     return [node];
+}
+
+export function mapBody(body) {
+    return body.map((node) => {
+        if (node instanceof IdentifierNode) {
+            if (node.name === "зупинити") {
+                return new BreakNode(node.context);
+            }
+            if (node.name === "пропустити") {
+                return new ContinueNode(node.context);
+            }
+        }
+
+        return node;
+    });
 }
 
 export function filterBody(body) {

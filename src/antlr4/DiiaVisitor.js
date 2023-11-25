@@ -5,7 +5,7 @@ import ComparisonNode from "../ast/ComparisonNode.js";
 import TestNode from "../ast/TestNode.js";
 import ChainNode from "../ast/ChainNode.js";
 import CallNode from "../ast/CallNode.js";
-import { flatNodes, singleNode } from "../utils/visit.js";
+import { flatNodes, mapBody, singleNode } from "../utils/visit.js";
 import IfNode from "../ast/IfNode.js";
 import DiiaNode from "../ast/DiiaNode.js";
 import AnonymousDiiaNode from "../ast/AnonymousDiiaNode.js";
@@ -67,7 +67,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitProgram(ctx) {
-        return new ProgramNode(ctx, { body: flatNodes(super.visitProgram(ctx)) });
+        return new ProgramNode(ctx, { body: mapBody(flatNodes(super.visitProgram(ctx))) });
     }
 
     visitProgram_element(ctx) {
@@ -556,7 +556,7 @@ class DiiaVisitor extends DiiaParserVisitor {
         const async = !!ctx.f_async;
         const params = ctx.f_params ? this.visitParams(ctx.f_params) : [];
         const type = ctx.f_type && singleNode(this.visit(ctx.f_type));
-        const body = ctx.f_body ? flatNodes(this.visit(ctx.f_body)) : [];
+        const body = ctx.f_body ? mapBody(flatNodes(this.visit(ctx.f_body))) : [];
 
         return new FunctionNode(ctx, { async, params, type, body });
     }
@@ -760,7 +760,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitBody(ctx) {
-        return flatNodes(super.visitBody(ctx));
+        return mapBody(flatNodes(super.visitBody(ctx)));
     }
 
     visitBody_element_or_return(ctx) {
