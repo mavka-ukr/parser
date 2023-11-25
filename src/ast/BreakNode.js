@@ -1,7 +1,7 @@
 import ASTNode from "./ASTNode.js";
 
 /**
- * зупинити
+ * перервати
  */
 class BreakNode extends ASTNode {
     /**

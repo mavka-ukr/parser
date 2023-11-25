@@ -30,7 +30,7 @@ export function flatNodes(node) {
 export function mapBody(body) {
     return body.map((node) => {
         if (node instanceof IdentifierNode) {
-            if (node.name === "зупинити") {
+            if (node.name === "перервати") {
                 return new BreakNode(node.context);
             }
             if (node.name === "пропустити") {
