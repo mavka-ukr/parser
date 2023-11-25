@@ -109,7 +109,7 @@ BINNUM: '0b' ('0' | '1')+;
 BINNUMUKR: '0д' ('0' | '1')+;
 TRIPPLE_QUOTE: '"""';
 STRING_MULTILINE: '"""' TRIPPLE_QUOTED_STRING_PART*? '"""';
-STRING: '"' ( ~[\\"] )* '"';
+STRING: '"' ( ~["\n\r] )* '"';
 COMMENT: ';;;' (COMMENT | .)*? ';;;' -> skip;
 LINE_COMMENT: ';;' (LINE_COMMENT | ~[\r\n])* -> skip;
 OLD_COMMENT: ';--' (OLD_COMMENT | .)*? '--;' -> skip;
@@ -133,4 +133,4 @@ fragment ID_CONTINUE
     ;
 
 fragment TRIPPLE_QUOTED_STRING_PART : (ESCAPED_TRIPPLE_QUOTE | .)+?;
-fragment ESCAPED_TRIPPLE_QUOTE : '\\"""';
+fragment ESCAPED_TRIPPLE_QUOTE : '\\"';
