@@ -255,7 +255,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     }
 
     visitEval(ctx) {
-        const value = this.visit(ctx.e_value);
+        const value = singleNode(this.visit(ctx.e_value));
 
         return new EvalNode(ctx, { value });
     }

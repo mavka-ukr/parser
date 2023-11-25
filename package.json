@@ -1,6 +1,6 @@
 {
   "name": "mavka-parser",
-  "version": "0.50.19",
+  "version": "0.50.20",
   "description": "Mavka language parser.",
   "main": "src/main.js",
   "type": "module",
