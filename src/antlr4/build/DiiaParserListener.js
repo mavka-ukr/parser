@@ -104,15 +104,6 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#structure_param_value.
-	enterStructure_param_value(ctx) {
-	}
-
-	// Exit a parse tree produced by DiiaParser#structure_param_value.
-	exitStructure_param_value(ctx) {
-	}
-
-
 	// Enter a parse tree produced by DiiaParser#mockup.
 	enterMockup(ctx) {
 	}
@@ -905,12 +896,30 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by DiiaParser#param_value.
-	enterParam_value(ctx) {
+	// Enter a parse tree produced by DiiaParser#param_value_number.
+	enterParam_value_number(ctx) {
 	}
 
-	// Exit a parse tree produced by DiiaParser#param_value.
-	exitParam_value(ctx) {
+	// Exit a parse tree produced by DiiaParser#param_value_number.
+	exitParam_value_number(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#param_value_string.
+	enterParam_value_string(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param_value_string.
+	exitParam_value_string(ctx) {
+	}
+
+
+	// Enter a parse tree produced by DiiaParser#param_value_identifier.
+	enterParam_value_identifier(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param_value_identifier.
+	exitParam_value_identifier(ctx) {
 	}
 
 

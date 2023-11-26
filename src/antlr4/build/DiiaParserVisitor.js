@@ -72,12 +72,6 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#structure_param_value.
-	visitStructure_param_value(ctx) {
-	  return this.visitChildren(ctx);
-	}
-
-
 	// Visit a parse tree produced by DiiaParser#mockup.
 	visitMockup(ctx) {
 	  return this.visitChildren(ctx);
@@ -606,8 +600,20 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by DiiaParser#param_value.
-	visitParam_value(ctx) {
+	// Visit a parse tree produced by DiiaParser#param_value_number.
+	visitParam_value_number(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#param_value_string.
+	visitParam_value_string(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by DiiaParser#param_value_identifier.
+	visitParam_value_identifier(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

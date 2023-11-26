@@ -125,10 +125,6 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new StructureParamNode(ctx, { name, type, defaultValue });
     }
 
-    visitStructure_param_value(ctx) {
-        return singleNode(super.visitStructure_param_value(ctx));
-    }
-
     visitMockup(ctx) {
         return super.visitMockup(ctx);
     }
@@ -739,8 +735,16 @@ class DiiaVisitor extends DiiaParserVisitor {
         return flatNodes(super.visitParams(ctx));
     }
 
-    visitParam_value(ctx) {
-        return singleNode(super.visitParam_value(ctx));
+    visitParam_value_number(ctx) {
+        return this.visitNumber(ctx);
+    }
+
+    visitParam_value_string(ctx) {
+        return this.visitString(ctx);
+    }
+
+    visitParam_value_identifier(ctx) {
+        return this.visitIdentifier(ctx);
     }
 
     visitParam(ctx) {

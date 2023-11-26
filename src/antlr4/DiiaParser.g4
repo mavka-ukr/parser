@@ -18,8 +18,7 @@ method_declaration: md_name=identifier '(' (nls md_params=params? nls) ')' (md_t
 structure: 'структура' s_name=identifier ('є' s_parent=identifiers_chain)? nl (s_elements=structure_elements nl)? nls 'кінець';
 structure_elements: structure_element (nl structure_element)*;
 structure_element: structure_param | nls;
-structure_param: sp_name=identifier sp_type=type_value? ('=' sp_value=structure_param_value)?;
-structure_param_value: NUMBER | STRING | identifier;
+structure_param: sp_name=identifier sp_type=type_value? ('=' sp_value=param_value)?;
 
 mockup: mockup_object | mockup_structure | mockup_module | mockup_diia;
 mockup_object: 'макет' mo_name=identifier (mo_type=type_value | (nl nls (mo_elements=mockup_body nl)? nls 'кінець'));
@@ -134,7 +133,9 @@ named_arg: nls na_name=identifier '=' na_value=expr nls;
 
 params: param (nls ',' nls param)*;
 param: ((p_spread='...')? p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
-param_value: NUMBER | STRING | identifier;
+param_value: NUMBER #param_value_number
+           | (STRING | STRING_MULTILINE) #param_value_string
+           | identifier #param_value_identifier;
 
 body: body_element_or_return (nl body_element_or_return)*;
 body_element_or_return: body_element | return_body_line;
