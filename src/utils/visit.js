@@ -12,6 +12,10 @@ export function singleNode(node) {
         if (node.length === 1) {
             return node[0];
         }
+
+        if (node.length === 0) {
+            return null;
+        }
     }
 
     return node;

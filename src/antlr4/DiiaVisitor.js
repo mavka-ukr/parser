@@ -1,4 +1,5 @@
-import NumberNode from "../ast/NumberNode.js";
+i
+mport NumberNode from "../ast/NumberNode.js";
 import StringNode from "../ast/StringNode.js";
 import ArithmeticNode from "../ast/ArithmeticNode.js";
 import ComparisonNode from "../ast/ComparisonNode.js";
