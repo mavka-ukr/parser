@@ -135,7 +135,8 @@ params: param (nls ',' nls param)*;
 param: ((p_spread='...')? p_name=identifier | p_array_destruction=array_destruction | p_object_destruction=object_destruction) p_type=type_value? ('=' p_value=param_value)?;
 param_value: NUMBER #param_value_number
            | (STRING | STRING_MULTILINE) #param_value_string
-           | identifier #param_value_identifier;
+           | identifier #param_value_identifier
+           | '(' ')' #param_value_empty_dictionary;
 
 body: body_element_or_return (nl body_element_or_return)*;
 body_element_or_return: body_element | return_body_line;
