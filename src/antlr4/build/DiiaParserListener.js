@@ -932,6 +932,15 @@ export default class DiiaParserListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
+	// Enter a parse tree produced by DiiaParser#param_value_empty_list.
+	enterParam_value_empty_list(ctx) {
+	}
+
+	// Exit a parse tree produced by DiiaParser#param_value_empty_list.
+	exitParam_value_empty_list(ctx) {
+	}
+
+
 	// Enter a parse tree produced by DiiaParser#body.
 	enterBody(ctx) {
 	}

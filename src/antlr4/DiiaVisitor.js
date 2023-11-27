@@ -751,6 +751,10 @@ class DiiaVisitor extends DiiaParserVisitor {
         return new DictionaryNode(ctx, { args: {} });
     }
 
+    visitParam_value_empty_list(ctx) {
+        return new ArrayNode(ctx, { elements: [] });
+    }
+
     visitParam(ctx) {
         let name;
         if (ctx.p_name) {

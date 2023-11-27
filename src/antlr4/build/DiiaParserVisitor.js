@@ -624,6 +624,12 @@ export default class DiiaParserVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by DiiaParser#param_value_empty_list.
+	visitParam_value_empty_list(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by DiiaParser#body.
 	visitBody(ctx) {
 	  return this.visitChildren(ctx);

@@ -136,7 +136,8 @@ param: ((p_spread='...')? p_name=identifier | p_array_destruction=array_destruct
 param_value: NUMBER #param_value_number
            | (STRING | STRING_MULTILINE) #param_value_string
            | identifier #param_value_identifier
-           | '(' ')' #param_value_empty_dictionary;
+           | '(' ')' #param_value_empty_dictionary
+           | '[' ']' #param_value_empty_list;
 
 body: body_element_or_return (nl body_element_or_return)*;
 body_element_or_return: body_element | return_body_line;
