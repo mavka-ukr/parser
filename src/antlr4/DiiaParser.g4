@@ -64,6 +64,7 @@ value: NUMBER #number
      | identifier #id
      | c_left=value nls '.' nls c_right=extended_identifier #chain
      | c_value=value '(' (c_args=args | c_named_args=named_args)? ')' #call
+     | a_left=value '[' a_element=expr ']' #get_element
      | '+' p_value=value  #positive
      | '-' n_value=value  #negative
      | DECREMENT pd_value=value  #pre_decrement
@@ -72,7 +73,6 @@ value: NUMBER #number
      | pi_value=value INCREMENT #post_increment
      | '!' n_value=value  #not
      | '~' bn_value=value  #bitwise_not
-     | a_left=value '[' a_element=expr ']' #get_element
      | '(' n_value=expr ')' #nested
      | '(' c_value=expr ')' '(' (c_args=args | c_named_args=named_args)? ')' #call_expr
      | a_left=value 'як' a_right=value #as
