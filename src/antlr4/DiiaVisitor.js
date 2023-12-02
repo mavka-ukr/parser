@@ -183,7 +183,7 @@ class DiiaVisitor extends DiiaParserVisitor {
     visitIf(ctx) {
         const value = this.visit(ctx.i_value);
         const body = ctx.i_body ? this.visit(ctx.i_body) : [];
-        const elseBody = ctx.i_else_body ? this.visit(ctx.i_else_body) : ctx.i_else_if ? this.visit(ctx.i_else_if) : null;
+        const elseBody = ctx.i_else_body ? this.visit(ctx.i_else_body) : ctx.i_else_if ? flatNodes([this.visit(ctx.i_else_if)]) : null;
 
         return new IfNode(ctx, { value, body, elseBody });
     }
