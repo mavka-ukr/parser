@@ -12,7 +12,25 @@ git clone https://github.com/mavka-ukr/mavka-parser
 
 Using:
 
+```CMake
+# CMakeLists.txt
+
+cmake_minimum_required(VERSION 3.26)
+project(mavka)
+
+set(CMAKE_CXX_STANDARD 20)
+
+add_subdirectory(mavka-parser)
+
+add_executable(mavka main.cpp)
+target_link_libraries(mavka mavka_parser)
+target_compile_options(mavka PRIVATE -fexceptions)
+set_target_properties(mavka PROPERTIES OUTPUT_NAME "мавка")
+```
+
 ```c++
+// main.cpp
+
 #include <iostream>
 #include "mavka-parser/parser.h"
 
