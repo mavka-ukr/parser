@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef AST_H
-#define AST_H
+#ifndef MAVKA_AST_H
+#define MAVKA_AST_H
 
 #include <map>
 #include <string>
@@ -626,4 +626,4 @@ namespace mavka::ast {
     std::vector<ASTSome*> body;
   };
 } // namespace mavka::ast
-#endif // AST_H
+#endif // MAVKA_AST_H

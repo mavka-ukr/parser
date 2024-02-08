@@ -4,3 +4,5 @@ gen/
 src/antlr4/DiiaLexer.tokens
 ttest.js
 тест.м
+build/
+cmake-build-debug/

@@ -1,14 +1,17 @@
 #pragma once
 
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef MAVKA_PARSER_H
+#define MAVKA_PARSER_H
 
-#include "../../utils/tools.h"
+#include <string>
+#include <vector>
+
 #include "ast.h"
 #include "syntax/MavkaLexer.h"
 #include "syntax/MavkaParser.h"
 #include "syntax/MavkaParserBaseVisitor.h"
 #include "syntax/antlr4-cpp-runtime/runtime/src/antlr4-runtime.h"
+#include "tools.h"
 
 namespace mavka::parser {
   ast::ASTSome* any_to_ast_some(std::any any);
@@ -301,22 +304,12 @@ namespace mavka::parser {
     std::string message;
   };
 
-  class MavkaParserErrorListener final : public antlr4::BaseErrorListener {
-   public:
-    void syntaxError(antlr4::Recognizer* recognizer,
-                     antlr4::Token* offendingSymbol,
-                     size_t line,
-                     size_t charPositionInLine,
-                     const std::string& msg,
-                     std::exception_ptr e) override;
-  };
-
   class MavkaParserResult {
    public:
     MavkaParserError* error = nullptr;
     ast::ProgramNode* program_node = nullptr;
   };
 
-  MavkaParserResult* parse(std::string code, std::string path);
+  MavkaParserResult* parse(const std::string& code, const std::string& path);
 } // namespace mavka::parser
-#endif // PARSER_H
+#endif // MAVKA_PARSER_H

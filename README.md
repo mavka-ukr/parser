@@ -1,38 +1,42 @@
-# mavka-parser
+# Mavka Parser
 
-Mavka language parser written in antlr4 and JavaScript.
-
-## Installation
-
-```
-npm i mavka-parser
-```
+Mavka language parser written in ANTLR4 and C++.
 
 ## Usage
 
-```javascript
-import { parse } from 'mavka-parser';
+Clone the repository:
 
-const code = `
-дія знайти_суму(а, б)
-  а + б
-кінець
-
-сума = знайти_суму(2, 2)
-
-друк(сума)
-`;
-
-const ast = parse(code);
-
-console.log(ast);
+```shell
+git clone https://github.com/mavka-ukr/mavka-parser
 ```
+
+Using:
+
+```c++
+#include <iostream>
+#include "mavka-parser/parser.h"
+
+int main() {
+  const auto code = "друк(2 + 2)";
+  const auto parser_result = mavka::parser::parse(code, "тест.м");
+  if (parser_result->error) {
+    std::cout << "Error: " << parser_result->error->message << std::endl;
+    return 1;
+  }
+  std::cout << "Success!" << std::endl;
+  return 0;
+}
+```
+
+> Note that ANTLR4 can throw exceptions
 
 ## Development
 
 Requirements:
 
-- NodeJS 16+ with NPM
+- Clang
+- CMake
+- Make
 - Java 8+
 
 Installation:
@@ -41,18 +45,19 @@ Installation:
 git clone https://github.com/mavka-ukr/mavka-parser
 
 cd mavka-parser
-
-npm install
 ```
 
-Generating antlr4 files:
+Generating ANTLR4 files:
 
 ```shell
-npm run antlr4
+bash generate.sh
 ```
 
-Running tests:
+Building:
 
 ```shell
-npm test
+mkdir build
+cd build
+cmake ..
+make
 ```

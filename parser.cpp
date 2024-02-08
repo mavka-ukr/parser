@@ -1,9 +1,5 @@
 #include "parser.h"
 
-#include <valarray>
-
-#include "../../utils/chrono.h"
-
 namespace mavka::parser {
   ast::ASTSome* any_to_ast_some(std::any any) {
     return std::any_cast<ast::ASTSome*>(any);
@@ -19,22 +15,22 @@ namespace mavka::parser {
   std::string process_number(std::string number) {
     auto number_copy = std::string(number);
     if (number_copy.find("ш") != std::string::npos) {
-      mavka::internal::tools::replace_all(number_copy, "ш", "x");
-      mavka::internal::tools::replace_all(number_copy, "Ш", "X");
-      mavka::internal::tools::replace_all(number_copy, "а", "а");
-      mavka::internal::tools::replace_all(number_copy, "А", "A");
-      mavka::internal::tools::replace_all(number_copy, "б", "b");
-      mavka::internal::tools::replace_all(number_copy, "Б", "B");
-      mavka::internal::tools::replace_all(number_copy, "в", "c");
-      mavka::internal::tools::replace_all(number_copy, "В", "C");
-      mavka::internal::tools::replace_all(number_copy, "г", "d");
-      mavka::internal::tools::replace_all(number_copy, "Г", "D");
-      mavka::internal::tools::replace_all(number_copy, "ґ", "e");
-      mavka::internal::tools::replace_all(number_copy, "Ґ", "E");
-      mavka::internal::tools::replace_all(number_copy, "д", "f");
-      mavka::internal::tools::replace_all(number_copy, "Д", "F");
+      tools::replace_all(number_copy, "ш", "x");
+      tools::replace_all(number_copy, "Ш", "X");
+      tools::replace_all(number_copy, "а", "а");
+      tools::replace_all(number_copy, "А", "A");
+      tools::replace_all(number_copy, "б", "b");
+      tools::replace_all(number_copy, "Б", "B");
+      tools::replace_all(number_copy, "в", "c");
+      tools::replace_all(number_copy, "В", "C");
+      tools::replace_all(number_copy, "г", "d");
+      tools::replace_all(number_copy, "Г", "D");
+      tools::replace_all(number_copy, "ґ", "e");
+      tools::replace_all(number_copy, "Ґ", "E");
+      tools::replace_all(number_copy, "д", "f");
+      tools::replace_all(number_copy, "Д", "F");
     } else {
-      mavka::internal::tools::replace_all(number_copy, "д", "b");
+      tools::replace_all(number_copy, "д", "b");
     }
     return number_copy;
   }
@@ -81,8 +77,8 @@ namespace mavka::parser {
     bool interpolation = false;
 
     for (int i = 0; i < value.length(); ++i) {
-      if (!interpolation && internal::tools::safe_substr(value, i, 1) == "%" &&
-          internal::tools::safe_substr(value, i + 1, 1) == "(") {
+      if (!interpolation && tools::safe_substr(value, i, 1) == "%" &&
+          tools::safe_substr(value, i + 1, 1) == "(") {
         interpolation = true;
         if (!current_part.empty()) {
           const auto part_string = new ast::StringNode();
@@ -94,7 +90,7 @@ namespace mavka::parser {
         continue;
       }
 
-      if (interpolation && internal::tools::safe_substr(value, i, 1) == ")") {
+      if (interpolation && tools::safe_substr(value, i, 1) == ")") {
         interpolation = false;
         const auto parser_result = parser::parse(current_part, "");
         if (parser_result->error) {
@@ -105,7 +101,7 @@ namespace mavka::parser {
         continue;
       }
 
-      current_part += internal::tools::safe_substr(value, i, 1);
+      current_part += tools::safe_substr(value, i, 1);
     }
     if (!current_part.empty()) {
       const auto last_part = new ast::StringNode();
@@ -641,8 +637,7 @@ namespace mavka::parser {
 
   std::any MavkaASTVisitor::visitFromto_value(
       MavkaParser::Fromto_valueContext* context) {
-    if (mavka::internal::tools::instance_of<MavkaParser::Fromto_numberContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Fromto_numberContext>(context)) {
       const auto number_node = new ast::NumberNode();
       fill_ast_node(number_node, context);
       number_node->value = process_number(
@@ -651,13 +646,11 @@ namespace mavka::parser {
               ->getText());
       return (ast::make_ast_some(number_node));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Fromto_idContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Fromto_idContext>(context)) {
       return visitIdentifier(
           dynamic_cast<MavkaParser::Fromto_idContext*>(context)->identifier());
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Fromto_nestedContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Fromto_nestedContext>(context)) {
       return _visitContext(
           dynamic_cast<MavkaParser::Fromto_nestedContext*>(context)->fn_value);
     }
@@ -707,112 +700,92 @@ namespace mavka::parser {
             dynamic_cast<MavkaParser::ChainContext*>(context)) {
       return visitChain(chain_context);
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::CallContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::CallContext>(context)) {
       return visitCall(dynamic_cast<MavkaParser::CallContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Get_elementContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Get_elementContext>(context)) {
       return visitGet_element(
           dynamic_cast<MavkaParser::Get_elementContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::PositiveContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::PositiveContext>(context)) {
       return visitPositive(
           dynamic_cast<MavkaParser::PositiveContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::NegativeContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::NegativeContext>(context)) {
       return visitNegative(
           dynamic_cast<MavkaParser::NegativeContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Pre_decrementContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Pre_decrementContext>(context)) {
       return visitPre_decrement(
           dynamic_cast<MavkaParser::Pre_decrementContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Pre_incrementContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Pre_incrementContext>(context)) {
       return visitPre_increment(
           dynamic_cast<MavkaParser::Pre_incrementContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Post_decrementContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Post_decrementContext>(context)) {
       return visitPost_decrement(
           dynamic_cast<MavkaParser::Post_decrementContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Post_incrementContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Post_incrementContext>(context)) {
       return visitPost_increment(
           dynamic_cast<MavkaParser::Post_incrementContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::NotContext>(context)) {
+    if (tools::instance_of<MavkaParser::NotContext>(context)) {
       return visitNot(dynamic_cast<MavkaParser::NotContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Bitwise_notContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Bitwise_notContext>(context)) {
       return visitBitwise_not(
           dynamic_cast<MavkaParser::Bitwise_notContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::NestedContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::NestedContext>(context)) {
       return visitNested(dynamic_cast<MavkaParser::NestedContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::AsContext>(context)) {
+    if (tools::instance_of<MavkaParser::AsContext>(context)) {
       return visitAs(dynamic_cast<MavkaParser::AsContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Arithmetic_mulContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Arithmetic_mulContext>(context)) {
       return visitArithmetic_mul(
           dynamic_cast<MavkaParser::Arithmetic_mulContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Arithmetic_addContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Arithmetic_addContext>(context)) {
       return visitArithmetic_add(
           dynamic_cast<MavkaParser::Arithmetic_addContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::BitwiseContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::BitwiseContext>(context)) {
       return visitBitwise(dynamic_cast<MavkaParser::BitwiseContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::ComparisonContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::ComparisonContext>(context)) {
       return visitComparison(
           dynamic_cast<MavkaParser::ComparisonContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Comp_inst_block_programContext>(context)) {
+    if (tools::instance_of<MavkaParser::Comp_inst_block_programContext>(
+            context)) {
       return visitComp_inst_block_program(
           dynamic_cast<MavkaParser::Comp_inst_block_programContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Comp_inst_assignContext>(context)) {
+    if (tools::instance_of<MavkaParser::Comp_inst_assignContext>(context)) {
       return visitComp_inst_assign(
           dynamic_cast<MavkaParser::Comp_inst_assignContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::TestContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::TestContext>(context)) {
       return visitTest(dynamic_cast<MavkaParser::TestContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::TernaryContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::TernaryContext>(context)) {
       return visitTernary(dynamic_cast<MavkaParser::TernaryContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Typeless_arrayContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Typeless_arrayContext>(context)) {
       return visitTypeless_array(
           dynamic_cast<MavkaParser::Typeless_arrayContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Typeless_dictionaryContext>(context)) {
+    if (tools::instance_of<MavkaParser::Typeless_dictionaryContext>(context)) {
       return visitTypeless_dictionary(
           dynamic_cast<MavkaParser::Typeless_dictionaryContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::GodContext>(context)) {
+    if (tools::instance_of<MavkaParser::GodContext>(context)) {
       return visitGod(dynamic_cast<MavkaParser::GodContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Call_parentContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Call_parentContext>(context)) {
       const auto call_parent_context =
           dynamic_cast<MavkaParser::Call_parentContext*>(context);
       const auto call_node = new ast::CallNode();
@@ -837,26 +810,22 @@ namespace mavka::parser {
       }
       return (ast::make_ast_some(call_node));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::SimpleContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::SimpleContext>(context)) {
       const auto simple_context =
           dynamic_cast<MavkaParser::SimpleContext*>(context);
       return _visitContext(simple_context->value());
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::WaitContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::WaitContext>(context)) {
       const auto wait_context =
           dynamic_cast<MavkaParser::WaitContext*>(context);
       return visitWait(wait_context);
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::FunctionContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::FunctionContext>(context)) {
       const auto function_context =
           dynamic_cast<MavkaParser::FunctionContext*>(context);
       return visitFunction(function_context);
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Anonymous_diiaContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Anonymous_diiaContext>(context)) {
       const auto anonymous_diia_context =
           dynamic_cast<MavkaParser::Anonymous_diiaContext*>(context);
       return visitAnonymous_diia(anonymous_diia_context);
@@ -1462,13 +1431,11 @@ namespace mavka::parser {
   }
 
   std::any MavkaASTVisitor::visitTake(MavkaParser::TakeContext* context) {
-    if (mavka::internal::tools::instance_of<MavkaParser::Take_moduleContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Take_moduleContext>(context)) {
       return visitTake_module(
           dynamic_cast<MavkaParser::Take_moduleContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<MavkaParser::Take_remoteContext>(
-            context)) {
+    if (tools::instance_of<MavkaParser::Take_remoteContext>(context)) {
       return visitTake_remote(
           dynamic_cast<MavkaParser::Take_remoteContext*>(context));
     }
@@ -1570,29 +1537,27 @@ namespace mavka::parser {
 
   std::any MavkaASTVisitor::visitParam_value(
       MavkaParser::Param_valueContext* context) {
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Param_value_stringContext>(context)) {
+    if (tools::instance_of<MavkaParser::Param_value_stringContext>(context)) {
       return visitParam_value_string(
           dynamic_cast<MavkaParser::Param_value_stringContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Param_value_numberContext>(context)) {
+    if (tools::instance_of<MavkaParser::Param_value_numberContext>(context)) {
       return visitParam_value_number(
           dynamic_cast<MavkaParser::Param_value_numberContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Param_value_identifierContext>(context)) {
+    if (tools::instance_of<MavkaParser::Param_value_identifierContext>(
+            context)) {
       return visitParam_value_identifier(
           dynamic_cast<MavkaParser::Param_value_identifierContext*>(context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Param_value_empty_dictionaryContext>(context)) {
+    if (tools::instance_of<MavkaParser::Param_value_empty_dictionaryContext>(
+            context)) {
       return visitParam_value_empty_dictionary(
           dynamic_cast<MavkaParser::Param_value_empty_dictionaryContext*>(
               context));
     }
-    if (mavka::internal::tools::instance_of<
-            MavkaParser::Param_value_empty_listContext>(context)) {
+    if (tools::instance_of<MavkaParser::Param_value_empty_listContext>(
+            context)) {
       return visitParam_value_empty_list(
           dynamic_cast<MavkaParser::Param_value_empty_listContext*>(context));
     }
@@ -1827,7 +1792,7 @@ namespace mavka::parser {
     auto body = std::any_cast<std::vector<ast::ASTSome*>>(visitBody(context));
     if (!body.empty()) {
       const auto last_node = body.back();
-      if (mavka::internal::tools::instance_of<ast::ASTValueNode>(
+      if (tools::instance_of<ast::ASTValueNode>(
               mavka::ast::get_ast_node(last_node))) {
         const auto return_node = new ast::ReturnNode();
         // return_node->start_line = last_node->start_line;
@@ -1972,12 +1937,11 @@ namespace mavka::parser {
           for (const auto token : hidden_tokens_right) {
             string_node->value += token->getText();
           }
-          const auto lines =
-              mavka::internal::tools::explode(string_node->value, "\n");
+          const auto lines = tools::explode(string_node->value, "\n");
           std::vector<std::string> new_lines;
           for (int j = 0; j < lines.size(); ++j) {
             const auto& line = lines[j];
-            const auto new_line = mavka::internal::tools::trim(line);
+            const auto new_line = tools::trim(line);
             if (new_line.empty()) {
               if ((j == 0) && (j == lines.size() - 1)) {
                 new_lines.push_back(line);
@@ -1986,15 +1950,15 @@ namespace mavka::parser {
               if ((j == 0) && (j == lines.size() - 1)) {
                 new_lines.push_back(line);
               } else if (j == 0) {
-                new_lines.push_back(mavka::internal::tools::rtrim(line));
+                new_lines.push_back(tools::rtrim(line));
               } else if (j == lines.size() - 1) {
-                new_lines.push_back(mavka::internal::tools::ltrim(line));
+                new_lines.push_back(tools::ltrim(line));
               } else {
                 new_lines.push_back(new_line);
               }
             }
           }
-          string_node->value = mavka::internal::tools::implode(new_lines, " ");
+          string_node->value = tools::implode(new_lines, " ");
           content_array_node->elements.push_back(
               ast::make_ast_some(string_node));
         }
@@ -2040,76 +2004,22 @@ namespace mavka::parser {
     return ast::make_ast_some(call_node);
   }
 
-  void MavkaParserErrorListener::syntaxError(antlr4::Recognizer* recognizer,
-                                             antlr4::Token* offendingSymbol,
-                                             size_t line,
-                                             size_t charPositionInLine,
-                                             const std::string& msg,
-                                             std::exception_ptr e) {
-    const auto error = new MavkaParserError();
-    error->line = line;
-    error->column = charPositionInLine;
-    error->message = "syntaxError";
-    throw error;
-  }
-
-  MavkaParserResult* parse(std::string code, std::string path) {
+  MavkaParserResult* parse(const std::string& code, const std::string& path) {
     antlr4::ANTLRInputStream input(code);
-
-    const auto lexer_error_listener = new MavkaParserErrorListener();
     MavkaLexer lexer(&input);
-    // lexer.removeErrorListeners();
-    // lexer.addErrorListener(lexer_error_listener);
-
     antlr4::CommonTokenStream tokens(&lexer);
-
-    const auto parser_error_listener = new MavkaParserErrorListener();
     MavkaParser parser(&tokens);
-    // parser.setErrorHandler(std::shared_ptr<MavkaParserErrorHandler>(error_handler));
-    // parser.removeParseListeners();
-    // parser.removeErrorListeners();
-    // parser.addErrorListener(parser_error_listener);
-
-    START_CHRONO(parse)
 
     MavkaParser::FileContext* tree = parser.file();
-
-    END_CHRONO(parse, "parsing ", path)
 
     const auto visitor = new MavkaASTVisitor();
     visitor->tokens = &tokens;
 
-    START_CHRONO(visit)
-
     const auto ast_result = any_to_ast_some(visitor->visitFile(tree));
-
-    END_CHRONO(visit, "visiting ", path)
 
     const auto program_node = ast_result->ProgramNode;
     const auto parser_result = new MavkaParserResult();
-    parser_result->program_node = program_node;
-    return parser_result;
-    // try {
-    //
-    // } catch (const antlr4::RecognitionException& e) {
-    //   const auto parser_result = new MavkaParserResult();
-    //   const auto parser_error = new MavkaParserError();
-    //   // wasm cannot properly handle antlr4 exceptions
-    //   // do not handle it for now
-    //   // todo: fix it
-    //   // parser_error->line = e.getOffendingToken()->getLine();
-    //   // parser_error->column =
-    //   e.getOffendingToken()->getCharPositionInLine(); parser_error->path =
-    //   std::move(path); parser_error->message = "Помилка парсингу.";
-    //   parser_result->error = parser_error;
-    //   return parser_result;
-    // } catch (...) {
-    //   const auto parser_result = new MavkaParserResult();
-    //   const auto parser_error = new MavkaParserError();
-    //   parser_error->path = std::move(path);
-    //   parser_error->message = "Помилка парсингу.";
-    //   parser_result->error = parser_error;
-    //   return parser_result;
-    // }
-  }
+        parser_result->program_node = program_node;
+        return parser_result;
+    }
 }
