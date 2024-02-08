@@ -48,6 +48,14 @@ int main() {
 
 > Note that ANTLR4 can throw exceptions
 
+```shell
+mkdir build
+cd build
+cmake ..
+make
+./мавка
+```
+
 ## Development
 
 Requirements:
