@@ -7,7 +7,7 @@ Mavka language parser written in ANTLR4 and C++.
 Clone the repository:
 
 ```shell
-git clone https://github.com/mavka-ukr/mavka-parser
+git clone https://github.com/mavka-ukr/parser
 ```
 
 Using:
@@ -20,7 +20,7 @@ project(mavka)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(mavka-parser)
+add_subdirectory(parser)
 
 add_executable(mavka main.cpp)
 target_link_libraries(mavka mavka_parser)
@@ -32,7 +32,7 @@ set_target_properties(mavka PROPERTIES OUTPUT_NAME "мавка")
 // main.cpp
 
 #include <iostream>
-#include "mavka-parser/parser.h"
+#include "parser/parser.h"
 
 int main() {
   const auto code = "друк(2 + 2)";
@@ -60,9 +60,9 @@ Requirements:
 Installation:
 
 ```shell
-git clone https://github.com/mavka-ukr/mavka-parser
+git clone https://github.com/mavka-ukr/parser
 
-cd mavka-parser
+cd parser
 ```
 
 Generating ANTLR4 files:
