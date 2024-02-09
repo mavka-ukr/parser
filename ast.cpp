@@ -794,6 +794,9 @@ namespace mavka::ast {
     if (this->WhileNode) {
       return false;
     }
+    if (this->GiveNode) {
+      return false;
+    }
     return true;
   }
 } // namespace mavka::ast
