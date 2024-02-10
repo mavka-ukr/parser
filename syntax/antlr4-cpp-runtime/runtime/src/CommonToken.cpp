@@ -88,7 +88,7 @@ std::string CommonToken::getText() const {
   if (_start < n && _stop < n) {
     return input->getText(misc::Interval(_start, _stop));
   } else {
-    return "<EOF>";
+    return "<КФ>";
   }
 }
 

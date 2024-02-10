@@ -353,7 +353,7 @@ std::string IntervalSet::toString(bool elemAreChar) const {
     ssize_t b = interval.b;
     if (a == b) {
       if (a == -1) {
-        ss << "<EOF>";
+        ss << "<КФ>";
       } else if (elemAreChar) {
         ss << "'" << static_cast<char>(a) << "'";
       } else {
@@ -413,7 +413,7 @@ std::string IntervalSet::toString(const dfa::Vocabulary &vocabulary) const {
 
 std::string IntervalSet::elementName(const dfa::Vocabulary &vocabulary, ssize_t a) const {
   if (a == -1) {
-    return "<EOF>";
+    return "<КФ>";
   } else if (a == -2) {
     return "<EPSILON>";
   } else {

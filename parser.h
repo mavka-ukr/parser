@@ -310,6 +310,22 @@ namespace mavka::parser {
     ast::ProgramNode* program_node = nullptr;
   };
 
-  MavkaParserResult* parse(const std::string& code, const std::string& path);
+  class MavkaParserErrorListener final : public antlr4::BaseErrorListener {
+   public:
+    std::string path;
+
+    explicit MavkaParserErrorListener(const std::string& path) {
+      this->path = path;
+    }
+
+    void syntaxError(antlr4::Recognizer* recognizer,
+                     antlr4::Token* offendingSymbol,
+                     size_t line,
+                     size_t charPositionInLine,
+                     const std::string& msg,
+                     std::exception_ptr e) override;
+  };
+
+  MavkaParserResult parse(const std::string& code, const std::string& path);
 } // namespace mavka::parser
 #endif // MAVKA_PARSER_H

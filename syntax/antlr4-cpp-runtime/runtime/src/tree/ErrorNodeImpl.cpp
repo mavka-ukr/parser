@@ -44,7 +44,7 @@ std::string ErrorNodeImpl::toStringTree(Parser * /*parser*/, bool /*pretty*/) {
 
 std::string ErrorNodeImpl::toString() {
   if (symbol->getType() == Token::EOF) {
-    return "<EOF>";
+    return "<КФ>";
   }
   return symbol->getText();
 }

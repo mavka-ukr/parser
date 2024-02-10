@@ -93,10 +93,10 @@ namespace mavka::parser {
       if (interpolation && tools::safe_substr(value, i, 1) == ")") {
         interpolation = false;
         const auto parser_result = parser::parse(current_part, "");
-        if (parser_result->error) {
+        if (parser_result.error) {
           throw std::runtime_error("Shit.");
         }
-        parts.push_back(parser_result->program_node->body[0]);
+        parts.push_back(parser_result.program_node->body[0]);
         current_part = "";
         continue;
       }
@@ -2004,11 +2004,35 @@ namespace mavka::parser {
     return ast::make_ast_some(call_node);
   }
 
-  MavkaParserResult* parse(const std::string& code, const std::string& path) {
+  void MavkaParserErrorListener::syntaxError(antlr4::Recognizer* recognizer,
+                                             antlr4::Token* offendingSymbol,
+                                             size_t line,
+                                             size_t charPositionInLine,
+                                             const std::string& msg,
+                                             std::exception_ptr e) {
+    MavkaParserError error{};
+    error.path = this->path;
+    error.line = line;
+    error.column = charPositionInLine;
+    error.message = msg;
+    throw error;
+  }
+
+  MavkaParserResult parse(const std::string& code, const std::string& path) {
     antlr4::ANTLRInputStream input(code);
+
+    const auto lexer_error_listener = new MavkaParserErrorListener(path);
     MavkaLexer lexer(&input);
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(lexer_error_listener);
+
     antlr4::CommonTokenStream tokens(&lexer);
+
+    const auto parser_error_listener = new MavkaParserErrorListener(path);
     MavkaParser parser(&tokens);
+    parser.removeParseListeners();
+    parser.removeErrorListeners();
+    parser.addErrorListener(parser_error_listener);
 
     MavkaParser::FileContext* tree = parser.file();
 
@@ -2018,8 +2042,8 @@ namespace mavka::parser {
     const auto ast_result = any_to_ast_some(visitor->visitFile(tree));
 
     const auto program_node = ast_result->ProgramNode;
-    const auto parser_result = new MavkaParserResult();
-        parser_result->program_node = program_node;
-        return parser_result;
-    }
+    auto parser_result = MavkaParserResult();
+    parser_result.program_node = program_node;
+    return parser_result;
+  }
 }

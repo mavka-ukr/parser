@@ -108,7 +108,7 @@ std::string Recognizer::getTokenErrorDisplay(Token *t) {
   std::string s = t->getText();
   if (s == "") {
     if (t->getType() == EOF) {
-      s = "<EOF>";
+      s = "<КФ>";
     } else {
       s = std::string("<") + std::to_string(t->getType()) + std::string(">");
     }

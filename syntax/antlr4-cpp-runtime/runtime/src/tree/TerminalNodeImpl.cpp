@@ -44,7 +44,7 @@ std::string TerminalNodeImpl::toStringTree(Parser * /*parser*/, bool /*pretty*/)
 
 std::string TerminalNodeImpl::toString() {
   if (symbol->getType() == Token::EOF) {
-    return "<EOF>";
+    return "<КФ>";
   }
   return symbol->getText();
 }
