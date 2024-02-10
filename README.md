@@ -37,8 +37,8 @@ set_target_properties(mavka PROPERTIES OUTPUT_NAME "мавка")
 int main() {
   const auto code = "друк(2 + 2)";
   const auto parser_result = mavka::parser::parse(code, "тест.м");
-  if (parser_result.error) {
-    std::cout << "Error: " << parser_result.error->message << std::endl;
+  if (parser_result.errors) {
+    std::cout << "Error: " << parser_result.errors[0]->message << std::endl;
     return 1;
   }
   std::cout << "Success!" << std::endl;

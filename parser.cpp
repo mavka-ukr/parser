@@ -93,7 +93,7 @@ namespace mavka::parser {
       if (interpolation && tools::safe_substr(value, i, 1) == ")") {
         interpolation = false;
         const auto parser_result = parser::parse(current_part, "");
-        if (parser_result.error) {
+        if (!parser_result.errors.empty()) {
           throw std::runtime_error("Shit.");
         }
         parts.push_back(parser_result.program_node->body[0]);
@@ -2015,7 +2015,7 @@ namespace mavka::parser {
     error.line = line;
     error.column = charPositionInLine;
     error.message = msg;
-    throw error;
+    this->errors.push_back(error);
   }
 
   MavkaParserResult parse(const std::string& code, const std::string& path) {
@@ -2028,6 +2028,12 @@ namespace mavka::parser {
 
     antlr4::CommonTokenStream tokens(&lexer);
 
+    if (!lexer_error_listener->errors.empty()) {
+      return MavkaParserResult{
+          .errors = lexer_error_listener->errors,
+      };
+    }
+
     const auto parser_error_listener = new MavkaParserErrorListener(path);
     MavkaParser parser(&tokens);
     parser.removeParseListeners();
@@ -2035,6 +2041,12 @@ namespace mavka::parser {
     parser.addErrorListener(parser_error_listener);
 
     MavkaParser::FileContext* tree = parser.file();
+
+    if (!parser_error_listener->errors.empty()) {
+      return MavkaParserResult{
+          .errors = parser_error_listener->errors,
+      };
+    }
 
     const auto visitor = new MavkaASTVisitor();
     visitor->tokens = &tokens;

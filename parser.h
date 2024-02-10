@@ -306,13 +306,14 @@ namespace mavka::parser {
 
   class MavkaParserResult {
    public:
-    MavkaParserError* error = nullptr;
+    std::vector<MavkaParserError> errors;
     ast::ProgramNode* program_node = nullptr;
   };
 
   class MavkaParserErrorListener final : public antlr4::BaseErrorListener {
    public:
     std::string path;
+    std::vector<MavkaParserError> errors;
 
     explicit MavkaParserErrorListener(const std::string& path) {
       this->path = path;
