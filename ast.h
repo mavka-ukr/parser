@@ -299,6 +299,7 @@ namespace mavka::ast {
 
   class BreakNode final : public ASTExprNode {
    public:
+    size_t code_index;
   };
 
   class CallNode final : public ASTValueNode {
@@ -336,6 +337,7 @@ namespace mavka::ast {
 
   class ContinueNode final : public ASTExprNode {
    public:
+    size_t code_index;
   };
 
   class DictionaryElementNode final : public ASTExprNode {

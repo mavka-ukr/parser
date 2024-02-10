@@ -118,12 +118,12 @@ namespace mavka::parser {
         std::erase(body, item);
       }
       if (item->IdentifierNode) {
-        if (item->IdentifierNode->name == "break") {
+        if (item->IdentifierNode->name == "перервати") {
           item->IdentifierNode = nullptr;
           item->BreakNode = new ast::BreakNode();
           continue;
         }
-        if (item->IdentifierNode->name == "continue") {
+        if (item->IdentifierNode->name == "продовжити") {
           item->IdentifierNode = nullptr;
           item->ContinueNode = new ast::ContinueNode();
           continue;
