@@ -143,14 +143,14 @@ void DefaultErrorStrategy::reportNoViableAlternative(Parser *recognizer, const N
       input = tokens->getText(e.getStartToken(), e.getOffendingToken());
     }
   } else {
-    input = "<невідомий вхід>";
+    input = "<невідомий токен>";
   }
-  std::string msg = "немає альтернативи для входу " + escapeWSAndQuote(input);
+  std::string msg = "немає альтернативи для токену " + escapeWSAndQuote(input);
   recognizer->notifyErrorListeners(e.getOffendingToken(), msg, std::make_exception_ptr(e));
 }
 
 void DefaultErrorStrategy::reportInputMismatch(Parser *recognizer, const InputMismatchException &e) {
-  std::string msg = "неочікуваний вхід " + getTokenErrorDisplay(e.getOffendingToken()) +
+  std::string msg = "неочікуваний токен " + getTokenErrorDisplay(e.getOffendingToken()) +
   " очікується " + e.getExpectedTokens().toString(recognizer->getVocabulary());
   recognizer->notifyErrorListeners(e.getOffendingToken(), msg, std::make_exception_ptr(e));
 }
@@ -172,7 +172,7 @@ void DefaultErrorStrategy::reportUnwantedToken(Parser *recognizer) {
   std::string tokenName = getTokenErrorDisplay(t);
   misc::IntervalSet expecting = getExpectedTokens(recognizer);
 
-  std::string msg = "надлишковий вхід " + tokenName + " очікується " + expecting.toString(recognizer->getVocabulary());
+  std::string msg = "надлишковий токен " + tokenName + " очікується " + expecting.toString(recognizer->getVocabulary());
   recognizer->notifyErrorListeners(t, msg, nullptr);
 }
 
