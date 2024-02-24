@@ -26,6 +26,7 @@ namespace mavka::parser {
       return_ast_value->data.ReturnNode->value = body_ast_value;
       diia_ast_value->data.DiiaNode->body = {return_ast_value};
     }
+    diia_ast_value->data.DiiaNode->anonymous = true;
     return diia_ast_value;
   }
 } // namespace mavka::parser

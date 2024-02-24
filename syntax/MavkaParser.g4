@@ -37,7 +37,7 @@ mockup_structure_body_element: structure_param;
 mockup_diia: 'макет' (md_async='тривала')? (md_static='спец')? 'дія' (md_structure=identifier '.')? md_name=identifier ('<' md_generics=generics '>')? '(' nls md_params=params? nls ')' (md_type=type_value)?;
 mockup_subject: 'макет' 'субʼєкт' ms_name=identifier ms_type=type_value;
 
-diia: (d_async='тривала')? (d_static='спец')? 'дія' (d_structure=identifier '.')? d_name=identifier ('<' d_generics=generics '>')? '(' nls d_params=params? nls ')' (d_type=type_value)? nl (d_body=body nl)? 'кінець';
+diia: (d_async='тривала')? (d_static='спец')? 'дія' ((d_structure=identifier '.')? d_name=identifier)? ('<' d_generics=generics '>')? '(' nls d_params=params? nls ')' (d_type=type_value)? nl (d_body=body nl)? 'кінець';
 
 if: 'якщо' i_value=expr nl (i_body=body nl)? ((('інакше' nl i_else_body=body nl)? 'кінець') | ('інакше' i_else_if=if));
 

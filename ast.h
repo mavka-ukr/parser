@@ -13,6 +13,7 @@ namespace mavka::ast {
   struct PropertySetNode;
   struct AssignNode;
   struct BinaryNode;
+  struct BlockNode;
   struct BreakNode;
   struct CallNode;
   struct PropertyGetNode;
@@ -95,9 +96,10 @@ namespace mavka::ast {
   enum ASTValueKind {
     KindNone,
     KindArgNode,
-    KindBinaryNode,
     KindPropertySetNode,
     KindAssignNode,
+    KindBinaryNode,
+    KindBlockNode,
     KindBreakNode,
     KindCallNode,
     KindPropertyGetNode,
@@ -144,6 +146,7 @@ namespace mavka::ast {
     mavka::ast::PropertySetNode* PropertySetNode;
     mavka::ast::AssignNode* AssignNode;
     mavka::ast::BinaryNode* BinaryNode;
+    mavka::ast::BlockNode* BlockNode;
     mavka::ast::BreakNode* BreakNode;
     mavka::ast::CallNode* CallNode;
     mavka::ast::PropertyGetNode* PropertyGetNode;
@@ -249,6 +252,16 @@ namespace mavka::ast {
     static ASTValue* ast_value(BinaryNode* node) {
       const auto value = new ASTValue(KindBinaryNode);
       value->data.BinaryNode = node;
+      return value;
+    }
+  };
+
+  struct BlockNode {
+    std::vector<ASTValue*> body;
+
+    static ASTValue* ast_value(BlockNode* node) {
+      const auto value = new ASTValue(KindBlockNode);
+      value->data.BlockNode = node;
       return value;
     }
   };
@@ -373,6 +386,7 @@ namespace mavka::ast {
     std::vector<ASTValue*> params;
     ASTValue* return_types;
     std::vector<ASTValue*> body;
+    bool anonymous;
 
     static ASTValue* ast_value(DiiaNode* node) {
       const auto value = new ASTValue(KindDiiaNode);

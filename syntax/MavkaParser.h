@@ -688,17 +688,17 @@ public:
     std::vector<NlContext *> nl();
     NlContext* nl(size_t i);
     antlr4::tree::TerminalNode *KW_END();
-    std::vector<IdentifierContext *> identifier();
-    IdentifierContext* identifier(size_t i);
-    antlr4::tree::TerminalNode *DOT();
     antlr4::tree::TerminalNode *LESSER();
     antlr4::tree::TerminalNode *GREATER();
     antlr4::tree::TerminalNode *KW_ASYNC();
     antlr4::tree::TerminalNode *KW_SPEC();
+    std::vector<IdentifierContext *> identifier();
+    IdentifierContext* identifier(size_t i);
     GenericsContext *generics();
     ParamsContext *params();
     Type_valueContext *type_value();
     BodyContext *body();
+    antlr4::tree::TerminalNode *DOT();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

@@ -8,7 +8,8 @@ namespace mavka::parser {
     diia_ast_value->data.DiiaNode->async = context->d_async != nullptr;
     diia_ast_value->data.DiiaNode->structure =
         context->d_structure ? context->d_structure->getText() : "";
-    diia_ast_value->data.DiiaNode->name = context->d_name->getText();
+    diia_ast_value->data.DiiaNode->name =
+        context->d_name ? context->d_name->getText() : "";
     if (context->d_generics) {
       diia_ast_value->data.DiiaNode->generics =
           std::any_cast<std::vector<ast::ASTValue*>>(
