@@ -194,6 +194,8 @@ namespace mavka::ast {
     size_t end_column = 0;
   };
 
+  bool is_ast_value_returnable(const ASTValue* ast_value);
+
   struct ArgNode {
     size_t index;
     std::string name;

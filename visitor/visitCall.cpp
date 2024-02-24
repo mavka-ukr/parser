@@ -23,4 +23,15 @@ namespace mavka::parser {
     }
     return call_ast_value;
   }
+
+  std::any MavkaASTVisitor::visitCall_generics(
+      MavkaParser::Call_genericsContext* context) {
+    std::vector<ast::ASTValue*> generics;
+    for (const auto type_value_node : context->type_value()) {
+      const auto type_value_result =
+          any_to_ast_value(visitType_value(type_value_node));
+      generics.push_back(type_value_result);
+    }
+    return generics;
+  }
 } // namespace mavka::parser

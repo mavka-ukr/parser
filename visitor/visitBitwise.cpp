@@ -25,4 +25,9 @@ namespace mavka::parser {
     }
     return binary_ast_value;
   }
+
+  std::any MavkaASTVisitor::visitBitwise_op(
+      MavkaParser::Bitwise_opContext* context) {
+    return nullptr;
+  }
 } // namespace mavka::parser

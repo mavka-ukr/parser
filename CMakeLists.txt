@@ -5,51 +5,26 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(MAVKA_PARSER mavka_parser CACHE INTERNAL "")
 set(MAVKA_PARSER_SRC
-        visitor/visitAnonymous_diia.cpp
-        visitor/visitArg.cpp
         visitor/visitArgs.cpp
-        visitor/visitArithmetic_add.cpp
-        visitor/visitArithmetic_mul.cpp
-        visitor/visitArithmetic_op_add.cpp
-        visitor/visitArithmetic_op_mul.cpp
-        visitor/visitArray_element.cpp
-        visitor/visitArray_elements.cpp
+        visitor/visitArithmetic.cpp
         visitor/visitAs.cpp
-        visitor/visitAssign_by_element.cpp
-        visitor/visitAssign_by_identifier.cpp
         visitor/visitAssign.cpp
-        visitor/visitAssign_simple.cpp
-        visitor/visitAssign_symbol.cpp
         visitor/visitBitwise.cpp
         visitor/visitBitwise_not.cpp
-        visitor/visitBitwise_op.cpp
         visitor/visitBody.cpp
-        visitor/visitBody_element.cpp
-        visitor/visitBody_element_or_return.cpp
         visitor/visitCall.cpp
-        visitor/visitCall_generics.cpp
         visitor/visitChain.cpp
         visitor/visitComparison.cpp
         visitor/visitComp_inst_assign.cpp
         visitor/visitComp_inst_block_program.cpp
-        visitor/visitDictionary_args.cpp
-        visitor/_visitDiiaBody.cpp
         visitor/visitDiia.cpp
         visitor/visitEach.cpp
         visitor/visitFile.cpp
-        visitor/visitFromto_complex.cpp
-        visitor/visitFromto.cpp
-        visitor/visitFromto_simple.cpp
-        visitor/visitFromto_value.cpp
-        visitor/visitFunction.cpp
         visitor/visitGenerics.cpp
         visitor/visitGet_element.cpp
         visitor/visitGive.cpp
-        visitor/visitGive_element.cpp
         visitor/visitGod.cpp
-        visitor/visitId.cpp
         visitor/visitIdentifier.cpp
-        visitor/visitIdentifiers_chain.cpp
         visitor/visitIf.cpp
         visitor/visitMockup.cpp
         visitor/visitMockup_diia.cpp
@@ -59,41 +34,19 @@ set(MAVKA_PARSER_SRC
         visitor/visitMockup_structure_body_element.cpp
         visitor/visitMockup_structure.cpp
         visitor/visitMockup_subject.cpp
-        visitor/visitModule_body.cpp
-        visitor/visitModule_body_element.cpp
         visitor/visitModule.cpp
         visitor/visitMrm.cpp
-        visitor/visitMrm_element.cpp
-        visitor/visitNamed_arg.cpp
-        visitor/visitNamed_args.cpp
         visitor/visitNegative.cpp
         visitor/visitNested.cpp
         visitor/visitNot.cpp
         visitor/visitNumber.cpp
-        visitor/visitParam.cpp
         visitor/visitParams.cpp
-        visitor/visitParam_value.cpp
-        visitor/visitParam_value_empty_dictionary.cpp
-        visitor/visitParam_value_empty_list.cpp
-        visitor/visitParam_value_identifier.cpp
-        visitor/visitParam_value_number.cpp
-        visitor/visitParam_value_string.cpp
         visitor/visitPositive.cpp
-        visitor/visitPost_decrement.cpp
-        visitor/visitPost_increment.cpp
-        visitor/visitPre_decrement.cpp
-        visitor/visitPre_increment.cpp
+        visitor/visit_indecrement.cpp
         visitor/visitProgram.cpp
-        visitor/visitProgram_element.cpp
-        visitor/visitReturn_body_line.cpp
         visitor/visitString_value.cpp
         visitor/visitStructure.cpp
-        visitor/visitStructure_element.cpp
-        visitor/visitStructure_elements.cpp
-        visitor/visitStructure_param.cpp
-        visitor/visitSuper_identifiers_chain.cpp
         visitor/visitTake.cpp
-        visitor/visitTake_module.cpp
         visitor/visitTernary.cpp
         visitor/visitTest.cpp
         visitor/visitThrow.cpp
@@ -101,11 +54,7 @@ set(MAVKA_PARSER_SRC
         visitor/visitTypeless_array.cpp
         visitor/visitTypeless_dictionary.cpp
         visitor/visitType_value.cpp
-        visitor/visitType_value_item_array.cpp
-        visitor/visitType_value_item.cpp
-        visitor/visitType_value_item_simple.cpp
         visitor/visitValue_atom.cpp
-        visitor/visitWait_assign.cpp
         visitor/visitWait.cpp
         visitor/visitWhile.cpp
         ast.cpp

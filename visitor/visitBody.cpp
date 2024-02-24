@@ -32,4 +32,54 @@ namespace mavka::parser {
     }
     return body;
   }
+
+  std::any MavkaASTVisitor::visitBody_element(
+      MavkaParser::Body_elementContext* context) {
+    if (context->if_()) {
+      return visitIf(context->if_());
+    }
+    if (context->each()) {
+      return visitEach(context->each());
+    }
+    if (context->while_()) {
+      return visitWhile(context->while_());
+    }
+    if (context->try_()) {
+      return visitTry(context->try_());
+    }
+    if (context->expr()) {
+      return _visitContext(context->expr());
+    }
+    if (context->throw_()) {
+      return visitThrow(context->throw_());
+    }
+    if (context->wait_assign()) {
+      return visitWait_assign(context->wait_assign());
+    }
+    if (context->assign()) {
+      return visitAssign(context->assign());
+    }
+    return new ast::ASTValue();
+  }
+
+  std::any MavkaASTVisitor::visitBody_element_or_return(
+      MavkaParser::Body_element_or_returnContext* context) {
+    if (context->body_element()) {
+      return visitBody_element(context->body_element());
+    }
+    if (context->return_body_line()) {
+      return visitReturn_body_line(context->return_body_line());
+    }
+    return new ast::ASTValue();
+  }
+
+  std::any MavkaASTVisitor::visitReturn_body_line(
+      MavkaParser::Return_body_lineContext* context) {
+    const auto return_ast_value =
+        ast::ReturnNode::ast_value(new ast::ReturnNode());
+    fill_ast_value(return_ast_value, context);
+    return_ast_value->data.ReturnNode->value =
+        any_to_ast_value(_visitContext(context->rbl_value));
+    return return_ast_value;
+  }
 } // namespace mavka::parser
