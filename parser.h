@@ -27,7 +27,8 @@ namespace mavka::parser {
 
   class MavkaASTVisitor final : public MavkaParserBaseVisitor {
    public:
-    antlr4::CommonTokenStream* tokens;
+    antlr4::CommonTokenStream* tokens = nullptr;
+    size_t each_count = 0;
 
     std::any visitFile(MavkaParser::FileContext* ctx) override;
 

@@ -19,18 +19,20 @@ namespace mavka::parser {
     }
     if (context->e_fromto) {
       if (context->e_fromto->fromto_simple()) {
+        const auto to_name = std::to_string(this->each_count) + "_до";
+
         const auto fromto_simple = context->e_fromto->fromto_simple();
-        // пвід = 0
+        // х = 0
         const auto assign_ast_value =
             ast::AssignNode::ast_value(new ast::AssignNode());
         assign_ast_value->data.AssignNode->name = context->e_name->getText();
         assign_ast_value->data.AssignNode->value =
             any_to_ast_value(visitFromto_value(fromto_simple->fs_from));
 
-        // пдо = 10
+        // до = 10
         const auto assign_ast_value2 =
             ast::AssignNode::ast_value(new ast::AssignNode());
-        assign_ast_value2->data.AssignNode->name = "пдо";
+        assign_ast_value2->data.AssignNode->name = to_name;
         assign_ast_value2->data.AssignNode->value =
             any_to_ast_value(visitFromto_value(fromto_simple->fs_to));
 
@@ -38,17 +40,17 @@ namespace mavka::parser {
                             ? fromto_simple->fs_to_symbol->getText()
                             : ">=";
 
-        // поки пдо >= пвід
+        // поки до >= х
         const auto while_ast_value =
             ast::WhileNode::ast_value(new ast::WhileNode());
 
-        // пдо >= пвід
+        // до >= х
         const auto condition_binary_ast_value =
             ast::BinaryNode::ast_value(new ast::BinaryNode());
-        // пдо
+        // до
         condition_binary_ast_value->data.BinaryNode->left =
-            ast::IdentifierNode::ast_value(new ast::IdentifierNode("пдо"));
-        // пвід
+            ast::IdentifierNode::ast_value(new ast::IdentifierNode(to_name));
+        // х
         condition_binary_ast_value->data.BinaryNode->right =
             ast::IdentifierNode::ast_value(
                 new ast::IdentifierNode(context->e_name->getText()));
@@ -71,10 +73,10 @@ namespace mavka::parser {
                   visitBody(context->e_body));
         }
 
-        // пвід + 1
+        // х + 1
         const auto binary_ast_value =
             ast::BinaryNode::ast_value(new ast::BinaryNode());
-        // пвід
+        // х
         binary_ast_value->data.BinaryNode->left =
             ast::IdentifierNode::ast_value(
                 new ast::IdentifierNode(context->e_name->getText()));
@@ -84,7 +86,7 @@ namespace mavka::parser {
         // +
         binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_ADD;
 
-        // пвід = пвід + 1
+        // х = х + 1
         const auto assign_ast_value3 =
             ast::AssignNode::ast_value(new ast::AssignNode());
         assign_ast_value3->data.AssignNode->name = context->e_name->getText();
