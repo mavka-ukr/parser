@@ -14,13 +14,13 @@
 #include "tools.h"
 
 namespace mavka::parser {
-  ast::ASTSome* any_to_ast_some(std::any any);
+  ast::ASTValue* any_to_ast_value(std::any any);
 
-  void fill_ast_node(ast::ASTNode* node, antlr4::ParserRuleContext* context);
+  void fill_ast_value(ast::ASTValue* node, antlr4::ParserRuleContext* context);
 
-  std::string process_number(std::string number);
+  ast::ASTValue* make_ast_value(ast::ASTValueKind kind, void* data);
 
-  void processASTBody(std::vector<ast::ASTSome*>& body);
+  void processASTBody(std::vector<ast::ASTValue*>& body);
 
   class MavkaASTVisitor final : public MavkaParserBaseVisitor {
    public:
@@ -307,7 +307,7 @@ namespace mavka::parser {
   class MavkaParserResult {
    public:
     std::vector<MavkaParserError> errors;
-    ast::ProgramNode* program_node = nullptr;
+    ast::ModuleNode* module_node = nullptr;
   };
 
   class MavkaParserErrorListener final : public antlr4::BaseErrorListener {

@@ -8,624 +8,494 @@
 #include <vector>
 
 namespace mavka::ast {
-  class ASTNode;
-  class ASTValueNode;
-  class ASTExprNode;
-  class ASTSome;
-  class AnonDiiaNode;
-  class ArgNode;
-  class ArithmeticNode;
-  class ArrayNode;
-  class AsNode;
-  class AssignByElementNode;
-  class AssignByIdentifierNode;
-  class AssignSimpleNode;
-  class BitwiseNode;
-  class BitwiseNotNode;
-  class BreakNode;
-  class CallNode;
-  class ChainNode;
-  class ComparisonNode;
-  class CompInstBlockProgramNode;
-  class CompInstAssignNode;
-  class ContinueNode;
-  class DictionaryElementNode;
-  class DictionaryNode;
-  class DiiaNode;
-  class EachNode;
-  class EvalNode;
-  class FromToComplexNode;
-  class FromToSimpleNode;
-  class FunctionNode;
-  class GenericNode;
-  class GetElementNode;
-  class GiveElementNode;
-  class GiveNode;
-  class GodNode;
-  class IdentifierNode;
-  class IfNode;
-  class MethodDeclarationNode;
-  class MockupDiiaNode;
-  class MockupModuleNode;
-  class MockupStructureNode;
-  class MockupSubjectNode;
-  class ModuleNode;
-  class MRMDiiaNode;
-  class NegativeNode;
-  class NotNode;
-  class NumberNode;
-  class ParamNode;
-  class PositiveNode;
-  class PostDecrementNode;
-  class PostIncrementNode;
-  class PreDecrementNode;
-  class PreIncrementNode;
-  class ProgramNode;
-  class ReturnNode;
-  class StringNode;
-  class StructureNode;
-  class TakeModuleNode;
-  class TakePakNode;
-  class TernaryNode;
-  class TestNode;
-  class ThrowNode;
-  class TryNode;
-  class TypeValueSingleNode;
-  class WaitNode;
-  class WhileNode;
+  struct Arg;
+  struct Param;
+  struct Generic;
+  struct DictionaryElement;
+  struct ASTValue;
+  struct BinaryNode;
+  struct AsNode;
+  struct AssignByIdentifierNode;
+  struct AssignNode;
+  struct BreakNode;
+  struct CallNode;
+  struct ChainNode;
+  struct ComparisonNode;
+  struct CompInstBlockProgramNode;
+  struct CompInstAssignNode;
+  struct ContinueNode;
+  struct DictionaryNode;
+  struct DiiaNode;
+  struct EachNode;
+  struct GetElementNode;
+  struct GiveElementNode;
+  struct GiveNode;
+  struct GodNode;
+  struct IdentifierNode;
+  struct IfNode;
+  struct ListNode;
+  struct MockupDiiaNode;
+  struct MockupModuleNode;
+  struct MockupStructureNode;
+  struct MockupSubjectNode;
+  struct ModuleNode;
+  struct MRMDiiaNode;
+  struct NegativeNode;
+  struct NotNode;
+  struct NumberNode;
+  struct ReturnNode;
+  struct StringNode;
+  struct StructureNode;
+  struct TakeNode;
+  struct TakePakNode;
+  struct TernaryNode;
+  struct TestNode;
+  struct ThrowNode;
+  struct TryNode;
+  struct TypeNode;
+  struct UnaryNode;
+  struct TypeUnionNode;
+  struct WaitNode;
+  struct WhileNode;
 
-  ASTSome* make_ast_some(ast::AnonDiiaNode* node);
-  ASTSome* make_ast_some(ast::ArgNode* node);
-  ASTSome* make_ast_some(ast::ArithmeticNode* node);
-  ASTSome* make_ast_some(ast::ArrayNode* node);
-  ASTSome* make_ast_some(ast::AsNode* node);
-  ASTSome* make_ast_some(ast::AssignByElementNode* node);
-  ASTSome* make_ast_some(ast::AssignByIdentifierNode* node);
-  ASTSome* make_ast_some(ast::AssignSimpleNode* node);
-  ASTSome* make_ast_some(ast::BitwiseNode* node);
-  ASTSome* make_ast_some(ast::BitwiseNotNode* node);
-  ASTSome* make_ast_some(ast::BreakNode* node);
-  ASTSome* make_ast_some(ast::CallNode* node);
-  ASTSome* make_ast_some(ast::ChainNode* node);
-  ASTSome* make_ast_some(ast::ComparisonNode* node);
-  ASTSome* make_ast_some(ast::CompInstBlockProgramNode* node);
-  ASTSome* make_ast_some(ast::CompInstAssignNode* node);
-  ASTSome* make_ast_some(ast::ContinueNode* node);
-  ASTSome* make_ast_some(ast::DictionaryElementNode* node);
-  ASTSome* make_ast_some(ast::DictionaryNode* node);
-  ASTSome* make_ast_some(ast::DiiaNode* node);
-  ASTSome* make_ast_some(ast::EachNode* node);
-  ASTSome* make_ast_some(ast::EvalNode* node);
-  ASTSome* make_ast_some(ast::FromToComplexNode* node);
-  ASTSome* make_ast_some(ast::FromToSimpleNode* node);
-  ASTSome* make_ast_some(ast::FunctionNode* node);
-  ASTSome* make_ast_some(ast::GenericNode* node);
-  ASTSome* make_ast_some(ast::GetElementNode* node);
-  ASTSome* make_ast_some(ast::GiveElementNode* node);
-  ASTSome* make_ast_some(ast::GiveNode* node);
-  ASTSome* make_ast_some(ast::GodNode* node);
-  ASTSome* make_ast_some(ast::IdentifierNode* node);
-  ASTSome* make_ast_some(ast::IfNode* node);
-  ASTSome* make_ast_some(ast::MethodDeclarationNode* node);
-  ASTSome* make_ast_some(ast::MockupDiiaNode* node);
-  ASTSome* make_ast_some(ast::MockupModuleNode* node);
-  ASTSome* make_ast_some(ast::MockupStructureNode* node);
-  ASTSome* make_ast_some(ast::MockupSubjectNode* node);
-  ASTSome* make_ast_some(ast::ModuleNode* node);
-  ASTSome* make_ast_some(ast::MRMDiiaNode* node);
-  ASTSome* make_ast_some(ast::NegativeNode* node);
-  ASTSome* make_ast_some(ast::NotNode* node);
-  ASTSome* make_ast_some(ast::NumberNode* node);
-  ASTSome* make_ast_some(ast::ParamNode* node);
-  ASTSome* make_ast_some(ast::PositiveNode* node);
-  ASTSome* make_ast_some(ast::PostDecrementNode* node);
-  ASTSome* make_ast_some(ast::PostIncrementNode* node);
-  ASTSome* make_ast_some(ast::PreDecrementNode* node);
-  ASTSome* make_ast_some(ast::PreIncrementNode* node);
-  ASTSome* make_ast_some(ast::ProgramNode* node);
-  ASTSome* make_ast_some(ast::ReturnNode* node);
-  ASTSome* make_ast_some(ast::StringNode* node);
-  ASTSome* make_ast_some(ast::StructureNode* node);
-  ASTSome* make_ast_some(ast::TakeModuleNode* node);
-  ASTSome* make_ast_some(ast::TakePakNode* node);
-  ASTSome* make_ast_some(ast::TernaryNode* node);
-  ASTSome* make_ast_some(ast::TestNode* node);
-  ASTSome* make_ast_some(ast::ThrowNode* node);
-  ASTSome* make_ast_some(ast::TryNode* node);
-  ASTSome* make_ast_some(ast::TypeValueSingleNode* node);
-  ASTSome* make_ast_some(ast::WaitNode* node);
-  ASTSome* make_ast_some(ast::WhileNode* node);
-  // ASTSome* make_ast_some(ast::ASTNode* node);
+  struct Arg {
+    size_t index;
+    std::string name;
+    ASTValue* value;
+  };
 
-  ASTNode* get_ast_node(ASTSome* ast_some);
+  struct Param {
+    bool ee = false;
+    std::string name;
+    TypeUnionNode* type;
+    ASTValue* value;
+    bool variadic = false;
+  };
 
-  class ASTNode {
-   public:
+  struct Generic {
+    std::string name;
+  };
+
+  struct DictionaryElement {
+    ASTValue* key;
+    ASTValue* value;
+  };
+
+  enum BinaryOp {
+    ARITHMETIC_ADD,
+    ARITHMETIC_SUB,
+    ARITHMETIC_MUL,
+    ARITHMETIC_DIV,
+    ARITHMETIC_MOD,
+    ARITHMETIC_DIVDIV,
+    ARITHMETIC_POW,
+    BITWISE_AND,
+    BITWISE_OR,
+    BITWISE_XOR,
+    BITWISE_SHIFT_LEFT,
+    BITWISE_SHIFT_RIGHT,
+    COMPARISON_EQ,
+    COMPARISON_NE,
+    COMPARISON_LT,
+    COMPARISON_GT,
+    COMPARISON_LE,
+    COMPARISON_GE,
+    COMPARISON_CONTAINS,
+    COMPARISON_NOT_CONTAINS,
+    COMPARISON_IS,
+    COMPARISON_NOT_IS,
+    UTIL_AS,
+  };
+
+  enum TestOp {
+    TEST_OR,
+    TEST_AND,
+  };
+
+  enum UnaryOp {
+    UNARY_POSITIVE,
+    UNARY_NEGATIVE,
+    UNARY_NOT,
+    UNARY_BITWISE_NOT,
+  };
+
+  enum ASTValueKind {
+    KindNone,
+    KindBinaryNode,
+    KindListNode,
+    KindAssignByIdentifierNode,
+    KindAssignNode,
+    KindBreakNode,
+    KindCallNode,
+    KindChainNode,
+    KindCompInstBlockProgramNode,
+    KindCompInstAssignNode,
+    KindContinueNode,
+    KindDictionaryNode,
+    KindDiiaNode,
+    KindEachNode,
+    KindGiveElementNode,
+    KindGiveNode,
+    KindGodNode,
+    KindIdentifierNode,
+    KindIfNode,
+    KindMockupDiiaNode,
+    KindMockupModuleNode,
+    KindMockupStructureNode,
+    KindMockupSubjectNode,
+    KindModuleNode,
+    KindMRMDiiaNode,
+    KindNumberNode,
+    KindUnaryNode,
+    KindReturnNode,
+    KindStringNode,
+    KindStructureNode,
+    KindTakeNode,
+    KindTernaryNode,
+    KindTestNode,
+    KindThrowNode,
+    KindTryNode,
+    KindTypeNode,
+    KindTypeUnionNode,
+    KindWaitNode,
+    KindWhileNode,
+  };
+
+  union ASTValueData {
+    void* ref;
+    mavka::ast::BinaryNode* BinaryNode;
+    mavka::ast::AsNode* AsNode;
+    mavka::ast::AssignByIdentifierNode* AssignByIdentifierNode;
+    mavka::ast::AssignNode* AssignNode;
+    mavka::ast::BreakNode* BreakNode;
+    mavka::ast::CallNode* CallNode;
+    mavka::ast::ChainNode* ChainNode;
+    mavka::ast::ComparisonNode* ComparisonNode;
+    mavka::ast::CompInstBlockProgramNode* CompInstBlockProgramNode;
+    mavka::ast::CompInstAssignNode* CompInstAssignNode;
+    mavka::ast::ContinueNode* ContinueNode;
+    mavka::ast::DictionaryElement* DictionaryElementNode;
+    mavka::ast::DictionaryNode* DictionaryNode;
+    mavka::ast::DiiaNode* DiiaNode;
+    mavka::ast::EachNode* EachNode;
+    mavka::ast::GetElementNode* GetElementNode;
+    mavka::ast::GiveElementNode* GiveElementNode;
+    mavka::ast::GiveNode* GiveNode;
+    mavka::ast::GodNode* GodNode;
+    mavka::ast::IdentifierNode* IdentifierNode;
+    mavka::ast::IfNode* IfNode;
+    mavka::ast::ListNode* ListNode;
+    mavka::ast::MockupDiiaNode* MockupDiiaNode;
+    mavka::ast::MockupModuleNode* MockupModuleNode;
+    mavka::ast::MockupStructureNode* MockupStructureNode;
+    mavka::ast::MockupSubjectNode* MockupSubjectNode;
+    mavka::ast::ModuleNode* ModuleNode;
+    mavka::ast::MRMDiiaNode* MRMDiiaNode;
+    mavka::ast::NegativeNode* NegativeNode;
+    mavka::ast::NotNode* NotNode;
+    mavka::ast::NumberNode* NumberNode;
+    mavka::ast::ReturnNode* ReturnNode;
+    mavka::ast::StringNode* StringNode;
+    mavka::ast::StructureNode* StructureNode;
+    mavka::ast::TakeNode* TakeNode;
+    mavka::ast::TernaryNode* TernaryNode;
+    mavka::ast::TestNode* TestNode;
+    mavka::ast::ThrowNode* ThrowNode;
+    mavka::ast::TryNode* TryNode;
+    mavka::ast::TypeNode* TypeNode;
+    mavka::ast::UnaryNode* UnaryNode;
+    mavka::ast::TypeUnionNode* TypeUnionNode;
+    mavka::ast::WaitNode* WaitNode;
+    mavka::ast::WhileNode* WhileNode;
+  };
+
+  struct ASTValue {
+    ASTValueKind kind = KindNone;
+    ASTValueData data = {.ref = nullptr};
     size_t start_line = 0;
     size_t start_column = 0;
     size_t end_line = 0;
     size_t end_column = 0;
-
-    virtual ~ASTNode() = default;
   };
 
-  class ASTValueNode : public ASTNode {
-   public:
+  struct BinaryNode {
+    BinaryOp op;
+    ASTValue* left;
+    ASTValue* right;
+
+    static ASTValue* ast_value(BinaryNode* node) {
+      const auto value = new ASTValue(KindBinaryNode);
+      value->data.BinaryNode = node;
+      return value;
+    }
   };
 
-  class ASTExprNode : public ASTNode {
-   public:
+  struct ListNode {
+    std::vector<ASTValue*> elements;
   };
 
-  class ASTSome {
-   public:
-    mavka::ast::AnonDiiaNode* AnonDiiaNode = nullptr;
-    mavka::ast::ArgNode* ArgNode = nullptr;
-    mavka::ast::ArithmeticNode* ArithmeticNode = nullptr;
-    mavka::ast::ArrayNode* ArrayNode = nullptr;
-    mavka::ast::AsNode* AsNode = nullptr;
-    mavka::ast::AssignByElementNode* AssignByElementNode = nullptr;
-    mavka::ast::AssignByIdentifierNode* AssignByIdentifierNode = nullptr;
-    mavka::ast::AssignSimpleNode* AssignSimpleNode = nullptr;
-    mavka::ast::BitwiseNode* BitwiseNode = nullptr;
-    mavka::ast::BitwiseNotNode* BitwiseNotNode = nullptr;
-    mavka::ast::BreakNode* BreakNode = nullptr;
-    mavka::ast::CallNode* CallNode = nullptr;
-    mavka::ast::ChainNode* ChainNode = nullptr;
-    mavka::ast::ComparisonNode* ComparisonNode = nullptr;
-    mavka::ast::CompInstBlockProgramNode* CompInstBlockProgramNode = nullptr;
-    mavka::ast::CompInstAssignNode* CompInstAssignNode = nullptr;
-    mavka::ast::ContinueNode* ContinueNode = nullptr;
-    mavka::ast::DictionaryElementNode* DictionaryElementNode = nullptr;
-    mavka::ast::DictionaryNode* DictionaryNode = nullptr;
-    mavka::ast::DiiaNode* DiiaNode = nullptr;
-    mavka::ast::EachNode* EachNode = nullptr;
-    mavka::ast::EvalNode* EvalNode = nullptr;
-    mavka::ast::FromToComplexNode* FromToComplexNode = nullptr;
-    mavka::ast::FromToSimpleNode* FromToSimpleNode = nullptr;
-    mavka::ast::FunctionNode* FunctionNode = nullptr;
-    mavka::ast::GenericNode* GenericNode = nullptr;
-    mavka::ast::GetElementNode* GetElementNode = nullptr;
-    mavka::ast::GiveElementNode* GiveElementNode = nullptr;
-    mavka::ast::GiveNode* GiveNode = nullptr;
-    mavka::ast::GodNode* GodNode = nullptr;
-    mavka::ast::IdentifierNode* IdentifierNode = nullptr;
-    mavka::ast::IfNode* IfNode = nullptr;
-    mavka::ast::MethodDeclarationNode* MethodDeclarationNode = nullptr;
-    mavka::ast::MockupDiiaNode* MockupDiiaNode = nullptr;
-    mavka::ast::MockupModuleNode* MockupModuleNode = nullptr;
-    mavka::ast::MockupStructureNode* MockupStructureNode = nullptr;
-    mavka::ast::MockupSubjectNode* MockupSubjectNode = nullptr;
-    mavka::ast::ModuleNode* ModuleNode = nullptr;
-    mavka::ast::MRMDiiaNode* MRMDiiaNode = nullptr;
-    mavka::ast::NegativeNode* NegativeNode = nullptr;
-    mavka::ast::NotNode* NotNode = nullptr;
-    mavka::ast::NumberNode* NumberNode = nullptr;
-    mavka::ast::ParamNode* ParamNode = nullptr;
-    mavka::ast::PositiveNode* PositiveNode = nullptr;
-    mavka::ast::PostDecrementNode* PostDecrementNode = nullptr;
-    mavka::ast::PostIncrementNode* PostIncrementNode = nullptr;
-    mavka::ast::PreDecrementNode* PreDecrementNode = nullptr;
-    mavka::ast::PreIncrementNode* PreIncrementNode = nullptr;
-    mavka::ast::ProgramNode* ProgramNode = nullptr;
-    mavka::ast::ReturnNode* ReturnNode = nullptr;
-    mavka::ast::StringNode* StringNode = nullptr;
-    mavka::ast::StructureNode* StructureNode = nullptr;
-    mavka::ast::TakeModuleNode* TakeModuleNode = nullptr;
-    mavka::ast::TakePakNode* TakePakNode = nullptr;
-    mavka::ast::TernaryNode* TernaryNode = nullptr;
-    mavka::ast::TestNode* TestNode = nullptr;
-    mavka::ast::ThrowNode* ThrowNode = nullptr;
-    mavka::ast::TryNode* TryNode = nullptr;
-    mavka::ast::TypeValueSingleNode* TypeValueSingleNode = nullptr;
-    mavka::ast::WaitNode* WaitNode = nullptr;
-    mavka::ast::WhileNode* WhileNode = nullptr;
-
-    bool is_nullptr();
-    bool is_popable();
+  struct AsNode {
+    ASTValue* left;
+    ASTValue* right;
   };
 
-  class AnonDiiaNode final : public ASTValueNode {
-   public:
-    bool async;
-    std::vector<GenericNode*> generics;
-    std::vector<ParamNode*> params;
-    std::vector<TypeValueSingleNode*> return_types;
-    std::vector<ASTSome*> body;
-  };
-
-  class ArgNode final : public ASTExprNode {
-   public:
-    size_t index;
-    std::string name;
-    ASTSome* value;
-    bool spread = false;
-  };
-
-  class ArithmeticNode final : public ASTValueNode {
-   public:
-    ASTSome* left;
-    ASTSome* right;
-    std::string op;
-  };
-
-  class ArrayNode final : public ASTValueNode {
-   public:
-    std::vector<ASTSome*> elements;
-    std::vector<TypeValueSingleNode*> types;
-  };
-
-  class AsNode final : public ASTValueNode {
-   public:
-    ASTSome* left;
-    ASTSome* right;
-  };
-
-  class AssignByIdentifierNode final : public ASTExprNode {
-   public:
-    ASTSome* left;
+  struct AssignByIdentifierNode {
+    ASTValue* left;
     std::string identifier;
-    std::string op;
-    ASTSome* value;
+    ASTValue* value;
+
+    static ASTValue* ast_value(AssignByIdentifierNode* node) {
+      const auto value = new ASTValue(KindAssignByIdentifierNode);
+      value->data.AssignByIdentifierNode = node;
+      return value;
+    }
   };
 
-  class AssignByElementNode final : public ASTExprNode {
-   public:
-    ASTSome* left;
-    ASTSome* element;
-    std::string op;
-    ASTSome* value;
-  };
-
-  class AssignSimpleNode final : public ASTExprNode {
-   public:
+  struct AssignNode {
     std::string name;
-    std::vector<TypeValueSingleNode*> types;
-    std::string op;
-    ASTSome* value;
+    std::vector<TypeNode*> types;
+    ASTValue* value;
+    bool parent;
+
+    static ASTValue* ast_value(AssignNode* node) {
+      const auto value = new ASTValue(KindAssignNode);
+      value->data.AssignNode = node;
+      return value;
+    }
   };
 
-  class BitwiseNode final : public ASTValueNode {
-   public:
-    ASTSome* left;
-    ASTSome* right;
-    std::string op;
-  };
-
-  class BitwiseNotNode final : public ASTValueNode {
-   public:
-    ASTSome* value;
-  };
-
-  class BreakNode final : public ASTExprNode {
-   public:
+  struct BreakNode {
     size_t code_index;
   };
 
-  class CallNode final : public ASTValueNode {
-   public:
-    ASTSome* value;
-    std::vector<std::vector<TypeValueSingleNode*>> generics;
-    std::vector<ArgNode*> args;
+  struct CallNode {
+    ASTValue* value;
+    std::vector<TypeUnionNode*> generics;
+    std::vector<Arg*> args;
+
+    static ASTValue* ast_value(CallNode* node) {
+      const auto value = new ASTValue(KindCallNode);
+      value->data.CallNode = node;
+      return value;
+    }
   };
 
-  class ChainNode final : public ASTValueNode {
-   public:
-    ASTSome* left;
-    IdentifierNode* right;
+  struct ChainNode {
+    ASTValue* left;
+    std::string right;
+
+    static ASTValue* ast_value(ChainNode* node) {
+      const auto value = new ASTValue(KindChainNode);
+      value->data.ChainNode = node;
+      return value;
+    }
   };
 
-  class ComparisonNode final : public ASTValueNode {
-   public:
-    ASTSome* left;
-    ASTSome* right;
-    std::string op;
-  };
-
-  class CompInstBlockProgramNode final : public ASTExprNode {
-   public:
+  struct CompInstBlockProgramNode {
     std::string name;
     std::string value;
-    std::vector<ASTSome*> body;
+    std::vector<ASTValue*> body;
+
+    static ASTValue* ast_value(CompInstBlockProgramNode* node) {
+      const auto value = new ASTValue(KindCompInstBlockProgramNode);
+      value->data.CompInstBlockProgramNode = node;
+      return value;
+    }
   };
 
-  class CompInstAssignNode final : public ASTExprNode {
-   public:
+  struct CompInstAssignNode {
     std::string name;
     std::string value;
+
+    static ASTValue* ast_value(CompInstAssignNode* node) {
+      const auto value = new ASTValue(KindCompInstAssignNode);
+      value->data.CompInstAssignNode = node;
+      return value;
+    }
   };
 
-  class ContinueNode final : public ASTExprNode {
-   public:
+  struct ContinueNode {
     size_t code_index;
   };
 
-  class DictionaryElementNode final : public ASTExprNode {
-   public:
-    ASTSome* key;
-    ASTSome* value;
+  struct DictionaryNode {
+    std::vector<DictionaryElement*> elements;
   };
 
-  class DictionaryNode final : public ASTValueNode {
-   public:
-    std::vector<TypeValueSingleNode*> key_types;
-    std::vector<TypeValueSingleNode*> value_types;
-    std::vector<DictionaryElementNode*> elements;
-  };
-
-  class DiiaNode final : public ASTExprNode {
-   public:
+  struct DiiaNode {
     bool ee = false;
     bool async = false;
     std::string structure;
     std::string name;
-    std::vector<GenericNode*> generics;
-    std::vector<ParamNode*> params;
-    std::vector<TypeValueSingleNode*> return_types;
-    std::vector<ASTSome*> body;
+    std::vector<Generic*> generics;
+    std::vector<Param*> params;
+    TypeUnionNode* return_types;
+    std::vector<ASTValue*> body;
   };
 
-  class EachNode final : public ASTExprNode {
-   public:
-    ASTSome* value;
+  struct EachNode {
+    ASTValue* value;
     std::string keyName;
     std::string name;
-    std::vector<ASTSome*> body;
+    std::vector<ASTValue*> body;
   };
 
-  class EvalNode final : public ASTExprNode {
-   public:
-    std::string value;
+  struct GetElementNode {
+    ASTValue* value;
+    ASTValue* index;
   };
 
-  class GenericNode final : public ASTExprNode {
-   public:
-    std::string name;
-  };
-
-  class FunctionNode final : public ASTExprNode {
-   public:
-    bool async;
-    std::vector<ParamNode*> params;
-    std::vector<TypeValueSingleNode*> return_types;
-    std::vector<ASTSome*> body;
-  };
-
-  class FromToSimpleNode final : public ASTExprNode {
-   public:
-    ASTSome* from;
-    ASTSome* to;
-    std::string toSymbol;
-  };
-
-  class FromToComplexNode final : public ASTExprNode {
-   public:
-    ASTSome* from;
-    ASTSome* to;
-    std::string toSymbol;
-    ASTSome* step;
-    std::string stepSymbol;
-  };
-
-  class GetElementNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
-    ASTSome* index = nullptr;
-  };
-
-  class GiveElementNode final : public ASTExprNode {
-   public:
+  struct GiveElementNode {
     std::string name;
     std::string as;
   };
 
-  class GiveNode final : public ASTExprNode {
-   public:
+  struct GiveNode {
     std::vector<GiveElementNode*> elements;
   };
 
-  class GodNode final : public ASTExprNode {
-   public:
-    std::vector<ASTSome*> elements;
+  struct GodNode {
+    std::vector<ASTValue*> elements;
   };
 
-  class IdentifierNode final : public ASTValueNode {
-   public:
+  struct IdentifierNode {
     std::string name;
+
+    static ASTValue* ast_value(IdentifierNode* node) {
+      const auto value = new ASTValue(KindIdentifierNode);
+      value->data.IdentifierNode = node;
+      return value;
+    }
   };
 
-  class IfNode final : public ASTExprNode {
-   public:
-    ASTSome* condition;
-    std::vector<ASTSome*> body;
-    std::vector<ASTSome*> else_body;
+  struct IfNode {
+    ASTValue* condition;
+    std::vector<ASTValue*> body;
+    std::vector<ASTValue*> else_body;
   };
 
-  class MethodDeclarationNode final : public ASTExprNode {
-   public:
-    bool ee = false;
-    bool async = false;
-    std::string name;
-    std::vector<GenericNode*> generics;
-    std::vector<ParamNode*> params;
-    std::vector<TypeValueSingleNode*> return_types;
-  };
-
-  class MockupDiiaNode final : public ASTExprNode {
-   public:
+  struct MockupDiiaNode {
     bool ee = false;
     bool async = false;
     std::string structure;
     std::string name;
-    std::vector<GenericNode*> generics;
-    std::vector<ParamNode*> params;
-    std::vector<TypeValueSingleNode*> return_types;
+    std::vector<Generic*> generics;
+    std::vector<Param*> params;
+    TypeUnionNode* return_types;
   };
 
-  class MockupModuleNode final : public ASTExprNode {
-   public:
+  struct MockupModuleNode {
     std::string name;
-    std::vector<ASTSome*> elements;
+    std::vector<ASTValue*> elements;
   };
 
-  class MockupStructureNode final : public ASTExprNode {
-   public:
+  struct MockupStructureNode {
     std::string name;
-    std::vector<GenericNode*> generics;
-    ASTSome* parent;
-    std::vector<GenericNode*> parent_generics;
-    std::vector<ParamNode*> params;
-    std::vector<MethodDeclarationNode*> methods;
+    std::vector<Generic*> generics;
+    ASTValue* parent;
+    std::vector<TypeUnionNode*> parent_generics;
+    std::vector<Param*> params;
   };
 
-  class MockupSubjectNode final : public ASTExprNode {
-   public:
+  struct MockupSubjectNode {
     std::string name;
-    std::vector<TypeValueSingleNode*> types;
+    TypeUnionNode* types;
   };
 
-  class ModuleNode final : public ASTExprNode {
-   public:
+  struct ModuleNode {
     std::string name;
-    std::vector<ASTSome*> body;
+    std::vector<ASTValue*> body;
   };
 
-  class MRMDiiaNode final : public ASTValueNode {
-   public:
+  struct MRMDiiaNode {
     std::string body;
   };
 
-  class NegativeNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
+  struct NegativeNode {
+    ASTValue* value;
   };
 
-  class NotNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
+  struct NotNode {
+    ASTValue* value;
   };
 
-  class NumberNode final : public ASTValueNode {
-   public:
+  struct NumberNode {
     std::string value;
   };
 
-  class ParamNode final : public ASTExprNode {
-   public:
-    bool ee = false;
-    std::string name;
-    std::vector<TypeValueSingleNode*> types;
-    ASTSome* value;
-    bool variadic = false;
+  struct UnaryNode {
+    UnaryOp op;
+    ASTValue* value;
+
+    static ASTValue* ast_value(UnaryNode* node) {
+      const auto value = new ASTValue(KindUnaryNode);
+      value->data.UnaryNode = node;
+      return value;
+    }
   };
 
-  class PositiveNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
+  struct ReturnNode {
+    ASTValue* value;
   };
 
-  class PostDecrementNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
-  };
-
-  class PostIncrementNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
-  };
-
-  class PreDecrementNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
-  };
-
-  class PreIncrementNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
-  };
-
-  class ProgramNode final : public ASTExprNode {
-   public:
-    std::vector<ASTSome*> body;
-  };
-
-  class ReturnNode final : public ASTExprNode {
-   public:
-    ASTSome* value = nullptr;
-  };
-
-  class StringNode final : public ASTValueNode {
-   public:
+  struct StringNode {
     std::string value;
-    bool html_tag = false;
   };
 
-  class StructureNode final : public ASTExprNode {
-   public:
+  struct StructureNode {
     std::string name;
-    std::vector<GenericNode*> generics;
-    ASTSome* parent;
-    std::vector<GenericNode*> parent_generics;
-    std::vector<ParamNode*> params;
-    std::vector<MethodDeclarationNode*> methods;
+    std::vector<Generic*> generics;
+    ASTValue* parent;
+    std::vector<TypeUnionNode*> parent_generics;
+    std::vector<Param*> params;
   };
 
-  class TakeModuleNode final : public ASTExprNode {
-   public:
+  struct TakeNode {
+    std::string loader;
     bool relative;
     std::string name;
     std::string as;
     std::map<std::string, std::string> elements;
   };
 
-  class TakePakNode final : public ASTExprNode {
-   public:
+  struct TernaryNode {
+    ASTValue* condition;
+    ASTValue* body;
+    ASTValue* else_body;
+  };
+
+  struct TestNode {
+    ASTValue* left;
+    ASTValue* right;
+    TestOp op;
+  };
+
+  struct ThrowNode {
+    ASTValue* value;
+  };
+
+  struct TryNode {
+    std::vector<ASTValue*> body;
     std::string name;
-    std::string version;
-    std::string as;
+    std::vector<ASTValue*> catch_body;
   };
 
-  class TernaryNode final : public ASTValueNode {
-   public:
-    ASTSome* condition = nullptr;
-    ASTSome* body = nullptr;
-    ASTSome* else_body = nullptr;
+  struct TypeNode {
+    ASTValue* value;
+    std::vector<TypeUnionNode*> generics;
   };
 
-  class TestNode final : public ASTValueNode {
-   public:
-    ASTSome* left;
-    ASTSome* right;
-    std::string op;
+  struct TypeUnionNode {
+    std::vector<TypeNode*> types;
   };
 
-  class ThrowNode final : public ASTExprNode {
-   public:
-    ASTSome* value = nullptr;
+  struct WaitNode {
+    ASTValue* value;
   };
 
-  class TryNode final : public ASTExprNode {
-   public:
-    std::vector<ASTSome*> body;
-    std::string name;
-    std::vector<ASTSome*> catch_body;
-  };
-
-  class TypeValueSingleNode final : public ASTExprNode {
-   public:
-    ASTSome* value;
-    std::vector<std::vector<TypeValueSingleNode*>> generics;
-  };
-
-  class WaitNode final : public ASTValueNode {
-   public:
-    ASTSome* value = nullptr;
-  };
-
-  class WhileNode final : public ASTExprNode {
-   public:
-    ASTSome* condition;
-    std::vector<ASTSome*> body;
+  struct WhileNode {
+    ASTValue* condition;
+    std::vector<ASTValue*> body;
   };
 } // namespace mavka::ast
 #endif // MAVKA_AST_H

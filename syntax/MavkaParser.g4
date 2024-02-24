@@ -116,7 +116,7 @@ expr: 'предок' nls '.' nls cp_id=identifier '(' nls (cp_args=args | cp_nam
     | atom ('та' atom)+ #god
     | 'чекати' w_value=value #wait
     | (f_async='тривала')? '(' nls f_params=params? nls ')' f_type=type_value? ':' nls f_body=expr #function
-    | (d_async='тривала')? 'дія' (nls '<' nls d_generics=generics nls '>')? '(' nls d_params=params? nls ')' (d_type=type_value)? nl (d_body=body nl)? 'кінець' #anonymous_diia
+    | diia #anonymous_diia
     | mrm #expr_mrm
     ;
 
