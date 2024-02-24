@@ -546,7 +546,7 @@ namespace mavka::ast {
   };
 
   struct TakeNode {
-    std::string loader;
+    std::string repo;
     bool relative;
     std::string name;
     std::string as;

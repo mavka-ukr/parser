@@ -221,10 +221,7 @@ namespace mavka::parser {
     std::any visitAssign_symbol(
         MavkaParser::Assign_symbolContext* context) override;
 
-    std::any visitTake(MavkaParser::TakeContext* context);
-
-    std::any visitTake_module(
-        MavkaParser::Take_moduleContext* context) override;
+    std::any visitTake(MavkaParser::TakeContext* context) override;
 
     std::any visitGive(MavkaParser::GiveContext* context) override;
 

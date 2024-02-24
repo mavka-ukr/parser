@@ -127,14 +127,14 @@ public:
   virtual void enterTry(MavkaParser::TryContext * /*ctx*/) override { }
   virtual void exitTry(MavkaParser::TryContext * /*ctx*/) override { }
 
-  virtual void enterTake_module(MavkaParser::Take_moduleContext * /*ctx*/) override { }
-  virtual void exitTake_module(MavkaParser::Take_moduleContext * /*ctx*/) override { }
+  virtual void enterTake(MavkaParser::TakeContext * /*ctx*/) override { }
+  virtual void exitTake(MavkaParser::TakeContext * /*ctx*/) override { }
 
-  virtual void enterTake_module_elements(MavkaParser::Take_module_elementsContext * /*ctx*/) override { }
-  virtual void exitTake_module_elements(MavkaParser::Take_module_elementsContext * /*ctx*/) override { }
+  virtual void enterTake_elements(MavkaParser::Take_elementsContext * /*ctx*/) override { }
+  virtual void exitTake_elements(MavkaParser::Take_elementsContext * /*ctx*/) override { }
 
-  virtual void enterTake_module_element(MavkaParser::Take_module_elementContext * /*ctx*/) override { }
-  virtual void exitTake_module_element(MavkaParser::Take_module_elementContext * /*ctx*/) override { }
+  virtual void enterTake_element(MavkaParser::Take_elementContext * /*ctx*/) override { }
+  virtual void exitTake_element(MavkaParser::Take_elementContext * /*ctx*/) override { }
 
   virtual void enterGive(MavkaParser::GiveContext * /*ctx*/) override { }
   virtual void exitGive(MavkaParser::GiveContext * /*ctx*/) override { }

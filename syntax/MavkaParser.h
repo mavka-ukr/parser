@@ -38,9 +38,9 @@ public:
     RuleMockup_diia = 22, RuleMockup_subject = 23, RuleDiia = 24, RuleIf = 25, 
     RuleEach = 26, RuleFromto = 27, RuleFromto_simple = 28, RuleFromto_complex = 29, 
     RuleFromto_value = 30, RuleFromto_middle_symbol = 31, RuleFromto_to_symbol = 32, 
-    RuleWhile = 33, RuleTry = 34, RuleTake = 35, RuleTake_module_elements = 36, 
-    RuleTake_module_element = 37, RuleGive = 38, RuleGive_element = 39, 
-    RuleMrm = 40, RuleMrm_element = 41, RuleMrm_element_closed = 42, RuleMrm_args = 43, 
+    RuleWhile = 33, RuleTry = 34, RuleTake = 35, RuleTake_elements = 36, 
+    RuleTake_element = 37, RuleGive = 38, RuleGive_element = 39, RuleMrm = 40, 
+    RuleMrm_element = 41, RuleMrm_element_closed = 42, RuleMrm_args = 43, 
     RuleMrm_arg = 44, RuleMrm_content = 45, RuleMrm_chardata = 46, RuleMrm_diia = 47, 
     RuleAtom = 48, RuleValue = 49, RuleCall_generics = 50, RuleArray_elements = 51, 
     RuleArray_element = 52, RuleDictionary_args = 53, RuleDictionary_arg = 54, 
@@ -109,8 +109,8 @@ public:
   class WhileContext;
   class TryContext;
   class TakeContext;
-  class Take_module_elementsContext;
-  class Take_module_elementContext;
+  class Take_elementsContext;
+  class Take_elementContext;
   class GiveContext;
   class Give_elementContext;
   class MrmContext;
@@ -971,46 +971,37 @@ public:
 
   class  TakeContext : public antlr4::ParserRuleContext {
   public:
-    TakeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-   
-    TakeContext() = default;
-    void copyFrom(TakeContext *context);
-    using antlr4::ParserRuleContext::copyFrom;
-
-    virtual size_t getRuleIndex() const override;
-
-   
-  };
-
-  class  Take_moduleContext : public TakeContext {
-  public:
-    Take_moduleContext(TakeContext *ctx);
-
+    MavkaParser::IdentifierContext *tm_repo = nullptr;
     antlr4::Token *tm_relative = nullptr;
     MavkaParser::Identifiers_chainContext *tm_name_chain = nullptr;
-    MavkaParser::Take_module_elementsContext *tm_elements = nullptr;
+    MavkaParser::Take_elementsContext *tm_elements = nullptr;
     MavkaParser::IdentifierContext *tm_as = nullptr;
+    TakeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *KW_TAKE();
     Identifiers_chainContext *identifiers_chain();
+    std::vector<IdentifierContext *> identifier();
+    IdentifierContext* identifier(size_t i);
     antlr4::tree::TerminalNode *DOT();
-    Take_module_elementsContext *take_module_elements();
+    Take_elementsContext *take_elements();
     antlr4::tree::TerminalNode *KW_AS();
-    IdentifierContext *identifier();
+
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
   };
 
   TakeContext* take();
 
-  class  Take_module_elementsContext : public antlr4::ParserRuleContext {
+  class  Take_elementsContext : public antlr4::ParserRuleContext {
   public:
-    Take_module_elementsContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    Take_elementsContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *BRACKET_OPEN();
-    std::vector<Take_module_elementContext *> take_module_element();
-    Take_module_elementContext* take_module_element(size_t i);
+    std::vector<Take_elementContext *> take_element();
+    Take_elementContext* take_element(size_t i);
     antlr4::tree::TerminalNode *BRACKET_CLOSE();
     std::vector<antlr4::tree::TerminalNode *> COMA();
     antlr4::tree::TerminalNode* COMA(size_t i);
@@ -1022,13 +1013,13 @@ public:
    
   };
 
-  Take_module_elementsContext* take_module_elements();
+  Take_elementsContext* take_elements();
 
-  class  Take_module_elementContext : public antlr4::ParserRuleContext {
+  class  Take_elementContext : public antlr4::ParserRuleContext {
   public:
     MavkaParser::IdentifierContext *tme_name = nullptr;
     MavkaParser::IdentifierContext *tme_as = nullptr;
-    Take_module_elementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    Take_elementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<IdentifierContext *> identifier();
     IdentifierContext* identifier(size_t i);
@@ -1041,7 +1032,7 @@ public:
    
   };
 
-  Take_module_elementContext* take_module_element();
+  Take_elementContext* take_element();
 
   class  GiveContext : public antlr4::ParserRuleContext {
   public:
