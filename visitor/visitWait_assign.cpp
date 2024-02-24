@@ -24,11 +24,11 @@ namespace mavka::parser {
     //      ast::make_ast_some(wait_node); return
     //      (ast::make_ast_some(new_assign_simple_node));
     //    }
-    //    if (assign_node->AssignByIdentifierNode) {
+    //    if (assign_node->PropertySetNode) {
     //      const auto assign_by_identifier_node =
-    //          assign_node->AssignByIdentifierNode;
+    //          assign_node->PropertySetNode;
     //      const auto new_assign_by_identifier_node =
-    //          new ast::AssignByIdentifierNode();
+    //          new ast::PropertySetNode();
     //      new_assign_by_identifier_node->start_line =
     //          assign_by_identifier_node->start_line;
     //      new_assign_by_identifier_node->start_column =

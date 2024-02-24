@@ -10,12 +10,12 @@
 namespace mavka::ast {
   struct ASTValue;
   struct ArgNode;
-  struct AssignByIdentifierNode;
+  struct PropertySetNode;
   struct AssignNode;
   struct BinaryNode;
   struct BreakNode;
   struct CallNode;
-  struct ChainNode;
+  struct PropertyGetNode;
   struct ComparisonNode;
   struct CompInstBlockProgramNode;
   struct CompInstAssignNode;
@@ -96,11 +96,11 @@ namespace mavka::ast {
     KindNone,
     KindArgNode,
     KindBinaryNode,
-    KindAssignByIdentifierNode,
+    KindPropertySetNode,
     KindAssignNode,
     KindBreakNode,
     KindCallNode,
-    KindChainNode,
+    KindPropertyGetNode,
     KindCompInstBlockProgramNode,
     KindCompInstAssignNode,
     KindContinueNode,
@@ -141,12 +141,12 @@ namespace mavka::ast {
   union ASTValueData {
     void* ref;
     mavka::ast::ArgNode* ArgNode;
-    mavka::ast::AssignByIdentifierNode* AssignByIdentifierNode;
+    mavka::ast::PropertySetNode* PropertySetNode;
     mavka::ast::AssignNode* AssignNode;
     mavka::ast::BinaryNode* BinaryNode;
     mavka::ast::BreakNode* BreakNode;
     mavka::ast::CallNode* CallNode;
-    mavka::ast::ChainNode* ChainNode;
+    mavka::ast::PropertyGetNode* PropertyGetNode;
     mavka::ast::ComparisonNode* ComparisonNode;
     mavka::ast::CompInstBlockProgramNode* CompInstBlockProgramNode;
     mavka::ast::CompInstAssignNode* CompInstAssignNode;
@@ -263,14 +263,14 @@ namespace mavka::ast {
     }
   };
 
-  struct AssignByIdentifierNode {
+  struct PropertySetNode {
     ASTValue* left;
-    std::string identifier;
+    std::string name;
     ASTValue* value;
 
-    static ASTValue* ast_value(AssignByIdentifierNode* node) {
-      const auto value = new ASTValue(KindAssignByIdentifierNode);
-      value->data.AssignByIdentifierNode = node;
+    static ASTValue* ast_value(PropertySetNode* node) {
+      const auto value = new ASTValue(KindPropertySetNode);
+      value->data.PropertySetNode = node;
       return value;
     }
   };
@@ -310,13 +310,13 @@ namespace mavka::ast {
     }
   };
 
-  struct ChainNode {
+  struct PropertyGetNode {
     ASTValue* left;
-    std::string right;
+    std::string name;
 
-    static ASTValue* ast_value(ChainNode* node) {
-      const auto value = new ASTValue(KindChainNode);
-      value->data.ChainNode = node;
+    static ASTValue* ast_value(PropertyGetNode* node) {
+      const auto value = new ASTValue(KindPropertyGetNode);
+      value->data.PropertyGetNode = node;
       return value;
     }
   };

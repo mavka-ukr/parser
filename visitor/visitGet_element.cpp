@@ -5,10 +5,10 @@ namespace mavka::parser {
       MavkaParser::Get_elementContext* context) {
     // значення.чародія_отримати
     const auto chain_ast_value =
-        ast::ChainNode::ast_value(new ast::ChainNode());
-    chain_ast_value->data.ChainNode->left =
+        ast::PropertyGetNode::ast_value(new ast::PropertyGetNode());
+    chain_ast_value->data.PropertyGetNode->left =
         any_to_ast_value(_visitContext(context->ge_left));
-    chain_ast_value->data.ChainNode->right = "чародія_отримати";
+    chain_ast_value->data.PropertyGetNode->name = "чародія_отримати";
     // значення.чародія_отримати(елемент)
     const auto call_ast_value = ast::CallNode::ast_value(new ast::CallNode());
     call_ast_value->data.CallNode->value = chain_ast_value;

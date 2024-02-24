@@ -5,7 +5,7 @@ namespace mavka::ast {
      if (this->AssignByElementNode) {
        return false;
      }
-     if (this->AssignByIdentifierNode) {
+     if (this->PropertySetNode) {
        return false;
      }
      if (this->AssignNode) {

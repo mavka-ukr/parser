@@ -20,6 +20,6 @@ namespace mavka::parser {
     //      return _visitContext(
     //          dynamic_cast<MavkaParser::Fromto_nestedContext*>(context)->fn_value);
     //    }
-    //    return new ast::ASTSome();
+    return new ast::ASTValue();
   }
 } // namespace mavka::parser

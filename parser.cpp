@@ -232,15 +232,15 @@ namespace mavka::parser {
       fill_ast_value(call_ast_value, context);
 
       const auto chain_ast_value =
-          ast::ChainNode::ast_value(new ast::ChainNode());
+          ast::PropertyGetNode::ast_value(new ast::PropertyGetNode());
       fill_ast_value(chain_ast_value, context);
 
       const auto identifier_ast_value =
           ast::IdentifierNode::ast_value(new ast::IdentifierNode("предок"));
       fill_ast_value(identifier_ast_value, context);
 
-      chain_ast_value->data.ChainNode->left = identifier_ast_value;
-      chain_ast_value->data.ChainNode->right =
+      chain_ast_value->data.PropertyGetNode->left = identifier_ast_value;
+      chain_ast_value->data.PropertyGetNode->name =
           call_parent_context->cp_id->getText();
 
       call_ast_value->data.CallNode->value = chain_ast_value;

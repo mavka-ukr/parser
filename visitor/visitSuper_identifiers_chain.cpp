@@ -10,17 +10,18 @@ namespace mavka::parser {
         any_to_ast_value(visitSuper_identifiers_chain(context->sic_left));
     if (context->sic_right) {
       const auto chain_ast_value =
-          ast::ChainNode::ast_value(new ast::ChainNode());
+          ast::PropertyGetNode::ast_value(new ast::PropertyGetNode());
       fill_ast_value(chain_ast_value, context);
-      chain_ast_value->data.ChainNode->left = left;
-      chain_ast_value->data.ChainNode->right = context->sic_right->getText();
+      chain_ast_value->data.PropertyGetNode->left = left;
+      chain_ast_value->data.PropertyGetNode->name =
+          context->sic_right->getText();
       return chain_ast_value;
     } else {
       // значення.чародія_отримати
       const auto chain_ast_value =
-          ast::ChainNode::ast_value(new ast::ChainNode());
-      chain_ast_value->data.ChainNode->left = left;
-      chain_ast_value->data.ChainNode->right = "чародія_отримати";
+          ast::PropertyGetNode::ast_value(new ast::PropertyGetNode());
+      chain_ast_value->data.PropertyGetNode->left = left;
+      chain_ast_value->data.PropertyGetNode->name = "чародія_отримати";
       // значення.чародія_отримати(елемент)
       const auto call_ast_value = ast::CallNode::ast_value(new ast::CallNode());
       call_ast_value->data.CallNode->value = chain_ast_value;
