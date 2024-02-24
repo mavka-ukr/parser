@@ -29,6 +29,7 @@ namespace mavka::parser {
    public:
     antlr4::CommonTokenStream* tokens = nullptr;
     size_t each_count = 0;
+    size_t iterator_count = 0;
 
     std::any visitFile(MavkaParser::FileContext* ctx) override;
 

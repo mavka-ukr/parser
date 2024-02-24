@@ -14,9 +14,6 @@ namespace mavka::ast {
      if (this->DiiaNode) {
        return false;
      }
-     if (this->EachNode) {
-       return false;
-     }
      if (this->IfNode) {
        return false;
      }

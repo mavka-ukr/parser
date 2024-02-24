@@ -24,7 +24,6 @@ namespace mavka::ast {
   struct DictionaryNode;
   struct DictionaryElementNode;
   struct DiiaNode;
-  struct EachNode;
   struct GenericNode;
   struct GiveElementNode;
   struct GiveNode;
@@ -109,7 +108,6 @@ namespace mavka::ast {
     KindDictionaryNode,
     KindDictionaryElementNode,
     KindDiiaNode,
-    KindEachNode,
     KindGenericNode,
     KindGiveElementNode,
     KindGiveNode,
@@ -157,7 +155,6 @@ namespace mavka::ast {
     mavka::ast::DictionaryElementNode* DictionaryElementNode;
     mavka::ast::DictionaryNode* DictionaryNode;
     mavka::ast::DiiaNode* DiiaNode;
-    mavka::ast::EachNode* EachNode;
     mavka::ast::GenericNode* GenericNode;
     mavka::ast::GiveElementNode* GiveElementNode;
     mavka::ast::GiveNode* GiveNode;
@@ -391,19 +388,6 @@ namespace mavka::ast {
     static ASTValue* ast_value(DiiaNode* node) {
       const auto value = new ASTValue(KindDiiaNode);
       value->data.DiiaNode = node;
-      return value;
-    }
-  };
-
-  struct EachNode {
-    ASTValue* value;
-    std::string keyName;
-    std::string name;
-    std::vector<ASTValue*> body;
-
-    static ASTValue* ast_value(EachNode* node) {
-      const auto value = new ASTValue(KindEachNode);
-      value->data.EachNode = node;
       return value;
     }
   };
