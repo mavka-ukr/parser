@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(MAVKA_PARSER mavka_parser CACHE INTERNAL "")
 set(MAVKA_PARSER_SRC
+        visitor/visitAnonymous_diia.cpp
         visitor/visitArg.cpp
         visitor/visitArgs.cpp
         visitor/visitArithmetic_add.cpp
@@ -93,7 +94,6 @@ set(MAVKA_PARSER_SRC
         visitor/visitSuper_identifiers_chain.cpp
         visitor/visitTake.cpp
         visitor/visitTake_module.cpp
-        visitor/visitTake_remote.cpp
         visitor/visitTernary.cpp
         visitor/visitTest.cpp
         visitor/visitThrow.cpp

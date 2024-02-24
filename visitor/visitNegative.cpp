@@ -3,9 +3,11 @@
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitNegative(
       MavkaParser::NegativeContext* context) {
-    const auto negative_node = new ast::NegativeNode();
-    fill_ast_value(negative_node, context);
-    negative_node->value = any_to_ast_value(_visitContext(context->n_value));
-    return (ast::make_ast_some(negative_node));
+    const auto unary_ast_value =
+        ast::UnaryNode::ast_value(new ast::UnaryNode(ast::UNARY_NEGATIVE));
+    fill_ast_value(unary_ast_value, context);
+    unary_ast_value->data.UnaryNode->value =
+        any_to_ast_value(_visitContext(context->n_value));
+    return unary_ast_value;
   }
 } // namespace mavka::parser

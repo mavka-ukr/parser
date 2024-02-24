@@ -6,12 +6,12 @@ namespace mavka::parser {
     if (context->ic_identifier) {
       return visitIdentifier(context->ic_identifier);
     }
-    const auto chain_node = new ast::ChainNode();
-    fill_ast_value(chain_node, context);
-    chain_node->left =
+    const auto chain_ast_value =
+        ast::ChainNode::ast_value(new ast::ChainNode());
+    fill_ast_value(chain_ast_value, context);
+    chain_ast_value->data.ChainNode->left =
         any_to_ast_value(visitIdentifiers_chain(context->ic_left));
-    chain_node->right =
-        any_to_ast_value(visitIdentifier(context->ic_right))->IdentifierNode;
-    return (ast::make_ast_some(chain_node));
+    chain_ast_value->data.ChainNode->right = context->ic_right->getText();
+    return chain_ast_value;
   }
 } // namespace mavka::parser

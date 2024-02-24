@@ -127,14 +127,8 @@ public:
   virtual void enterTry(MavkaParser::TryContext * /*ctx*/) override { }
   virtual void exitTry(MavkaParser::TryContext * /*ctx*/) override { }
 
-  virtual void enterEval(MavkaParser::EvalContext * /*ctx*/) override { }
-  virtual void exitEval(MavkaParser::EvalContext * /*ctx*/) override { }
-
   virtual void enterTake_module(MavkaParser::Take_moduleContext * /*ctx*/) override { }
   virtual void exitTake_module(MavkaParser::Take_moduleContext * /*ctx*/) override { }
-
-  virtual void enterTake_remote(MavkaParser::Take_remoteContext * /*ctx*/) override { }
-  virtual void exitTake_remote(MavkaParser::Take_remoteContext * /*ctx*/) override { }
 
   virtual void enterTake_module_elements(MavkaParser::Take_module_elementsContext * /*ctx*/) override { }
   virtual void exitTake_module_elements(MavkaParser::Take_module_elementsContext * /*ctx*/) override { }

@@ -2,15 +2,15 @@
 
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitParam(MavkaParser::ParamContext* context) {
-    const auto param_node = new ast::Param();
-    param_node->name = context->p_name->getText();
+    const auto param = new ast::ParamNode();
+    param->name = context->p_name->getText();
     if (context->p_type) {
-      param_node->types = std::any_cast<std::vector<ast::TypeNode*>>(
-          visitType_value(context->p_type));
+      param->type =
+          std::any_cast<ast::ASTValue*>(visitType_value(context->p_type));
     }
     if (context->p_value) {
-      param_node->value = any_to_ast_value(visitParam_value(context->p_value));
+      param->value = any_to_ast_value(visitParam_value(context->p_value));
     }
-    return (ast::make_ast_some(param_node));
+    return ast::ParamNode::ast_value(param);
   }
 } // namespace mavka::parser

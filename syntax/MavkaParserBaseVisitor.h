@@ -163,15 +163,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitEval(MavkaParser::EvalContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual std::any visitTake_module(MavkaParser::Take_moduleContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitTake_remote(MavkaParser::Take_remoteContext *ctx) override {
     return visitChildren(ctx);
   }
 

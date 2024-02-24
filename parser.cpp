@@ -28,10 +28,10 @@ namespace mavka::parser {
     identifier_node->name = "текст";
     const auto call_node = new ast::CallNode();
     call_node->value = make_ast_value(ast::KindIdentifierNode, identifier_node);
-    const auto arg_node = new ast::Arg();
+    const auto arg_node = new ast::ArgNode();
     arg_node->index = 0;
     arg_node->value = ast_value;
-    call_node->args = {arg_node};
+    call_node->args = {ast::ArgNode::ast_value(arg_node)};
     return make_ast_value(ast::KindCallNode, call_node);
   }
 
@@ -43,7 +43,7 @@ namespace mavka::parser {
     if (nodes.size() == 1) {
       return to_string_call_node(nodes[0]);
     }
-    const auto arithmetic_node = new ast::ArithmeticNode();
+    const auto arithmetic_node = new ast::BinaryNode();
     arithmetic_node->op = ast::ARITHMETIC_ADD;
     if (nodes.size() == 2) {
       arithmetic_node->left = to_string_call_node(nodes[0]);
@@ -53,7 +53,7 @@ namespace mavka::parser {
           make_arithmetic_node(std::vector(nodes.begin(), nodes.end() - 1)));
       arithmetic_node->right = to_string_call_node(nodes.back());
     }
-    return make_ast_value(ast::KindArithmeticNode, arithmetic_node);
+    return make_ast_value(ast::KindBinaryNode, arithmetic_node);
   }
 
   std::any process_string(antlr4::ParserRuleContext* context,
@@ -246,12 +246,12 @@ namespace mavka::parser {
       call_ast_value->data.CallNode->value = chain_ast_value;
       if (call_parent_context->cp_args) {
         call_ast_value->data.CallNode->args =
-            std::any_cast<std::vector<ast::Arg*>>(
+            std::any_cast<std::vector<ast::ASTValue*>>(
                 visitArgs(call_parent_context->cp_args));
       }
       if (call_parent_context->cp_named_args) {
         call_ast_value->data.CallNode->args =
-            std::any_cast<std::vector<ast::Arg*>>(
+            std::any_cast<std::vector<ast::ASTValue*>>(
                 visitNamed_args(call_parent_context->cp_named_args));
       }
       return call_ast_value;

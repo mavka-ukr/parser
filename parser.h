@@ -20,6 +20,9 @@ namespace mavka::parser {
 
   ast::ASTValue* make_ast_value(ast::ASTValueKind kind, void* data);
 
+  std::any process_string(antlr4::ParserRuleContext* context,
+                          const std::string& value);
+
   void processASTBody(std::vector<ast::ASTValue*>& body);
 
   class MavkaASTVisitor final : public MavkaParserBaseVisitor {
@@ -199,8 +202,6 @@ namespace mavka::parser {
 
     std::any visitThrow(MavkaParser::ThrowContext* context) override;
 
-    std::any visitEval(MavkaParser::EvalContext* context) override;
-
     std::any visitWait_assign(
         MavkaParser::Wait_assignContext* context) override;
 
@@ -222,9 +223,6 @@ namespace mavka::parser {
 
     std::any visitTake_module(
         MavkaParser::Take_moduleContext* context) override;
-
-    std::any visitTake_remote(
-        MavkaParser::Take_remoteContext* context) override;
 
     std::any visitGive(MavkaParser::GiveContext* context) override;
 

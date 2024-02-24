@@ -3,13 +3,15 @@
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitIdentifier(
       MavkaParser::IdentifierContext* context) {
-    const auto identifier_node = new ast::IdentifierNode();
-    fill_ast_value(identifier_node, context);
+    const auto identifier_ast_value =
+        ast::IdentifierNode::ast_value(new ast::IdentifierNode());
+    fill_ast_value(identifier_ast_value, context);
     if (context->getText()[0] == '\'') {
-      identifier_node->name = context->getText().substr(1);
+      identifier_ast_value->data.IdentifierNode->name =
+          context->getText().substr(1);
     } else {
-      identifier_node->name = context->getText();
+      identifier_ast_value->data.IdentifierNode->name = context->getText();
     }
-    return (ast::make_ast_some(identifier_node));
+    return identifier_ast_value;
   }
 } // namespace mavka::parser

@@ -15,11 +15,11 @@ identifier: ID;
 file: f_program=program EOF;
 
 program: program_element (nl program_element)*;
-program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | take | give | comp_inst_block_program | comp_inst_assign | nls;
+program_element: module | structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | take | give | comp_inst_block_program | comp_inst_assign | nls;
 
 module: 'модуль' (m_name=identifier)? nl (m_body=module_body nl)? 'кінець';
 module_body: module_body_element (nl module_body_element)*;
-module_body_element: module | structure | mockup | diia | if | each | while | try | expr | throw | eval | wait_assign | assign | give | nls;
+module_body_element: module | structure | mockup | diia | if | each | while | try | expr | throw | wait_assign | assign | give | nls;
 
 structure: 'структура' s_name=identifier ('<' s_generics=generics '>')? ('є' s_parent=super_identifiers_chain ('<' s_parent_generics=generics '>')?)? nl (s_elements=structure_elements nl)? nls 'кінець';
 structure_elements: structure_element (nl structure_element)*;
@@ -56,10 +56,7 @@ while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
 try: 'спробувати' nl (t_body=body nl)? 'зловити' tc_name=identifier? nl (tc_body=body nl)? 'кінець';
 
-eval: 'js' e_value=string;
-
-take: 'взяти' (tm_relative='.')? tm_name_chain=identifiers_chain (tm_elements=take_module_elements | ('як' tm_as=identifier))? #take_module
-    | 'взяти' identifier tr_url=STRING tr_version=STRING ('як' tr_as=identifier)? #take_remote;
+take: 'взяти' (tm_relative='.')? tm_name_chain=identifiers_chain (tm_elements=take_module_elements | ('як' tm_as=identifier))? #take_module;
 take_module_elements: '[' take_module_element (',' take_module_element)* ']';
 take_module_element: tme_name=identifier ('як' tme_as=identifier)?;
 

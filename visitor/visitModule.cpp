@@ -11,7 +11,7 @@ namespace mavka::parser {
       module_node->body =
           std::any_cast<std::vector<ast::ASTValue*>>(module_body);
     }
-    ast_value->data.ref = module_node;
+    ast_value->data.ModuleNode = module_node;
     return ast_value;
   }
 } // namespace mavka::parser

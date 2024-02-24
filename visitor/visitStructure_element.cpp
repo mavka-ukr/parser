@@ -6,6 +6,6 @@ namespace mavka::parser {
     if (context->structure_param()) {
       return visitStructure_param(context->structure_param());
     }
-    return new ast::ASTSome();
+    return new ast::ASTValue();
   }
 } // namespace mavka::parser

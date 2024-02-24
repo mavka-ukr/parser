@@ -8,16 +8,17 @@ namespace mavka::parser {
         any_to_ast_value(_visitContext(context->c_value));
     if (context->call_generics()) {
       call_ast_value->data.CallNode->generics =
-          std::any_cast<std::vector<ast::TypeUnionNode*>>(
+          std::any_cast<std::vector<ast::ASTValue*>>(
               visitCall_generics(context->call_generics()));
     }
     if (context->c_args) {
       call_ast_value->data.CallNode->args =
-          std::any_cast<std::vector<ast::Arg*>>(visitArgs(context->c_args));
+          std::any_cast<std::vector<ast::ASTValue*>>(
+              visitArgs(context->c_args));
     }
     if (context->c_named_args) {
       call_ast_value->data.CallNode->args =
-          std::any_cast<std::vector<ast::Arg*>>(
+          std::any_cast<std::vector<ast::ASTValue*>>(
               visitNamed_args(context->c_named_args));
     }
     return call_ast_value;

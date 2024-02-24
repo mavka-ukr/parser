@@ -27,6 +27,6 @@ namespace mavka::parser {
       return visitParam_value_empty_list(
           dynamic_cast<MavkaParser::Param_value_empty_listContext*>(context));
     }
-    return new ast::ASTSome();
+    return new ast::ASTValue();
   }
 } // namespace mavka::parser

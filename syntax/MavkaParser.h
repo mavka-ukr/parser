@@ -17,15 +17,15 @@ public:
     KW_RETURN = 13, KW_ASYNC = 14, KW_SUBJECT = 15, KW_AND = 16, KW_OR = 17, 
     KW_TRY = 18, KW_CATCH = 19, KW_ELSE = 20, KW_THROW = 21, KW_WHILE = 22, 
     KW_MODULE = 23, KW_EQ_WORD = 24, KW_GR_WORD = 25, KW_SM_WORD = 26, KW_HAS_IS_WORD = 27, 
-    KW_MOCKUP = 28, KW_NOT = 29, KW_JS = 30, KW_PARENT = 31, KW_TSE = 32, 
-    EQUAL = 33, GREATER = 34, LESSER = 35, DOT = 36, PLUS = 37, MINUS = 38, 
-    MULTIPLY = 39, DIVIDE = 40, MOD = 41, POWER = 42, AND = 43, OR = 44, 
-    PAREN_OPEN = 45, PAREN_CLOSE = 46, BRACKET_OPEN = 47, BRACKET_CLOSE = 48, 
-    QUESTION = 49, COLON = 50, TILDA = 51, QUOTE = 52, DOUBLE_QUOTE = 53, 
-    EXCLAMATION = 54, COMA = 55, INTEGER = 56, FLOAT = 57, HEX = 58, BIN = 59, 
-    NUMBER = 60, ID = 61, KWID = 62, STRING_MULTILINE = 63, STRING = 64, 
-    COMP_INST_START = 65, COMP_INST_END = 66, COMP_INST_ASSIGN = 67, COMMENT = 68, 
-    LINE_COMMENT = 69, MRM_DIIA = 70, NL = 71, WS = 72
+    KW_MOCKUP = 28, KW_NOT = 29, KW_PARENT = 30, KW_TSE = 31, EQUAL = 32, 
+    GREATER = 33, LESSER = 34, DOT = 35, PLUS = 36, MINUS = 37, MULTIPLY = 38, 
+    DIVIDE = 39, MOD = 40, POWER = 41, AND = 42, OR = 43, PAREN_OPEN = 44, 
+    PAREN_CLOSE = 45, BRACKET_OPEN = 46, BRACKET_CLOSE = 47, QUESTION = 48, 
+    COLON = 49, TILDA = 50, QUOTE = 51, DOUBLE_QUOTE = 52, EXCLAMATION = 53, 
+    COMA = 54, INTEGER = 55, FLOAT = 56, HEX = 57, BIN = 58, NUMBER = 59, 
+    ID = 60, KWID = 61, STRING_MULTILINE = 62, STRING = 63, COMP_INST_START = 64, 
+    COMP_INST_END = 65, COMP_INST_ASSIGN = 66, COMMENT = 67, LINE_COMMENT = 68, 
+    MRM_DIIA = 69, NL = 70, WS = 71
   };
 
   enum {
@@ -38,22 +38,22 @@ public:
     RuleMockup_diia = 22, RuleMockup_subject = 23, RuleDiia = 24, RuleIf = 25, 
     RuleEach = 26, RuleFromto = 27, RuleFromto_simple = 28, RuleFromto_complex = 29, 
     RuleFromto_value = 30, RuleFromto_middle_symbol = 31, RuleFromto_to_symbol = 32, 
-    RuleWhile = 33, RuleTry = 34, RuleEval = 35, RuleTake = 36, RuleTake_module_elements = 37, 
-    RuleTake_module_element = 38, RuleGive = 39, RuleGive_element = 40, 
-    RuleMrm = 41, RuleMrm_element = 42, RuleMrm_element_closed = 43, RuleMrm_args = 44, 
-    RuleMrm_arg = 45, RuleMrm_content = 46, RuleMrm_chardata = 47, RuleMrm_diia = 48, 
-    RuleAtom = 49, RuleValue = 50, RuleCall_generics = 51, RuleArray_elements = 52, 
-    RuleArray_element = 53, RuleDictionary_args = 54, RuleDictionary_arg = 55, 
-    RuleExpr = 56, RuleThrow = 57, RuleAssign = 58, RuleAssign_simple = 59, 
-    RuleAssign_by_identifier = 60, RuleAssign_by_element = 61, RuleAssign_symbol = 62, 
-    RuleWait_assign = 63, RuleIdentifiers_chain = 64, RuleSuper_identifiers_chain = 65, 
-    RuleType_value = 66, RuleType_value_item = 67, RuleType_value_item_simple = 68, 
-    RuleType_value_item_generics = 69, RuleType_value_item_array = 70, RuleArgs = 71, 
-    RuleArg = 72, RuleNamed_args = 73, RuleNamed_arg = 74, RuleParams = 75, 
-    RuleParam = 76, RuleParam_value = 77, RuleBody = 78, RuleBody_element_or_return = 79, 
-    RuleBody_element = 80, RuleReturn_body_line = 81, RuleArithmetic_op_mul = 82, 
-    RuleArithmetic_op_add = 83, RuleBitwise_op = 84, RuleTest_op = 85, RuleComparison_op = 86, 
-    RuleComp_inst_block_program = 87, RuleComp_inst_assign = 88
+    RuleWhile = 33, RuleTry = 34, RuleTake = 35, RuleTake_module_elements = 36, 
+    RuleTake_module_element = 37, RuleGive = 38, RuleGive_element = 39, 
+    RuleMrm = 40, RuleMrm_element = 41, RuleMrm_element_closed = 42, RuleMrm_args = 43, 
+    RuleMrm_arg = 44, RuleMrm_content = 45, RuleMrm_chardata = 46, RuleMrm_diia = 47, 
+    RuleAtom = 48, RuleValue = 49, RuleCall_generics = 50, RuleArray_elements = 51, 
+    RuleArray_element = 52, RuleDictionary_args = 53, RuleDictionary_arg = 54, 
+    RuleExpr = 55, RuleThrow = 56, RuleAssign = 57, RuleAssign_simple = 58, 
+    RuleAssign_by_identifier = 59, RuleAssign_by_element = 60, RuleAssign_symbol = 61, 
+    RuleWait_assign = 62, RuleIdentifiers_chain = 63, RuleSuper_identifiers_chain = 64, 
+    RuleType_value = 65, RuleType_value_item = 66, RuleType_value_item_simple = 67, 
+    RuleType_value_item_generics = 68, RuleType_value_item_array = 69, RuleArgs = 70, 
+    RuleArg = 71, RuleNamed_args = 72, RuleNamed_arg = 73, RuleParams = 74, 
+    RuleParam = 75, RuleParam_value = 76, RuleBody = 77, RuleBody_element_or_return = 78, 
+    RuleBody_element = 79, RuleReturn_body_line = 80, RuleArithmetic_op_mul = 81, 
+    RuleArithmetic_op_add = 82, RuleBitwise_op = 83, RuleTest_op = 84, RuleComparison_op = 85, 
+    RuleComp_inst_block_program = 86, RuleComp_inst_assign = 87
   };
 
   explicit MavkaParser(antlr4::TokenStream *input);
@@ -108,7 +108,6 @@ public:
   class Fromto_to_symbolContext;
   class WhileContext;
   class TryContext;
-  class EvalContext;
   class TakeContext;
   class Take_module_elementsContext;
   class Take_module_elementContext;
@@ -293,7 +292,6 @@ public:
     TryContext *try_();
     ExprContext *expr();
     ThrowContext *throw_();
-    EvalContext *eval();
     Wait_assignContext *wait_assign();
     AssignContext *assign();
     TakeContext *take();
@@ -365,7 +363,6 @@ public:
     TryContext *try_();
     ExprContext *expr();
     ThrowContext *throw_();
-    EvalContext *eval();
     Wait_assignContext *wait_assign();
     AssignContext *assign();
     GiveContext *give();
@@ -972,23 +969,6 @@ public:
 
   TryContext* try_();
 
-  class  EvalContext : public antlr4::ParserRuleContext {
-  public:
-    MavkaParser::StringContext *e_value = nullptr;
-    EvalContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *KW_JS();
-    StringContext *string();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  EvalContext* eval();
-
   class  TakeContext : public antlr4::ParserRuleContext {
   public:
     TakeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -1016,25 +996,6 @@ public:
     Take_module_elementsContext *take_module_elements();
     antlr4::tree::TerminalNode *KW_AS();
     IdentifierContext *identifier();
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  Take_remoteContext : public TakeContext {
-  public:
-    Take_remoteContext(TakeContext *ctx);
-
-    antlr4::Token *tr_url = nullptr;
-    antlr4::Token *tr_version = nullptr;
-    MavkaParser::IdentifierContext *tr_as = nullptr;
-    antlr4::tree::TerminalNode *KW_TAKE();
-    std::vector<IdentifierContext *> identifier();
-    IdentifierContext* identifier(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> STRING();
-    antlr4::tree::TerminalNode* STRING(size_t i);
-    antlr4::tree::TerminalNode *KW_AS();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -1770,26 +1731,7 @@ public:
   public:
     Anonymous_diiaContext(ExprContext *ctx);
 
-    antlr4::Token *d_async = nullptr;
-    MavkaParser::GenericsContext *d_generics = nullptr;
-    MavkaParser::ParamsContext *d_params = nullptr;
-    MavkaParser::Type_valueContext *d_type = nullptr;
-    MavkaParser::BodyContext *d_body = nullptr;
-    antlr4::tree::TerminalNode *KW_DIIA();
-    antlr4::tree::TerminalNode *PAREN_OPEN();
-    std::vector<NlsContext *> nls();
-    NlsContext* nls(size_t i);
-    antlr4::tree::TerminalNode *PAREN_CLOSE();
-    std::vector<NlContext *> nl();
-    NlContext* nl(size_t i);
-    antlr4::tree::TerminalNode *KW_END();
-    antlr4::tree::TerminalNode *LESSER();
-    antlr4::tree::TerminalNode *GREATER();
-    antlr4::tree::TerminalNode *KW_ASYNC();
-    GenericsContext *generics();
-    ParamsContext *params();
-    Type_valueContext *type_value();
-    BodyContext *body();
+    DiiaContext *diia();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 

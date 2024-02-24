@@ -6,11 +6,7 @@ namespace mavka::parser {
       return visitTake_module(
           dynamic_cast<MavkaParser::Take_moduleContext*>(context));
     }
-    if (tools::instance_of<MavkaParser::Take_remoteContext>(context)) {
-      return visitTake_remote(
-          dynamic_cast<MavkaParser::Take_remoteContext*>(context));
-    }
-    return new ast::ASTSome();
+    return new ast::ASTValue();
   }
 
 } // namespace mavka::parser

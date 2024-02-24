@@ -2,9 +2,11 @@
 
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitNot(MavkaParser::NotContext* context) {
-    const auto not_node = new ast::NotNode();
-    fill_ast_value(not_node, context);
-    not_node->value = any_to_ast_value(_visitContext(context->n_value));
-    return (ast::make_ast_some(not_node));
+    const auto unary_ast_value =
+        ast::UnaryNode::ast_value(new ast::UnaryNode(ast::UNARY_NOT));
+    fill_ast_value(unary_ast_value, context);
+    unary_ast_value->data.UnaryNode->value =
+        any_to_ast_value(_visitContext(context->n_value));
+    return unary_ast_value;
   }
 } // namespace mavka::parser

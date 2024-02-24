@@ -3,28 +3,29 @@
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitFunction(
       MavkaParser::FunctionContext* context) {
-    const auto function_node = new ast::FunctionNode();
-    fill_ast_value(function_node, context);
-    function_node->async = context->f_async != nullptr;
+    const auto diia_ast_value = ast::DiiaNode::ast_value(new ast::DiiaNode());
+    fill_ast_value(diia_ast_value, context);
+    diia_ast_value->data.DiiaNode->ee = false;
+    diia_ast_value->data.DiiaNode->async = context->f_async != nullptr;
+    diia_ast_value->data.DiiaNode->structure = "";
+    diia_ast_value->data.DiiaNode->name = "";
     if (context->f_params) {
-      function_node->params = std::any_cast<std::vector<ast::Param*>>(
-          visitParams(context->f_params));
+      diia_ast_value->data.DiiaNode->params =
+          std::any_cast<std::vector<ast::ASTValue*>>(
+              visitParams(context->f_params));
     }
     if (context->f_type) {
-      function_node->return_types = std::any_cast<std::vector<ast::TypeNode*>>(
-          visitType_value(context->f_type));
+      diia_ast_value->data.DiiaNode->return_types =
+          any_to_ast_value(visitType_value(context->f_type));
     }
     if (context->f_body) {
-      const auto function_node_body =
+      const auto body_ast_value =
           any_to_ast_value(_visitContext(context->f_body));
-      const auto return_node = new ast::ReturnNode();
-      // return_node->start_line = function_node_body->start_line;
-      // return_node->start_column = function_node_body->start_column;
-      // return_node->end_line = function_node_body->end_line;
-      // return_node->end_column = function_node_body->end_column;
-      return_node->value = function_node_body;
-      function_node->body.push_back(ast::make_ast_some(return_node));
+      const auto return_ast_value =
+          ast::ReturnNode::ast_value(new ast::ReturnNode());
+      return_ast_value->data.ReturnNode->value = body_ast_value;
+      diia_ast_value->data.DiiaNode->body = {return_ast_value};
     }
-    return (ast::make_ast_some(function_node));
+    return diia_ast_value;
   }
 } // namespace mavka::parser

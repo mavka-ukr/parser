@@ -11,7 +11,6 @@ namespace mavka::parser {
         ast::AssignByIdentifierNode::ast_value(
             new ast::AssignByIdentifierNode());
     fill_ast_value(assign_by_identifier_ast_value, context);
-
     assign_by_identifier_ast_value->data.AssignByIdentifierNode->left =
         any_to_ast_value(visitSuper_identifiers_chain(context->abi_left));
     assign_by_identifier_ast_value->data.AssignByIdentifierNode->identifier =

@@ -36,9 +36,6 @@ namespace mavka::parser {
     if (context->throw_()) {
       return visitThrow(context->throw_());
     }
-    if (context->eval()) {
-      return visitEval(context->eval());
-    }
     if (context->wait_assign()) {
       return visitWait_assign(context->wait_assign());
     }

@@ -14,8 +14,7 @@ namespace mavka::parser {
         context->as_identifier->ID()->getText();
     if (context->as_type) {
       assign_ast_value->data.AssignNode->types =
-          std::any_cast<std::vector<ast::TypeNode*>>(
-              visitType_value(context->as_type));
+          std::any_cast<ast::ASTValue*>(visitType_value(context->as_type));
     }
     assign_ast_value->data.AssignNode->value =
         any_to_ast_value(_visitContext(context->as_value));

@@ -125,14 +125,8 @@ public:
   virtual void enterTry(MavkaParser::TryContext *ctx) = 0;
   virtual void exitTry(MavkaParser::TryContext *ctx) = 0;
 
-  virtual void enterEval(MavkaParser::EvalContext *ctx) = 0;
-  virtual void exitEval(MavkaParser::EvalContext *ctx) = 0;
-
   virtual void enterTake_module(MavkaParser::Take_moduleContext *ctx) = 0;
   virtual void exitTake_module(MavkaParser::Take_moduleContext *ctx) = 0;
-
-  virtual void enterTake_remote(MavkaParser::Take_remoteContext *ctx) = 0;
-  virtual void exitTake_remote(MavkaParser::Take_remoteContext *ctx) = 0;
 
   virtual void enterTake_module_elements(MavkaParser::Take_module_elementsContext *ctx) = 0;
   virtual void exitTake_module_elements(MavkaParser::Take_module_elementsContext *ctx) = 0;

@@ -2,9 +2,10 @@
 
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitId(MavkaParser::IdContext* context) {
-    const auto identifier_node = new ast::IdentifierNode();
-    fill_ast_value(identifier_node, context);
-    identifier_node->name = context->getText();
-    return (ast::make_ast_some(identifier_node));
+    const auto identifier_ast_value =
+        ast::IdentifierNode::ast_value(new ast::IdentifierNode());
+    fill_ast_value(identifier_ast_value, context);
+    identifier_ast_value->data.IdentifierNode->name = context->getText();
+    return identifier_ast_value;
   }
 } // namespace mavka::parser

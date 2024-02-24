@@ -2,9 +2,10 @@
 
 namespace mavka::parser {
   std::any MavkaASTVisitor::visitNumber(MavkaParser::NumberContext* context) {
-    const auto number_node = new ast::NumberNode();
-    fill_ast_value(number_node, context);
-    number_node->value = process_number(context->getText());
-    return (ast::make_ast_some(number_node));
+    const auto number_ast_value =
+        ast::NumberNode::ast_value(new ast::NumberNode());
+    fill_ast_value(number_ast_value, context);
+    number_ast_value->data.NumberNode->value = context->getText();
+    return number_ast_value;
   }
 } // namespace mavka::parser

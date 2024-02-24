@@ -14,6 +14,6 @@ namespace mavka::parser {
     if (context->mockup_subject()) {
       return visitMockup_subject(context->mockup_subject());
     }
-    return new ast::ASTSome();
+    return new ast::ASTValue();
   }
 } // namespace mavka::parser
