@@ -92,103 +92,138 @@ namespace mavka::parser {
       return block_ast_value;
     }
     if (context->e_fromto) {
+      std::string comp_symbol;
+      std::string arith_symbol;
+      ast::ASTValue* from_ast_node;
+      ast::ASTValue* middle_ast_node;
+      ast::ASTValue* to_ast_node;
+
       if (context->e_fromto->fromto_simple()) {
-        const auto to_name = std::to_string(this->each_count++) + "_до";
-        const auto fromto_simple = context->e_fromto->fromto_simple();
-        const auto to_identifier_ast_value =
-            ast::IdentifierNode::ast_value(new ast::IdentifierNode(to_name));
-        fill_ast_value(to_identifier_ast_value, context);
-        const auto e_name_ast_value = ast::IdentifierNode::ast_value(
-            new ast::IdentifierNode(context->e_name->getText()));
-        fill_ast_value(e_name_ast_value, context);
+        comp_symbol =
+            context->e_fromto->fromto_simple()->fs_to_symbol
+                ? context->e_fromto->fromto_simple()->fs_to_symbol->getText()
+                : ">=";
+        arith_symbol = "+";
+        from_ast_node = any_to_ast_value(
+            visitFromto_value(context->e_fromto->fromto_simple()->fs_from));
+        middle_ast_node = ast::NumberNode::ast_value(new ast::NumberNode("1"));
+        fill_ast_value(middle_ast_node, context);
+        to_ast_node = any_to_ast_value(
+            visitFromto_value(context->e_fromto->fromto_simple()->fs_to));
+      } else if (context->e_fromto->fromto_complex()) {
+        comp_symbol =
+            context->e_fromto->fromto_complex()->fc_to_symbol
+                ? context->e_fromto->fromto_complex()->fc_to_symbol->getText()
+                : ">=";
+        arith_symbol = context->e_fromto->fromto_complex()->fc_middle_symbol
+                           ? context->e_fromto->fromto_complex()
+                                 ->fc_middle_symbol->getText()
+                           : "+";
+        from_ast_node = any_to_ast_value(
+            visitFromto_value(context->e_fromto->fromto_complex()->fc_from));
+        middle_ast_node = any_to_ast_value(
+            visitFromto_value(context->e_fromto->fromto_complex()->fc_middle));
+        to_ast_node = any_to_ast_value(
+            visitFromto_value(context->e_fromto->fromto_complex()->fc_to));
+      }
 
-        // х = 0
-        const auto assign_ast_value =
-            ast::AssignNode::ast_value(new ast::AssignNode());
-        fill_ast_value(assign_ast_value, context);
-        assign_ast_value->data.AssignNode->name = context->e_name->getText();
-        assign_ast_value->data.AssignNode->value =
-            any_to_ast_value(visitFromto_value(fromto_simple->fs_from));
+      const auto to_name = std::to_string(this->each_count++) + "_до";
+      const auto to_identifier_ast_value =
+          ast::IdentifierNode::ast_value(new ast::IdentifierNode(to_name));
+      fill_ast_value(to_identifier_ast_value, context);
+      const auto e_name_ast_value = ast::IdentifierNode::ast_value(
+          new ast::IdentifierNode(context->e_name->getText()));
+      fill_ast_value(e_name_ast_value, context);
 
-        // до = 10
-        const auto assign_ast_value2 =
-            ast::AssignNode::ast_value(new ast::AssignNode());
-        fill_ast_value(assign_ast_value2, context);
-        assign_ast_value2->data.AssignNode->name = to_name;
-        assign_ast_value2->data.AssignNode->value =
-            any_to_ast_value(visitFromto_value(fromto_simple->fs_to));
+      // х = 0
+      const auto assign_ast_value =
+          ast::AssignNode::ast_value(new ast::AssignNode());
+      fill_ast_value(assign_ast_value, context);
+      assign_ast_value->data.AssignNode->name = context->e_name->getText();
+      assign_ast_value->data.AssignNode->value = from_ast_node;
 
-        const auto op = fromto_simple->fs_to_symbol
-                            ? fromto_simple->fs_to_symbol->getText()
-                            : ">=";
+      // до = 10
+      const auto assign_ast_value2 =
+          ast::AssignNode::ast_value(new ast::AssignNode());
+      fill_ast_value(assign_ast_value2, context);
+      assign_ast_value2->data.AssignNode->name = to_name;
+      assign_ast_value2->data.AssignNode->value = to_ast_node;
 
-        // поки до >= х
-        const auto while_ast_value =
-            ast::WhileNode::ast_value(new ast::WhileNode());
-        fill_ast_value(while_ast_value, context);
+      // поки до >= х
+      const auto while_ast_value =
+          ast::WhileNode::ast_value(new ast::WhileNode());
+      fill_ast_value(while_ast_value, context);
 
-        // до >= х
-        const auto condition_binary_ast_value =
-            ast::BinaryNode::ast_value(new ast::BinaryNode());
-        fill_ast_value(condition_binary_ast_value, context);
-        // до
-        condition_binary_ast_value->data.BinaryNode->left =
-            to_identifier_ast_value;
-        // х
-        condition_binary_ast_value->data.BinaryNode->right = e_name_ast_value;
-        // <
-        if (op == "<") {
-          condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_LT;
-        } else if (op == "<=") {
-          condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_LE;
-        } else if (op == ">") {
-          condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_GT;
-        } else if (op == ">=") {
-          condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_GE;
-        } else {
-          condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_LE;
-        }
-        while_ast_value->data.WhileNode->condition = condition_binary_ast_value;
-        if (context->e_body) {
-          while_ast_value->data.WhileNode->body =
-              std::any_cast<std::vector<ast::ASTValue*>>(
-                  visitBody(context->e_body));
-        }
+      // до >= х
+      const auto condition_binary_ast_value =
+          ast::BinaryNode::ast_value(new ast::BinaryNode());
+      fill_ast_value(condition_binary_ast_value, context);
+      // до
+      condition_binary_ast_value->data.BinaryNode->left =
+          to_identifier_ast_value;
+      // х
+      condition_binary_ast_value->data.BinaryNode->right = e_name_ast_value;
+      // <
+      if (comp_symbol == "<") {
+        condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_LT;
+      } else if (comp_symbol == "<=") {
+        condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_LE;
+      } else if (comp_symbol == ">") {
+        condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_GT;
+      } else if (comp_symbol == ">=") {
+        condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_GE;
+      } else {
+        condition_binary_ast_value->data.BinaryNode->op = ast::COMPARISON_LE;
+      }
+      while_ast_value->data.WhileNode->condition = condition_binary_ast_value;
+      if (context->e_body) {
+        while_ast_value->data.WhileNode->body =
+            std::any_cast<std::vector<ast::ASTValue*>>(
+                visitBody(context->e_body));
+      }
 
-        // х + 1
-        const auto binary_ast_value =
-            ast::BinaryNode::ast_value(new ast::BinaryNode());
-        fill_ast_value(binary_ast_value, context);
-        // х
-        binary_ast_value->data.BinaryNode->left = e_name_ast_value;
-        // 1
-        const auto number_ast_value =
-            ast::NumberNode::ast_value(new ast::NumberNode("1"));
-        fill_ast_value(number_ast_value, context);
-        binary_ast_value->data.BinaryNode->right = number_ast_value;
-        // +
+      // х + 1
+      const auto binary_ast_value =
+          ast::BinaryNode::ast_value(new ast::BinaryNode());
+      fill_ast_value(binary_ast_value, context);
+      // х
+      binary_ast_value->data.BinaryNode->left = e_name_ast_value;
+      binary_ast_value->data.BinaryNode->right = middle_ast_node;
+      // +
+      if (arith_symbol == "+") {
         binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_ADD;
-
-        // х = х + 1
-        const auto assign_ast_value3 =
-            ast::AssignNode::ast_value(new ast::AssignNode());
-        fill_ast_value(assign_ast_value3, context);
-        assign_ast_value3->data.AssignNode->name = context->e_name->getText();
-        assign_ast_value3->data.AssignNode->value = binary_ast_value;
-
-        while_ast_value->data.WhileNode->body.push_back(assign_ast_value3);
-
-        const auto block_ast_value =
-            ast::BlockNode::ast_value(new ast::BlockNode());
-        fill_ast_value(block_ast_value, context);
-        block_ast_value->data.BlockNode->body = {
-            assign_ast_value, assign_ast_value2, while_ast_value};
-
-        return block_ast_value;
+      } else if (arith_symbol == "-") {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_SUB;
+      } else if (arith_symbol == "*") {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_MUL;
+      } else if (arith_symbol == "/") {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_DIV;
+      } else if (arith_symbol == "%") {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_MOD;
+      } else if (arith_symbol == "//") {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_DIVDIV;
+      } else if (arith_symbol == "**") {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_POW;
+      } else {
+        binary_ast_value->data.BinaryNode->op = ast::ARITHMETIC_ADD;
       }
-      if (context->e_fromto->fromto_complex()) {
-        const auto fromto_complex = context->e_fromto->fromto_complex();
-      }
+
+      // х = х + 1
+      const auto assign_ast_value3 =
+          ast::AssignNode::ast_value(new ast::AssignNode());
+      fill_ast_value(assign_ast_value3, context);
+      assign_ast_value3->data.AssignNode->name = context->e_name->getText();
+      assign_ast_value3->data.AssignNode->value = binary_ast_value;
+
+      while_ast_value->data.WhileNode->body.push_back(assign_ast_value3);
+
+      const auto block_ast_value =
+          ast::BlockNode::ast_value(new ast::BlockNode());
+      fill_ast_value(block_ast_value, context);
+      block_ast_value->data.BlockNode->body = {
+          assign_ast_value, assign_ast_value2, while_ast_value};
+
+      return block_ast_value;
     }
 
     return nullptr;
