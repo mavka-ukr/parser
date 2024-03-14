@@ -72,7 +72,7 @@ COMP_INST_START: ';' '+';
 COMP_INST_END: ';' '-';
 COMP_INST_ASSIGN: ';' '=';
 
-COMMENT: ';' ';' ';' (COMMENT | .)*? ';' ';' ';' -> channel(HIDDEN);
+COMMENT: ';' '*' (COMMENT | .)*? '*' ';' -> channel(HIDDEN);
 LINE_COMMENT: ';' ';' (LINE_COMMENT | ~[\r\n])* -> channel(HIDDEN);
 
 MRM_DIIA: '<дія>' .*? '</дія>';
