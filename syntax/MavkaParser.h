@@ -998,6 +998,8 @@ public:
     Take_elementsContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *BRACKET_OPEN();
+    std::vector<NlsContext *> nls();
+    NlsContext* nls(size_t i);
     std::vector<Take_elementContext *> take_element();
     Take_elementContext* take_element(size_t i);
     antlr4::tree::TerminalNode *BRACKET_CLOSE();

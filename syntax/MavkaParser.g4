@@ -57,7 +57,7 @@ while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 try: 'спробувати' nl (t_body=body nl)? 'зловити' tc_name=identifier? nl (tc_body=body nl)? 'кінець';
 
 take: 'взяти' (tm_repo=identifier)? tm_name_chain=identifiers_chain (tm_elements=take_elements | ('як' tm_as=identifier))?;
-take_elements: '[' take_element (',' take_element)* ']';
+take_elements: '[' nls take_element (nls ',' nls take_element)* nls (',')? nls ']';
 take_element: tme_name=identifier ('як' tme_as=identifier)?;
 
 give: 'дати' give_element (nls ',' nls give_element)*;
@@ -137,13 +137,13 @@ type_value_item_simple: tvi_value=identifiers_chain ('<' tvi_generics=type_value
 type_value_item_generics: type_value (',' type_value)*;
 type_value_item_array: '[' ']' type_value_item;
 
-args: arg (nls ',' nls arg)*;
+args: arg (nls ',' nls arg)* (',')?;
 arg: a_value=expr;
 named_args: named_arg (nls ',' nls named_arg)*;
 named_arg: na_name=identifier '=' na_value=expr;
 
-params: param (nls ',' nls param)* (nls ',' nls p_variadic='.' '.' '.' p_variadic_name=identifier (p_variadic_type=type_value)?)?
-      | p_variadic='.' '.' '.' p_variadic_name=identifier (p_variadic_type=type_value)?;
+params: param (nls ',' nls param)* (nls ',' nls p_variadic='.' '.' '.' p_variadic_name=identifier (p_variadic_type=type_value)?)? (',')?
+      | p_variadic='.' '.' '.' p_variadic_name=identifier (p_variadic_type=type_value)? (',')?;
 param: p_name=identifier (p_type=type_value)? ('=' p_value=param_value)?;
 param_value: number_token #param_value_number
            | string #param_value_string
