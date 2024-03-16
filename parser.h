@@ -295,7 +295,6 @@ namespace mavka::parser {
 
   class MavkaParserError : public std::exception {
    public:
-    std::string path;
     size_t line = 0;
     size_t column = 0;
     std::string message;
@@ -309,12 +308,7 @@ namespace mavka::parser {
 
   class MavkaParserErrorListener final : public antlr4::BaseErrorListener {
    public:
-    std::string path;
     std::vector<MavkaParserError> errors;
-
-    explicit MavkaParserErrorListener(const std::string& path) {
-      this->path = path;
-    }
 
     void syntaxError(antlr4::Recognizer* recognizer,
                      antlr4::Token* offendingSymbol,
@@ -324,6 +318,6 @@ namespace mavka::parser {
                      std::exception_ptr e) override;
   };
 
-  MavkaParserResult parse(const std::string& code, const std::string& path);
+  MavkaParserResult parse(const std::string& code);
 } // namespace mavka::parser
 #endif // MAVKA_PARSER_H

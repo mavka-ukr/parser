@@ -43,7 +43,6 @@ namespace mavka::ast {
   struct StringNode;
   struct StructureNode;
   struct TakeNode;
-  struct TakePakNode;
   struct TernaryNode;
   struct TestNode;
   struct ThrowNode;
@@ -192,14 +191,28 @@ namespace mavka::ast {
     size_t start_column = 0;
     size_t end_line = 0;
     size_t end_column = 0;
+
+    std::string to_string() const;
   };
 
+  // перевіряє чи ноду можна використовувати вертати з дії
   bool is_ast_value_returnable(const ASTValue* ast_value);
+
+  // перетворює ноду модуля в ноду виклику дії створення модуля
+  ASTValue* module_ast_value_to_diia_call_ast_value(ASTValue* module_ast_value,
+                                                    const std::string& path);
 
   struct ArgNode {
     size_t index;
     std::string name;
     ASTValue* value;
+
+    inline std::string to_string() {
+      if (this->name.empty()) {
+        return this->value->to_string();
+      }
+      return this->name + " = " + this->value->to_string();
+    }
 
     static ASTValue* ast_value(ArgNode* node) {
       const auto value = new ASTValue(KindArgNode);
@@ -215,6 +228,14 @@ namespace mavka::ast {
     ASTValue* value;
     bool variadic = false;
 
+    inline std::string to_string() {
+      if (this->value) {
+        return this->name + " " + this->type->to_string() + " = " +
+               this->value->to_string();
+      }
+      return this->name + " " + this->type->to_string();
+    }
+
     static ASTValue* ast_value(ParamNode* node) {
       const auto value = new ASTValue(KindParamNode);
       value->data.ParamNode = node;
@@ -224,6 +245,8 @@ namespace mavka::ast {
 
   struct GenericNode {
     std::string name;
+
+    inline std::string to_string() { return this->name; }
 
     static ASTValue* ast_value(GenericNode* node) {
       const auto value = new ASTValue(KindGenericNode);
@@ -235,6 +258,10 @@ namespace mavka::ast {
   struct DictionaryElementNode {
     ASTValue* key;
     ASTValue* value;
+
+    inline std::string to_string() {
+      return this->key->to_string() + "=" + this->value->to_string();
+    }
 
     static ASTValue* ast_value(DictionaryElementNode* node) {
       const auto value = new ASTValue(KindDictionaryElementNode);
@@ -248,6 +275,10 @@ namespace mavka::ast {
     ASTValue* left;
     ASTValue* right;
 
+    inline std::string to_string() {
+      return this->left->to_string() + " bin " + this->right->to_string();
+    }
+
     static ASTValue* ast_value(BinaryNode* node) {
       const auto value = new ASTValue(KindBinaryNode);
       value->data.BinaryNode = node;
@@ -258,6 +289,15 @@ namespace mavka::ast {
   struct BlockNode {
     std::vector<ASTValue*> body;
 
+    inline std::string to_string() {
+      std::string result = "{";
+      for (const auto& element : this->body) {
+        result += element->to_string() + ";";
+      }
+      result += "}";
+      return result;
+    }
+
     static ASTValue* ast_value(BlockNode* node) {
       const auto value = new ASTValue(KindBlockNode);
       value->data.BlockNode = node;
@@ -267,6 +307,15 @@ namespace mavka::ast {
 
   struct ListNode {
     std::vector<ASTValue*> elements;
+
+    inline std::string to_string() {
+      std::string result = "[";
+      for (const auto& element : this->elements) {
+        result += element->to_string() + ",";
+      }
+      result += "]";
+      return result;
+    }
 
     static ASTValue* ast_value(ListNode* node) {
       const auto value = new ASTValue(KindListNode);
@@ -279,6 +328,11 @@ namespace mavka::ast {
     ASTValue* left;
     std::string name;
     ASTValue* value;
+
+    inline std::string to_string() {
+      return this->left->to_string() + "." + this->name + " = " +
+             this->value->to_string();
+    }
 
     static ASTValue* ast_value(PropertySetNode* node) {
       const auto value = new ASTValue(KindPropertySetNode);
@@ -293,6 +347,14 @@ namespace mavka::ast {
     ASTValue* value;
     bool parent;
 
+    inline std::string to_string() {
+      if (this->types) {
+        return this->name + " " + this->types->to_string() + " = " +
+               this->value->to_string();
+      }
+      return this->name + " = " + this->value->to_string();
+    }
+
     static ASTValue* ast_value(AssignNode* node) {
       const auto value = new ASTValue(KindAssignNode);
       value->data.AssignNode = node;
@@ -302,6 +364,8 @@ namespace mavka::ast {
 
   struct BreakNode {
     size_t code_index;
+
+    inline std::string to_string() { return "перервати"; }
 
     static ASTValue* ast_value(BreakNode* node) {
       const auto value = new ASTValue(KindBreakNode);
@@ -315,6 +379,19 @@ namespace mavka::ast {
     std::vector<ASTValue*> generics;
     std::vector<ASTValue*> args;
 
+    inline std::string to_string() {
+      std::string result = "(" + this->value->to_string() + ")<";
+      for (const auto& element : this->generics) {
+        result += element->to_string() + ",";
+      }
+      result += ">(";
+      for (const auto& element : this->args) {
+        result += element->to_string() + ",";
+      }
+      result += ")";
+      return result;
+    }
+
     static ASTValue* ast_value(CallNode* node) {
       const auto value = new ASTValue(KindCallNode);
       value->data.CallNode = node;
@@ -325,6 +402,10 @@ namespace mavka::ast {
   struct PropertyGetNode {
     ASTValue* left;
     std::string name;
+
+    inline std::string to_string() {
+      return this->left->to_string() + "." + this->name;
+    }
 
     static ASTValue* ast_value(PropertyGetNode* node) {
       const auto value = new ASTValue(KindPropertyGetNode);
@@ -338,6 +419,8 @@ namespace mavka::ast {
     std::string value;
     std::vector<ASTValue*> body;
 
+    inline std::string to_string() { return "XXX"; }
+
     static ASTValue* ast_value(CompInstBlockProgramNode* node) {
       const auto value = new ASTValue(KindCompInstBlockProgramNode);
       value->data.CompInstBlockProgramNode = node;
@@ -349,6 +432,8 @@ namespace mavka::ast {
     std::string name;
     std::string value;
 
+    inline std::string to_string() { return "XXX"; }
+
     static ASTValue* ast_value(CompInstAssignNode* node) {
       const auto value = new ASTValue(KindCompInstAssignNode);
       value->data.CompInstAssignNode = node;
@@ -359,6 +444,8 @@ namespace mavka::ast {
   struct ContinueNode {
     size_t code_index;
 
+    inline std::string to_string() { return "продовжити"; }
+
     static ASTValue* ast_value(ContinueNode* node) {
       const auto value = new ASTValue(KindContinueNode);
       value->data.ContinueNode = node;
@@ -368,6 +455,15 @@ namespace mavka::ast {
 
   struct DictionaryNode {
     std::vector<ASTValue*> elements;
+
+    inline std::string to_string() {
+      std::string result = "(";
+      for (const auto& element : this->elements) {
+        result += element->to_string() + ",";
+      }
+      result += ")";
+      return result;
+    }
 
     static ASTValue* ast_value(DictionaryNode* node) {
       const auto value = new ASTValue(KindDictionaryNode);
@@ -387,6 +483,19 @@ namespace mavka::ast {
     std::vector<ASTValue*> body;
     bool anonymous;
 
+    inline std::string to_string() {
+      std::string result = "дія " + this->name + "(";
+      for (const auto& element : this->params) {
+        result += element->to_string() + ",";
+      }
+      result += ")\n";
+      for (const auto& element : this->body) {
+        result += element->to_string() + "\n";
+      }
+      result += "кінець";
+      return result;
+    }
+
     static ASTValue* ast_value(DiiaNode* node) {
       const auto value = new ASTValue(KindDiiaNode);
       value->data.DiiaNode = node;
@@ -398,6 +507,13 @@ namespace mavka::ast {
     std::string name;
     std::string as;
 
+    inline std::string to_string() {
+      if (this->as.empty()) {
+        return this->name;
+      }
+      return this->name + " як " + this->as;
+    }
+
     static ASTValue* ast_value(GiveElementNode* node) {
       const auto value = new ASTValue(KindGiveElementNode);
       value->data.GiveElementNode = node;
@@ -407,6 +523,14 @@ namespace mavka::ast {
 
   struct GiveNode {
     std::vector<ASTValue*> elements;
+
+    inline std::string to_string() {
+      std::string result = "дати ";
+      for (const auto& element : this->elements) {
+        result += element->to_string() + ",";
+      }
+      return result;
+    }
 
     static ASTValue* ast_value(GiveNode* node) {
       const auto value = new ASTValue(KindGiveNode);
@@ -418,6 +542,14 @@ namespace mavka::ast {
   struct GodNode {
     std::vector<ASTValue*> elements;
 
+    inline std::string to_string() {
+      std::string result = "";
+      for (const auto& element : this->elements) {
+        result += element->to_string() + " та ";
+      }
+      return result;
+    }
+
     static ASTValue* ast_value(GodNode* node) {
       const auto value = new ASTValue(KindGodNode);
       value->data.GodNode = node;
@@ -427,6 +559,8 @@ namespace mavka::ast {
 
   struct IdentifierNode {
     std::string name;
+
+    inline std::string to_string() { return this->name; }
 
     static ASTValue* ast_value(IdentifierNode* node) {
       const auto value = new ASTValue(KindIdentifierNode);
@@ -439,6 +573,21 @@ namespace mavka::ast {
     ASTValue* condition;
     std::vector<ASTValue*> body;
     std::vector<ASTValue*> else_body;
+
+    inline std::string to_string() {
+      std::string result = "якщо " + this->condition->to_string() + "\n";
+      for (const auto& element : this->body) {
+        result += element->to_string() + "\n";
+      }
+      if (!this->else_body.empty()) {
+        result += " інакше\n";
+        for (const auto& element : this->else_body) {
+          result += element->to_string() + "\n";
+        }
+      }
+      result += "кінець";
+      return result;
+    }
 
     static ASTValue* ast_value(IfNode* node) {
       const auto value = new ASTValue(KindIfNode);
@@ -455,11 +604,15 @@ namespace mavka::ast {
     std::vector<ASTValue*> generics;
     std::vector<ASTValue*> params;
     TypeUnionNode* return_types;
+
+    inline std::string to_string() { return "XXX"; }
   };
 
   struct MockupModuleNode {
     std::string name;
     std::vector<ASTValue*> elements;
+
+    inline std::string to_string() { return "XXX"; }
   };
 
   struct MockupStructureNode {
@@ -468,20 +621,35 @@ namespace mavka::ast {
     ASTValue* parent;
     std::vector<ASTValue*> parent_generics;
     std::vector<ASTValue*> params;
+
+    inline std::string to_string() { return "XXX"; }
   };
 
   struct MockupSubjectNode {
     std::string name;
     TypeUnionNode* types;
+
+    inline std::string to_string() { return "XXX"; }
   };
 
   struct ModuleNode {
     std::string name;
     std::vector<ASTValue*> body;
+
+    inline std::string to_string() {
+      std::string result = "модуль " + this->name + "\n";
+      for (const auto& element : this->body) {
+        result += element->to_string() + "\n";
+      }
+      result += "кінець";
+      return result;
+    }
   };
 
   struct MRMDiiaNode {
     std::string body;
+
+    inline std::string to_string() { return "XXX"; }
 
     static ASTValue* ast_value(MRMDiiaNode* node) {
       const auto value = new ASTValue(KindMRMDiiaNode);
@@ -492,6 +660,8 @@ namespace mavka::ast {
 
   struct NumberNode {
     std::string value;
+
+    inline std::string to_string() { return this->value; }
 
     static ASTValue* ast_value(NumberNode* node) {
       const auto value = new ASTValue(KindNumberNode);
@@ -504,6 +674,26 @@ namespace mavka::ast {
     UnaryOp op;
     ASTValue* value;
 
+    inline std::string to_string() {
+      std::string result = "";
+      switch (this->op) {
+        case UNARY_POSITIVE:
+          result += "+";
+          break;
+        case UNARY_NEGATIVE:
+          result += "-";
+          break;
+        case UNARY_NOT:
+          result += "!";
+          break;
+        case UNARY_BITWISE_NOT:
+          result += "~";
+          break;
+      }
+      result += this->value->to_string();
+      return result;
+    }
+
     static ASTValue* ast_value(UnaryNode* node) {
       const auto value = new ASTValue(KindUnaryNode);
       value->data.UnaryNode = node;
@@ -514,6 +704,10 @@ namespace mavka::ast {
   struct ReturnNode {
     ASTValue* value;
 
+    inline std::string to_string() {
+      return "вернути " + this->value->to_string();
+    }
+
     static ASTValue* ast_value(ReturnNode* node) {
       const auto value = new ASTValue(KindReturnNode);
       value->data.ReturnNode = node;
@@ -523,6 +717,8 @@ namespace mavka::ast {
 
   struct StringNode {
     std::string value;
+
+    inline std::string to_string() { return "\"" + this->value + "\""; }
 
     static ASTValue* ast_value(StringNode* node) {
       const auto value = new ASTValue(KindStringNode);
@@ -538,6 +734,15 @@ namespace mavka::ast {
     std::vector<ASTValue*> parent_generics;
     std::vector<ASTValue*> params;
 
+    inline std::string to_string() {
+      std::string result = "структура " + this->name + "\n";
+      for (const auto& element : this->params) {
+        result += element->to_string() + "\n";
+      }
+      result += "кінець";
+      return result;
+    }
+
     static ASTValue* ast_value(StructureNode* node) {
       const auto value = new ASTValue(KindStructureNode);
       value->data.StructureNode = node;
@@ -552,6 +757,14 @@ namespace mavka::ast {
     std::string as;
     std::map<std::string, std::string> elements;
 
+    inline std::string to_string() {
+      std::string result = "взяти " + this->repo + " " + this->name;
+      if (!this->as.empty()) {
+        result += " як " + this->as;
+      }
+      return result;
+    }
+
     static ASTValue* ast_value(TakeNode* node) {
       const auto value = new ASTValue(KindTakeNode);
       value->data.TakeNode = node;
@@ -563,6 +776,11 @@ namespace mavka::ast {
     ASTValue* condition;
     ASTValue* body;
     ASTValue* else_body;
+
+    inline std::string to_string() {
+      return this->condition->to_string() + " ? " + this->body->to_string() +
+             " : " + this->else_body->to_string();
+    }
 
     static ASTValue* ast_value(TernaryNode* node) {
       const auto value = new ASTValue(KindTernaryNode);
@@ -576,6 +794,20 @@ namespace mavka::ast {
     ASTValue* right;
     TestOp op;
 
+    inline std::string to_string() {
+      std::string result = this->left->to_string();
+      switch (this->op) {
+        case TEST_AND:
+          result += " і ";
+          break;
+        case TEST_OR:
+          result += " або ";
+          break;
+      }
+      result += this->right->to_string();
+      return result;
+    }
+
     static ASTValue* ast_value(TestNode* node) {
       const auto value = new ASTValue(KindTestNode);
       value->data.TestNode = node;
@@ -585,6 +817,10 @@ namespace mavka::ast {
 
   struct ThrowNode {
     ASTValue* value;
+
+    inline std::string to_string() {
+      return "впасти " + this->value->to_string();
+    }
 
     static ASTValue* ast_value(ThrowNode* node) {
       const auto value = new ASTValue(KindThrowNode);
@@ -598,6 +834,21 @@ namespace mavka::ast {
     std::string name;
     std::vector<ASTValue*> catch_body;
 
+    inline std::string to_string() {
+      std::string result = "спробувати\n";
+      for (const auto& element : this->body) {
+        result += element->to_string() + "\n";
+      }
+      if (!this->catch_body.empty()) {
+        result += "зловити\n";
+        for (const auto& element : this->catch_body) {
+          result += element->to_string() + "\n";
+        }
+      }
+      result += "кінець";
+      return result;
+    }
+
     static ASTValue* ast_value(TryNode* node) {
       const auto value = new ASTValue(KindTryNode);
       value->data.TryNode = node;
@@ -609,6 +860,18 @@ namespace mavka::ast {
     ASTValue* value;
     std::vector<ASTValue*> generics;
 
+    inline std::string to_string() {
+      std::string result = this->value->to_string();
+      if (!this->generics.empty()) {
+        result += "<";
+        for (const auto& element : this->generics) {
+          result += element->to_string() + ",";
+        }
+        result += ">";
+      }
+      return result;
+    }
+
     static ASTValue* ast_value(TypeNode* node) {
       const auto value = new ASTValue(KindTypeNode);
       value->data.TypeNode = node;
@@ -618,6 +881,14 @@ namespace mavka::ast {
 
   struct TypeUnionNode {
     std::vector<ASTValue*> types;
+
+    inline std::string to_string() {
+      std::string result = "";
+      for (const auto& element : this->types) {
+        result += element->to_string() + " або ";
+      }
+      return result;
+    }
 
     static ASTValue* ast_value(TypeUnionNode* node) {
       const auto value = new ASTValue(KindTypeUnionNode);
@@ -629,6 +900,10 @@ namespace mavka::ast {
   struct WaitNode {
     ASTValue* value;
 
+    inline std::string to_string() {
+      return "чекати " + this->value->to_string();
+    }
+
     static ASTValue* ast_value(WaitNode* node) {
       const auto value = new ASTValue(KindWaitNode);
       value->data.WaitNode = node;
@@ -639,6 +914,15 @@ namespace mavka::ast {
   struct WhileNode {
     ASTValue* condition;
     std::vector<ASTValue*> body;
+
+    inline std::string to_string() {
+      std::string result = "поки " + this->condition->to_string() + "\n";
+      for (const auto& element : this->body) {
+        result += element->to_string() + "\n";
+      }
+      result += "кінець";
+      return result;
+    }
 
     static ASTValue* ast_value(WhileNode* node) {
       const auto value = new ASTValue(KindWhileNode);
