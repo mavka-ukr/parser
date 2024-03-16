@@ -752,7 +752,6 @@ namespace mavka::ast {
 
   struct TakeNode {
     std::string repo;
-    bool relative;
     std::string name;
     std::string as;
     std::map<std::string, std::string> elements;

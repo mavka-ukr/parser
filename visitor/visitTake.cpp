@@ -6,7 +6,6 @@ namespace mavka::parser {
     fill_ast_value(take_ast_value, context);
     take_ast_value->data.TakeNode->repo =
         context->tm_repo ? context->tm_repo->getText() : "";
-    take_ast_value->data.TakeNode->relative = context->tm_relative != nullptr;
     take_ast_value->data.TakeNode->name = context->tm_name_chain->getText();
     take_ast_value->data.TakeNode->as =
         context->tm_as ? context->tm_as->getText() : "";

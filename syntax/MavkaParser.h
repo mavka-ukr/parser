@@ -972,7 +972,6 @@ public:
   class  TakeContext : public antlr4::ParserRuleContext {
   public:
     MavkaParser::IdentifierContext *tm_repo = nullptr;
-    antlr4::Token *tm_relative = nullptr;
     MavkaParser::Identifiers_chainContext *tm_name_chain = nullptr;
     MavkaParser::Take_elementsContext *tm_elements = nullptr;
     MavkaParser::IdentifierContext *tm_as = nullptr;
@@ -982,7 +981,6 @@ public:
     Identifiers_chainContext *identifiers_chain();
     std::vector<IdentifierContext *> identifier();
     IdentifierContext* identifier(size_t i);
-    antlr4::tree::TerminalNode *DOT();
     Take_elementsContext *take_elements();
     antlr4::tree::TerminalNode *KW_AS();
 

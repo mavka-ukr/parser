@@ -56,7 +56,7 @@ while: 'поки' w_value=expr nl (w_body=body nl)? 'кінець';
 
 try: 'спробувати' nl (t_body=body nl)? 'зловити' tc_name=identifier? nl (tc_body=body nl)? 'кінець';
 
-take: 'взяти' (tm_repo=identifier)? (tm_relative='.')? tm_name_chain=identifiers_chain (tm_elements=take_elements | ('як' tm_as=identifier))?;
+take: 'взяти' (tm_repo=identifier)? tm_name_chain=identifiers_chain (tm_elements=take_elements | ('як' tm_as=identifier))?;
 take_elements: '[' take_element (',' take_element)* ']';
 take_element: tme_name=identifier ('як' tme_as=identifier)?;
 
