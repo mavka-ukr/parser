@@ -10,15 +10,19 @@ namespace mavka::parser {
     take_ast_value->data.TakeNode->as =
         context->tm_as ? context->tm_as->getText() : "";
     if (context->tm_elements) {
-      for (const auto element_node : context->tm_elements->take_element()) {
-        if (element_node->tme_as) {
-          take_ast_value->data.TakeNode->elements.insert_or_assign(
-              element_node->tme_name->getText(),
-              element_node->tme_as->getText());
-        } else {
-          take_ast_value->data.TakeNode->elements.insert_or_assign(
-              element_node->tme_name->getText(),
-              element_node->tme_name->getText());
+      if (context->tm_elements->te_star) {
+        take_ast_value->data.TakeNode->all_elements = true;
+      } else {
+        for (const auto element_node : context->tm_elements->take_element()) {
+          if (element_node->tme_as) {
+            take_ast_value->data.TakeNode->elements.insert_or_assign(
+                element_node->tme_name->getText(),
+                element_node->tme_as->getText());
+          } else {
+            take_ast_value->data.TakeNode->elements.insert_or_assign(
+                element_node->tme_name->getText(),
+                element_node->tme_name->getText());
+          }
         }
       }
     }

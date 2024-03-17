@@ -755,6 +755,7 @@ namespace mavka::ast {
     std::string name;
     std::string as;
     std::map<std::string, std::string> elements;
+    bool all_elements;
 
     inline std::string to_string() {
       std::string result = "взяти " + this->repo + " " + this->name;

@@ -995,14 +995,16 @@ public:
 
   class  Take_elementsContext : public antlr4::ParserRuleContext {
   public:
+    antlr4::Token *te_star = nullptr;
     Take_elementsContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *BRACKET_OPEN();
     std::vector<NlsContext *> nls();
     NlsContext* nls(size_t i);
+    antlr4::tree::TerminalNode *BRACKET_CLOSE();
+    antlr4::tree::TerminalNode *MULTIPLY();
     std::vector<Take_elementContext *> take_element();
     Take_elementContext* take_element(size_t i);
-    antlr4::tree::TerminalNode *BRACKET_CLOSE();
     std::vector<antlr4::tree::TerminalNode *> COMA();
     antlr4::tree::TerminalNode* COMA(size_t i);
 
