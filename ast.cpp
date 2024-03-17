@@ -144,9 +144,6 @@ namespace mavka::ast {
     if (ast_value->kind == KindDictionaryNode) {
       return true;
     }
-    if (ast_value->kind == KindDiiaNode) {
-      return true;
-    }
     if (ast_value->kind == KindGodNode) {
       return true;
     }
@@ -163,9 +160,6 @@ namespace mavka::ast {
       return true;
     }
     if (ast_value->kind == KindStringNode) {
-      return true;
-    }
-    if (ast_value->kind == KindStructureNode) {
       return true;
     }
     if (ast_value->kind == KindTernaryNode) {
